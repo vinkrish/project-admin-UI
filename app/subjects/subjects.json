@@ -1,0 +1,364 @@
+{
+	"data" : [
+	  {
+	    "id": 5323,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "ENGLISH",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5324,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "2nd LANGUAGE",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5325,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "MATHEMATICS",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5326,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "ENVIRONMENTAL SCIENCE",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5327,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "COMPUTER SCIENCE",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5328,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "GENERAL KNOWLEDGE",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5330,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "LANGUAGE I",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5331,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "LANGUAGE II",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5332,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "LANGUAGE III",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5333,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "SCIENCE",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5334,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "SOCIAL SCIENCE",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5335,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "GEN.SCIENCE",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5336,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "ENGLISH (ORAL)",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5337,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "ENGLISH (WRITING)",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5338,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "II LANGUAGE (ORAL)",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5339,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "II LANGUAGE (WRITING)",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5340,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "NUMBER WORK (ORAL)",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5341,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "NUMBER WORK (WRITING)",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5342,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "E.V.S. (ORAL)",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5343,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "E.V.S. (WRITING)",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5344,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "RHYMES AND SONGS",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5345,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "STORY TELLING",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5346,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "DRAWING AND COLOURING",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5347,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "CRAFT WORK",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5348,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "TAMIL",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5349,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "HINDI",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5350,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "KANNADA",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5351,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "3rd LANGUAGE",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5352,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "101 ENGLISH COMMUNICATIVE",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5353,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "006 TAMIL",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5354,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "041 MATHEMATICS",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5355,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "086 SCIENCE",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5356,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "087 SOCIAL SCIENCE",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5357,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "402 INFORMATION TECHNOLOGY",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5358,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "PHYSICS",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5359,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "CHEMISTRY",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5360,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "BIOLOGY",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5396,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "ACCOUNTANCY",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5397,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "BUSINESS STUDIES",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5398,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "ECONOMICS",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 5663,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "COMPUTER SCIENCE-P.S",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 6017,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": " 2nd LANGUAGE",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 6018,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": " 3rd LANGUAGE",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 6019,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": "006 TAMIL / 015 KANNADA / 085 HINDI COURSE B",
+	    "theorySubjectId": 0
+	  },
+	  {
+	    "id": 6020,
+	    "partitionType": 0,
+	    "practicalSubjectId": 0,
+	    "schoolId": 107,
+	    "subjectName": " ENGLISH",
+	    "theorySubjectId": 0
+	  }
+	]
+}

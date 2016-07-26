@@ -1,0 +1,57 @@
+<div class="container">
+<ul class="breadcrumb">
+	<li class="active">Class<span class="divider"></span></li>
+	<li class="active">Section</li>
+</ul>
+<div class="grid grid-pad">
+  <div *ngFor="let item of Items1" (click)="gotoDetail(item.link)" class="col-1-4">
+    <div class="module hero">
+      <h4>{{item.name}}</h4>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+<ul class="breadcrumb">
+	<li class="active">Attendance<span class="divider"></span></li>
+	<li class="active">Homework<span class="divider"></span></li>
+	<li class="active">Timetable</li>
+</ul>
+<div class="grid grid-pad">
+  <div *ngFor="let item of Items2" (click)="gotoDetail(item.link)" class="col-1-4">
+    <div class="module hero">
+      <h4>{{item.name}}</h4>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+<ul class="breadcrumb">
+	<li class="active">Subject<span class="divider"></span></li>
+	<li class="active">Subject Group<span class="divider"></span></li>
+	<li class="active">Subject Group Subject<span class="divider"></span></li>
+	<li class="active">Subject Teacher<span class="divider"></span></li>
+	<li class="active">Class Subject Group<span class="divider"></span></li>
+</ul>
+<div class="grid grid-pad">
+  <div *ngFor="let item of Items3" (click)="gotoDetail(item.link)" class="col-1-4">
+    <div class="module hero">
+      <h4>{{item.name}}</h4>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+<ul class="breadcrumb">
+	<li class="active">Student<span class="divider"></span></li>
+	<li class="active">Teacher</li>
+</ul>
+<div class="grid grid-pad">
+  <div *ngFor="let item of Items4" (click)="gotoDetail(item.link)" class="col-1-4">
+    <div class="module hero">
+      <h4>{{item.name}}</h4>
+    </div>
+  </div>
+</div>
+
+</div>

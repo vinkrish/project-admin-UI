@@ -1,0 +1,1 @@
+{"version":3,"file":"timetable.component.js","sourceRoot":"","sources":["timetable.component.ts"],"names":[],"mappings":";;;;;;;;;;AAAA,qBAAkC,eAAe,CAAC,CAAA;AAUlD;IAAA;IAEA,CAAC;IATD;QAAC,gBAAS,CAAC;YACT,QAAQ,EAAE,cAAc;YACxB,WAAW,EAAE,wCAAwC;YACrD,SAAS,EAAG,CAAC,uCAAuC,CAAC;YACrD,UAAU,EAAE,EAAE;SACf,CAAC;;0BAAA;IAIF,yBAAC;AAAD,CAAC,AAFD,IAEC;AAFY,0BAAkB,qBAE9B,CAAA"}

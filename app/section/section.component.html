@@ -1,0 +1,40 @@
+<ul class="breadcrumb">
+  <li class="active">Section</li>
+</ul>
+
+<div class="clearfix"></div>
+
+<div class="row col-md-8">
+<table class="table table-bordered table-striped">
+  <caption></caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let section of sections" (click)="onSelect(section)" [class.selected]="section === selectedClass">
+      <td class="col-md-4">{{section.sectionName}}</td>
+      <td class="col-md-2">
+        <button type="button" class="btn btn-primary btn-xs center-block" (click)="gotoEdit(section, $event)">
+          edit
+        </button>
+      </td>
+      <td class="col-md-2">
+        <button type="button" class="btn btn-danger btn-xs center-block" (click)="deleteSection(section, $event)">
+          delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="clearfix"></div>
+<div class="error" *ngIf="error">{{error}}</div>
+<button type="button" class="btn btn-success btn-md" (click)="addSection()">Add New </button>
+<div *ngIf="addingSection">
+  <ui-section-detail (close)="close($event)"></ui-section-detail>
+</div>

@@ -1,0 +1,30 @@
+<div *ngIf="clas">
+  <h3>Class Details</h3>
+  <br/>
+  	<div>
+    	<label>name: </label>
+    	<input [(ngModel)]="clas.className" placeholder="Class Name" />
+   	</div>
+
+   	<br/>
+
+   <div>
+   	<label>Attendance Type: </label>
+  	<select [(ngModel)]="clas.attendanceType">
+  	 	<option *ngFor="let attType of attendanceTypes" value= {{attType.type}}>{{attType.type}}</option>
+  	</select>
+	 </div>
+
+	<br/>
+
+	<div>
+	<label>Homework Type: </label>
+	<select [(ngModel)]="clas.homeworkType">
+ 		<option *ngFor="let hwType of homeworkTypes" value= {{hwType.type}}>{{hwType.type}}</option>
+	</select>
+	</div>
+
+   <br/>
+  <button class="btn btn-normal btn-md" (click)="goBack()">Back</button>
+  <button class="btn btn-success btn-md" (click)="save()">Save</button>
+</div>

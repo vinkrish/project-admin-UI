@@ -1,0 +1,46 @@
+{
+	"data" : [
+	  {
+	    "classId": 1586,
+	    "id": 5268,
+	    "sectionName": "A",
+	    "teacherId": 8648
+	  },
+	  {
+	    "classId": 1586,
+	    "id": 5269,
+	    "sectionName": "B",
+	    "teacherId": 8742
+	  },
+	  {
+	    "classId": 1586,
+	    "id": 5270,
+	    "sectionName": "C",
+	    "teacherId": 8721
+	  },
+	  {
+	    "classId": 1586,
+	    "id": 5271,
+	    "sectionName": "D",
+	    "teacherId": 11037
+	  },
+	  {
+	    "classId": 1586,
+	    "id": 5272,
+	    "sectionName": "E",
+	    "teacherId": 11038
+	  },
+	  {
+	    "classId": 1586,
+	    "id": 5273,
+	    "sectionName": "F",
+	    "teacherId": 11039
+	  },
+	  {
+	    "classId": 1586,
+	    "id": 5274,
+	    "sectionName": "G",
+	    "teacherId": 8652
+	  }
+	]
+}

@@ -1,0 +1,234 @@
+{
+  "data" : [
+    {
+      "id": 525,
+      "schoolId": 107,
+      "subjectGroupName": "ENGLISH"
+    },
+    {
+      "id": 526,
+      "schoolId": 107,
+      "subjectGroupName": "2nd LANGUAGE"
+    },
+    {
+      "id": 527,
+      "schoolId": 107,
+      "subjectGroupName": "MATHEMATICS"
+    },
+    {
+      "id": 528,
+      "schoolId": 107,
+      "subjectGroupName": "ENVIRONMENTAL SCIENCE"
+    },
+    {
+      "id": 529,
+      "schoolId": 107,
+      "subjectGroupName": "COMPUTER SCIENCE"
+    },
+    {
+      "id": 530,
+      "schoolId": 107,
+      "subjectGroupName": "GENERAL KNOWLEDGE"
+    },
+    {
+      "id": 531,
+      "schoolId": 107,
+      "subjectGroupName": "LANGUAGE I"
+    },
+    {
+      "id": 533,
+      "schoolId": 107,
+      "subjectGroupName": "LANGUAGE III"
+    },
+    {
+      "id": 534,
+      "schoolId": 107,
+      "subjectGroupName": "SCIENCE"
+    },
+    {
+      "id": 535,
+      "schoolId": 107,
+      "subjectGroupName": "SOCIAL SCIENCE"
+    },
+    {
+      "id": 536,
+      "schoolId": 107,
+      "subjectGroupName": "GEN.SCIENCE"
+    },
+    {
+      "id": 537,
+      "schoolId": 107,
+      "subjectGroupName": "ENGLISH ORAL"
+    },
+    {
+      "id": 538,
+      "schoolId": 107,
+      "subjectGroupName": "ENGLISH (WRITING)"
+    },
+    {
+      "id": 539,
+      "schoolId": 107,
+      "subjectGroupName": "NUMBER WORK (ORAL)"
+    },
+    {
+      "id": 540,
+      "schoolId": 107,
+      "subjectGroupName": "NUMBER WORK (WRITING)"
+    },
+    {
+      "id": 541,
+      "schoolId": 107,
+      "subjectGroupName": "E.V.S. (ORAL)"
+    },
+    {
+      "id": 542,
+      "schoolId": 107,
+      "subjectGroupName": "E.V.S. (WRITING)"
+    },
+    {
+      "id": 543,
+      "schoolId": 107,
+      "subjectGroupName": "RHYMES AND SONGS"
+    },
+    {
+      "id": 544,
+      "schoolId": 107,
+      "subjectGroupName": "STORY TELLING"
+    },
+    {
+      "id": 545,
+      "schoolId": 107,
+      "subjectGroupName": "DRAWING AND COLOURING"
+    },
+    {
+      "id": 546,
+      "schoolId": 107,
+      "subjectGroupName": "CRAFT WORK"
+    },
+    {
+      "id": 547,
+      "schoolId": 107,
+      "subjectGroupName": "3rd LANGUAGE"
+    },
+    {
+      "id": 548,
+      "schoolId": 107,
+      "subjectGroupName": "101 ENGLISH"
+    },
+    {
+      "id": 549,
+      "schoolId": 107,
+      "subjectGroupName": "006 TAMIL"
+    },
+    {
+      "id": 550,
+      "schoolId": 107,
+      "subjectGroupName": "041 MATHEMATICS"
+    },
+    {
+      "id": 551,
+      "schoolId": 107,
+      "subjectGroupName": "086 SCIENCE"
+    },
+    {
+      "id": 552,
+      "schoolId": 107,
+      "subjectGroupName": "087 SOCIAL SCIENCE"
+    },
+    {
+      "id": 553,
+      "schoolId": 107,
+      "subjectGroupName": "402 INFORMATION TECHNOLOGY"
+    },
+    {
+      "id": 575,
+      "schoolId": 107,
+      "subjectGroupName": "II LANGUAGE (WRITING)"
+    },
+    {
+      "id": 799,
+      "schoolId": 107,
+      "subjectGroupName": "MATH/ECO/CS-PS"
+    },
+    {
+      "id": 800,
+      "schoolId": 107,
+      "subjectGroupName": "PHY/ACC"
+    },
+    {
+      "id": 802,
+      "schoolId": 107,
+      "subjectGroupName": "BIO/BM/CS"
+    },
+    {
+      "id": 873,
+      "schoolId": 107,
+      "subjectGroupName": "BS/CHEM"
+    },
+    {
+      "id": 1073,
+      "schoolId": 107,
+      "subjectGroupName": "II LANGUAGE (ORAL)"
+    },
+    {
+      "id": 1074,
+      "schoolId": 107,
+      "subjectGroupName": "02 LANG 2"
+    },
+    {
+      "id": 1075,
+      "schoolId": 107,
+      "subjectGroupName": "03 LANG 3"
+    },
+    {
+      "id": 1076,
+      "schoolId": 107,
+      "subjectGroupName": "01 eng"
+    },
+    {
+      "id": 1077,
+      "schoolId": 107,
+      "subjectGroupName": "LANG IX-X"
+    },
+    {
+      "id": 1268,
+      "schoolId": 107,
+      "subjectGroupName": "GROUP III"
+    },
+    {
+      "id": 1269,
+      "schoolId": 107,
+      "subjectGroupName": "COMPUTER SCIENCE-P.S"
+    },
+    {
+      "id": 1270,
+      "schoolId": 107,
+      "subjectGroupName": "PHYSICS"
+    },
+    {
+      "id": 1271,
+      "schoolId": 107,
+      "subjectGroupName": "CHEMISTRY"
+    },
+    {
+      "id": 1272,
+      "schoolId": 107,
+      "subjectGroupName": "BIOLOGY"
+    },
+    {
+      "id": 1293,
+      "schoolId": 107,
+      "subjectGroupName": "ACCOUNTANCY"
+    },
+    {
+      "id": 1294,
+      "schoolId": 107,
+      "subjectGroupName": "BUSINESS STUDIES"
+    },
+    {
+      "id": 1295,
+      "schoolId": 107,
+      "subjectGroupName": "ECONOMICS"
+    }
+  ]
+}

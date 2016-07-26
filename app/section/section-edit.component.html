@@ -1,0 +1,11 @@
+<div *ngIf="section">
+  <h3>Section Details</h3>
+  <br/>
+  	<div>
+    	<label>name: </label>
+    	<input [(ngModel)]="section.sectionName" placeholder="Section Name" />
+   	</div>
+   <br/>
+  <button class="btn btn-normal btn-md" (click)="goBack()">Back</button>
+  <button class="btn btn-success btn-md" (click)="save()">Save</button>
+</div>
