@@ -3,7 +3,6 @@ var router_1 = require('@angular/router');
 var dashboard_component_1 = require('./dashboard/dashboard.component');
 var attendance_component_1 = require('./attendance/attendance.component');
 var class_component_1 = require('./class/class.component');
-var class_edit_component_1 = require('./class/class-edit.component');
 var class_subject_group_component_1 = require('./class-subject-group/class-subject-group.component');
 var homework_component_1 = require('./homework/homework.component');
 var section_component_1 = require('./section/section.component');
@@ -14,8 +13,10 @@ var subject_group_component_1 = require('./subject-group/subject-group.component
 var subject_group_subject_component_1 = require('./subject-group-subject/subject-group-subject.component');
 var subject_teacher_component_1 = require('./subject-teacher/subject-teacher.component');
 var teacher_component_1 = require('./teacher/teacher.component');
-var teacher_edit_component_1 = require('./teacher/teacher-edit.component');
 var timetable_component_1 = require('./timetable/timetable.component');
+var class_edit_component_1 = require('./class/class-edit.component');
+var teacher_edit_component_1 = require('./teacher/teacher-edit.component');
+var subjects_edit_component_1 = require('./subjects/subjects-edit.component');
 var routes = [
     {
         path: '',
@@ -35,10 +36,6 @@ var routes = [
         component: class_component_1.ClassComponent
     },
     {
-        path: 'class/edit/:id',
-        component: class_edit_component_1.ClassEditComponent
-    },
-    {
         path: 'class-subject-group',
         component: class_subject_group_component_1.ClassSubjectGroupComponent
     },
@@ -49,10 +46,6 @@ var routes = [
     {
         path: 'section',
         component: section_component_1.SectionComponent
-    },
-    {
-        path: 'section/edit/:id',
-        component: section_edit_component_1.SectionEditComponent
     },
     {
         path: 'student',
@@ -79,12 +72,24 @@ var routes = [
         component: teacher_component_1.TeacherComponent
     },
     {
+        path: 'timetable',
+        component: timetable_component_1.TimetableComponent
+    },
+    {
+        path: 'class/edit/:id',
+        component: class_edit_component_1.ClassEditComponent
+    },
+    {
+        path: 'section/edit/:id',
+        component: section_edit_component_1.SectionEditComponent
+    },
+    {
         path: 'teacher/edit/:id',
         component: teacher_edit_component_1.TeacherEditComponent
     },
     {
-        path: 'timetable',
-        component: timetable_component_1.TimetableComponent
+        path: 'subject/edit/:id',
+        component: subjects_edit_component_1.SubjectsEditComponent
     }
 ];
 exports.appRouterProviders = [

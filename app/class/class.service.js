@@ -39,7 +39,6 @@ var ClassService = (function () {
         return this.post(clas);
     };
     ClassService.prototype.delete = function (clas) {
-        console.log(JSON.stringify(clas));
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         var url = this.postUrl + "/" + clas.id;

@@ -11,64 +11,71 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
-var SubjectService = (function () {
-    function SubjectService(http) {
+var core_2 = require('angular2-cookie/core');
+var SubjectsService = (function () {
+    function SubjectsService(http, _cookieService) {
         this.http = http;
-        this.subjectUrl = 'app/subject';
+        this._cookieService = _cookieService;
+        //private subjectUrl = 'app/subjects/subjects';
+        //private subjectUrl = 'app/subjects/subjects.json';
+        this.subjectUrl = 'http://localhost:8080/guldu/webapi/subject/school';
+        this.postUrl = 'http://localhost:8080/guldu/webapi/subject';
     }
-    SubjectService.prototype.getSubjects = function () {
-        return this.http.get(this.subjectUrl)
+    SubjectsService.prototype.getSubjects = function () {
+        var url = this.subjectUrl + "/" + +this._cookieService.get("schoolId");
+        return this.http.get(url)
             .toPromise()
-            .then(function (response) { return response.json().data; })
+            .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    SubjectService.prototype.getSubject = function (id) {
+    SubjectsService.prototype.getSubject = function (id) {
         return this.getSubjects()
-            .then(function (subjects) { return subjects.find(function (subject) { return subject.Id === id; }); });
+            .then(function (subjects) { return subjects.find(function (subject) { return subject.id === id; }); });
     };
-    SubjectService.prototype.save = function (subject) {
-        if (subject.Id) {
+    SubjectsService.prototype.save = function (subject) {
+        if (subject.id) {
             return this.put(subject);
         }
         return this.post(subject);
     };
-    SubjectService.prototype.delete = function (subject) {
+    SubjectsService.prototype.delete = function (subject) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        var url = this.subjectUrl + "/" + subject.Id;
+        var url = this.postUrl + "/" + subject.id;
         return this.http
             .delete(url, headers)
             .toPromise()
             .catch(this.handleError);
     };
-    SubjectService.prototype.post = function (subject) {
+    SubjectsService.prototype.post = function (subject) {
+        subject.schoolId = +this._cookieService.get("schoolId");
         var headers = new http_1.Headers({
             'Content-Type': 'application/json' });
         return this.http
-            .post(this.subjectUrl, JSON.stringify(subject), { headers: headers })
+            .post(this.postUrl, JSON.stringify(subject), { headers: headers })
             .toPromise()
-            .then(function (res) { return res.json().data; })
+            .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
-    SubjectService.prototype.put = function (subject) {
+    SubjectsService.prototype.put = function (subject) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        var url = this.subjectUrl + "/" + subject.Id;
+        var url = this.postUrl + "/" + subject.id;
         return this.http
             .put(url, JSON.stringify(subject), { headers: headers })
             .toPromise()
             .then(function () { return subject; })
             .catch(this.handleError);
     };
-    SubjectService.prototype.handleError = function (error) {
+    SubjectsService.prototype.handleError = function (error) {
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);
     };
-    SubjectService = __decorate([
+    SubjectsService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], SubjectService);
-    return SubjectService;
+        __metadata('design:paramtypes', [http_1.Http, core_2.CookieService])
+    ], SubjectsService);
+    return SubjectsService;
 }());
-exports.SubjectService = SubjectService;
+exports.SubjectsService = SubjectsService;
 //# sourceMappingURL=subjects.service.js.map

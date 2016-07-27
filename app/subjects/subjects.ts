@@ -1,7 +1,8 @@
 export class Subjects {
-	Id: number;
-	SubjectName: string;
-	PartitionType: number;
-	TheorySubjectId: number;
-	PracticalSubjectId: number;
+	id: number;
+	schoolId: number;
+	subjectName: string;
+	partitionType: number;
+	theorySubjectId: number;
+	practicalSubjectId: number;
 }

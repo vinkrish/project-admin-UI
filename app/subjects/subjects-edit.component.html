@@ -1,0 +1,39 @@
+<div *ngIf="subject">
+  <h3>Subject Details</h3>
+  <br/>
+  	<div>
+    	<label>name: </label>
+    	<input [(ngModel)]="subject.subjectName" placeholder="Subject Name" />
+   	</div>
+
+    <br/>
+
+    <div>
+    <label>Partition Type: </label>
+    <select [(ngModel)]="subject.partitionType" (click)="togglePartition()">
+      <option *ngFor="let partition of partitions" value= {{partition.type}}>{{partition.type}}</option>
+    </select>
+    </div>
+
+    <br/>
+
+    <div *ngIf="partitionView">
+    <label>Theory Subject: </label>
+    <select [(ngModel)]="subject.theorySubjectId">
+      <option *ngFor="let subs of subjects" value= {{subs.id}}>{{subs.subjectName}}</option>
+    </select>
+    </div>
+
+    <br/>
+
+    <div *ngIf="partitionView">
+    <label>Practical Subject: </label>
+    <select [(ngModel)]="subject.practicalSubjectId">
+      <option *ngFor="let subs of subjects" value= {{subs.id}}>{{subs.subjectName}}</option>
+    </select>
+    </div>
+
+   <br/>
+  <button class="btn btn-normal btn-md" (click)="goBack()">Back</button>
+  <button class="btn btn-success btn-md" (click)="save()">Save</button>
+</div>

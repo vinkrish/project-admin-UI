@@ -42,7 +42,7 @@ var AppComponent = (function () {
                 subject_group_service_1.SubjectGroupService,
                 subject_group_subject_service_1.SubjectGroupSubjectService,
                 subject_teacher_service_1.SubjectTeacherService,
-                subjects_service_1.SubjectService,
+                subjects_service_1.SubjectsService,
                 teacher_service_1.TeacherService,
                 timetable_service_1.TimetableService,
                 core_2.CookieService

@@ -3,9 +3,6 @@ import { provideRouter, RouterConfig }  from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { ClassComponent } from './class/class.component';
-
-import { ClassEditComponent } from './class/class-edit.component';
-
 import { ClassSubjectGroupComponent } from './class-subject-group/class-subject-group.component';
 import { HomeworkComponent } from './homework/homework.component';
 import { SectionComponent } from './section/section.component';
@@ -16,10 +13,11 @@ import { SubjectGroupComponent } from './subject-group/subject-group.component';
 import { SubjectGroupSubjectComponent } from './subject-group-subject/subject-group-subject.component';
 import { SubjectTeacherComponent } from './subject-teacher/subject-teacher.component';
 import { TeacherComponent } from './teacher/teacher.component';
-
-import { TeacherEditComponent } from './teacher/teacher-edit.component';
-
 import { TimetableComponent } from './timetable/timetable.component';
+
+import { ClassEditComponent } from './class/class-edit.component';
+import { TeacherEditComponent } from './teacher/teacher-edit.component';
+import { SubjectsEditComponent } from './subjects/subjects-edit.component';
 
 const routes: RouterConfig = [
   {
@@ -40,10 +38,6 @@ const routes: RouterConfig = [
     component: ClassComponent
   },
   {
-    path: 'class/edit/:id',
-    component: ClassEditComponent
-  },
-  {
     path: 'class-subject-group',
     component: ClassSubjectGroupComponent
   },
@@ -54,10 +48,6 @@ const routes: RouterConfig = [
   {
     path: 'section',
     component: SectionComponent
-  },
-  {
-    path: 'section/edit/:id',
-    component: SectionEditComponent
   },
   {
     path: 'student',
@@ -84,12 +74,24 @@ const routes: RouterConfig = [
     component: TeacherComponent
   },
   {
+    path: 'timetable',
+    component: TimetableComponent
+  },
+  {
+    path: 'class/edit/:id',
+    component: ClassEditComponent
+  },
+  {
+    path: 'section/edit/:id',
+    component: SectionEditComponent
+  },
+  {
     path: 'teacher/edit/:id',
     component: TeacherEditComponent
   },
   {
-    path: 'timetable',
-    component: TimetableComponent
+    path: 'subject/edit/:id',
+    component: SubjectsEditComponent
   }
 ];
 

@@ -35,7 +35,6 @@ export class ClassService {
   }
 
   delete(clas: Clas) {
-    console.log(JSON.stringify(clas));
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let url = `${this.postUrl}/${clas.id}`;

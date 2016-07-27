@@ -10,7 +10,7 @@ import { StudentService }        	from './student/student.service';
 import { SubjectGroupService }      from './subject-group/subject-group.service';
 import { SubjectGroupSubjectService}from './subject-group-subject/subject-group-subject.service';
 import { SubjectTeacherService }    from './subject-teacher/subject-teacher.service';
-import { SubjectService }        	from './subjects/subjects.service';
+import { SubjectsService }        	from './subjects/subjects.service';
 import { TeacherService }        	from './teacher/teacher.service';
 import { TimetableService }        	from './timetable/timetable.service';
 
@@ -35,7 +35,7 @@ import { TimetableService }        	from './timetable/timetable.service';
     SubjectGroupService,
     SubjectGroupSubjectService,
     SubjectTeacherService,
-    SubjectService,
+    SubjectsService,
     TeacherService,
     TimetableService,
     CookieService
