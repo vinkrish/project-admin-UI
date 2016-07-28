@@ -18,6 +18,7 @@ import { TimetableComponent } from './timetable/timetable.component';
 import { ClassEditComponent } from './class/class-edit.component';
 import { TeacherEditComponent } from './teacher/teacher-edit.component';
 import { SubjectsEditComponent } from './subjects/subjects-edit.component';
+import { SubjectGroupEditComponent } from './subject-group/subject-group-edit.component';
 
 const routes: RouterConfig = [
   {
@@ -92,6 +93,10 @@ const routes: RouterConfig = [
   {
     path: 'subject/edit/:id',
     component: SubjectsEditComponent
+  },
+  {
+    path: 'subject-group/edit/:id',
+    component: SubjectGroupEditComponent
   }
 ];
 

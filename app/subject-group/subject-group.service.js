@@ -11,23 +11,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
+var core_2 = require('angular2-cookie/core');
 var SubjectGroupService = (function () {
-    function SubjectGroupService(http) {
+    function SubjectGroupService(http, _cookieService) {
         this.http = http;
-        this.subjectGroupUrl = 'app/subject-group';
+        this._cookieService = _cookieService;
+        //private subjectGroupUrl = 'app/subject-group/subject-groups';
+        //private subjectGroupUrl = 'app/subject-group/subject-groups.json';
+        this.subjectGroupUrl = 'http://localhost:8080/guldu/webapi/subjectgroup/school';
+        this.postUrl = 'http://localhost:8080/guldu/webapi/subjectgroup';
     }
     SubjectGroupService.prototype.getSubjectGroups = function () {
-        return this.http.get(this.subjectGroupUrl)
+        var url = this.subjectGroupUrl + "/" + +this._cookieService.get("schoolId");
+        return this.http.get(url)
             .toPromise()
-            .then(function (response) { return response.json().data; })
+            .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     SubjectGroupService.prototype.getSubjectGroup = function (id) {
         return this.getSubjectGroups()
-            .then(function (subjectGroups) { return subjectGroups.find(function (subjectGroup) { return subjectGroup.Id === id; }); });
+            .then(function (subjectGroups) { return subjectGroups.find(function (subjectGroup) { return subjectGroup.id === id; }); });
     };
     SubjectGroupService.prototype.save = function (subjectGroup) {
-        if (subjectGroup.Id) {
+        if (subjectGroup.id) {
             return this.put(subjectGroup);
         }
         return this.post(subjectGroup);
@@ -35,25 +41,26 @@ var SubjectGroupService = (function () {
     SubjectGroupService.prototype.delete = function (subjectGroup) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        var url = this.subjectGroupUrl + "/" + subjectGroup.Id;
+        var url = this.postUrl + "/" + subjectGroup.id;
         return this.http
             .delete(url, headers)
             .toPromise()
             .catch(this.handleError);
     };
     SubjectGroupService.prototype.post = function (subjectGroup) {
+        subjectGroup.schoolId = +this._cookieService.get("schoolId");
         var headers = new http_1.Headers({
             'Content-Type': 'application/json' });
         return this.http
-            .post(this.subjectGroupUrl, JSON.stringify(subjectGroup), { headers: headers })
+            .post(this.postUrl, JSON.stringify(subjectGroup), { headers: headers })
             .toPromise()
-            .then(function (res) { return res.json().data; })
+            .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     SubjectGroupService.prototype.put = function (subjectGroup) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        var url = this.subjectGroupUrl + "/" + subjectGroup.Id;
+        var url = this.postUrl + "/" + subjectGroup.id;
         return this.http
             .put(url, JSON.stringify(subjectGroup), { headers: headers })
             .toPromise()
@@ -66,7 +73,7 @@ var SubjectGroupService = (function () {
     };
     SubjectGroupService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, core_2.CookieService])
     ], SubjectGroupService);
     return SubjectGroupService;
 }());

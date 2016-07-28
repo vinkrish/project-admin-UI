@@ -1,4 +1,5 @@
 export class SubjectGroup{
-	Id: number;
-	SubjectGroupName: string;
+	id: number;
+	schoolId: number;
+	subjectGroupName: string;
 }

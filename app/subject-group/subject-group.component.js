@@ -9,17 +9,68 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var subject_group_service_1 = require('./subject-group.service');
+var subject_group_edit_component_1 = require('./subject-group-edit.component');
 var SubjectGroupComponent = (function () {
-    function SubjectGroupComponent() {
+    function SubjectGroupComponent(router, subjectGroupService) {
+        this.router = router;
+        this.subjectGroupService = subjectGroupService;
+        this.addingSubjectGroup = false;
     }
+    SubjectGroupComponent.prototype.getSubjectGroups = function () {
+        var _this = this;
+        this.subjectGroupService
+            .getSubjectGroups()
+            .then(function (subjectGroups) { return _this.subjectGroups = subjectGroups; })
+            .catch(function (error) { return _this.error = error; });
+    };
+    SubjectGroupComponent.prototype.ngOnInit = function () {
+        this.getSubjectGroups();
+    };
+    SubjectGroupComponent.prototype.onSelect = function (subjectGroup) {
+        this.selectedSubjectGroup = subjectGroup;
+        this.addingSubjectGroup = false;
+    };
+    SubjectGroupComponent.prototype.close = function (savedClass) {
+        console.log("class component close function");
+        this.addingSubjectGroup = false;
+        if (savedClass) {
+            this.getSubjectGroups();
+        }
+    };
+    SubjectGroupComponent.prototype.goToDashboard = function () {
+        this.router.navigate(['/dashboard']);
+    };
+    SubjectGroupComponent.prototype.addSubjectGroup = function () {
+        this.addingSubjectGroup = true;
+        this.selectedSubjectGroup = null;
+    };
+    SubjectGroupComponent.prototype.gotoEdit = function (subjectGroup, event) {
+        event.stopPropagation();
+        this.router.navigate(['subject-group/edit', subjectGroup.id]);
+    };
+    SubjectGroupComponent.prototype.deleteSubjectGroup = function (subjectGroup, event) {
+        var _this = this;
+        event.stopPropagation();
+        this.subjectGroupService
+            .delete(subjectGroup)
+            .then(function (res) {
+            _this.subjectGroups = _this.subjectGroups.filter(function (h) { return h !== subjectGroup; });
+            if (_this.selectedSubjectGroup === subjectGroup) {
+                _this.selectedSubjectGroup = null;
+            }
+        })
+            .catch(function (error) { return _this.error = error; });
+    };
     SubjectGroupComponent = __decorate([
         core_1.Component({
             selector: 'ui-subject-group',
             templateUrl: 'app/subject-group/subject-group.component.html',
             styleUrls: ['app/subject-group/subject-group.component.css'],
-            directives: []
+            directives: [subject_group_edit_component_1.SubjectGroupEditComponent]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router, subject_group_service_1.SubjectGroupService])
     ], SubjectGroupComponent);
     return SubjectGroupComponent;
 }());

@@ -17,6 +17,7 @@ var timetable_component_1 = require('./timetable/timetable.component');
 var class_edit_component_1 = require('./class/class-edit.component');
 var teacher_edit_component_1 = require('./teacher/teacher-edit.component');
 var subjects_edit_component_1 = require('./subjects/subjects-edit.component');
+var subject_group_edit_component_1 = require('./subject-group/subject-group-edit.component');
 var routes = [
     {
         path: '',
@@ -90,6 +91,10 @@ var routes = [
     {
         path: 'subject/edit/:id',
         component: subjects_edit_component_1.SubjectsEditComponent
+    },
+    {
+        path: 'subject-group/edit/:id',
+        component: subject_group_edit_component_1.SubjectGroupEditComponent
     }
 ];
 exports.appRouterProviders = [
