@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angu
 import { ActivatedRoute } from '@angular/router';
 import {CookieService} from 'angular2-cookie/core';
 import { Clas }           from './clas';
-import { AttendanceType }  from './attendance-type';
-import { HomeworkType }    from './homework-type';
+import { AttendanceType }  from '../shared/attendance-type';
+import { HomeworkType }    from '../shared/homework-type';
 import { ClassService }   from './class.service';
 @Component({
   selector: 'ui-class-detail',

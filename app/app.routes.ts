@@ -6,7 +6,6 @@ import { ClassComponent } from './class/class.component';
 import { ClassSubjectGroupComponent } from './class-subject-group/class-subject-group.component';
 import { HomeworkComponent } from './homework/homework.component';
 import { SectionComponent } from './section/section.component';
-import { SectionEditComponent } from './section/section-edit.component';
 import { StudentComponent } from './student/student.component';
 import { SubjectsComponent } from './subjects/subjects.component';
 import { SubjectGroupComponent } from './subject-group/subject-group.component';
@@ -19,6 +18,7 @@ import { ClassEditComponent } from './class/class-edit.component';
 import { TeacherEditComponent } from './teacher/teacher-edit.component';
 import { SubjectsEditComponent } from './subjects/subjects-edit.component';
 import { SubjectGroupEditComponent } from './subject-group/subject-group-edit.component';
+import { SectionEditComponent } from './section/section-edit.component';
 
 const routes: RouterConfig = [
   {

@@ -16,17 +16,19 @@ var SectionService = (function () {
         this.http = http;
         //private sectionUrl = 'app/section';
         //private sectionUrl = 'app/section/sections.json';
-        this.sectionUrl = 'http://localhost:8080/guldu/webapi/section/class/1586';
+        this.sectionUrl = 'http://localhost:8080/guldu/webapi/section/class';
+        this.postUrl = 'http://localhost:8080/guldu/webapi/section';
     }
-    SectionService.prototype.getSections = function () {
-        return this.http.get(this.sectionUrl)
+    SectionService.prototype.getSections = function (id) {
+        var url = this.sectionUrl + "/" + id;
+        return this.http.get(url)
             .toPromise()
-            .then(function (response) { return response.json().data; })
+            .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    SectionService.prototype.getSection = function (id) {
-        return this.getSections()
-            .then(function (sections) { return sections.find(function (section) { return section.id === id; }); });
+    SectionService.prototype.getSection = function (classId, sectionId) {
+        return this.getSections(classId)
+            .then(function (sections) { return sections.find(function (section) { return section.id === sectionId; }); });
     };
     SectionService.prototype.save = function (section) {
         if (section.id) {
@@ -37,7 +39,7 @@ var SectionService = (function () {
     SectionService.prototype.delete = function (section) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        var url = this.sectionUrl + "/" + section.id;
+        var url = this.postUrl + "/" + section.id;
         return this.http
             .delete(url, headers)
             .toPromise()
@@ -47,15 +49,15 @@ var SectionService = (function () {
         var headers = new http_1.Headers({
             'Content-Type': 'application/json' });
         return this.http
-            .post(this.sectionUrl, JSON.stringify(section), { headers: headers })
+            .post(this.postUrl, JSON.stringify(section), { headers: headers })
             .toPromise()
-            .then(function (res) { return res.json().data; })
+            .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     SectionService.prototype.put = function (section) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        var url = this.sectionUrl + "/" + section.id;
+        var url = this.postUrl + "/" + section.id;
         return this.http
             .put(url, JSON.stringify(section), { headers: headers })
             .toPromise()

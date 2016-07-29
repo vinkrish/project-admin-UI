@@ -12,7 +12,7 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var core_2 = require('angular2-cookie/core');
 var clas_1 = require('./clas');
-var homework_type_1 = require('./homework-type');
+var homework_type_1 = require('../shared/homework-type');
 var class_service_1 = require('./class.service');
 var ClassEditComponent = (function () {
     function ClassEditComponent(classService, route, _cookieService) {

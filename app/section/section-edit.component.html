@@ -1,11 +1,22 @@
 <div *ngIf="section">
-  <h3>Section Details</h3>
-  <br/>
-  	<div>
-    	<label>name: </label>
-    	<input [(ngModel)]="section.sectionName" placeholder="Section Name" />
-   	</div>
-   <br/>
-  <button class="btn btn-normal btn-md" (click)="goBack()">Back</button>
-  <button class="btn btn-success btn-md" (click)="save()">Save</button>
+    <h3>Section Details</h3>
+    <br/>
+    <div>
+        <label>name: </label>
+        <input [(ngModel)]="section.sectionName" placeholder="Section Name" />
+    </div>
+    <br/>
+    <div>
+        <label>Class: {{className}} </label>
+    </div>
+    <br/>
+    <div>
+        <label>Teacher: </label>
+        <select [(ngModel)]="section.teacherId">
+            <option *ngFor="let teacher of teachers" value={{teacher.id}}>{{teacher.teacherName}}</option>
+        </select>
+    </div>
+    <br/>
+    <button class="btn btn-normal btn-md" (click)="goBack()">Back</button>
+    <button class="btn btn-success btn-md" (click)="save()">Save</button>
 </div>

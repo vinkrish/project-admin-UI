@@ -1,8 +1,8 @@
 import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import {CookieService} from 'angular2-cookie/core';
-import { Clas } from './clas';
+import { CookieService } from 'angular2-cookie/core';
+import { Clas }          from './clas';
 
 @Injectable()
 export class ClassService {

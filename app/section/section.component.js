@@ -10,39 +10,71 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var clas_1 = require('../class/clas');
 var section_service_1 = require('./section.service');
+var class_service_1 = require('../class/class.service');
 var section_edit_component_1 = require('./section-edit.component');
+var core_2 = require('angular2-cookie/core');
 var SectionComponent = (function () {
-    function SectionComponent(router, sectionService) {
+    function SectionComponent(router, _cookieService, classService, sectionService) {
         this.router = router;
+        this._cookieService = _cookieService;
+        this.classService = classService;
         this.sectionService = sectionService;
         this.addingSection = false;
     }
-    SectionComponent.prototype.getSections = function () {
+    SectionComponent.prototype.getClasses = function () {
+        var _this = this;
+        this.classService
+            .getClasses()
+            .then(function (classes) { return _this.classes = classes; })
+            .catch(function (error) { return _this.error = error; });
+    };
+    SectionComponent.prototype.classSelected = function (classId) {
+        //this.selectedClass = null;
+        for (var i = 0; i < this.classes.length; i++) {
+            if (this.classes[i].id == classId) {
+                this.selectedClass = this.classes[i];
+            }
+        }
+        this.getSections(this.selectedClass.id);
+        this._cookieService.put("classId", "" + this.selectedClass.id);
+        this._cookieService.put("className", this.selectedClass.className);
+        //this.addSection();
+        this.addingSection = false;
+    };
+    SectionComponent.prototype.getSections = function (id) {
         var _this = this;
         this.sectionService
-            .getSections()
+            .getSections(id)
             .then(function (sections) { return _this.sections = sections; })
             .catch(function (error) { return _this.error = error; });
     };
     SectionComponent.prototype.ngOnInit = function () {
-        this.getSections();
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas(0, "");
     };
     SectionComponent.prototype.onSelect = function (section) {
         this.selectedSection = section;
         this.addingSection = false;
     };
-    SectionComponent.prototype.close = function (savedClass) {
+    SectionComponent.prototype.close = function (savedSection) {
         this.addingSection = false;
-        if (savedClass) {
-            this.getSections();
+        if (savedSection) {
+            this.getSections(this.selectedSection.id);
         }
     };
     SectionComponent.prototype.goToDashboard = function () {
         this.router.navigate(['/dashboard']);
     };
     SectionComponent.prototype.addSection = function () {
-        this.addingSection = true;
+        if (this.addingSection) {
+            this.addingSection = false;
+        }
+        else {
+            this.addingSection = true;
+        }
+        //this.addingSection = true;
         this.selectedSection = null;
     };
     SectionComponent.prototype.gotoEdit = function (section, event) {
@@ -69,7 +101,7 @@ var SectionComponent = (function () {
             styleUrls: ['app/section/section.component.css'],
             directives: [section_edit_component_1.SectionEditComponent]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, section_service_1.SectionService])
+        __metadata('design:paramtypes', [router_1.Router, core_2.CookieService, class_service_1.ClassService, section_service_1.SectionService])
     ], SectionComponent);
     return SectionComponent;
 }());

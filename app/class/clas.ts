@@ -4,4 +4,8 @@ export class Clas{
 	schoolId: number;
 	attendanceType: number;
 	homeworkType: number;
+	constructor(id?: number, className?: string){
+		this.id = id;
+		this.className = className;
+	}
 }

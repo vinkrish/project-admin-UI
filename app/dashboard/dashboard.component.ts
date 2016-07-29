@@ -26,7 +26,10 @@ export class DashboardComponent{
 	];
 	Items4: Dashboard[] = [{name: 'Student', link: 'student'}, {name: 'Teacher', link: 'teacher'}];
 
-	constructor(private router: Router, private _cookieService:CookieService) { this._cookieService.put("schoolId", "107"); }
+	constructor(private router: Router, private _cookieService:CookieService) 
+	{ 
+		this._cookieService.put("schoolId", "107"); 
+	}
 
   gotoDetail(item: string) {
     let link = ['/', item];

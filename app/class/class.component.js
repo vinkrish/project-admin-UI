@@ -33,7 +33,6 @@ var ClassComponent = (function () {
         this.addingClass = false;
     };
     ClassComponent.prototype.close = function (savedClass) {
-        console.log("class component close function");
         this.addingClass = false;
         if (savedClass) {
             this.getClasses();

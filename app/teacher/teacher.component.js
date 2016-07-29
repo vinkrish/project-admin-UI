@@ -13,14 +13,14 @@ var router_1 = require('@angular/router');
 var teacher_service_1 = require('./teacher.service');
 var teacher_edit_component_1 = require('./teacher-edit.component');
 var TeacherComponent = (function () {
-    function TeacherComponent(router, classService) {
+    function TeacherComponent(router, teacherService) {
         this.router = router;
-        this.classService = classService;
+        this.teacherService = teacherService;
         this.addingTeacher = false;
     }
     TeacherComponent.prototype.getTeachers = function () {
         var _this = this;
-        this.classService
+        this.teacherService
             .getTeachers()
             .then(function (teachers) { return _this.teachers = teachers; })
             .catch(function (error) { return _this.error = error; });
@@ -53,7 +53,7 @@ var TeacherComponent = (function () {
     TeacherComponent.prototype.deleteTeacher = function (clas, event) {
         var _this = this;
         event.stopPropagation();
-        this.classService
+        this.teacherService
             .delete(clas)
             .then(function (res) {
             _this.teachers = _this.teachers.filter(function (h) { return h !== clas; });

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
-import { Clas }			 from './clas';
-import { ClassService }		 from './class.service';
-import { ClassEditComponent } from './class-edit.component';
+import { Component, OnInit } 	from '@angular/core';
+import { Router }            	from '@angular/router';
+import { Clas }			 		from './clas';
+import { ClassService }		 	from './class.service';
+import { ClassEditComponent } 	from './class-edit.component';
 @Component({
   selector: 'ui-class',
   templateUrl: 'app/class/class.component.html',
@@ -25,7 +25,7 @@ export class ClassComponent implements OnInit {
         .getClasses()
         .then(classes => this.classes = classes)
         .catch(error => this.error = error);
-  }
+  	}
 
 	ngOnInit() {
 		this.getClasses();
@@ -34,10 +34,9 @@ export class ClassComponent implements OnInit {
 	onSelect(clas: Clas) {
   	this.selectedClass = clas;
   	this.addingClass = false;
-  }
+  	}
 
 	close(savedClass: Clas) {
-		console.log("class component close function");
 		this.addingClass = false;
   		if (savedClass) { this.getClasses(); }
 	}

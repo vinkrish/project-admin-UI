@@ -1,6 +1,8 @@
 "use strict";
 var Clas = (function () {
-    function Clas() {
+    function Clas(id, className) {
+        this.id = id;
+        this.className = className;
     }
     return Clas;
 }());

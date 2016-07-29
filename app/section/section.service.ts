@@ -6,17 +6,19 @@ import { Section } from './section';
 export class SectionService {
   //private sectionUrl = 'app/section';
   //private sectionUrl = 'app/section/sections.json';
-  private sectionUrl =  'http://localhost:8080/guldu/webapi/section/class/1586';
+  private sectionUrl =  'http://localhost:8080/guldu/webapi/section/class';
+  private postUrl = 'http://localhost:8080/guldu/webapi/section';
   constructor(private http: Http) { }
-  getSections(): Promise<Section[]> {
-    return this.http.get(this.sectionUrl)
+  getSections(id: number): Promise<Section[]> {
+    let url = `${this.sectionUrl}/${id}`;
+    return this.http.get(url)
                .toPromise()
-               .then(response => response.json().data)
+               .then(response => response.json())
                .catch(this.handleError);
   }
-  getSection(id: number) {
-    return this.getSections()
-               .then(sections => sections.find(section => section.id === id));
+  getSection(classId: number, sectionId: number) {
+    return this.getSections(classId)
+               .then(sections => sections.find(section => section.id === sectionId));
   }
   save(section: Section): Promise<Section>  {
     if (section.id) {
@@ -27,7 +29,7 @@ export class SectionService {
   delete(section: Section) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    let url = `${this.sectionUrl}/${section.id}`;
+    let url = `${this.postUrl}/${section.id}`;
     return this.http
                .delete(url, headers)
                .toPromise()
@@ -38,16 +40,16 @@ export class SectionService {
     let headers = new Headers({
       'Content-Type': 'application/json'});
     return this.http
-               .post(this.sectionUrl, JSON.stringify(section), {headers: headers})
+               .post(this.postUrl, JSON.stringify(section), {headers: headers})
                .toPromise()
-               .then(res => res.json().data)
+               .then(res => res.json())
                .catch(this.handleError);
   }
 
   private put(section: Section) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    let url = `${this.sectionUrl}/${section.id}`;
+    let url = `${this.postUrl}/${section.id}`;
     return this.http
                .put(url, JSON.stringify(section), {headers: headers})
                .toPromise()

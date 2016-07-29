@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
 import { Teacher }			 from './teacher';
-import { TeacherService }		 from './teacher.service';
+import { TeacherService }		from './teacher.service';
 import { TeacherEditComponent } from './teacher-edit.component';
 @Component({
   selector: 'ui-teacher',
@@ -18,23 +18,23 @@ export class TeacherComponent implements OnInit {
 
 	constructor(
 		private router: Router,
-		private classService: TeacherService) { }
+		private teacherService: TeacherService) { }
 
 	getTeachers() {
-    this.classService
+    this.teacherService
         .getTeachers()
         .then(teachers => this.teachers = teachers)
         .catch(error => this.error = error);
-  }
+  	}
 
 	ngOnInit() {
 		this.getTeachers();
 	}
 
 	onSelect(teacher: Teacher) {
-  	this.selectedTeacher = teacher;
-  	this.addingTeacher = false;
-  }
+  		this.selectedTeacher = teacher;
+  		this.addingTeacher = false;
+  	}
 
 	close(savedTeacher: Teacher) {
 		console.log("teacher component close function");
@@ -58,7 +58,7 @@ export class TeacherComponent implements OnInit {
 
 	deleteTeacher(clas: Teacher, event: any) {
     event.stopPropagation();
-    this.classService
+    this.teacherService
         .delete(clas)
         .then(res => {
           this.teachers = this.teachers.filter(h => h !== clas);

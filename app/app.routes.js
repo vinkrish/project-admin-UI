@@ -6,7 +6,6 @@ var class_component_1 = require('./class/class.component');
 var class_subject_group_component_1 = require('./class-subject-group/class-subject-group.component');
 var homework_component_1 = require('./homework/homework.component');
 var section_component_1 = require('./section/section.component');
-var section_edit_component_1 = require('./section/section-edit.component');
 var student_component_1 = require('./student/student.component');
 var subjects_component_1 = require('./subjects/subjects.component');
 var subject_group_component_1 = require('./subject-group/subject-group.component');
@@ -18,6 +17,7 @@ var class_edit_component_1 = require('./class/class-edit.component');
 var teacher_edit_component_1 = require('./teacher/teacher-edit.component');
 var subjects_edit_component_1 = require('./subjects/subjects-edit.component');
 var subject_group_edit_component_1 = require('./subject-group/subject-group-edit.component');
+var section_edit_component_1 = require('./section/section-edit.component');
 var routes = [
     {
         path: '',
