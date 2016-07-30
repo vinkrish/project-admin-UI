@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angu
 import { ActivatedRoute }    from '@angular/router';
 import {CookieService}       from 'angular2-cookie/core';
 import { Teacher }           from './teacher';
-import { Gender }            from './gender';
+import { Gender }            from '../shared/gender';
 import { TeacherService }    from './teacher.service';
 
 @Component({

@@ -1,0 +1,101 @@
+<div *ngIf="student">
+    <h3>Student Details</h3>
+    <br/>
+    <div>
+        <label>Class: {{className}} </label>
+    </div>
+    <br/>
+    <div>
+        <label>Section: {{sectionName}} </label>
+    </div>
+    <br/>
+    <div>
+        <label>Roll No: </label>
+        <input [(ngModel)]="student.rollNo" placeholder="Roll No" />
+    </div>
+    <br/>
+    <div>
+        <label>name: </label>
+        <input [(ngModel)]="student.studentName" placeholder="Student Name" />
+    </div>
+    <br/>
+    <div>
+        <label>Admission No: </label>
+        <input [(ngModel)]="student.admissionNo" placeholder="Admission No" />
+    </div>
+    <br/>
+    <div>
+        <label>Username: </label>
+        <input [(ngModel)]="student.username" placeholder="Username" />
+    </div>
+    <br/>
+    <div>
+        <label>Password: </label>
+        <input [(ngModel)]="student.password" placeholder="Password" />
+    </div>
+    <br/>
+    <div>
+        <label>Father name: </label>
+        <input [(ngModel)]="student.fatherName" placeholder="Father Name" />
+    </div>
+    <br/>
+    <div>
+        <label>Mother name: </label>
+        <input [(ngModel)]="student.motherName" placeholder="Mother Name" />
+    </div>
+    <br/>
+    <div>
+        <label>Date Of Birth: </label>
+        <input [(ngModel)]="student.dateOfBirth" placeholder="Date of Birth" />
+    </div>
+    <br/>
+    <div>
+        <label>Gender: </label>
+        <select [(ngModel)]="student.gender">
+            <option *ngFor="let sex of genders" value={{sex.type}}>{{sex.type}}</option>
+        </select>
+    </div>
+    <br/>
+    <div>
+        <label>Email: </label>
+        <input [(ngModel)]="student.email" placeholder="Email" />
+    </div>
+    <br/>
+    <div>
+        <label>Mobile 1: </label>
+        <input [(ngModel)]="student.mobile1" placeholder="M0bile No" />
+    </div>
+    <br/>
+    <div>
+        <label>Mobile 2: </label>
+        <input [(ngModel)]="student.mobile2" placeholder="Mobile 2" />
+    </div>
+    <br/>
+    <div>
+        <label>Street: </label>
+        <input [(ngModel)]="student.street" placeholder="Street Name" />
+    </div>
+    <br/>
+    <div>
+        <label>City: </label>
+        <input [(ngModel)]="student.city" placeholder="City Name" />
+    </div>
+    <br/>
+    <div>
+        <label>District: </label>
+        <input [(ngModel)]="student.district" placeholder="District Name" />
+    </div>
+    <br/>
+    <div>
+        <label>State: </label>
+        <input [(ngModel)]="student.state" placeholder="State Name" />
+    </div>
+    <br/>
+    <div>
+        <label>Pincode: </label>
+        <input [(ngModel)]="student.pincode" placeholder="Pincode Name" />
+    </div>
+    <br/>
+    <button class="btn btn-normal btn-md" (click)="goBack()">Back</button>
+    <button class="btn btn-success btn-md" (click)="save()">Save</button>
+</div>

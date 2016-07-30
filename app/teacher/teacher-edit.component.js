@@ -12,7 +12,7 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var core_2 = require('angular2-cookie/core');
 var teacher_1 = require('./teacher');
-var gender_1 = require('./gender');
+var gender_1 = require('../shared/gender');
 var teacher_service_1 = require('./teacher.service');
 var TeacherEditComponent = (function () {
     function TeacherEditComponent(teacherService, route, _cookieService) {

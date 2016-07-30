@@ -18,6 +18,7 @@ var teacher_edit_component_1 = require('./teacher/teacher-edit.component');
 var subjects_edit_component_1 = require('./subjects/subjects-edit.component');
 var subject_group_edit_component_1 = require('./subject-group/subject-group-edit.component');
 var section_edit_component_1 = require('./section/section-edit.component');
+var student_edit_component_1 = require('./student/student-edit.component');
 var routes = [
     {
         path: '',
@@ -95,6 +96,10 @@ var routes = [
     {
         path: 'subject-group/edit/:id',
         component: subject_group_edit_component_1.SubjectGroupEditComponent
+    },
+    {
+        path: 'student/edit/:id',
+        component: student_edit_component_1.StudentEditComponent
     }
 ];
 exports.appRouterProviders = [

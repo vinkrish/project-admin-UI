@@ -14,20 +14,24 @@ require('rxjs/add/operator/toPromise');
 var StudentService = (function () {
     function StudentService(http) {
         this.http = http;
-        this.studentUrl = 'app/attendance';
+        //private studentUrl = 'app/student';
+        //private studentUrl = 'app/student/students.json';
+        this.studentUrl = 'http://localhost:8080/guldu/webapi/student/section';
+        this.postUrl = 'http://localhost:8080/guldu/webapi/student';
     }
-    StudentService.prototype.getStudents = function () {
-        return this.http.get(this.studentUrl)
+    StudentService.prototype.getStudents = function (id) {
+        var url = this.studentUrl + "/" + id;
+        return this.http.get(url)
             .toPromise()
-            .then(function (response) { return response.json().data; })
+            .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    StudentService.prototype.getStudent = function (id) {
-        return this.getStudents()
-            .then(function (students) { return students.find(function (student) { return student.Id === id; }); });
+    StudentService.prototype.getStudent = function (sectionId, studentId) {
+        return this.getStudents(sectionId)
+            .then(function (students) { return students.find(function (student) { return student.id === studentId; }); });
     };
     StudentService.prototype.save = function (student) {
-        if (student.Id) {
+        if (student.id) {
             return this.put(student);
         }
         return this.post(student);
@@ -35,7 +39,7 @@ var StudentService = (function () {
     StudentService.prototype.delete = function (student) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        var url = this.studentUrl + "/" + student.Id;
+        var url = this.postUrl + "/" + student.id;
         return this.http
             .delete(url, headers)
             .toPromise()
@@ -45,15 +49,15 @@ var StudentService = (function () {
         var headers = new http_1.Headers({
             'Content-Type': 'application/json' });
         return this.http
-            .post(this.studentUrl, JSON.stringify(student), { headers: headers })
+            .post(this.postUrl, JSON.stringify(student), { headers: headers })
             .toPromise()
-            .then(function (res) { return res.json().data; })
+            .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     StudentService.prototype.put = function (student) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        var url = this.studentUrl + "/" + student.Id;
+        var url = this.postUrl + "/" + student.id;
         return this.http
             .put(url, JSON.stringify(student), { headers: headers })
             .toPromise()

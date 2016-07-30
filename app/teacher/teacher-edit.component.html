@@ -1,70 +1,53 @@
 <div *ngIf="teacher">
-  <h3>Teacher Details</h3>
-  <br/>
-  	<div>
-    	<label>Name: </label>
-    	<input [(ngModel)]="teacher.teacherName" placeholder="Teacher Name" />
-   	</div>
-
+    <h3>Teacher Details</h3>
     <br/>
-
-   	<div>
-      <label>Username: </label>
-      <input [(ngModel)]="teacher.username" placeholder="Username" />
-    </div>
-
-    <br/>
-
     <div>
-      <label>Password: </label>
-      <input [(ngModel)]="teacher.password" placeholder="Password" />
+        <label>Name: </label>
+        <input [(ngModel)]="teacher.teacherName" placeholder="Teacher Name" />
     </div>
-
     <br/>
-
     <div>
-      <label>Mobile: </label>
-      <input [(ngModel)]="teacher.mobile" placeholder="Mobile" />
+        <label>Username: </label>
+        <input [(ngModel)]="teacher.username" placeholder="Username" />
     </div>
-
     <br/>
-
     <div>
-      <label>Qualification: </label>
-      <input [(ngModel)]="teacher.qualification" placeholder="Qualification" />
+        <label>Password: </label>
+        <input [(ngModel)]="teacher.password" placeholder="Password" />
     </div>
-
     <br/>
-
     <div>
-      <label>Date Of Birth: </label>
-      <input [(ngModel)]="teacher.dateOfBirth" placeholder="Date Of Birth" />
+        <label>Mobile: </label>
+        <input [(ngModel)]="teacher.mobile" placeholder="Mobile" />
     </div>
-
     <br/>
-
     <div>
-      <label>Date Of Joining: </label>
-      <input [(ngModel)]="teacher.dateOfJoining" placeholder="Date Of Joining" />
+        <label>Qualification: </label>
+        <input [(ngModel)]="teacher.qualification" placeholder="Qualification" />
     </div>
-
     <br/>
-
-  	<div>
-  	<label>Gender: </label>
-  	<select [(ngModel)]="teacher.gender">
-   		<option *ngFor="let sex of genders" value= {{sex.type}}>{{sex.type}}</option>
-  	</select>
-  	</div>
-
-    <br/>
-
     <div>
-      <label>Email: </label>
-      <input [(ngModel)]="teacher.email" placeholder="Email" />
+        <label>Date Of Birth: </label>
+        <input [(ngModel)]="teacher.dateOfBirth" placeholder="Date Of Birth" />
     </div>
-
-   <br/>
-  <button class="btn btn-normal btn-md" (click)="goBack()">Back</button>
-  <button class="btn btn-success btn-md" (click)="save()">Save</button>
+    <br/>
+    <div>
+        <label>Date Of Joining: </label>
+        <input [(ngModel)]="teacher.dateOfJoining" placeholder="Date Of Joining" />
+    </div>
+    <br/>
+    <div>
+        <label>Gender: </label>
+        <select [(ngModel)]="teacher.gender">
+            <option *ngFor="let sex of genders" value={{sex.type}}>{{sex.type}}</option>
+        </select>
+    </div>
+    <br/>
+    <div>
+        <label>Email: </label>
+        <input [(ngModel)]="teacher.email" placeholder="Email" />
+    </div>
+    <br/>
+    <button class="btn btn-normal btn-md" (click)="goBack()">Back</button>
+    <button class="btn btn-success btn-md" (click)="save()">Save</button>
 </div>

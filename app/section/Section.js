@@ -1,6 +1,8 @@
 "use strict";
 var Section = (function () {
-    function Section() {
+    function Section(id, sectionName) {
+        this.id = id;
+        this.sectionName = sectionName;
     }
     return Section;
 }());

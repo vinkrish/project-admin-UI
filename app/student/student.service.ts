@@ -4,20 +4,24 @@ import 'rxjs/add/operator/toPromise';
 import { Student } from './student';
 @Injectable()
 export class StudentService {
-  private studentUrl = 'app/attendance';
+  //private studentUrl = 'app/student';
+  //private studentUrl = 'app/student/students.json';
+  private studentUrl =  'http://localhost:8080/guldu/webapi/student/section';
+  private postUrl = 'http://localhost:8080/guldu/webapi/student';
   constructor(private http: Http) { }
-  getStudents(): Promise<Student[]> {
-    return this.http.get(this.studentUrl)
+  getStudents(id: number): Promise<Student[]> {
+    let url = `${this.studentUrl}/${id}`;
+    return this.http.get(url)
                .toPromise()
-               .then(response => response.json().data)
+               .then(response => response.json())
                .catch(this.handleError);
   }
-  getStudent(id: number) {
-    return this.getStudents()
-               .then(students => students.find(student => student.Id === id));
+  getStudent(sectionId: number, studentId: number) {
+    return this.getStudents(sectionId)
+               .then(students => students.find(student => student.id === studentId));
   }
   save(student: Student): Promise<Student>  {
-    if (student.Id) {
+    if (student.id) {
       return this.put(student);
     }
     return this.post(student);
@@ -25,7 +29,7 @@ export class StudentService {
   delete(student: Student) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    let url = `${this.studentUrl}/${student.Id}`;
+    let url = `${this.postUrl}/${student.id}`;
     return this.http
                .delete(url, headers)
                .toPromise()
@@ -36,16 +40,16 @@ export class StudentService {
     let headers = new Headers({
       'Content-Type': 'application/json'});
     return this.http
-               .post(this.studentUrl, JSON.stringify(student), {headers: headers})
+               .post(this.postUrl, JSON.stringify(student), {headers: headers})
                .toPromise()
-               .then(res => res.json().data)
+               .then(res => res.json())
                .catch(this.handleError);
   }
 
   private put(student: Student) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    let url = `${this.studentUrl}/${student.Id}`;
+    let url = `${this.postUrl}/${student.id}`;
     return this.http
                .put(url, JSON.stringify(student), {headers: headers})
                .toPromise()
