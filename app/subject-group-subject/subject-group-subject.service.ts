@@ -4,28 +4,32 @@ import 'rxjs/add/operator/toPromise';
 import { SubjectGroupSubject } from './subject-group-subject';
 @Injectable()
 export class SubjectGroupSubjectService {
-  private subjectGroupSubjectUrl = 'app/subject-group-subject';
+  //private subjectGroupSubjectUrl = 'app/subject-group-subject';
+  private subjectGroupSubjectUrl =  'http://localhost:8080/guldu/webapi/subjectgroupsubject/subjectgroup';
+  private postUrl = 'http://localhost:8080/guldu/webapi/subjectgroupsubject';
   constructor(private http: Http) { }
-  getSubjectGroupSubjects(): Promise<SubjectGroupSubject[]> {
-    return this.http.get(this.subjectGroupSubjectUrl)
+  getSubjectGroupSubjects(id: number): Promise<SubjectGroupSubject[]> {
+    let url = `${this.subjectGroupSubjectUrl}/${id}`;
+    return this.http.get(url)
                .toPromise()
-               .then(response => response.json().data)
+               .then(response => response.json())
                .catch(this.handleError);
   }
   getSubjectGroupSubject(id: number) {
-    return this.getSubjectGroupSubjects()
-               .then(subjectGroupSubjects => subjectGroupSubjects.find(subjectGroupSubject => subjectGroupSubject.Id === id));
+    return this.getSubjectGroupSubjects(id)
+               .then(subjectGroupSubjects => subjectGroupSubjects.find(subjectGroupSubject => subjectGroupSubject.id === id));
   }
   save(subjectGroupSubject: SubjectGroupSubject): Promise<SubjectGroupSubject>  {
-    if (subjectGroupSubject.Id) {
+    if (subjectGroupSubject.id) {
       return this.put(subjectGroupSubject);
     }
     return this.post(subjectGroupSubject);
   }
   delete(subjectGroupSubject: SubjectGroupSubject) {
+    console.log(subjectGroupSubject.id);
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    let url = `${this.subjectGroupSubjectUrl}/${subjectGroupSubject.Id}`;
+    let url = `${this.postUrl}/${subjectGroupSubject.id}`;
     return this.http
                .delete(url, headers)
                .toPromise()
@@ -36,16 +40,16 @@ export class SubjectGroupSubjectService {
     let headers = new Headers({
       'Content-Type': 'application/json'});
     return this.http
-               .post(this.subjectGroupSubjectUrl, JSON.stringify(subjectGroupSubject), {headers: headers})
+               .post(this.postUrl, JSON.stringify(subjectGroupSubject), {headers: headers})
                .toPromise()
-               .then(res => res.json().data)
+               .then(res => res.json())
                .catch(this.handleError);
   }
 
   private put(subjectGroupSubject: SubjectGroupSubject) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    let url = `${this.subjectGroupSubjectUrl}/${subjectGroupSubject.Id}`;
+    let url = `${this.postUrl}/${subjectGroupSubject.id}`;
     return this.http
                .put(url, JSON.stringify(subjectGroupSubject), {headers: headers})
                .toPromise()

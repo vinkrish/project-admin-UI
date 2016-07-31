@@ -14,28 +14,32 @@ require('rxjs/add/operator/toPromise');
 var SubjectGroupSubjectService = (function () {
     function SubjectGroupSubjectService(http) {
         this.http = http;
-        this.subjectGroupSubjectUrl = 'app/subject-group-subject';
+        //private subjectGroupSubjectUrl = 'app/subject-group-subject';
+        this.subjectGroupSubjectUrl = 'http://localhost:8080/guldu/webapi/subjectgroupsubject/subjectgroup';
+        this.postUrl = 'http://localhost:8080/guldu/webapi/subjectgroupsubject';
     }
-    SubjectGroupSubjectService.prototype.getSubjectGroupSubjects = function () {
-        return this.http.get(this.subjectGroupSubjectUrl)
+    SubjectGroupSubjectService.prototype.getSubjectGroupSubjects = function (id) {
+        var url = this.subjectGroupSubjectUrl + "/" + id;
+        return this.http.get(url)
             .toPromise()
-            .then(function (response) { return response.json().data; })
+            .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     SubjectGroupSubjectService.prototype.getSubjectGroupSubject = function (id) {
-        return this.getSubjectGroupSubjects()
-            .then(function (subjectGroupSubjects) { return subjectGroupSubjects.find(function (subjectGroupSubject) { return subjectGroupSubject.Id === id; }); });
+        return this.getSubjectGroupSubjects(id)
+            .then(function (subjectGroupSubjects) { return subjectGroupSubjects.find(function (subjectGroupSubject) { return subjectGroupSubject.id === id; }); });
     };
     SubjectGroupSubjectService.prototype.save = function (subjectGroupSubject) {
-        if (subjectGroupSubject.Id) {
+        if (subjectGroupSubject.id) {
             return this.put(subjectGroupSubject);
         }
         return this.post(subjectGroupSubject);
     };
     SubjectGroupSubjectService.prototype.delete = function (subjectGroupSubject) {
+        console.log(subjectGroupSubject.id);
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        var url = this.subjectGroupSubjectUrl + "/" + subjectGroupSubject.Id;
+        var url = this.postUrl + "/" + subjectGroupSubject.id;
         return this.http
             .delete(url, headers)
             .toPromise()
@@ -45,15 +49,15 @@ var SubjectGroupSubjectService = (function () {
         var headers = new http_1.Headers({
             'Content-Type': 'application/json' });
         return this.http
-            .post(this.subjectGroupSubjectUrl, JSON.stringify(subjectGroupSubject), { headers: headers })
+            .post(this.postUrl, JSON.stringify(subjectGroupSubject), { headers: headers })
             .toPromise()
-            .then(function (res) { return res.json().data; })
+            .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     SubjectGroupSubjectService.prototype.put = function (subjectGroupSubject) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        var url = this.subjectGroupSubjectUrl + "/" + subjectGroupSubject.Id;
+        var url = this.postUrl + "/" + subjectGroupSubject.id;
         return this.http
             .put(url, JSON.stringify(subjectGroupSubject), { headers: headers })
             .toPromise()

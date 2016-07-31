@@ -9,17 +9,93 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var subject_group_1 = require('../subject-group/subject-group');
+var subject_group_service_1 = require('../subject-group/subject-group.service');
+var subject_group_subject_service_1 = require('./subject-group-subject.service');
+var subject_group_subject_edit_component_1 = require('./subject-group-subject-edit.component');
+var core_2 = require('angular2-cookie/core');
 var SubjectGroupSubjectComponent = (function () {
-    function SubjectGroupSubjectComponent() {
+    function SubjectGroupSubjectComponent(router, _cookieService, subjectGroupService, subjectGroupSubjectService) {
+        this.router = router;
+        this._cookieService = _cookieService;
+        this.subjectGroupService = subjectGroupService;
+        this.subjectGroupSubjectService = subjectGroupSubjectService;
+        this.addingSGS = false;
     }
+    SubjectGroupSubjectComponent.prototype.getSubjectGroups = function () {
+        var _this = this;
+        this.subjectGroupService
+            .getSubjectGroups()
+            .then(function (subjectGroups) { return _this.subjectGroups = subjectGroups; })
+            .catch(function (error) { return _this.error = error; });
+    };
+    SubjectGroupSubjectComponent.prototype.subjectGroupSelected = function (subjectGroupId) {
+        //this.selectedClass = null;
+        for (var i = 0; i < this.subjectGroups.length; i++) {
+            if (this.subjectGroups[i].id == subjectGroupId) {
+                this.selectedSubjectGroup = this.subjectGroups[i];
+            }
+        }
+        this.getSubjectGroupSubjects(this.selectedSubjectGroup.id);
+        this._cookieService.put("subjectGroupId", "" + this.selectedSubjectGroup.id);
+        this._cookieService.put("subjectGroupName", "" + this.selectedSubjectGroup.subjectGroupName);
+        this.addingSGS = false;
+    };
+    SubjectGroupSubjectComponent.prototype.getSubjectGroupSubjects = function (id) {
+        var _this = this;
+        this.subjectGroupSubjectService
+            .getSubjectGroupSubjects(id)
+            .then(function (subjectGroupSubjects) { return _this.subjectGroupSubjects = subjectGroupSubjects; })
+            .catch(function (error) { return _this.error = error; });
+    };
+    SubjectGroupSubjectComponent.prototype.ngOnInit = function () {
+        this.getSubjectGroups();
+        this.selectedSubjectGroup = new subject_group_1.SubjectGroup();
+    };
+    SubjectGroupSubjectComponent.prototype.onSelect = function (subjectGroupSubject) {
+        this.selectedSGS = subjectGroupSubject;
+        this.addingSGS = false;
+    };
+    SubjectGroupSubjectComponent.prototype.close = function (savedSGS) {
+        this.addingSGS = false;
+        if (savedSGS) {
+            this.getSubjectGroupSubjects(this.selectedSGS.id);
+        }
+    };
+    SubjectGroupSubjectComponent.prototype.goToDashboard = function () {
+        this.router.navigate(['/dashboard']);
+    };
+    SubjectGroupSubjectComponent.prototype.addSubjectGroupSubject = function () {
+        if (this.addingSGS) {
+            this.addingSGS = false;
+        }
+        else {
+            this.addingSGS = true;
+        }
+        this.selectedSGS = null;
+    };
+    SubjectGroupSubjectComponent.prototype.deleteSubjectGroupSubject = function (sgs, event) {
+        var _this = this;
+        event.stopPropagation();
+        this.subjectGroupSubjectService
+            .delete(sgs)
+            .then(function (res) {
+            _this.subjectGroupSubjects = _this.subjectGroupSubjects.filter(function (h) { return h !== sgs; });
+            if (_this.selectedSGS === sgs) {
+                _this.selectedSGS = null;
+            }
+        })
+            .catch(function (error) { return _this.error = error; });
+    };
     SubjectGroupSubjectComponent = __decorate([
         core_1.Component({
             selector: 'ui-subject-group-subject',
             templateUrl: 'app/subject-group-subject/subject-group-subject.component.html',
             styleUrls: ['app/subject-group-subject/subject-group-subject.component.css'],
-            directives: []
+            directives: [subject_group_subject_edit_component_1.SubjectGroupSubjectEditComponent]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router, core_2.CookieService, subject_group_service_1.SubjectGroupService, subject_group_subject_service_1.SubjectGroupSubjectService])
     ], SubjectGroupSubjectComponent);
     return SubjectGroupSubjectComponent;
 }());

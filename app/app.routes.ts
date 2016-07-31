@@ -20,6 +20,7 @@ import { SubjectsEditComponent } from './subjects/subjects-edit.component';
 import { SubjectGroupEditComponent } from './subject-group/subject-group-edit.component';
 import { SectionEditComponent } from './section/section-edit.component';
 import { StudentEditComponent } from './student/student-edit.component';
+import { SubjectGroupSubjectEditComponent } from './subject-group-subject/subject-group-subject-edit.component'
 
 const routes: RouterConfig = [
   {
