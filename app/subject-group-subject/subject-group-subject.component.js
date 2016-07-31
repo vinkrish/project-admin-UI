@@ -39,7 +39,7 @@ var SubjectGroupSubjectComponent = (function () {
         }
         this.getSubjectGroupSubjects(this.selectedSubjectGroup.id);
         this._cookieService.put("subjectGroupId", "" + this.selectedSubjectGroup.id);
-        this._cookieService.put("subjectGroupName", "" + this.selectedSubjectGroup.subjectGroupName);
+        this._cookieService.put("subjectGroupName", this.selectedSubjectGroup.subjectGroupName);
         this.addingSGS = false;
     };
     SubjectGroupSubjectComponent.prototype.getSubjectGroupSubjects = function (id) {

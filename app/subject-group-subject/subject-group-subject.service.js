@@ -36,7 +36,6 @@ var SubjectGroupSubjectService = (function () {
         return this.post(subjectGroupSubject);
     };
     SubjectGroupSubjectService.prototype.delete = function (subjectGroupSubject) {
-        console.log(subjectGroupSubject.id);
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         var url = this.postUrl + "/" + subjectGroupSubject.id;

@@ -4,20 +4,23 @@ import 'rxjs/add/operator/toPromise';
 import { ClassSubjectGroup } from './class-subject-group';
 @Injectable()
 export class ClassSubjectGroupService {
-  private classSubjectGroupUrl = 'app/class-subject-group';
+  //private classSubjectGroupUrl = 'app/class-subject-group';
+  private classSubjectGroupUrl =  'http://localhost:8080/guldu/webapi/classsubjectgroup/class';
+  private postUrl = 'http://localhost:8080/guldu/webapi/classsubjectgroup';
   constructor(private http: Http) { }
-  getClassSubjectGroups(): Promise<ClassSubjectGroup[]> {
-    return this.http.get(this.classSubjectGroupUrl)
+  getClassSubjectGroups(id: number): Promise<ClassSubjectGroup[]> {
+     let url = `${this.classSubjectGroupUrl}/${id}`;
+    return this.http.get(url)
                .toPromise()
-               .then(response => response.json().data)
+               .then(response => response.json())
                .catch(this.handleError);
   }
   getClassSubjectGroup(id: number) {
-    return this.getClassSubjectGroups()
-               .then(classSubjectGroups => classSubjectGroups.find(classSubjectGroup => classSubjectGroup.Id === id));
+    return this.getClassSubjectGroups(id)
+               .then(classSubjectGroups => classSubjectGroups.find(classSubjectGroup => classSubjectGroup.id === id));
   }
   save(classSubjectGroup: ClassSubjectGroup): Promise<ClassSubjectGroup>  {
-    if (classSubjectGroup.Id) {
+    if (classSubjectGroup.id) {
       return this.put(classSubjectGroup);
     }
     return this.post(classSubjectGroup);
@@ -25,7 +28,7 @@ export class ClassSubjectGroupService {
   delete(classSubjectGroup: ClassSubjectGroup) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    let url = `${this.classSubjectGroupUrl}/${classSubjectGroup.Id}`;
+    let url = `${this.postUrl}/${classSubjectGroup.id}`;
     return this.http
                .delete(url, headers)
                .toPromise()
@@ -36,16 +39,16 @@ export class ClassSubjectGroupService {
     let headers = new Headers({
       'Content-Type': 'application/json'});
     return this.http
-               .post(this.classSubjectGroupUrl, JSON.stringify(classSubjectGroup), {headers: headers})
+               .post(this.postUrl, JSON.stringify(classSubjectGroup), {headers: headers})
                .toPromise()
-               .then(res => res.json().data)
+               .then(res => res.json())
                .catch(this.handleError);
   }
 
   private put(classSubjectGroup: ClassSubjectGroup) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    let url = `${this.classSubjectGroupUrl}/${classSubjectGroup.Id}`;
+    let url = `${this.postUrl}/${classSubjectGroup.id}`;
     return this.http
                .put(url, JSON.stringify(classSubjectGroup), {headers: headers})
                .toPromise()

@@ -14,20 +14,23 @@ require('rxjs/add/operator/toPromise');
 var ClassSubjectGroupService = (function () {
     function ClassSubjectGroupService(http) {
         this.http = http;
-        this.classSubjectGroupUrl = 'app/class-subject-group';
+        //private classSubjectGroupUrl = 'app/class-subject-group';
+        this.classSubjectGroupUrl = 'http://localhost:8080/guldu/webapi/classsubjectgroup/class';
+        this.postUrl = 'http://localhost:8080/guldu/webapi/classsubjectgroup';
     }
-    ClassSubjectGroupService.prototype.getClassSubjectGroups = function () {
-        return this.http.get(this.classSubjectGroupUrl)
+    ClassSubjectGroupService.prototype.getClassSubjectGroups = function (id) {
+        var url = this.classSubjectGroupUrl + "/" + id;
+        return this.http.get(url)
             .toPromise()
-            .then(function (response) { return response.json().data; })
+            .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     ClassSubjectGroupService.prototype.getClassSubjectGroup = function (id) {
-        return this.getClassSubjectGroups()
-            .then(function (classSubjectGroups) { return classSubjectGroups.find(function (classSubjectGroup) { return classSubjectGroup.Id === id; }); });
+        return this.getClassSubjectGroups(id)
+            .then(function (classSubjectGroups) { return classSubjectGroups.find(function (classSubjectGroup) { return classSubjectGroup.id === id; }); });
     };
     ClassSubjectGroupService.prototype.save = function (classSubjectGroup) {
-        if (classSubjectGroup.Id) {
+        if (classSubjectGroup.id) {
             return this.put(classSubjectGroup);
         }
         return this.post(classSubjectGroup);
@@ -35,7 +38,7 @@ var ClassSubjectGroupService = (function () {
     ClassSubjectGroupService.prototype.delete = function (classSubjectGroup) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        var url = this.classSubjectGroupUrl + "/" + classSubjectGroup.Id;
+        var url = this.postUrl + "/" + classSubjectGroup.id;
         return this.http
             .delete(url, headers)
             .toPromise()
@@ -45,15 +48,15 @@ var ClassSubjectGroupService = (function () {
         var headers = new http_1.Headers({
             'Content-Type': 'application/json' });
         return this.http
-            .post(this.classSubjectGroupUrl, JSON.stringify(classSubjectGroup), { headers: headers })
+            .post(this.postUrl, JSON.stringify(classSubjectGroup), { headers: headers })
             .toPromise()
-            .then(function (res) { return res.json().data; })
+            .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     ClassSubjectGroupService.prototype.put = function (classSubjectGroup) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        var url = this.classSubjectGroupUrl + "/" + classSubjectGroup.Id;
+        var url = this.postUrl + "/" + classSubjectGroup.id;
         return this.http
             .put(url, JSON.stringify(classSubjectGroup), { headers: headers })
             .toPromise()

@@ -1,5 +1,6 @@
 export class ClassSubjectGroup{
-	Id: number;
-	ClassId: number;
-	SubjectGroupId: number;
+	id: number;
+	classId: number;
+	subjectGroupId: number;
+	subjectGroupName: string;
 }

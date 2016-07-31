@@ -26,7 +26,6 @@ export class SubjectGroupSubjectService {
     return this.post(subjectGroupSubject);
   }
   delete(subjectGroupSubject: SubjectGroupSubject) {
-    console.log(subjectGroupSubject.id);
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let url = `${this.postUrl}/${subjectGroupSubject.id}`;

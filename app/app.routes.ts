@@ -21,6 +21,7 @@ import { SubjectGroupEditComponent } from './subject-group/subject-group-edit.co
 import { SectionEditComponent } from './section/section-edit.component';
 import { StudentEditComponent } from './student/student-edit.component';
 import { SubjectGroupSubjectEditComponent } from './subject-group-subject/subject-group-subject-edit.component'
+import { ClassSubjectGroupEditComponent } from './class-subject-group/class-subject-group-edit.component'
 
 const routes: RouterConfig = [
   {

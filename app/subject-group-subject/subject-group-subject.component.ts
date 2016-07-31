@@ -1,8 +1,6 @@
 import { Component, OnInit }     	from '@angular/core';
 import { Router }                	from '@angular/router';
-import { Subjects }                 from '../subjects/subjects';
 import { SubjectGroup }				from '../subject-group/subject-group';
-import { SubjectsService }		    from '../subjects/subjects.service';
 import { SubjectGroupService }		from '../subject-group/subject-group.service';
 import { SubjectGroupSubject }		from './subject-group-subject'
 import { SubjectGroupSubjectService } from './subject-group-subject.service';
@@ -19,15 +17,15 @@ import { CookieService } from 'angular2-cookie/core';
 export class SubjectGroupSubjectComponent implements OnInit {
   	subjectGroups: SubjectGroup[];
   	selectedSubjectGroup: SubjectGroup;
-	subjectGroupSubjects: SubjectGroupSubject[];
-	selectedSGS: SubjectGroupSubject;
-	addingSGS = false;
-	error: any;
+	  subjectGroupSubjects: SubjectGroupSubject[];
+	  selectedSGS: SubjectGroupSubject;
+	  addingSGS = false;
+	  error: any;
 
 	constructor(
 		private router: Router,
-    	private _cookieService:CookieService,
-    	private subjectGroupService: SubjectGroupService,
+    private _cookieService:CookieService,
+    private subjectGroupService: SubjectGroupService,
 		private subjectGroupSubjectService: SubjectGroupSubjectService) { }
 
   getSubjectGroups() {
@@ -47,7 +45,7 @@ export class SubjectGroupSubjectComponent implements OnInit {
       }
      this.getSubjectGroupSubjects(this.selectedSubjectGroup.id);
      this._cookieService.put("subjectGroupId", ""+this.selectedSubjectGroup.id);
-     this._cookieService.put("subjectGroupName", ""+this.selectedSubjectGroup.subjectGroupName);
+     this._cookieService.put("subjectGroupName", this.selectedSubjectGroup.subjectGroupName);
      this.addingSGS = false;
    }
 
