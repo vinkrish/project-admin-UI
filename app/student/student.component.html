@@ -1,8 +1,6 @@
 <ul class="breadcrumb">
-    <li class="active">Section</li>
+    <li class="active">Student</li>
 </ul>
-<div class="clearfix"></div>
-<br/>
 <div>
     <label>Select Class: </label>
     <select [(ngModel)]="selectedClass.id" (change)="classSelected($event.target.value)">
@@ -32,7 +30,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let student of students" (click)="onSelect(student)" [class.selected]="student === selectedStudent">
-                <td class="col-md-1">{{student.rollNo}}</td> 
+                <td class="col-md-1">{{student.rollNo}}</td>
                 <td class="col-md-3">{{student.studentName}}</td>
                 <td class="col-md-2">{{student.fatherName}}</td>
                 <td class="col-md-2">{{student.motherName}}</td>
