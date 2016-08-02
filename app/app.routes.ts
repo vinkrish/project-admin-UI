@@ -22,6 +22,7 @@ import { SectionEditComponent } from './section/section-edit.component';
 import { StudentEditComponent } from './student/student-edit.component';
 import { SubjectGroupSubjectEditComponent } from './subject-group-subject/subject-group-subject-edit.component'
 import { ClassSubjectGroupEditComponent } from './class-subject-group/class-subject-group-edit.component'
+import { SubjectTeacherEditComponent } from './subject-teacher/subject-teacher-edit.component';
 
 const routes: RouterConfig = [
   {
@@ -104,6 +105,10 @@ const routes: RouterConfig = [
   {
     path: 'student/edit/:id',
     component: StudentEditComponent
+  },
+  {
+    path: 'subject-teacher/edit/:id',
+    component: SubjectTeacherEditComponent
   }
 ];
 

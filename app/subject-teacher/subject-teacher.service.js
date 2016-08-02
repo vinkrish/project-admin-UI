@@ -14,46 +14,46 @@ require('rxjs/add/operator/toPromise');
 var SubjectTeacherService = (function () {
     function SubjectTeacherService(http) {
         this.http = http;
-        this.subjectTeacherUrl = 'app/subject-teacher';
+        //private subjectTeacherUrl = 'app/subject-teacher';
+        this.subjectTeacherUrl = 'http://localhost:8080/guldu/webapi/subjectteacher/section';
+        this.postUrl = 'http://localhost:8080/guldu/webapi/subjectteacher';
+        this.sharedUrl = 'http://localhost:8080/guldu/webapi/shared/subjectteacher';
     }
-    SubjectTeacherService.prototype.getSubjectTeachers = function () {
-        return this.http.get(this.subjectTeacherUrl)
+    SubjectTeacherService.prototype.getSubjectTeachers = function (id) {
+        var url = this.subjectTeacherUrl + "/" + id;
+        return this.http.get(url)
             .toPromise()
-            .then(function (response) { return response.json().data; })
+            .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    SubjectTeacherService.prototype.getSubjectTeacher = function (id) {
-        return this.getSubjectTeachers()
-            .then(function (subjectTeachers) { return subjectTeachers.find(function (subjectTeacher) { return subjectTeacher.Id === id; }); });
+    SubjectTeacherService.prototype.getSubjectTeacher = function (sectionId, subjectTeacherId) {
+        return this.getSubjectTeachers(sectionId)
+            .then(function (subjectTeachers) { return subjectTeachers.find(function (subjectTeacher) { return subjectTeacher.id === subjectTeacherId; }); });
     };
-    SubjectTeacherService.prototype.save = function (subjectTeacher) {
-        if (subjectTeacher.Id) {
-            return this.put(subjectTeacher);
-        }
-        return this.post(subjectTeacher);
+    SubjectTeacherService.prototype.save = function (clas) {
+        return this.post(clas);
     };
     SubjectTeacherService.prototype.delete = function (subjectTeacher) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        var url = this.subjectTeacherUrl + "/" + subjectTeacher.Id;
+        var url = this.postUrl + "/" + subjectTeacher.id;
         return this.http
             .delete(url, headers)
             .toPromise()
             .catch(this.handleError);
     };
-    SubjectTeacherService.prototype.post = function (subjectTeacher) {
+    SubjectTeacherService.prototype.post = function (clas) {
         var headers = new http_1.Headers({
             'Content-Type': 'application/json' });
         return this.http
-            .post(this.subjectTeacherUrl, JSON.stringify(subjectTeacher), { headers: headers })
+            .post(this.sharedUrl, JSON.stringify(clas), { headers: headers })
             .toPromise()
-            .then(function (res) { return res.json().data; })
             .catch(this.handleError);
     };
     SubjectTeacherService.prototype.put = function (subjectTeacher) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        var url = this.subjectTeacherUrl + "/" + subjectTeacher.Id;
+        var url = this.postUrl + "/" + subjectTeacher.id;
         return this.http
             .put(url, JSON.stringify(subjectTeacher), { headers: headers })
             .toPromise()

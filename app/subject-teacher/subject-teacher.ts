@@ -1,6 +1,8 @@
 export class SubjectTeacher {
-	Id: number;
-	SectionId: string;
-	SubjectId: string;
-	TeacherId: string;
+	id: number;
+	sectionId: number;
+	subjectId: number;
+	subjectName: string
+	teacherId: number;
+	teacherName: string;
 }
