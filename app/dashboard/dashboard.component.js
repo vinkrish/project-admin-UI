@@ -15,7 +15,10 @@ var DashboardComponent = (function () {
     function DashboardComponent(router, _cookieService) {
         this.router = router;
         this._cookieService = _cookieService;
-        this.Items1 = [{ name: 'Class', link: 'class' }, { name: 'Section', link: 'section' }];
+        this.Items1 = [
+            { name: 'Class', link: 'class' },
+            { name: 'Section', link: 'section' }
+        ];
         this.Items2 = [
             { name: 'Attendance', link: 'attendance' },
             { name: 'Homework', link: 'homework' },
@@ -28,7 +31,10 @@ var DashboardComponent = (function () {
             { name: 'Subject Teacher', link: 'subject-teacher' },
             { name: 'Class Subject Group', link: 'class-subject-group' }
         ];
-        this.Items4 = [{ name: 'Student', link: 'student' }, { name: 'Teacher', link: 'teacher' }];
+        this.Items4 = [
+            { name: 'Student', link: 'student' },
+            { name: 'Teacher', link: 'teacher' }
+        ];
         this._cookieService.put("schoolId", "107");
     }
     DashboardComponent.prototype.gotoDetail = function (item) {

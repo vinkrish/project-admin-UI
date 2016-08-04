@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { Router }    from '@angular/router'
-import { CookieService } from 'angular2-cookie/core';
-import { Dashboard } from  './dashboard'
+import { Component } 		from '@angular/core';
+import { Router }    		from '@angular/router'
+import { CookieService }	from 'angular2-cookie/core';
+import { Dashboard } 		from  './dashboard'
 
 @Component({
   selector: 'ui-dashboard',
@@ -11,7 +11,10 @@ import { Dashboard } from  './dashboard'
 
 export class DashboardComponent{
 	
-	Items1: Dashboard[] = [{name: 'Class', link: 'class'}, {name: 'Section', link: 'section'}];
+	Items1: Dashboard[] = [
+		{name: 'Class', link: 'class'},
+		{name: 'Section', link: 'section'}
+	];
 	Items2: Dashboard[] = [
 		{name: 'Attendance', link: 'attendance'}, 
 		{name: 'Homework', link: 'homework'}, 
@@ -24,7 +27,10 @@ export class DashboardComponent{
 		{name: 'Subject Teacher', link: 'subject-teacher'},
 		{name: 'Class Subject Group', link: 'class-subject-group'}
 	];
-	Items4: Dashboard[] = [{name: 'Student', link: 'student'}, {name: 'Teacher', link: 'teacher'}];
+	Items4: Dashboard[] = [
+		{name: 'Student', link: 'student'},
+		{name: 'Teacher', link: 'teacher'}
+	];
 
 	constructor(private router: Router, private _cookieService:CookieService) 
 	{ 

@@ -1,0 +1,1 @@
+{"version":3,"file":"student.routes.js","sourceRoot":"","sources":["student.routes.ts"],"names":[],"mappings":";AACA,kCAAiC,qBAAqB,CAAC,CAAA;AACvD,uCAAqC,0BAA0B,CAAC,CAAA;AAEnD,qBAAa,GAAiB;IACxC;QACC,IAAI,EAAE,SAAS;QACf,SAAS,EAAE,oCAAgB;KAC5B;IACA;QACC,IAAI,EAAE,kBAAkB;QACxB,SAAS,EAAE,6CAAoB;KAChC;CACF,CAAC"}

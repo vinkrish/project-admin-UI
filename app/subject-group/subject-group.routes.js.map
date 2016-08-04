@@ -1,0 +1,1 @@
+{"version":3,"file":"subject-group.routes.js","sourceRoot":"","sources":["subject-group.routes.ts"],"names":[],"mappings":";AACA,wCAAsC,2BAA2B,CAAC,CAAA;AAClE,6CAA0C,gCAAgC,CAAC,CAAA;AAE9D,0BAAkB,GAAiB;IAC9C;QACE,IAAI,EAAE,eAAe;QACrB,SAAS,EAAE,+CAAqB;KACjC;IACD;QACE,IAAI,EAAE,wBAAwB;QAC9B,SAAS,EAAE,wDAAyB;KACrC;CACF,CAAC"}

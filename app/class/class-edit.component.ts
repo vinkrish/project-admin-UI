@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {CookieService} from 'angular2-cookie/core';
+import { CookieService } from 'angular2-cookie/core';
 import { Clas }           from './clas';
 import { AttendanceType }  from '../shared/attendance-type';
 import { HomeworkType }    from '../shared/homework-type';

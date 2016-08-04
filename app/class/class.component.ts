@@ -9,7 +9,6 @@ import { ClassEditComponent } 	from './class-edit.component';
   styleUrls:  ['app/class/class.component.css'],
   directives: [ClassEditComponent]
 })
-
 export class ClassComponent implements OnInit {
 	classes: Clas[];
 	selectedClass: Clas;
