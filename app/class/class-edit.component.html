@@ -13,13 +13,6 @@
         </select>
     </div>
     <br/>
-    <div>
-        <label>Homework Type: </label>
-        <select [(ngModel)]="clas.homeworkType">
-            <option *ngFor="let hwType of homeworkTypes" value={{hwType.type}}>{{hwType.type}}</option>
-        </select>
-    </div>
-    <br/>
     <button class="btn btn-normal btn-md" (click)="goBack()">Back</button>
     <button class="btn btn-success btn-md" (click)="save()">Save</button>
 </div>

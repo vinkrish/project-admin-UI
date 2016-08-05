@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'angular2-cookie/core';
 import { Clas }           from './clas';
 import { AttendanceType }  from '../shared/attendance-type';
-import { HomeworkType }    from '../shared/homework-type';
 import { ClassService }   from './class.service';
 @Component({
   selector: 'ui-class-detail',
@@ -13,14 +12,10 @@ import { ClassService }   from './class.service';
 export class ClassEditComponent implements OnInit, OnDestroy {
   @Input() clas: Clas;
   @Output() close = new EventEmitter();
-  attendanceTypes: AttendanceType []  = [ 
-    {"id": 1 ,"type": "Daily"},
-    {"id": 2 ,"type": "Session"},
-    {"id": 3 ,"type": "Period"}
-  ];
-  homeworkTypes = [
-    new HomeworkType("Daily"),
-    new HomeworkType("Period")
+  attendanceTypes = [ 
+     new AttendanceType("Daily"),
+     new AttendanceType("Session"),
+     new AttendanceType("Period")
   ];
   error: any;
   sub: any;
@@ -50,10 +45,10 @@ export class ClassEditComponent implements OnInit, OnDestroy {
     this.classService
         .save(this.clas)
         .then(clas => {
-          this.clas = clas; // saved hero, w/ id if new
+          this.clas = clas;
           this.goBack(clas);
         })
-        .catch(error => this.error = error); // TODO: Display error message
+        .catch(error => this.error = error);
   }
   goBack(savedClas: Clas = null) {
     this.close.emit(savedClas);

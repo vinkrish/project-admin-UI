@@ -4,7 +4,6 @@ export class Homework{
 	SubjectId: number;
 	TeacherId: number;
 	HomeworkMessage: string;
-	Type: number;
-	Session: number;
+	Period: number;
 	HomeworkDate: string;
 }
