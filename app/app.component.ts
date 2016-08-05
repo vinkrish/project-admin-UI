@@ -1,8 +1,6 @@
 import { Component }                from '@angular/core';
 import { ROUTER_DIRECTIVES }        from '@angular/router';
 import { CookieService }            from 'angular2-cookie/core';
-import { LoginService }             from './login/credentials.service';
-import { LoggedInGuard }            from './login/logged-in.guard';
 import { AttendanceService }        from './attendance/attendance.service';
 import { ClassService }             from './class/class.service';
 import { ClassSubjectGroupService } from './class-subject-group/class-subject-group.service';
@@ -19,13 +17,12 @@ import { TimetableService }        	from './timetable/timetable.service';
 @Component({
   selector: 'my-app',
   template: `
+    <br/>
 	  <router-outlet></router-outlet>
   `,
   styleUrls: ['app/app.component.css'],
   directives: [ROUTER_DIRECTIVES],
    providers: [
-    LoginService,
-    LoggedInGuard,
     AttendanceService,
     ClassService,
     ClassSubjectGroupService,

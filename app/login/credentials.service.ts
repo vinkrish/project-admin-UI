@@ -3,9 +3,15 @@ import { Headers, Http }  from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { CookieService }  from 'angular2-cookie/core';
 import { Credentials }    from './credentials';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/delay';
+
 @Injectable()
 export class LoginService {
-	private loggedIn = false;
+	private loggedIn = true;
 
   constructor(private http: Http) {
      //this.loggedIn = !!localStorage.getItem('auth_token');

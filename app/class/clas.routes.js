@@ -8,6 +8,6 @@ exports.clasRoutes = [
     }, {
         path: 'class/edit/:id',
         component: class_edit_component_1.ClassEditComponent
-    },
+    }
 ];
 //# sourceMappingURL=clas.routes.js.map

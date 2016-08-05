@@ -9,5 +9,5 @@ export const clasRoutes: RouterConfig = [
   },  {
     path: 'class/edit/:id',
     component: ClassEditComponent
-  },
+  }
 ];

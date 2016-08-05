@@ -11,10 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
+require('rxjs/add/observable/of');
+require('rxjs/add/operator/do');
+require('rxjs/add/operator/delay');
 var LoginService = (function () {
     function LoginService(http) {
         this.http = http;
-        this.loggedIn = false;
+        this.loggedIn = true;
         //this.loggedIn = !!localStorage.getItem('auth_token');
     }
     LoginService.prototype.login = function (credentials) {

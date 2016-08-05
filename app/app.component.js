@@ -11,8 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var core_2 = require('angular2-cookie/core');
-var credentials_service_1 = require('./login/credentials.service');
-var logged_in_guard_1 = require('./login/logged-in.guard');
 var attendance_service_1 = require('./attendance/attendance.service');
 var class_service_1 = require('./class/class.service');
 var class_subject_group_service_1 = require('./class-subject-group/class-subject-group.service');
@@ -31,12 +29,10 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n\t  <router-outlet></router-outlet>\n  ",
+            template: "\n    <br/>\n\t  <router-outlet></router-outlet>\n  ",
             styleUrls: ['app/app.component.css'],
             directives: [router_1.ROUTER_DIRECTIVES],
             providers: [
-                credentials_service_1.LoginService,
-                logged_in_guard_1.LoggedInGuard,
                 attendance_service_1.AttendanceService,
                 class_service_1.ClassService,
                 class_subject_group_service_1.ClassSubjectGroupService,
