@@ -1,6 +1,7 @@
 "use strict";
 var AttendanceType = (function () {
-    function AttendanceType() {
+    function AttendanceType(type) {
+        this.type = type;
     }
     return AttendanceType;
 }());

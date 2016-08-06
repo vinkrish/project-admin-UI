@@ -36,6 +36,7 @@ var DashboardComponent = (function () {
             { name: 'Teacher', link: 'teacher' }
         ];
         this._cookieService.put("schoolId", "107");
+        this._cookieService.put("auth_token", "ms3e45u5os67tgo4ubfckmt2eit9g7");
     }
     DashboardComponent.prototype.gotoDetail = function (item) {
         var link = ['/', item];

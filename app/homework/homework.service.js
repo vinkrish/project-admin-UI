@@ -10,14 +10,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+var core_2 = require('angular2-cookie/core');
 require('rxjs/add/operator/toPromise');
 var HomeworkService = (function () {
-    function HomeworkService(http) {
+    function HomeworkService(http, cookieService) {
         this.http = http;
+        this.cookieService = cookieService;
         this.homeworkUrl = 'app/homework';
+        this.authToken = this.cookieService.get("auth_token");
     }
     HomeworkService.prototype.getHomework = function () {
-        return this.http.get(this.homeworkUrl)
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
+        return this.http
+            .get(this.homeworkUrl, { headers: headers })
             .toPromise()
             .then(function (response) { return response.json().data; })
             .catch(this.handleError);
@@ -29,17 +35,17 @@ var HomeworkService = (function () {
         return this.post(homework);
     };
     HomeworkService.prototype.delete = function (homework) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.homeworkUrl + "/" + homework.Id;
         return this.http
-            .delete(url, headers)
+            .delete(url, { headers: headers })
             .toPromise()
             .catch(this.handleError);
     };
     HomeworkService.prototype.post = function (homework) {
-        var headers = new http_1.Headers({
-            'Content-Type': 'application/json' });
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
             .post(this.homeworkUrl, JSON.stringify(homework), { headers: headers })
             .toPromise()
@@ -47,8 +53,8 @@ var HomeworkService = (function () {
             .catch(this.handleError);
     };
     HomeworkService.prototype.put = function (homework) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.homeworkUrl + "/" + homework.Id;
         return this.http
             .put(url, JSON.stringify(homework), { headers: headers })
@@ -62,7 +68,7 @@ var HomeworkService = (function () {
     };
     HomeworkService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, core_2.CookieService])
     ], HomeworkService);
     return HomeworkService;
 }());

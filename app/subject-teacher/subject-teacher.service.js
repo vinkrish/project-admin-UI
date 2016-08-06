@@ -10,18 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+var core_2 = require('angular2-cookie/core');
 require('rxjs/add/operator/toPromise');
 var SubjectTeacherService = (function () {
-    function SubjectTeacherService(http) {
+    function SubjectTeacherService(http, cookieService) {
         this.http = http;
+        this.cookieService = cookieService;
         //private subjectTeacherUrl = 'app/subject-teacher';
         this.subjectTeacherUrl = 'http://localhost:8080/guldu/webapi/subjectteacher/section';
         this.postUrl = 'http://localhost:8080/guldu/webapi/subjectteacher';
         this.sharedUrl = 'http://localhost:8080/guldu/webapi/shared/subjectteacher';
+        this.authToken = this.cookieService.get("auth_token");
     }
     SubjectTeacherService.prototype.getSubjectTeachers = function (id) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.subjectTeacherUrl + "/" + id;
-        return this.http.get(url)
+        return this.http
+            .get(url, { headers: headers })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -34,25 +40,25 @@ var SubjectTeacherService = (function () {
         return this.post(clas);
     };
     SubjectTeacherService.prototype.delete = function (subjectTeacher) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.postUrl + "/" + subjectTeacher.id;
         return this.http
-            .delete(url, headers)
+            .delete(url, { headers: headers })
             .toPromise()
             .catch(this.handleError);
     };
     SubjectTeacherService.prototype.post = function (clas) {
-        var headers = new http_1.Headers({
-            'Content-Type': 'application/json' });
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
             .post(this.sharedUrl, JSON.stringify(clas), { headers: headers })
             .toPromise()
             .catch(this.handleError);
     };
     SubjectTeacherService.prototype.put = function (subjectTeacher) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.postUrl + "/" + subjectTeacher.id;
         return this.http
             .put(url, JSON.stringify(subjectTeacher), { headers: headers })
@@ -66,7 +72,7 @@ var SubjectTeacherService = (function () {
     };
     SubjectTeacherService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, core_2.CookieService])
     ], SubjectTeacherService);
     return SubjectTeacherService;
 }());

@@ -1,8 +1,8 @@
 import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
 import { CookieService } from 'angular2-cookie/core';
 import { Clas }          from './clas';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ClassService {
@@ -10,15 +10,20 @@ export class ClassService {
   //private classUrl = 'app/class/classes.json';
   private classUrl = 'http://localhost:8080/guldu/webapi/class/school';
   private postUrl = 'http://localhost:8080/guldu/webapi/class';
+  private authToken: string;
 
-  constructor(private http: Http, private _cookieService:CookieService) { }
+  constructor(private http: Http, private cookieService:CookieService) {
+    this.authToken = this.cookieService.get("auth_token");
+  }
 
   getClasses(): Promise<Clas[]> {
-    let url = `${this.classUrl}/${+this._cookieService.get("schoolId")}`;
-    return this.http.get(url)
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
+    let url = `${this.classUrl}/${+this.cookieService.get("schoolId")}`;
+    return this.http
+               .get(url, {headers: headers})
                .toPromise()
                .then(response => response.json())
-               //.then(response => {console.log(response); return response.json().data})
                .catch(this.handleError);
   }
 
@@ -35,20 +40,20 @@ export class ClassService {
   }
 
   delete(clas: Clas) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.postUrl}/${clas.id}`;
     return this.http
-               .delete(url, headers)
+               .delete(url, {headers: headers})
                .toPromise()
                .catch(this.handleError);
   }
 
   private post(clas: Clas): Promise<Clas> {
     clas.id = 0;
-    clas.schoolId = + this._cookieService.get("schoolId");
-    let headers = new Headers({
-      'Content-Type': 'application/json'});
+    clas.schoolId = + this.cookieService.get("schoolId");
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
     return this.http
                .post(this.postUrl, JSON.stringify(clas), {headers: headers})
                .toPromise()
@@ -57,8 +62,8 @@ export class ClassService {
   }
 
   private put(clas: Clas) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.postUrl}/${clas.id}`;
     return this.http
                .put(url, JSON.stringify(clas), {headers: headers})
@@ -71,4 +76,5 @@ export class ClassService {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
+
 }

@@ -1,7 +1,6 @@
 import { Injectable }     from '@angular/core';
 import { Headers, Http }  from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { CookieService }  from 'angular2-cookie/core';
 import { Credentials }    from './credentials';
 
 import { Observable } from 'rxjs/Observable';
@@ -14,13 +13,13 @@ export class LoginService {
 	private loggedIn = true;
 
   constructor(private http: Http) {
-     //this.loggedIn = !!localStorage.getItem('auth_token');
-   }
+    //this.loggedIn = this.cookieService.get("auth_token");
+    //this.loggedIn = !!localStorage.getItem('auth_token');
+  }
 
   login(credentials: Credentials) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-
     return this.http
       .post(
         '/login', 
@@ -47,9 +46,4 @@ export class LoginService {
     return this.loggedIn;
   }
 
-  checkCredentials(){
-      if (localStorage.getItem("user") === null){
-          console.log(localStorage.getItem("user"));
-      }
-   }
 }

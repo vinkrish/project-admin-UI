@@ -34,7 +34,8 @@ export class DashboardComponent{
 
 	constructor(private router: Router, private _cookieService:CookieService) 
 	{ 
-		this._cookieService.put("schoolId", "107"); 
+		this._cookieService.put("schoolId", "107");
+		this._cookieService.put("auth_token", "ms3e45u5os67tgo4ubfckmt2eit9g7");
 	}
 
   gotoDetail(item: string) {

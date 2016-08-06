@@ -1,16 +1,24 @@
 import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { CookieService } from 'angular2-cookie/core';
+import { Timetable }     from './timetable';
 import 'rxjs/add/operator/toPromise';
-import { Timetable } from './timetable';
 
 @Injectable()
 export class TimetableService {
   private timetableUrl = 'app/timetable';
-  
-  constructor(private http: Http) { }
+  private authToken: string;
+
+  constructor(private http: Http, private cookieService:CookieService) {
+    this.authToken = this.cookieService.get("auth_token");
+  }
 
   getTimetables(): Promise<Timetable[]> {
-    return this.http.get(this.timetableUrl)
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
+
+    return this.http
+               .get(this.timetableUrl, {headers: headers})
                .toPromise()
                .then(response => response.json().data)
                .catch(this.handleError);
@@ -29,18 +37,20 @@ export class TimetableService {
   }
 
   delete(timetable: Timetable) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
+
     let url = `${this.timetableUrl}/${timetable.Id}`;
     return this.http
-               .delete(url, headers)
+               .delete(url, {headers: headers})
                .toPromise()
                .catch(this.handleError);
   }
 
   private post(timetable: Timetable): Promise<Timetable> {
-    let headers = new Headers({
-      'Content-Type': 'application/json'});
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
+
     return this.http
                .post(this.timetableUrl, JSON.stringify(timetable), {headers: headers})
                .toPromise()
@@ -49,8 +59,9 @@ export class TimetableService {
   }
 
   private put(timetable: Timetable) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
+
     let url = `${this.timetableUrl}/${timetable.Id}`;
     return this.http
                .put(url, JSON.stringify(timetable), {headers: headers})

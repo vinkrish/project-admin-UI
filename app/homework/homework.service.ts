@@ -1,13 +1,24 @@
 import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { CookieService } from 'angular2-cookie/core';
+import { Homework }      from './homework';
 import 'rxjs/add/operator/toPromise';
-import { Homework } from './homework';
+
 @Injectable()
 export class HomeworkService {
   private homeworkUrl = 'app/homework';
-  constructor(private http: Http) { }
+  private authToken: string;
+
+  constructor(private http: Http, private cookieService:CookieService) {
+    this.authToken = this.cookieService.get("auth_token");
+  }
+
   getHomework(): Promise<Homework[]> {
-    return this.http.get(this.homeworkUrl)
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
+
+    return this.http
+               .get(this.homeworkUrl, {headers: headers})
                .toPromise()
                .then(response => response.json().data)
                .catch(this.handleError);
@@ -19,18 +30,20 @@ export class HomeworkService {
     return this.post(homework);
   }
   delete(homework: Homework) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
+
     let url = `${this.homeworkUrl}/${homework.Id}`;
     return this.http
-               .delete(url, headers)
+               .delete(url, {headers: headers})
                .toPromise()
                .catch(this.handleError);
   }
 
   private post(homework: Homework): Promise<Homework> {
-    let headers = new Headers({
-      'Content-Type': 'application/json'});
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
+
     return this.http
                .post(this.homeworkUrl, JSON.stringify(homework), {headers: headers})
                .toPromise()
@@ -39,8 +52,9 @@ export class HomeworkService {
   }
 
   private put(homework: Homework) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
+    
     let url = `${this.homeworkUrl}/${homework.Id}`;
     return this.http
                .put(url, JSON.stringify(homework), {headers: headers})

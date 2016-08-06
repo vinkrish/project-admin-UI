@@ -1,13 +1,24 @@
 import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { CookieService } from 'angular2-cookie/core';
+import { Attendance }    from './attendance';
 import 'rxjs/add/operator/toPromise';
-import { Attendance } from './attendance';
+
 @Injectable()
 export class AttendanceService {
   private attendanceUrl = 'app/attendance';
-  constructor(private http: Http) { }
+  private authToken: string;
+
+  constructor(private http: Http, private cookieService:CookieService) {
+    this.authToken = this.cookieService.get("auth_token");
+  }
+
   getAttendance(): Promise<Attendance[]> {
-    return this.http.get(this.attendanceUrl)
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
+
+    return this.http
+               .get(this.attendanceUrl, {headers: headers})
                .toPromise()
                .then(response => response.json().data)
                .catch(this.handleError);
@@ -19,18 +30,20 @@ export class AttendanceService {
     return this.post(attendance);
   }
   delete(attendance: Attendance) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
+
     let url = `${this.attendanceUrl}/${attendance.Id}`;
     return this.http
-               .delete(url, headers)
+               .delete(url, {headers: headers})
                .toPromise()
                .catch(this.handleError);
   }
 
   private post(attendance: Attendance): Promise<Attendance> {
-    let headers = new Headers({
-      'Content-Type': 'application/json'});
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
+
     return this.http
                .post(this.attendanceUrl, JSON.stringify(attendance), {headers: headers})
                .toPromise()
@@ -39,8 +52,9 @@ export class AttendanceService {
   }
 
   private put(attendance: Attendance) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
+    
     let url = `${this.attendanceUrl}/${attendance.Id}`;
     return this.http
                .put(url, JSON.stringify(attendance), {headers: headers})

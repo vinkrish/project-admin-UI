@@ -10,14 +10,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+var core_2 = require('angular2-cookie/core');
 require('rxjs/add/operator/toPromise');
 var AttendanceService = (function () {
-    function AttendanceService(http) {
+    function AttendanceService(http, cookieService) {
         this.http = http;
+        this.cookieService = cookieService;
         this.attendanceUrl = 'app/attendance';
+        this.authToken = this.cookieService.get("auth_token");
     }
     AttendanceService.prototype.getAttendance = function () {
-        return this.http.get(this.attendanceUrl)
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
+        return this.http
+            .get(this.attendanceUrl, { headers: headers })
             .toPromise()
             .then(function (response) { return response.json().data; })
             .catch(this.handleError);
@@ -29,17 +35,17 @@ var AttendanceService = (function () {
         return this.post(attendance);
     };
     AttendanceService.prototype.delete = function (attendance) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.attendanceUrl + "/" + attendance.Id;
         return this.http
-            .delete(url, headers)
+            .delete(url, { headers: headers })
             .toPromise()
             .catch(this.handleError);
     };
     AttendanceService.prototype.post = function (attendance) {
-        var headers = new http_1.Headers({
-            'Content-Type': 'application/json' });
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
             .post(this.attendanceUrl, JSON.stringify(attendance), { headers: headers })
             .toPromise()
@@ -47,8 +53,8 @@ var AttendanceService = (function () {
             .catch(this.handleError);
     };
     AttendanceService.prototype.put = function (attendance) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.attendanceUrl + "/" + attendance.Id;
         return this.http
             .put(url, JSON.stringify(attendance), { headers: headers })
@@ -62,7 +68,7 @@ var AttendanceService = (function () {
     };
     AttendanceService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, core_2.CookieService])
     ], AttendanceService);
     return AttendanceService;
 }());

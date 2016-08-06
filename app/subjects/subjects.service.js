@@ -10,20 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
 var core_2 = require('angular2-cookie/core');
+require('rxjs/add/operator/toPromise');
 var SubjectsService = (function () {
-    function SubjectsService(http, _cookieService) {
+    function SubjectsService(http, cookieService) {
         this.http = http;
-        this._cookieService = _cookieService;
+        this.cookieService = cookieService;
         //private subjectUrl = 'app/subjects/subjects';
         //private subjectUrl = 'app/subjects/subjects.json';
         this.subjectUrl = 'http://localhost:8080/guldu/webapi/subject/school';
         this.postUrl = 'http://localhost:8080/guldu/webapi/subject';
+        this.authToken = this.cookieService.get("auth_token");
     }
     SubjectsService.prototype.getSubjects = function () {
-        var url = this.subjectUrl + "/" + +this._cookieService.get("schoolId");
-        return this.http.get(url)
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
+        var url = this.subjectUrl + "/" + +this.cookieService.get("schoolId");
+        return this.http
+            .get(url, { headers: headers })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -39,18 +43,18 @@ var SubjectsService = (function () {
         return this.post(subject);
     };
     SubjectsService.prototype.delete = function (subject) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.postUrl + "/" + subject.id;
         return this.http
-            .delete(url, headers)
+            .delete(url, { headers: headers })
             .toPromise()
             .catch(this.handleError);
     };
     SubjectsService.prototype.post = function (subject) {
-        subject.schoolId = +this._cookieService.get("schoolId");
-        var headers = new http_1.Headers({
-            'Content-Type': 'application/json' });
+        subject.schoolId = +this.cookieService.get("schoolId");
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
             .post(this.postUrl, JSON.stringify(subject), { headers: headers })
             .toPromise()
@@ -58,8 +62,8 @@ var SubjectsService = (function () {
             .catch(this.handleError);
     };
     SubjectsService.prototype.put = function (subject) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.postUrl + "/" + subject.id;
         return this.http
             .put(url, JSON.stringify(subject), { headers: headers })

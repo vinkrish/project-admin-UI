@@ -10,17 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+var core_2 = require('angular2-cookie/core');
 require('rxjs/add/operator/toPromise');
 var SubjectGroupSubjectService = (function () {
-    function SubjectGroupSubjectService(http) {
+    function SubjectGroupSubjectService(http, cookieService) {
         this.http = http;
+        this.cookieService = cookieService;
         //private subjectGroupSubjectUrl = 'app/subject-group-subject';
         this.subjectGroupSubjectUrl = 'http://localhost:8080/guldu/webapi/subjectgroupsubject/subjectgroup';
         this.postUrl = 'http://localhost:8080/guldu/webapi/subjectgroupsubject';
+        this.authToken = this.cookieService.get("auth_token");
     }
     SubjectGroupSubjectService.prototype.getSubjectGroupSubjects = function (id) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.subjectGroupSubjectUrl + "/" + id;
-        return this.http.get(url)
+        return this.http
+            .get(url, { headers: headers })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -36,17 +42,17 @@ var SubjectGroupSubjectService = (function () {
         return this.post(subjectGroupSubject);
     };
     SubjectGroupSubjectService.prototype.delete = function (subjectGroupSubject) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.postUrl + "/" + subjectGroupSubject.id;
         return this.http
-            .delete(url, headers)
+            .delete(url, { headers: headers })
             .toPromise()
             .catch(this.handleError);
     };
     SubjectGroupSubjectService.prototype.post = function (subjectGroupSubject) {
-        var headers = new http_1.Headers({
-            'Content-Type': 'application/json' });
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
             .post(this.postUrl, JSON.stringify(subjectGroupSubject), { headers: headers })
             .toPromise()
@@ -54,8 +60,8 @@ var SubjectGroupSubjectService = (function () {
             .catch(this.handleError);
     };
     SubjectGroupSubjectService.prototype.put = function (subjectGroupSubject) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.postUrl + "/" + subjectGroupSubject.id;
         return this.http
             .put(url, JSON.stringify(subjectGroupSubject), { headers: headers })
@@ -69,7 +75,7 @@ var SubjectGroupSubjectService = (function () {
     };
     SubjectGroupSubjectService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, core_2.CookieService])
     ], SubjectGroupSubjectService);
     return SubjectGroupSubjectService;
 }());

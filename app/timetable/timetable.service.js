@@ -10,14 +10,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+var core_2 = require('angular2-cookie/core');
 require('rxjs/add/operator/toPromise');
 var TimetableService = (function () {
-    function TimetableService(http) {
+    function TimetableService(http, cookieService) {
         this.http = http;
+        this.cookieService = cookieService;
         this.timetableUrl = 'app/timetable';
+        this.authToken = this.cookieService.get("auth_token");
     }
     TimetableService.prototype.getTimetables = function () {
-        return this.http.get(this.timetableUrl)
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
+        return this.http
+            .get(this.timetableUrl, { headers: headers })
             .toPromise()
             .then(function (response) { return response.json().data; })
             .catch(this.handleError);
@@ -33,17 +39,17 @@ var TimetableService = (function () {
         return this.post(timetable);
     };
     TimetableService.prototype.delete = function (timetable) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.timetableUrl + "/" + timetable.Id;
         return this.http
-            .delete(url, headers)
+            .delete(url, { headers: headers })
             .toPromise()
             .catch(this.handleError);
     };
     TimetableService.prototype.post = function (timetable) {
-        var headers = new http_1.Headers({
-            'Content-Type': 'application/json' });
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
             .post(this.timetableUrl, JSON.stringify(timetable), { headers: headers })
             .toPromise()
@@ -51,8 +57,8 @@ var TimetableService = (function () {
             .catch(this.handleError);
     };
     TimetableService.prototype.put = function (timetable) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.timetableUrl + "/" + timetable.Id;
         return this.http
             .put(url, JSON.stringify(timetable), { headers: headers })
@@ -66,7 +72,7 @@ var TimetableService = (function () {
     };
     TimetableService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, core_2.CookieService])
     ], TimetableService);
     return TimetableService;
 }());

@@ -10,18 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+var core_2 = require('angular2-cookie/core');
 require('rxjs/add/operator/toPromise');
 var StudentService = (function () {
-    function StudentService(http) {
+    function StudentService(http, cookieService) {
         this.http = http;
+        this.cookieService = cookieService;
         //private studentUrl = 'app/student';
         //private studentUrl = 'app/student/students.json';
         this.studentUrl = 'http://localhost:8080/guldu/webapi/student/section';
         this.postUrl = 'http://localhost:8080/guldu/webapi/student';
+        this.authToken = this.cookieService.get("auth_token");
     }
     StudentService.prototype.getStudents = function (id) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.studentUrl + "/" + id;
-        return this.http.get(url)
+        return this.http
+            .get(url, { headers: headers })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -37,17 +43,17 @@ var StudentService = (function () {
         return this.post(student);
     };
     StudentService.prototype.delete = function (student) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.postUrl + "/" + student.id;
         return this.http
-            .delete(url, headers)
+            .delete(url, { headers: headers })
             .toPromise()
             .catch(this.handleError);
     };
     StudentService.prototype.post = function (student) {
-        var headers = new http_1.Headers({
-            'Content-Type': 'application/json' });
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
             .post(this.postUrl, JSON.stringify(student), { headers: headers })
             .toPromise()
@@ -55,8 +61,8 @@ var StudentService = (function () {
             .catch(this.handleError);
     };
     StudentService.prototype.put = function (student) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.postUrl + "/" + student.id;
         return this.http
             .put(url, JSON.stringify(student), { headers: headers })
@@ -70,7 +76,7 @@ var StudentService = (function () {
     };
     StudentService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, core_2.CookieService])
     ], StudentService);
     return StudentService;
 }());

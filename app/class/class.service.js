@@ -10,20 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
 var core_2 = require('angular2-cookie/core');
+require('rxjs/add/operator/toPromise');
 var ClassService = (function () {
-    function ClassService(http, _cookieService) {
+    function ClassService(http, cookieService) {
         this.http = http;
-        this._cookieService = _cookieService;
+        this.cookieService = cookieService;
         //private classUrl = 'app/class/classes';
         //private classUrl = 'app/class/classes.json';
         this.classUrl = 'http://localhost:8080/guldu/webapi/class/school';
         this.postUrl = 'http://localhost:8080/guldu/webapi/class';
+        this.authToken = this.cookieService.get("auth_token");
     }
     ClassService.prototype.getClasses = function () {
-        var url = this.classUrl + "/" + +this._cookieService.get("schoolId");
-        return this.http.get(url)
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
+        var url = this.classUrl + "/" + +this.cookieService.get("schoolId");
+        return this.http
+            .get(url, { headers: headers })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -39,19 +43,19 @@ var ClassService = (function () {
         return this.post(clas);
     };
     ClassService.prototype.delete = function (clas) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.postUrl + "/" + clas.id;
         return this.http
-            .delete(url, headers)
+            .delete(url, { headers: headers })
             .toPromise()
             .catch(this.handleError);
     };
     ClassService.prototype.post = function (clas) {
         clas.id = 0;
-        clas.schoolId = +this._cookieService.get("schoolId");
-        var headers = new http_1.Headers({
-            'Content-Type': 'application/json' });
+        clas.schoolId = +this.cookieService.get("schoolId");
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
             .post(this.postUrl, JSON.stringify(clas), { headers: headers })
             .toPromise()
@@ -59,8 +63,8 @@ var ClassService = (function () {
             .catch(this.handleError);
     };
     ClassService.prototype.put = function (clas) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.postUrl + "/" + clas.id;
         return this.http
             .put(url, JSON.stringify(clas), { headers: headers })

@@ -18,6 +18,7 @@ var LoginService = (function () {
     function LoginService(http) {
         this.http = http;
         this.loggedIn = true;
+        //this.loggedIn = this.cookieService.get("auth_token");
         //this.loggedIn = !!localStorage.getItem('auth_token');
     }
     LoginService.prototype.login = function (credentials) {
@@ -41,11 +42,6 @@ var LoginService = (function () {
     };
     LoginService.prototype.isLoggedIn = function () {
         return this.loggedIn;
-    };
-    LoginService.prototype.checkCredentials = function () {
-        if (localStorage.getItem("user") === null) {
-            console.log(localStorage.getItem("user"));
-        }
     };
     LoginService = __decorate([
         core_1.Injectable(), 

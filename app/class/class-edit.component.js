@@ -12,7 +12,7 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var core_2 = require('angular2-cookie/core');
 var clas_1 = require('./clas');
-var homework_type_1 = require('../shared/homework-type');
+var attendance_type_1 = require('../shared/attendance-type');
 var class_service_1 = require('./class.service');
 var ClassEditComponent = (function () {
     function ClassEditComponent(classService, route, _cookieService) {
@@ -21,13 +21,9 @@ var ClassEditComponent = (function () {
         this._cookieService = _cookieService;
         this.close = new core_1.EventEmitter();
         this.attendanceTypes = [
-            { "id": 1, "type": "Daily" },
-            { "id": 2, "type": "Session" },
-            { "id": 3, "type": "Period" }
-        ];
-        this.homeworkTypes = [
-            new homework_type_1.HomeworkType("Daily"),
-            new homework_type_1.HomeworkType("Period")
+            new attendance_type_1.AttendanceType("Daily"),
+            new attendance_type_1.AttendanceType("Session"),
+            new attendance_type_1.AttendanceType("Period")
         ];
         this.navigated = false; // true if navigated here
     }
@@ -54,10 +50,10 @@ var ClassEditComponent = (function () {
         this.classService
             .save(this.clas)
             .then(function (clas) {
-            _this.clas = clas; // saved hero, w/ id if new
+            _this.clas = clas;
             _this.goBack(clas);
         })
-            .catch(function (error) { return _this.error = error; }); // TODO: Display error message
+            .catch(function (error) { return _this.error = error; });
     };
     ClassEditComponent.prototype.goBack = function (savedClas) {
         if (savedClas === void 0) { savedClas = null; }
