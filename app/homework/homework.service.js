@@ -16,20 +16,31 @@ var HomeworkService = (function () {
     function HomeworkService(http, cookieService) {
         this.http = http;
         this.cookieService = cookieService;
-        this.homeworkUrl = 'app/homework';
+        this.homeworkUrl = 'http://localhost:8080/guldu/webapi/homework';
         this.authToken = this.cookieService.get("auth_token");
     }
-    HomeworkService.prototype.getHomework = function () {
+    HomeworkService.prototype.getHomeworks = function (sectionId, homeworkDate) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
+        var url = this.homeworkUrl + "/section/" + sectionId + "/date/" + homeworkDate;
+        return this.http
+            .get(url, { headers: headers })
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    HomeworkService.prototype.getUnHomeworks = function (sectionId, homeworkDate) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
+        var url = this.homeworkUrl + "/" + sectionId + "/date/" + homeworkDate;
         return this.http
             .get(this.homeworkUrl, { headers: headers })
             .toPromise()
-            .then(function (response) { return response.json().data; })
+            .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     HomeworkService.prototype.save = function (homework) {
-        if (homework.Id) {
+        if (homework.id) {
             return this.put(homework);
         }
         return this.post(homework);
@@ -37,7 +48,7 @@ var HomeworkService = (function () {
     HomeworkService.prototype.delete = function (homework) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.homeworkUrl + "/" + homework.Id;
+        var url = this.homeworkUrl + "/" + homework.id;
         return this.http
             .delete(url, { headers: headers })
             .toPromise()
@@ -55,7 +66,7 @@ var HomeworkService = (function () {
     HomeworkService.prototype.put = function (homework) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.homeworkUrl + "/" + homework.Id;
+        var url = this.homeworkUrl + "/" + homework.id;
         return this.http
             .put(url, JSON.stringify(homework), { headers: headers })
             .toPromise()

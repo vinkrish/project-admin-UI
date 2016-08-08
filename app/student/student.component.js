@@ -24,7 +24,7 @@ var StudentComponent = (function () {
         this.classService = classService;
         this.sectionService = sectionService;
         this.studentService = studentService;
-        this.addingSection = false;
+        this.selectingSection = false;
         this.addingStudent = false;
     }
     StudentComponent.prototype.getClasses = function () {
@@ -44,7 +44,7 @@ var StudentComponent = (function () {
         this._cookieService.put("classId", "" + this.selectedClass.id);
         this._cookieService.put("className", this.selectedClass.className);
         this.addingStudent = false;
-        this.addingSection = false;
+        this.selectingSection = false;
         this.students = null;
     };
     StudentComponent.prototype.getSections = function (id) {
@@ -64,7 +64,7 @@ var StudentComponent = (function () {
         this._cookieService.put("sectionId", "" + this.selectedSection.id);
         this._cookieService.put("sectionName", this.selectedSection.sectionName);
         this.addingStudent = false;
-        this.addingSection = true;
+        this.selectingSection = true;
     };
     StudentComponent.prototype.getStudents = function (id) {
         var _this = this;
@@ -92,7 +92,7 @@ var StudentComponent = (function () {
         this.router.navigate(['/dashboard']);
     };
     StudentComponent.prototype.addStudent = function () {
-        if (this.addingSection) {
+        if (this.selectingSection) {
             if (this.addingStudent) {
                 this.addingStudent = false;
             }
@@ -100,7 +100,6 @@ var StudentComponent = (function () {
                 this.addingStudent = true;
             }
         }
-        //this.addingSection = true;
         this.selectedStudent = null;
     };
     StudentComponent.prototype.gotoEdit = function (student, event) {

@@ -1,9 +1,7 @@
 export class Homework{
-	Id: number;
-	SectionId: number;
-	SubjectId: number;
-	TeacherId: number;
-	HomeworkMessage: string;
-	Period: number;
-	HomeworkDate: string;
+	id: number;
+	sectionId: number;
+	subjectId: number;
+	homeworkMessage: string;
+	homeworkDate: string;
 }
