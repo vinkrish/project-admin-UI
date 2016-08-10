@@ -16,28 +16,35 @@ var AttendanceService = (function () {
     function AttendanceService(http, cookieService) {
         this.http = http;
         this.cookieService = cookieService;
-        this.attendanceUrl = 'app/attendance';
+        this.attendanceUrl = 'http://localhost:8080/guldu/webapi/attendance';
+        this.dailyMarkedUrl = 'http://localhost:8080/guldu/webapi/attendance/daily/marked';
+        this.dailyUnmarkedUrl = 'http://localhost:8080/guldu/webapi/attendance/daily/unmarked';
         this.authToken = this.cookieService.get("auth_token");
     }
-    AttendanceService.prototype.getAttendance = function () {
+    AttendanceService.prototype.dailyAttendanceMarked = function (sectionId, dateAttendance) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
+        var url = this.dailyMarkedUrl + "/section/" + sectionId + "/date/" + dateAttendance;
         return this.http
-            .get(this.attendanceUrl, { headers: headers })
+            .get(url, { headers: headers })
             .toPromise()
-            .then(function (response) { return response.json().data; })
+            .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    AttendanceService.prototype.save = function (attendance) {
-        if (attendance.Id) {
-            return this.put(attendance);
-        }
-        return this.post(attendance);
+    AttendanceService.prototype.dailyAttendanceUnmarked = function (sectionId, dateAttendance) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', "Bearer " + this.authToken);
+        var url = this.dailyUnmarkedUrl + "/section/" + sectionId + "/date/" + dateAttendance;
+        return this.http
+            .get(url, { headers: headers })
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
     };
     AttendanceService.prototype.delete = function (attendance) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.attendanceUrl + "/" + attendance.Id;
+        var url = this.attendanceUrl + "/" + attendance.id;
         return this.http
             .delete(url, { headers: headers })
             .toPromise()
@@ -46,16 +53,16 @@ var AttendanceService = (function () {
     AttendanceService.prototype.post = function (attendance) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
+        var url = this.attendanceUrl + "/daily";
         return this.http
-            .post(this.attendanceUrl, JSON.stringify(attendance), { headers: headers })
+            .post(url, JSON.stringify(attendance), { headers: headers })
             .toPromise()
-            .then(function (res) { return res.json().data; })
             .catch(this.handleError);
     };
     AttendanceService.prototype.put = function (attendance) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.attendanceUrl + "/" + attendance.Id;
+        var url = this.attendanceUrl + "/" + attendance.id;
         return this.http
             .put(url, JSON.stringify(attendance), { headers: headers })
             .toPromise()

@@ -7,14 +7,13 @@ import { Homework }				from './homework'
 import { ClassService }         from '../class/class.service';
 import { SectionService }		from '../section/section.service';
 import { HomeworkService }      from './homework.service';
-import { HomeworkEditComponent }from './homework-edit.component';
 import { CookieService }		from 'angular2-cookie/core';
 
 @Component({
 	selector: 'ui-homework',
 	templateUrl: 'app/homework/homework.component.html',
 	styleUrls: ['app/homework/homework.component.css'],
-	directives: [HomeworkEditComponent]
+	directives: []
 })
 
 export class HomeworkComponent {
@@ -25,8 +24,6 @@ export class HomeworkComponent {
 	selectingSection = false;
 	homeworkDate: string;
 	homeworks: Homework[];
-	UnHomeworks: Homework[];
-	selectedHomework: Homework;
 	error: any;
 
 	constructor(
@@ -93,7 +90,7 @@ export class HomeworkComponent {
 		this.homeworkService
 			.save(homework)
 			.then(() => this.fetchHomeworks())
-			.catch(error => this.error = error)) ;
+			.catch(error => this.error = error);
 	}
 
 	delete(homework: Homework, event: any) {

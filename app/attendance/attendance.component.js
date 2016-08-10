@@ -9,9 +9,121 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var clas_1 = require('../class/clas');
+var section_1 = require('../section/section');
+var leave_type_1 = require('./leave-type');
+var class_service_1 = require('../class/class.service');
+var section_service_1 = require('../section/section.service');
+var attendance_service_1 = require('./attendance.service');
+var core_2 = require('angular2-cookie/core');
 var AttendanceComponent = (function () {
-    function AttendanceComponent() {
+    function AttendanceComponent(router, cookieService, classService, sectionService, attendanceService) {
+        this.router = router;
+        this.cookieService = cookieService;
+        this.classService = classService;
+        this.sectionService = sectionService;
+        this.attendanceService = attendanceService;
+        this.selectingSection = false;
+        this.leaveTypes = [
+            new leave_type_1.LeaveType(""),
+            new leave_type_1.LeaveType("Absent")
+        ];
     }
+    AttendanceComponent.prototype.getClasses = function () {
+        var _this = this;
+        this.classService
+            .getClasses()
+            .then(function (classes) { return _this.classes = classes; })
+            .catch(function (error) { return _this.error = error; });
+    };
+    AttendanceComponent.prototype.classSelected = function (classId) {
+        for (var i = 0; i < this.classes.length; i++) {
+            if (this.classes[i].id == classId) {
+                this.selectedClass = this.classes[i];
+            }
+        }
+        this.getSections(this.selectedClass.id);
+        this.cookieService.put("classId", "" + this.selectedClass.id);
+        this.cookieService.put("className", this.selectedClass.className);
+        this.selectingSection = false;
+        this.markedAttendances = null;
+        this.unmarkedAttendances = null;
+    };
+    AttendanceComponent.prototype.getSections = function (id) {
+        var _this = this;
+        this.sectionService
+            .getSections(id)
+            .then(function (sections) { return _this.sections = sections; })
+            .catch(function (error) { return _this.error = error; });
+    };
+    AttendanceComponent.prototype.sectionSelected = function (sectionId) {
+        for (var i = 0; i < this.sections.length; i++) {
+            if (this.sections[i].id == sectionId) {
+                this.selectedSection = this.sections[i];
+            }
+        }
+        this.cookieService.put("sectionId", "" + this.selectedSection.id);
+        this.cookieService.put("sectionName", this.selectedSection.sectionName);
+        this.selectingSection = true;
+        this.markedAttendances = null;
+        this.unmarkedAttendances = null;
+    };
+    AttendanceComponent.prototype.fetchAttendances = function () {
+        this.markedAttendances = [];
+        this.unmarkedAttendances = [];
+        this.getMarkedAttendance(this.selectedSection.id, this.dateAttendance);
+        this.getUnmarkedAttendance(this.selectedSection.id, this.dateAttendance);
+    };
+    AttendanceComponent.prototype.delete = function (atendance, event) {
+        var _this = this;
+        event.stopPropagation();
+        this.attendanceService
+            .delete(atendance)
+            .then(function () { return _this.fetchAttendances(); })
+            .catch(function (error) { return _this.error = error; });
+    };
+    AttendanceComponent.prototype.prepareMarkedAttendance = function () {
+        for (var _i = 0, _a = this.unmarkedAttendances; _i < _a.length; _i++) {
+            var att = _a[_i];
+            if (att.typeOfLeave == 'Absent') {
+                this.preparedAttendances.push(att);
+            }
+        }
+    };
+    AttendanceComponent.prototype.save = function () {
+        var _this = this;
+        event.stopPropagation();
+        this.preparedAttendances = [];
+        this.prepareMarkedAttendance();
+        this.attendanceService
+            .post(this.preparedAttendances)
+            .then(function () { return _this.fetchAttendances(); })
+            .catch(function (error) { return _this.error = error; });
+    };
+    AttendanceComponent.prototype.getMarkedAttendance = function (id, date) {
+        var _this = this;
+        this.attendanceService
+            .dailyAttendanceMarked(id, date)
+            .then(function (attendances) {
+            _this.markedAttendances = attendances;
+        })
+            .catch(function (error) { return _this.error = error; });
+    };
+    AttendanceComponent.prototype.getUnmarkedAttendance = function (id, date) {
+        var _this = this;
+        this.attendanceService
+            .dailyAttendanceUnmarked(id, date)
+            .then(function (attendances) {
+            _this.unmarkedAttendances = attendances;
+        })
+            .catch(function (error) { return _this.error = error; });
+    };
+    AttendanceComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas(0, "");
+        this.selectedSection = new section_1.Section(0, "");
+    };
     AttendanceComponent = __decorate([
         core_1.Component({
             selector: 'ui-attendance',
@@ -19,7 +131,7 @@ var AttendanceComponent = (function () {
             styleUrls: ['app/attendance/attendance.component.css'],
             directives: []
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router, core_2.CookieService, class_service_1.ClassService, section_service_1.SectionService, attendance_service_1.AttendanceService])
     ], AttendanceComponent);
     return AttendanceComponent;
 }());

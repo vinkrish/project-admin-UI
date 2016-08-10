@@ -1,0 +1,76 @@
+<ul class="breadcrumb">
+    <li class="active">Attendance</li>
+</ul>
+<div>
+    <label>Select Class: </label>
+    <select [(ngModel)]="selectedClass.id" (change)="classSelected($event.target.value)">
+        <option *ngFor="let classs of classes" value={{classs.id}}>{{classs.className}}</option>
+    </select>
+</div>
+<br/>
+<div>
+    <label>Select Section: </label>
+    <select [(ngModel)]="selectedSection.id" (change)="sectionSelected($event.target.value)">
+        <option *ngFor="let section of sections" value={{section.id}}>{{section.sectionName}}</option>
+    </select>
+</div>
+<br/>
+<div>
+    <label>Date: </label>
+    <input [(ngModel)]="dateAttendance" placeholder="Attendance Date" />
+    <button class="btn btn-normal btn-md" (click)="fetchAttendances()">Fetch Attendance</button>
+</div>
+<h3>Marked</h3>
+<div class="row col-md-5">
+    <table class="table table-bordered table-striped">
+        <caption></caption>
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Attendance</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let attendance of markedAttendances">
+                <td class="col-md-3">{{attendance.studentName}}</td>
+                <td class="col-md-2">
+                    <select [(ngModel)]="attendance.typeOfLeave">
+                        <option *ngFor="let leaveType of leaveTypes" value={{leaveType.type}}>{{leaveType.type}}</option>
+                    </select>
+                </td>
+                <td class="col-md-1">
+                    <button type="button" class="btn btn-danger btn-xs center-block" (click)="delete(attendance, $event)">
+                        delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="clearfix"></div>
+<h3>UnMarked</h3>
+<div class="row col-md-5">
+    <table class="table table-bordered table-striped">
+        <caption></caption>
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Attendance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let attendance of unmarkedAttendances">
+                <td class="col-md-3">{{attendance.studentName}}</td>
+                <td class="col-md-2">
+                    <select [(ngModel)]="attendance.typeOfLeave">
+                        <option *ngFor="let leaveType of leaveTypes" value={{leaveType.type}}>{{leaveType.type}}</option>
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="clearfix"></div>
+<div class="error" *ngIf="error">{{error}}</div>
+<button type="button" class="btn btn-success btn-md" (click)="save()">Save</button>

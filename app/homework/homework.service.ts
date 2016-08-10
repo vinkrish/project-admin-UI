@@ -24,17 +24,6 @@ export class HomeworkService {
                .catch(this.handleError);
   }
 
-  getUnHomeworks(sectionId: number, homeworkDate: string): Promise<Homework[]> {
-    let headers = new Headers({'Content-Type': 'application/json'});
-    headers.append('Authorization', `Bearer ${this.authToken}`);
-    let url = `${this.homeworkUrl}/${sectionId}/date/${homeworkDate}`;
-    return this.http
-               .get(this.homeworkUrl, {headers: headers})
-               .toPromise()
-               .then(response => response.json())
-               .catch(this.handleError);
-  }
-
   save(homework: Homework): Promise<Homework>  {
     if (homework.id) {
       return this.put(homework);

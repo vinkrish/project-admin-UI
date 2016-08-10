@@ -29,16 +29,6 @@ var HomeworkService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    HomeworkService.prototype.getUnHomeworks = function (sectionId, homeworkDate) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.homeworkUrl + "/" + sectionId + "/date/" + homeworkDate;
-        return this.http
-            .get(this.homeworkUrl, { headers: headers })
-            .toPromise()
-            .then(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
     HomeworkService.prototype.save = function (homework) {
         if (homework.id) {
             return this.put(homework);

@@ -32,7 +32,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let homework of homeworks" [class.selected]="homework === selectedHomework">
+            <tr *ngFor="let homework of homeworks">
                 <td class="col-md-4">{{homework.subjectName}}</td>
                 <td class="col-md-4">
                     <textarea class="form-control" rows="4" [(ngModel)]="homework.homeworkMessage"></textarea>

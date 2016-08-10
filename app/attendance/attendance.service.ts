@@ -6,64 +6,71 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AttendanceService {
-  private attendanceUrl = 'app/attendance';
+  private attendanceUrl =  'http://localhost:8080/guldu/webapi/attendance';
+  private dailyMarkedUrl = 'http://localhost:8080/guldu/webapi/attendance/daily/marked';
+  private dailyUnmarkedUrl = 'http://localhost:8080/guldu/webapi/attendance/daily/unmarked';
   private authToken: string;
 
   constructor(private http: Http, private cookieService:CookieService) {
     this.authToken = this.cookieService.get("auth_token");
   }
 
-  getAttendance(): Promise<Attendance[]> {
+  dailyAttendanceMarked(sectionId: number, dateAttendance: string): Promise<Attendance[]>{
     let headers = new Headers({'Content-Type': 'application/json'});
     headers.append('Authorization', `Bearer ${this.authToken}`);
-
+    let url = `${this.dailyMarkedUrl}/section/${sectionId}/date/${dateAttendance}`;
     return this.http
-               .get(this.attendanceUrl, {headers: headers})
+               .get(url, {headers: headers})
                .toPromise()
-               .then(response => response.json().data)
+               .then(response => response.json())
                .catch(this.handleError);
   }
-  save(attendance: Attendance): Promise<Attendance>  {
-    if (attendance.Id) {
-      return this.put(attendance);
-    }
-    return this.post(attendance);
+
+  dailyAttendanceUnmarked(sectionId: number, dateAttendance: string): Promise<Attendance[]>{
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
+    let url = `${this.dailyUnmarkedUrl}/section/${sectionId}/date/${dateAttendance}`;
+    return this.http
+               .get(url, {headers: headers})
+               .toPromise()
+               .then(response => response.json())
+               .catch(this.handleError);
   }
+
   delete(attendance: Attendance) {
     let headers = new Headers({'Content-Type': 'application/json'});
     headers.append('Authorization', `Bearer ${this.authToken}`);
-
-    let url = `${this.attendanceUrl}/${attendance.Id}`;
+    let url = `${this.attendanceUrl}/${attendance.id}`;
     return this.http
                .delete(url, {headers: headers})
                .toPromise()
                .catch(this.handleError);
   }
 
-  private post(attendance: Attendance): Promise<Attendance> {
+  post(attendance: Attendance[]) {
     let headers = new Headers({'Content-Type': 'application/json'});
     headers.append('Authorization', `Bearer ${this.authToken}`);
-
+    let url = `${this.attendanceUrl}/daily`;
     return this.http
-               .post(this.attendanceUrl, JSON.stringify(attendance), {headers: headers})
+               .post(url, JSON.stringify(attendance), {headers: headers})
                .toPromise()
-               .then(res => res.json().data)
                .catch(this.handleError);
   }
 
   private put(attendance: Attendance) {
     let headers = new Headers({'Content-Type': 'application/json'});
     headers.append('Authorization', `Bearer ${this.authToken}`);
-    
-    let url = `${this.attendanceUrl}/${attendance.Id}`;
+    let url = `${this.attendanceUrl}/${attendance.id}`;
     return this.http
                .put(url, JSON.stringify(attendance), {headers: headers})
                .toPromise()
                .then(() => attendance)
                .catch(this.handleError);
   }
+
   private handleError(error: any) {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
+
 }

@@ -15,7 +15,6 @@ var section_1 = require('../section/section');
 var class_service_1 = require('../class/class.service');
 var section_service_1 = require('../section/section.service');
 var homework_service_1 = require('./homework.service');
-var homework_edit_component_1 = require('./homework-edit.component');
 var core_2 = require('angular2-cookie/core');
 var HomeworkComponent = (function () {
     function HomeworkComponent(router, cookieService, classService, sectionService, homeworkService) {
@@ -82,7 +81,6 @@ var HomeworkComponent = (function () {
             .save(homework)
             .then(function () { return _this.fetchHomeworks(); })
             .catch(function (error) { return _this.error = error; });
-        ;
     };
     HomeworkComponent.prototype.delete = function (homework, event) {
         var _this = this;
@@ -102,7 +100,7 @@ var HomeworkComponent = (function () {
             selector: 'ui-homework',
             templateUrl: 'app/homework/homework.component.html',
             styleUrls: ['app/homework/homework.component.css'],
-            directives: [homework_edit_component_1.HomeworkEditComponent]
+            directives: []
         }), 
         __metadata('design:paramtypes', [router_1.Router, core_2.CookieService, class_service_1.ClassService, section_service_1.SectionService, homework_service_1.HomeworkService])
     ], HomeworkComponent);
