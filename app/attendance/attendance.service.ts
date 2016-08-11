@@ -9,6 +9,8 @@ export class AttendanceService {
   private attendanceUrl =  'http://localhost:8080/guldu/webapi/attendance';
   private dailyMarkedUrl = 'http://localhost:8080/guldu/webapi/attendance/daily/marked';
   private dailyUnmarkedUrl = 'http://localhost:8080/guldu/webapi/attendance/daily/unmarked';
+  private sessionMarkedUrl = 'http://localhost:8080/guldu/webapi/attendance/session/marked';
+  private sessionUnmarkedUrl = 'http://localhost:8080/guldu/webapi/attendance/session/unmarked';
   private authToken: string;
 
   constructor(private http: Http, private cookieService:CookieService) {
@@ -37,6 +39,28 @@ export class AttendanceService {
                .catch(this.handleError);
   }
 
+  sessionAttendanceMarked(session:number, sectionId: number, dateAttendance: string): Promise<Attendance[]>{
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
+    let url = `${this.sessionMarkedUrl}/${session}/${sectionId}/${dateAttendance}`;
+    return this.http
+               .get(url, {headers: headers})
+               .toPromise()
+               .then(response => response.json())
+               .catch(this.handleError);
+  }
+
+  sessionAttendanceUnmarked(session:number, sectionId: number, dateAttendance: string): Promise<Attendance[]>{
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
+    let url = `${this.sessionUnmarkedUrl}/${session}/${sectionId}/${dateAttendance}`;
+    return this.http
+               .get(url, {headers: headers})
+               .toPromise()
+               .then(response => response.json())
+               .catch(this.handleError);
+  }
+
   delete(attendance: Attendance) {
     let headers = new Headers({'Content-Type': 'application/json'});
     headers.append('Authorization', `Bearer ${this.authToken}`);
@@ -50,7 +74,7 @@ export class AttendanceService {
   post(attendance: Attendance[]) {
     let headers = new Headers({'Content-Type': 'application/json'});
     headers.append('Authorization', `Bearer ${this.authToken}`);
-    let url = `${this.attendanceUrl}/daily`;
+    let url = `${this.attendanceUrl}/list`;
     return this.http
                .post(url, JSON.stringify(attendance), {headers: headers})
                .toPromise()

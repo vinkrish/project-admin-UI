@@ -13,6 +13,7 @@ var router_1 = require('@angular/router');
 var clas_1 = require('../class/clas');
 var section_1 = require('../section/section');
 var leave_type_1 = require('./leave-type');
+var session_1 = require('./session');
 var class_service_1 = require('../class/class.service');
 var section_service_1 = require('../section/section.service');
 var attendance_service_1 = require('./attendance.service');
@@ -28,6 +29,10 @@ var AttendanceComponent = (function () {
         this.leaveTypes = [
             new leave_type_1.LeaveType(""),
             new leave_type_1.LeaveType("Absent")
+        ];
+        this.sessions = [
+            new session_1.Session("Morning", 0),
+            new session_1.Session("Afternoon", 1)
         ];
     }
     AttendanceComponent.prototype.getClasses = function () {
@@ -69,18 +74,31 @@ var AttendanceComponent = (function () {
         this.markedAttendances = null;
         this.unmarkedAttendances = null;
     };
-    AttendanceComponent.prototype.fetchAttendances = function () {
+    AttendanceComponent.prototype.fetchAttendance = function () {
         this.markedAttendances = [];
         this.unmarkedAttendances = [];
         this.getMarkedAttendance(this.selectedSection.id, this.dateAttendance);
         this.getUnmarkedAttendance(this.selectedSection.id, this.dateAttendance);
     };
-    AttendanceComponent.prototype.delete = function (atendance, event) {
+    AttendanceComponent.prototype.fetchSessionAttendance = function () {
+        this.markedAttendances = [];
+        this.unmarkedAttendances = [];
+        this.getMarkedSessionAttendance(this.session, this.selectedSection.id, this.dateAttendance);
+        this.getUnmarkedSessionAttendance(this.session, this.selectedSection.id, this.dateAttendance);
+    };
+    AttendanceComponent.prototype.delete = function (attendance, event) {
         var _this = this;
         event.stopPropagation();
         this.attendanceService
-            .delete(atendance)
-            .then(function () { return _this.fetchAttendances(); })
+            .delete(attendance)
+            .then(function () {
+            if (_this.selectedClass.attendanceType == 'Daily') {
+                _this.fetchAttendance();
+            }
+            else if (_this.selectedClass.attendanceType == 'Session') {
+                _this.fetchSessionAttendance();
+            }
+        })
             .catch(function (error) { return _this.error = error; });
     };
     AttendanceComponent.prototype.prepareMarkedAttendance = function () {
@@ -98,22 +116,47 @@ var AttendanceComponent = (function () {
         this.prepareMarkedAttendance();
         this.attendanceService
             .post(this.preparedAttendances)
-            .then(function () { return _this.fetchAttendances(); })
+            .then(function () {
+            if (_this.selectedClass.attendanceType == 'Daily') {
+                _this.fetchAttendance();
+            }
+            else if (_this.selectedClass.attendanceType == 'Session') {
+                _this.fetchSessionAttendance();
+            }
+        })
             .catch(function (error) { return _this.error = error; });
     };
-    AttendanceComponent.prototype.getMarkedAttendance = function (id, date) {
+    AttendanceComponent.prototype.getMarkedAttendance = function (sectionId, date) {
         var _this = this;
         this.attendanceService
-            .dailyAttendanceMarked(id, date)
+            .dailyAttendanceMarked(sectionId, date)
             .then(function (attendances) {
             _this.markedAttendances = attendances;
         })
             .catch(function (error) { return _this.error = error; });
     };
-    AttendanceComponent.prototype.getUnmarkedAttendance = function (id, date) {
+    AttendanceComponent.prototype.getUnmarkedAttendance = function (sectionId, date) {
         var _this = this;
         this.attendanceService
-            .dailyAttendanceUnmarked(id, date)
+            .dailyAttendanceUnmarked(sectionId, date)
+            .then(function (attendances) {
+            _this.unmarkedAttendances = attendances;
+        })
+            .catch(function (error) { return _this.error = error; });
+    };
+    AttendanceComponent.prototype.getMarkedSessionAttendance = function (session, sectionId, date) {
+        var _this = this;
+        this.attendanceService
+            .sessionAttendanceMarked(session, sectionId, date)
+            .then(function (attendances) {
+            _this.markedAttendances = attendances;
+        })
+            .catch(function (error) { return _this.error = error; });
+    };
+    AttendanceComponent.prototype.getUnmarkedSessionAttendance = function (session, sectionId, date) {
+        var _this = this;
+        this.attendanceService
+            .sessionAttendanceUnmarked(session, sectionId, date)
             .then(function (attendances) {
             _this.unmarkedAttendances = attendances;
         })

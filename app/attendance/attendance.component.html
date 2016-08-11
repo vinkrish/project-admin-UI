@@ -15,10 +15,20 @@
     </select>
 </div>
 <br/>
-<div>
+<div *ngIf="selectedClass.attendanceType == 'Daily'">
     <label>Date: </label>
     <input [(ngModel)]="dateAttendance" placeholder="Attendance Date" />
-    <button class="btn btn-normal btn-md" (click)="fetchAttendances()">Fetch Attendance</button>
+    <button class="btn btn-normal btn-md" (click)="fetchAttendance()">Fetch Attendance</button>
+</div>
+<div *ngIf="selectedClass.attendanceType == 'Session'">
+    <label>Date: </label>
+    <input [(ngModel)]="dateAttendance" placeholder="Attendance Date" />
+    <br/>
+    <label>Session: </label>
+    <select [(ngModel)]="session">
+        <option *ngFor="let sess of sessions" value={{sess.value}}>{{sess.type}}</option>
+    </select>
+    <button class="btn btn-normal btn-md" (click)="fetchSessionAttendance()">Fetch Session Attendance</button>
 </div>
 <h3>Marked</h3>
 <div class="row col-md-5">
@@ -34,11 +44,7 @@
         <tbody>
             <tr *ngFor="let attendance of markedAttendances">
                 <td class="col-md-3">{{attendance.studentName}}</td>
-                <td class="col-md-2">
-                    <select [(ngModel)]="attendance.typeOfLeave">
-                        <option *ngFor="let leaveType of leaveTypes" value={{leaveType.type}}>{{leaveType.type}}</option>
-                    </select>
-                </td>
+                <td class="col-md-2">{{attendance.typeOfLeave}}</td>
                 <td class="col-md-1">
                     <button type="button" class="btn btn-danger btn-xs center-block" (click)="delete(attendance, $event)">
                         delete
