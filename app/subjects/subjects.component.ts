@@ -26,7 +26,7 @@ export class SubjectsComponent implements OnInit {
         .getSubjects()
         .then(subjects => this.subjects = subjects)
         .catch(error => this.error = error);
-  }
+  	}
 
 	ngOnInit() {
 		this.getSubjects();
@@ -35,7 +35,7 @@ export class SubjectsComponent implements OnInit {
 	onSelect(subject: Subjects) {
   	this.selectedSubject = subject;
   	this.addingSubject = false;
-  }
+  	}
 
 	close(savedClass: Subjects) {
 		console.log("class component close function");
@@ -66,6 +66,6 @@ export class SubjectsComponent implements OnInit {
           if (this.selectedSubject === subject) { this.selectedSubject = null; }
         })
         .catch(error => this.error = error);
-  }
+  	}
 
 }

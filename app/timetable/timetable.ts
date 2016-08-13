@@ -1,7 +1,9 @@
 export class Timetable {
-	Id: number;
-	SectionId: number;
-	DayOfWeek: string;
-	PeriodNo: number;
-	SubjectId: number;
+	id: number;
+	sectionId: number;
+	dayOfWeek: string;
+	periodNo: number;
+	subjectId: number;
+	timingFrom: string;
+	timingTo: string;
 }

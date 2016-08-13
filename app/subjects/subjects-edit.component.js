@@ -62,7 +62,6 @@ var SubjectsEditComponent = (function () {
         }
     };
     SubjectsEditComponent.prototype.onTheorySubjectAssigned = function (subjectId) {
-        console.log(subjectId);
         this.subject.theorySubjectId = subjectId;
     };
     SubjectsEditComponent.prototype.onPracticalSubjectAssigned = function (subjectId) {

@@ -1,0 +1,98 @@
+<ul class="breadcrumb">
+    <li class="active">Timetable</li>
+</ul>
+<div>
+    <label>Select Class: </label>
+    <select [(ngModel)]="selectedClass.id" (change)="classSelected($event.target.value)">
+        <option *ngFor="let classs of classes" value={{classs.id}}>{{classs.className}}</option>
+    </select>
+</div>
+<br/>
+<div>
+    <label>Select Section: </label>
+    <select [(ngModel)]="selectedSection.id" (change)="sectionSelected($event.target.value)">
+        <option *ngFor="let section of sections" value={{section.id}}>{{section.sectionName}}</option>
+    </select>
+</div>
+<br/>
+<div>
+    <label>Select Day: </label>
+    <select [(ngModel)]="selectedDay" (change)="daySelected($event.target.value)" >
+    <option *ngFor="let day of days" value={{day}}>{{day}}</option>
+</select>
+</div>
+<br/>
+<div class="row col-md-10">
+    <table class="table table-bordered table-striped">
+        <caption></caption>
+        <thead>
+            <tr>
+                <th>Period</th>
+                <th>Subject</th>
+                <th>Timing From</th>
+                <th>Timing To</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let timetable of selectedTimetable">
+                <td class="col-md-1">{{timetable.periodNo}}</td>
+                <td class="col-md-3">
+                    <select [(ngModel)]="timetable.subjectId">
+                        <option *ngFor="let subject of subjects" value={{subject.id}}>{{subject.subjectName}}</option>
+                    </select>
+                </td>
+                <td class="col-md-2">
+                    <div>
+                        <input [(ngModel)]="timetable.timingFrom" />
+                    </div>
+                </td>
+                <td class="col-md-2">
+                    <input [(ngModel)]="timetable.timingTo" />
+                </td>
+                <td class="col-md-1">
+                    <button type="button" class="btn btn-primary btn-xs center-block" (click)="save(timetable, $event)">
+                        save
+                    </button>
+                </td>
+                <td class="col-md-1">
+                    <button type="button" class="btn btn-danger btn-xs center-block" (click)="delete(timetable, $event)">
+                        delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="clearfix"></div>
+<div class="error" *ngIf="error">{{error}}</div>
+<button type="button" class="btn btn-success btn-md" (click)="add()">Add</button>
+<div *ngIf="isNewTimetable">
+    <h3>New Timetable Details</h3>
+    <br/>
+    <div>
+        <label>Period: </label>
+        <input [(ngModel)]="newTimetable.periodNo"/>
+    </div>
+    <br/>
+    <div>
+        <label>Subject: </label>
+        <select [(ngModel)]="newTimetable.subjectId">
+            <option *ngFor="let subj of subjects" value={{subj.id}}>{{subj.subjectName}}</option>
+        </select>
+    </div>
+    <br/>
+    <div>
+        <label>Timing From: </label>
+        <input [(ngModel)]="newTimetable.timingFrom"/>
+    </div>
+    <br/>
+    <div>
+        <label>Timing To: </label>
+        <input [(ngModel)]="newTimetable.timingTo"/>
+    </div>
+    <br/>
+    <button class="btn btn-normal btn-md" (click)="goBack()">Back</button>
+    <button class="btn btn-success btn-md" (click)="insert()">Save New</button>
+</div>

@@ -27,6 +27,17 @@ export class SubjectsService {
                .catch(this.handleError);
   }
 
+  getClassSubjects(id: number): Promise<Subjects[]> {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', `Bearer ${this.authToken}`);
+    let url = `${this.postUrl}/class/${id}`;
+    return this.http
+               .get(url, {headers: headers})
+               .toPromise()
+               .then(response => response.json())
+               .catch(this.handleError);
+  }
+
   getSubject(id: number) {
     return this.getSubjects()
                .then(subjects => subjects.find(subject => subject.id === id));

@@ -58,7 +58,6 @@ export class SubjectsEditComponent implements OnInit, OnDestroy {
     }
   }
   onTheorySubjectAssigned(subjectId: number) {
-    console.log(subjectId);
     this.subject.theorySubjectId = subjectId;
   }
   onPracticalSubjectAssigned(subjectId: number) {
