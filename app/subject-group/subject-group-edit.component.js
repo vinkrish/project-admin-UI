@@ -10,16 +10,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var core_2 = require('angular2-cookie/core');
 var subject_group_1 = require('./subject-group');
 var subject_group_service_1 = require('./subject-group.service');
 var SubjectGroupEditComponent = (function () {
-    function SubjectGroupEditComponent(subjectGroupService, route, _cookieService) {
+    function SubjectGroupEditComponent(subjectGroupService, route) {
         this.subjectGroupService = subjectGroupService;
         this.route = route;
-        this._cookieService = _cookieService;
         this.close = new core_1.EventEmitter();
-        this.navigated = false; // true if navigated here
+        this.navigated = false;
     }
     SubjectGroupEditComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -70,7 +68,7 @@ var SubjectGroupEditComponent = (function () {
             templateUrl: 'app/subject-group/subject-group-edit.component.html',
             styleUrls: ['app/subject-group/subject-group-edit.component.css']
         }), 
-        __metadata('design:paramtypes', [subject_group_service_1.SubjectGroupService, router_1.ActivatedRoute, core_2.CookieService])
+        __metadata('design:paramtypes', [subject_group_service_1.SubjectGroupService, router_1.ActivatedRoute])
     ], SubjectGroupEditComponent);
     return SubjectGroupEditComponent;
 }());

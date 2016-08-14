@@ -26,7 +26,7 @@ var SubjectsEditComponent = (function () {
             new partition_1.Partition(1),
             new partition_1.Partition(2)
         ];
-        this.navigated = false; // true if navigated here
+        this.navigated = false;
     }
     SubjectsEditComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -75,10 +75,10 @@ var SubjectsEditComponent = (function () {
         this.subjectsService
             .save(this.subject)
             .then(function (subject) {
-            _this.subject = subject; // saved hero, w/ id if new
+            _this.subject = subject;
             _this.goBack(subject);
         })
-            .catch(function (error) { return _this.error = error; }); // TODO: Display error message
+            .catch(function (error) { return _this.error = error; });
     };
     SubjectsEditComponent.prototype.goBack = function (savedSubject) {
         if (savedSubject === void 0) { savedSubject = null; }

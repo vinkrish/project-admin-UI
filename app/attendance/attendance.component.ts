@@ -6,6 +6,8 @@ import { SubjectTeacher }		from '../subject-teacher/subject-teacher';
 import { Attendance }			from './attendance';
 import { LeaveType }			from './leave-type';
 import { Session }				from './session';
+import { Timetable }			from '../timetable/timetable';
+import { TimetableService }		from '../timetable/timetable.service';
 import { ClassService }         from '../class/class.service';
 import { SectionService }		from '../section/section.service';
 import { AttendanceService }	from './attendance.service';
@@ -25,6 +27,8 @@ export class AttendanceComponent {
 	selectedSection: Section;
 	selectingSection = false;
 	dateAttendance: string;
+	timetables: Timetable[];
+	periods: number[];
 	markedAttendances: Attendance[];
 	unmarkedAttendances: Attendance[];
 	preparedAttendances: Attendance[];
@@ -44,6 +48,7 @@ export class AttendanceComponent {
 		private cookieService: CookieService,
 		private classService: ClassService,
 		private sectionService: SectionService,
+		private timetableService: TimetableService,
 		private attendanceService: AttendanceService) { }
 
 	getClasses() {
@@ -59,6 +64,8 @@ export class AttendanceComponent {
 				this.selectedClass = this.classes[i];
 			}
 		}
+		this.timetables = [];
+		this.periods = [];
 		this.getSections(this.selectedClass.id);
 		this.cookieService.put("classId", "" + this.selectedClass.id);
 		this.cookieService.put("className", this.selectedClass.className);
@@ -80,11 +87,30 @@ export class AttendanceComponent {
 				this.selectedSection = this.sections[i];
 			}
 		}
+		this.timetables = [];
+		this.periods = [];
 		this.cookieService.put("sectionId", "" + this.selectedSection.id);
 		this.cookieService.put("sectionName", this.selectedSection.sectionName);
+		this.getTimetable(this.selectedSection.id);
 		this.selectingSection = true;
 		this.markedAttendances = null;
 		this.unmarkedAttendances = null;
+	}
+
+	getTimetable(sectionId: number) {
+		this.timetableService
+			.getTimetables(sectionId)
+			.then(timetables => {
+				this.timetables = timetables;
+				this.getPeriods();
+			})
+			.catch(error => this.error = error);
+	}
+
+	getPeriods(){
+		for(let timetable of this.timetables){
+			this.periods.push(timetable.periodNo);
+		}
 	}
 
 	fetchAttendance() {
@@ -110,6 +136,8 @@ export class AttendanceComponent {
 					this.fetchAttendance();
 				} else if (this.selectedClass.attendanceType == 'Session') {
 					this.fetchSessionAttendance();
+				} else if (this.selectedClass.attendanceType == 'Period'){
+					this.fetchSessionAttendance();
 				}
 			})
 			.catch(error => this.error = error);
@@ -133,6 +161,8 @@ export class AttendanceComponent {
 				if (this.selectedClass.attendanceType == 'Daily') {
 					this.fetchAttendance();
 				} else if (this.selectedClass.attendanceType == 'Session') {
+					this.fetchSessionAttendance();
+				} else if (this.selectedClass.attendanceType == 'Period'){
 					this.fetchSessionAttendance();
 				}
 			})

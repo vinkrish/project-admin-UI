@@ -16,16 +16,13 @@ var SectionService = (function () {
     function SectionService(http, cookieService) {
         this.http = http;
         this.cookieService = cookieService;
-        //private sectionUrl = 'app/section';
-        //private sectionUrl = 'app/section/sections.json';
-        this.sectionUrl = 'http://localhost:8080/guldu/webapi/section/class';
-        this.postUrl = 'http://localhost:8080/guldu/webapi/section';
+        this.sectionUrl = 'http://localhost:8080/guldu/webapi/section';
         this.authToken = this.cookieService.get("auth_token");
     }
     SectionService.prototype.getSections = function (id) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.sectionUrl + "/" + id;
+        var url = this.sectionUrl + "/class/" + id;
         return this.http
             .get(url, { headers: headers })
             .toPromise()
@@ -45,7 +42,7 @@ var SectionService = (function () {
     SectionService.prototype.delete = function (section) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.postUrl + "/" + section.id;
+        var url = this.sectionUrl + "/" + section.id;
         return this.http
             .delete(url, { headers: headers })
             .toPromise()
@@ -55,7 +52,7 @@ var SectionService = (function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
-            .post(this.postUrl, JSON.stringify(section), { headers: headers })
+            .post(this.sectionUrl, JSON.stringify(section), { headers: headers })
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
@@ -63,7 +60,7 @@ var SectionService = (function () {
     SectionService.prototype.put = function (section) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.postUrl + "/" + section.id;
+        var url = this.sectionUrl + "/" + section.id;
         return this.http
             .put(url, JSON.stringify(section), { headers: headers })
             .toPromise()

@@ -10,17 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var core_2 = require('angular2-cookie/core');
 var teacher_1 = require('./teacher');
 var gender_1 = require('../shared/gender');
 var teacher_service_1 = require('./teacher.service');
 var TeacherEditComponent = (function () {
-    function TeacherEditComponent(teacherService, route, _cookieService) {
+    function TeacherEditComponent(teacherService, route) {
         this.teacherService = teacherService;
         this.route = route;
-        this._cookieService = _cookieService;
         this.close = new core_1.EventEmitter();
-        this.navigated = false; // true if navigated here
+        this.navigated = false;
         this.genders = [
             new gender_1.Gender("M"),
             new gender_1.Gender("F")
@@ -49,10 +47,10 @@ var TeacherEditComponent = (function () {
         this.teacherService
             .save(this.teacher)
             .then(function (teacher) {
-            _this.teacher = teacher; // saved hero, w/ id if new
+            _this.teacher = teacher;
             _this.goBack(teacher);
         })
-            .catch(function (error) { return _this.error = error; }); // TODO: Display error message
+            .catch(function (error) { return _this.error = error; });
     };
     TeacherEditComponent.prototype.goBack = function (savedTeacher) {
         if (savedTeacher === void 0) { savedTeacher = null; }
@@ -75,7 +73,7 @@ var TeacherEditComponent = (function () {
             templateUrl: 'app/teacher/teacher-edit.component.html',
             styleUrls: ['app/teacher/teacher-edit.component.css']
         }), 
-        __metadata('design:paramtypes', [teacher_service_1.TeacherService, router_1.ActivatedRoute, core_2.CookieService])
+        __metadata('design:paramtypes', [teacher_service_1.TeacherService, router_1.ActivatedRoute])
     ], TeacherEditComponent);
     return TeacherEditComponent;
 }());

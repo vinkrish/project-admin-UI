@@ -79,3 +79,5 @@ export class SubjectTeacherEditComponent implements OnInit, OnDestroy {
     this.close.emit(savedSubjectTeacher);
     if (this.navigated) { window.history.back(); }
   }
+
+}

@@ -16,16 +16,13 @@ var StudentService = (function () {
     function StudentService(http, cookieService) {
         this.http = http;
         this.cookieService = cookieService;
-        //private studentUrl = 'app/student';
-        //private studentUrl = 'app/student/students.json';
-        this.studentUrl = 'http://localhost:8080/guldu/webapi/student/section';
-        this.postUrl = 'http://localhost:8080/guldu/webapi/student';
+        this.studentUrl = 'http://localhost:8080/guldu/webapi/student';
         this.authToken = this.cookieService.get("auth_token");
     }
     StudentService.prototype.getStudents = function (id) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.studentUrl + "/" + id;
+        var url = this.studentUrl + "/section/" + id;
         return this.http
             .get(url, { headers: headers })
             .toPromise()
@@ -45,7 +42,7 @@ var StudentService = (function () {
     StudentService.prototype.delete = function (student) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.postUrl + "/" + student.id;
+        var url = this.studentUrl + "/" + student.id;
         return this.http
             .delete(url, { headers: headers })
             .toPromise()
@@ -55,7 +52,7 @@ var StudentService = (function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
-            .post(this.postUrl, JSON.stringify(student), { headers: headers })
+            .post(this.studentUrl, JSON.stringify(student), { headers: headers })
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
@@ -63,7 +60,7 @@ var StudentService = (function () {
     StudentService.prototype.put = function (student) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.postUrl + "/" + student.id;
+        var url = this.studentUrl + "/" + student.id;
         return this.http
             .put(url, JSON.stringify(student), { headers: headers })
             .toPromise()

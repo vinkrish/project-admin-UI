@@ -16,16 +16,14 @@ var SubjectTeacherService = (function () {
     function SubjectTeacherService(http, cookieService) {
         this.http = http;
         this.cookieService = cookieService;
-        //private subjectTeacherUrl = 'app/subject-teacher';
-        this.subjectTeacherUrl = 'http://localhost:8080/guldu/webapi/subjectteacher/section';
-        this.postUrl = 'http://localhost:8080/guldu/webapi/subjectteacher';
+        this.subjectTeacherUrl = 'http://localhost:8080/guldu/webapi/subjectteacher';
         this.sharedUrl = 'http://localhost:8080/guldu/webapi/shared/subjectteacher';
         this.authToken = this.cookieService.get("auth_token");
     }
     SubjectTeacherService.prototype.getSubjectTeachers = function (id) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.subjectTeacherUrl + "/" + id;
+        var url = this.subjectTeacherUrl + "/section/" + id;
         return this.http
             .get(url, { headers: headers })
             .toPromise()
@@ -42,7 +40,7 @@ var SubjectTeacherService = (function () {
     SubjectTeacherService.prototype.delete = function (subjectTeacher) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.postUrl + "/" + subjectTeacher.id;
+        var url = this.subjectTeacherUrl + "/" + subjectTeacher.id;
         return this.http
             .delete(url, { headers: headers })
             .toPromise()
@@ -59,7 +57,7 @@ var SubjectTeacherService = (function () {
     SubjectTeacherService.prototype.put = function (subjectTeacher) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.postUrl + "/" + subjectTeacher.id;
+        var url = this.subjectTeacherUrl + "/" + subjectTeacher.id;
         return this.http
             .put(url, JSON.stringify(subjectTeacher), { headers: headers })
             .toPromise()

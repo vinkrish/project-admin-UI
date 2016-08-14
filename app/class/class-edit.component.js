@@ -10,15 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var core_2 = require('angular2-cookie/core');
 var clas_1 = require('./clas');
 var attendance_type_1 = require('../shared/attendance-type');
 var class_service_1 = require('./class.service');
 var ClassEditComponent = (function () {
-    function ClassEditComponent(classService, route, _cookieService) {
+    function ClassEditComponent(classService, route) {
         this.classService = classService;
         this.route = route;
-        this._cookieService = _cookieService;
         this.close = new core_1.EventEmitter();
         this.attendanceTypes = [
             new attendance_type_1.AttendanceType("Daily"),
@@ -76,7 +74,7 @@ var ClassEditComponent = (function () {
             templateUrl: 'app/class/class-edit.component.html',
             styleUrls: ['app/class/class-edit.component.css']
         }), 
-        __metadata('design:paramtypes', [class_service_1.ClassService, router_1.ActivatedRoute, core_2.CookieService])
+        __metadata('design:paramtypes', [class_service_1.ClassService, router_1.ActivatedRoute])
     ], ClassEditComponent);
     return ClassEditComponent;
 }());

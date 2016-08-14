@@ -72,3 +72,5 @@ export class SubjectGroupSubjectEditComponent implements OnInit, OnDestroy {
     this.close.emit(savedSection);
     if (this.navigated) { window.history.back(); }
   }
+  
+}

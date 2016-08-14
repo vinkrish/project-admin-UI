@@ -16,15 +16,13 @@ var ClassSubjectGroupService = (function () {
     function ClassSubjectGroupService(http, cookieService) {
         this.http = http;
         this.cookieService = cookieService;
-        //private classSubjectGroupUrl = 'app/class-subject-group';
-        this.classSubjectGroupUrl = 'http://localhost:8080/guldu/webapi/classsubjectgroup/class';
-        this.postUrl = 'http://localhost:8080/guldu/webapi/classsubjectgroup';
+        this.csgUrl = 'http://localhost:8080/guldu/webapi/classsubjectgroup';
         this.authToken = this.cookieService.get("auth_token");
     }
     ClassSubjectGroupService.prototype.getClassSubjectGroups = function (id) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.classSubjectGroupUrl + "/" + id;
+        var url = this.csgUrl + "/class/" + id;
         return this.http
             .get(url, { headers: headers })
             .toPromise()
@@ -44,7 +42,7 @@ var ClassSubjectGroupService = (function () {
     ClassSubjectGroupService.prototype.delete = function (classSubjectGroup) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.postUrl + "/" + classSubjectGroup.id;
+        var url = this.csgUrl + "/" + classSubjectGroup.id;
         return this.http
             .delete(url, { headers: headers })
             .toPromise()
@@ -54,7 +52,7 @@ var ClassSubjectGroupService = (function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
-            .post(this.postUrl, JSON.stringify(classSubjectGroup), { headers: headers })
+            .post(this.csgUrl, JSON.stringify(classSubjectGroup), { headers: headers })
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
@@ -62,7 +60,7 @@ var ClassSubjectGroupService = (function () {
     ClassSubjectGroupService.prototype.put = function (classSubjectGroup) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.postUrl + "/" + classSubjectGroup.id;
+        var url = this.csgUrl + "/" + classSubjectGroup.id;
         return this.http
             .put(url, JSON.stringify(classSubjectGroup), { headers: headers })
             .toPromise()

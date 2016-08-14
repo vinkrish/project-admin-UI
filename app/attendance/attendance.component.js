@@ -14,16 +14,18 @@ var clas_1 = require('../class/clas');
 var section_1 = require('../section/section');
 var leave_type_1 = require('./leave-type');
 var session_1 = require('./session');
+var timetable_service_1 = require('../timetable/timetable.service');
 var class_service_1 = require('../class/class.service');
 var section_service_1 = require('../section/section.service');
 var attendance_service_1 = require('./attendance.service');
 var core_2 = require('angular2-cookie/core');
 var AttendanceComponent = (function () {
-    function AttendanceComponent(router, cookieService, classService, sectionService, attendanceService) {
+    function AttendanceComponent(router, cookieService, classService, sectionService, timetableService, attendanceService) {
         this.router = router;
         this.cookieService = cookieService;
         this.classService = classService;
         this.sectionService = sectionService;
+        this.timetableService = timetableService;
         this.attendanceService = attendanceService;
         this.selectingSection = false;
         this.leaveTypes = [
@@ -48,6 +50,8 @@ var AttendanceComponent = (function () {
                 this.selectedClass = this.classes[i];
             }
         }
+        this.timetables = [];
+        this.periods = [];
         this.getSections(this.selectedClass.id);
         this.cookieService.put("classId", "" + this.selectedClass.id);
         this.cookieService.put("className", this.selectedClass.className);
@@ -68,11 +72,30 @@ var AttendanceComponent = (function () {
                 this.selectedSection = this.sections[i];
             }
         }
+        this.timetables = [];
+        this.periods = [];
         this.cookieService.put("sectionId", "" + this.selectedSection.id);
         this.cookieService.put("sectionName", this.selectedSection.sectionName);
+        this.getTimetable(this.selectedSection.id);
         this.selectingSection = true;
         this.markedAttendances = null;
         this.unmarkedAttendances = null;
+    };
+    AttendanceComponent.prototype.getTimetable = function (sectionId) {
+        var _this = this;
+        this.timetableService
+            .getTimetables(sectionId)
+            .then(function (timetables) {
+            _this.timetables = timetables;
+            _this.getPeriods();
+        })
+            .catch(function (error) { return _this.error = error; });
+    };
+    AttendanceComponent.prototype.getPeriods = function () {
+        for (var _i = 0, _a = this.timetables; _i < _a.length; _i++) {
+            var timetable = _a[_i];
+            this.periods.push(timetable.periodNo);
+        }
     };
     AttendanceComponent.prototype.fetchAttendance = function () {
         this.markedAttendances = [];
@@ -98,6 +121,9 @@ var AttendanceComponent = (function () {
             else if (_this.selectedClass.attendanceType == 'Session') {
                 _this.fetchSessionAttendance();
             }
+            else if (_this.selectedClass.attendanceType == 'Period') {
+                _this.fetchSessionAttendance();
+            }
         })
             .catch(function (error) { return _this.error = error; });
     };
@@ -121,6 +147,9 @@ var AttendanceComponent = (function () {
                 _this.fetchAttendance();
             }
             else if (_this.selectedClass.attendanceType == 'Session') {
+                _this.fetchSessionAttendance();
+            }
+            else if (_this.selectedClass.attendanceType == 'Period') {
                 _this.fetchSessionAttendance();
             }
         })
@@ -174,7 +203,7 @@ var AttendanceComponent = (function () {
             styleUrls: ['app/attendance/attendance.component.css'],
             directives: []
         }), 
-        __metadata('design:paramtypes', [router_1.Router, core_2.CookieService, class_service_1.ClassService, section_service_1.SectionService, attendance_service_1.AttendanceService])
+        __metadata('design:paramtypes', [router_1.Router, core_2.CookieService, class_service_1.ClassService, section_service_1.SectionService, timetable_service_1.TimetableService, attendance_service_1.AttendanceService])
     ], AttendanceComponent);
     return AttendanceComponent;
 }());

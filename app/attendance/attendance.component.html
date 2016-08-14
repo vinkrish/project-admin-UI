@@ -30,6 +30,16 @@
     </select>
     <button class="btn btn-normal btn-md" (click)="fetchSessionAttendance()">Fetch Session Attendance</button>
 </div>
+<div *ngIf="selectedClass.attendanceType == 'Period'">
+    <label>Date: </label>
+    <input [(ngModel)]="dateAttendance" placeholder="Attendance Date" />
+    <br/>
+    <label>Period: </label>
+    <select [(ngModel)]="session">
+        <option *ngFor="let period of periods" value={{period}}>{{period}}</option>
+    </select>
+    <button class="btn btn-normal btn-md" (click)="fetchSessionAttendance()">Fetch Period Attendance</button>
+</div>
 <h3>Marked</h3>
 <div class="row col-md-5">
     <table class="table table-bordered table-striped">

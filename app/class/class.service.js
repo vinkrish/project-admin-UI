@@ -16,16 +16,13 @@ var ClassService = (function () {
     function ClassService(http, cookieService) {
         this.http = http;
         this.cookieService = cookieService;
-        //private classUrl = 'app/class/classes';
-        //private classUrl = 'app/class/classes.json';
-        this.classUrl = 'http://localhost:8080/guldu/webapi/class/school';
-        this.postUrl = 'http://localhost:8080/guldu/webapi/class';
+        this.classUrl = 'http://localhost:8080/guldu/webapi/class';
         this.authToken = this.cookieService.get("auth_token");
     }
     ClassService.prototype.getClasses = function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.classUrl + "/" + +this.cookieService.get("schoolId");
+        var url = this.classUrl + "/school/" + +this.cookieService.get("schoolId");
         return this.http
             .get(url, { headers: headers })
             .toPromise()
@@ -45,7 +42,7 @@ var ClassService = (function () {
     ClassService.prototype.delete = function (clas) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.postUrl + "/" + clas.id;
+        var url = this.classUrl + "/" + clas.id;
         return this.http
             .delete(url, { headers: headers })
             .toPromise()
@@ -57,7 +54,7 @@ var ClassService = (function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
-            .post(this.postUrl, JSON.stringify(clas), { headers: headers })
+            .post(this.classUrl, JSON.stringify(clas), { headers: headers })
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
@@ -65,7 +62,7 @@ var ClassService = (function () {
     ClassService.prototype.put = function (clas) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.postUrl + "/" + clas.id;
+        var url = this.classUrl + "/" + clas.id;
         return this.http
             .put(url, JSON.stringify(clas), { headers: headers })
             .toPromise()

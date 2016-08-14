@@ -16,16 +16,13 @@ var SubjectGroupService = (function () {
     function SubjectGroupService(http, cookieService) {
         this.http = http;
         this.cookieService = cookieService;
-        //private subjectGroupUrl = 'app/subject-group/subject-groups';
-        //private subjectGroupUrl = 'app/subject-group/subject-groups.json';
-        this.subjectGroupUrl = 'http://localhost:8080/guldu/webapi/subjectgroup/school';
-        this.postUrl = 'http://localhost:8080/guldu/webapi/subjectgroup';
+        this.subjectGroupUrl = 'http://localhost:8080/guldu/webapi/subjectgroup';
         this.authToken = this.cookieService.get("auth_token");
     }
     SubjectGroupService.prototype.getSubjectGroups = function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.subjectGroupUrl + "/" + +this.cookieService.get("schoolId");
+        var url = this.subjectGroupUrl + "/school/" + +this.cookieService.get("schoolId");
         return this.http
             .get(url, { headers: headers })
             .toPromise()
@@ -45,7 +42,7 @@ var SubjectGroupService = (function () {
     SubjectGroupService.prototype.delete = function (subjectGroup) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.postUrl + "/" + subjectGroup.id;
+        var url = this.subjectGroupUrl + "/" + subjectGroup.id;
         return this.http
             .delete(url, { headers: headers })
             .toPromise()
@@ -56,7 +53,7 @@ var SubjectGroupService = (function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
-            .post(this.postUrl, JSON.stringify(subjectGroup), { headers: headers })
+            .post(this.subjectGroupUrl, JSON.stringify(subjectGroup), { headers: headers })
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
@@ -64,7 +61,7 @@ var SubjectGroupService = (function () {
     SubjectGroupService.prototype.put = function (subjectGroup) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.postUrl + "/" + subjectGroup.id;
+        var url = this.subjectGroupUrl + "/" + subjectGroup.id;
         return this.http
             .put(url, JSON.stringify(subjectGroup), { headers: headers })
             .toPromise()

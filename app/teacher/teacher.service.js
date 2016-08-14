@@ -16,16 +16,13 @@ var TeacherService = (function () {
     function TeacherService(http, cookieService) {
         this.http = http;
         this.cookieService = cookieService;
-        //private teacherUrl = 'app/teacher/classes';
-        //private teacherUrl = 'app/teacher/teachers.json';
-        this.teacherUrl = 'http://localhost:8080/guldu/webapi/teacher/school';
-        this.postUrl = 'http://localhost:8080/guldu/webapi/teacher';
+        this.teacherUrl = 'http://localhost:8080/guldu/webapi/teacher';
         this.authToken = this.cookieService.get("auth_token");
     }
     TeacherService.prototype.getTeachers = function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.teacherUrl + "/" + +this.cookieService.get("schoolId");
+        var url = this.teacherUrl + "/school/" + +this.cookieService.get("schoolId");
         return this.http
             .get(url, { headers: headers })
             .toPromise()
@@ -45,7 +42,7 @@ var TeacherService = (function () {
     TeacherService.prototype.delete = function (teacher) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.postUrl + "/" + teacher.id;
+        var url = this.teacherUrl + "/" + teacher.id;
         return this.http
             .delete(url, { headers: headers })
             .toPromise()
@@ -56,7 +53,7 @@ var TeacherService = (function () {
         headers.append('Authorization', "Bearer " + this.authToken);
         teacher.schoolId = +this.cookieService.get("schoolId");
         return this.http
-            .post(this.postUrl, JSON.stringify(teacher), { headers: headers })
+            .post(this.teacherUrl, JSON.stringify(teacher), { headers: headers })
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
@@ -64,7 +61,7 @@ var TeacherService = (function () {
     TeacherService.prototype.put = function (teacher) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', "Bearer " + this.authToken);
-        var url = this.postUrl + "/" + teacher.id;
+        var url = this.teacherUrl + "/" + teacher.id;
         return this.http
             .put(url, JSON.stringify(teacher), { headers: headers })
             .toPromise()
