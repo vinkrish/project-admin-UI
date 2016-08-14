@@ -12,10 +12,10 @@ import { AttendanceService }	from './attendance.service';
 import { CookieService }		from 'angular2-cookie/core';
 
 @Component({
-  selector: 'ui-attendance',
-  templateUrl: 'app/attendance/attendance.component.html',
-  styleUrls:  ['app/attendance/attendance.component.css'],
-  directives: []
+	selector: 'ui-attendance',
+	templateUrl: 'app/attendance/attendance.component.html',
+	styleUrls: ['app/attendance/attendance.component.css'],
+	directives: []
 })
 
 export class AttendanceComponent {
@@ -87,14 +87,14 @@ export class AttendanceComponent {
 		this.unmarkedAttendances = null;
 	}
 
-	fetchAttendance(){
+	fetchAttendance() {
 		this.markedAttendances = [];
 		this.unmarkedAttendances = [];
 		this.getMarkedAttendance(this.selectedSection.id, this.dateAttendance);
 		this.getUnmarkedAttendance(this.selectedSection.id, this.dateAttendance);
 	}
 
-	fetchSessionAttendance(){
+	fetchSessionAttendance() {
 		this.markedAttendances = [];
 		this.unmarkedAttendances = [];
 		this.getMarkedSessionAttendance(this.session, this.selectedSection.id, this.dateAttendance);
@@ -103,21 +103,21 @@ export class AttendanceComponent {
 
 	delete(attendance: Attendance, event: any) {
 		event.stopPropagation();
-    	this.attendanceService
-      		.delete(attendance)
-      		.then(() => {
-      			if(this.selectedClass.attendanceType == 'Daily') {
+		this.attendanceService
+			.delete(attendance)
+			.then(() => {
+				if (this.selectedClass.attendanceType == 'Daily') {
 					this.fetchAttendance();
-				} else if(this.selectedClass.attendanceType == 'Session') {
+				} else if (this.selectedClass.attendanceType == 'Session') {
 					this.fetchSessionAttendance();
 				}
-      		})
-      		.catch(error => this.error = error);
+			})
+			.catch(error => this.error = error);
 	}
 
 	prepareMarkedAttendance() {
-		for(let att of this.unmarkedAttendances) {
-			if(att.typeOfLeave == 'Absent') {
+		for (let att of this.unmarkedAttendances) {
+			if (att.typeOfLeave == 'Absent') {
 				this.preparedAttendances.push(att);
 			}
 		}
@@ -130,9 +130,9 @@ export class AttendanceComponent {
 		this.attendanceService
 			.post(this.preparedAttendances)
 			.then(() => {
-				if(this.selectedClass.attendanceType == 'Daily') {
+				if (this.selectedClass.attendanceType == 'Daily') {
 					this.fetchAttendance();
-				} else if(this.selectedClass.attendanceType == 'Session') {
+				} else if (this.selectedClass.attendanceType == 'Session') {
 					this.fetchSessionAttendance();
 				}
 			})
@@ -142,37 +142,37 @@ export class AttendanceComponent {
 	getMarkedAttendance(sectionId: number, date: string) {
 		this.attendanceService
 			.dailyAttendanceMarked(sectionId, date)
-			.then(attendances => { 
+			.then(attendances => {
 				this.markedAttendances = attendances;
 			})
-			.catch(error => this.error = error )
+			.catch(error => this.error = error)
 	}
 
 	getUnmarkedAttendance(sectionId: number, date: string) {
 		this.attendanceService
 			.dailyAttendanceUnmarked(sectionId, date)
-			.then(attendances => { 
+			.then(attendances => {
 				this.unmarkedAttendances = attendances;
 			})
-			.catch(error => this.error = error )
+			.catch(error => this.error = error)
 	}
 
 	getMarkedSessionAttendance(session: number, sectionId: number, date: string) {
 		this.attendanceService
 			.sessionAttendanceMarked(session, sectionId, date)
-			.then(attendances => { 
+			.then(attendances => {
 				this.markedAttendances = attendances;
 			})
-			.catch(error => this.error = error )
+			.catch(error => this.error = error)
 	}
 
 	getUnmarkedSessionAttendance(session: number, sectionId: number, date: string) {
 		this.attendanceService
 			.sessionAttendanceUnmarked(session, sectionId, date)
-			.then(attendances => { 
+			.then(attendances => {
 				this.unmarkedAttendances = attendances;
 			})
-			.catch(error => this.error = error )
+			.catch(error => this.error = error)
 	}
 
 	ngOnInit() {

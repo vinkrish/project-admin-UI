@@ -1,16 +1,15 @@
 import { Injectable }     from '@angular/core';
 import { Headers, Http }  from '@angular/http';
-import 'rxjs/add/operator/toPromise';
 import { Credentials }    from './credentials';
-
-import { Observable } from 'rxjs/Observable';
+import { Observable }     from 'rxjs/Observable';
+import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class LoginService {
-	private loggedIn = true;
+  private loggedIn = true;
 
   constructor(private http: Http) {
     //this.loggedIn = this.cookieService.get("auth_token");
@@ -22,9 +21,9 @@ export class LoginService {
     headers.append('Content-Type', 'application/json');
     return this.http
       .post(
-        '/login', 
-        JSON.stringify({ credentials }), 
-        { headers }
+      '/login',
+      JSON.stringify({ credentials }),
+      { headers }
       )
       .map(res => res.json())
       .map((res) => {
@@ -36,7 +35,7 @@ export class LoginService {
         return res.success;
       });
   }
-  
+
   logout() {
     localStorage.removeItem('auth_token');
     this.loggedIn = false;

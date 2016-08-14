@@ -3,12 +3,14 @@ import { Router }            	from '@angular/router';
 import { Clas }			 		from './clas';
 import { ClassService }		 	from './class.service';
 import { ClassEditComponent } 	from './class-edit.component';
+
 @Component({
-  selector: 'ui-class',
-  templateUrl: 'app/class/class.component.html',
-  styleUrls:  ['app/class/class.component.css'],
-  directives: [ClassEditComponent]
+	selector: 'ui-class',
+	templateUrl: 'app/class/class.component.html',
+	styleUrls: ['app/class/class.component.css'],
+	directives: [ClassEditComponent]
 })
+
 export class ClassComponent implements OnInit {
 	classes: Clas[];
 	selectedClass: Clas;
@@ -20,24 +22,24 @@ export class ClassComponent implements OnInit {
 		private classService: ClassService) { }
 
 	getClasses() {
-    this.classService
-        .getClasses()
-        .then(classes => this.classes = classes)
-        .catch(error => this.error = error);
-  	}
+		this.classService
+			.getClasses()
+			.then(classes => this.classes = classes)
+			.catch(error => this.error = error);
+	}
 
 	ngOnInit() {
 		this.getClasses();
 	}
 
 	onSelect(clas: Clas) {
-  	this.selectedClass = clas;
-  	this.addingClass = false;
-  	}
+		this.selectedClass = clas;
+		this.addingClass = false;
+	}
 
 	close(savedClass: Clas) {
 		this.addingClass = false;
-  		if (savedClass) { this.getClasses(); }
+		if (savedClass) { this.getClasses(); }
 	}
 
 	goToDashboard() {
@@ -55,14 +57,14 @@ export class ClassComponent implements OnInit {
 	}
 
 	deleteClass(clas: Clas, event: any) {
-    event.stopPropagation();
-    this.classService
-        .delete(clas)
-        .then(res => {
-          this.classes = this.classes.filter(h => h !== clas);
-          if (this.selectedClass === clas) { this.selectedClass = null; }
-        })
-        .catch(error => this.error = error);
-  }
+		event.stopPropagation();
+		this.classService
+			.delete(clas)
+			.then(res => {
+				this.classes = this.classes.filter(h => h !== clas);
+				if (this.selectedClass === clas) { this.selectedClass = null; }
+			})
+			.catch(error => this.error = error);
+	}
 
 }

@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
-import { Teacher }			 from './teacher';
+import { Component, OnInit } 	from '@angular/core';
+import { Router }            	from '@angular/router';
+import { Teacher }			 	from './teacher';
 import { TeacherService }		from './teacher.service';
 import { TeacherEditComponent } from './teacher-edit.component';
+
 @Component({
-  selector: 'ui-teacher',
-  templateUrl: 'app/teacher/teacher.component.html',
-  styleUrls:  ['app/teacher/teacher.component.css'],
-  directives: [TeacherEditComponent]
+	selector: 'ui-teacher',
+	templateUrl: 'app/teacher/teacher.component.html',
+	styleUrls: ['app/teacher/teacher.component.css'],
+	directives: [TeacherEditComponent]
 })
 
 export class TeacherComponent implements OnInit {
@@ -21,25 +22,25 @@ export class TeacherComponent implements OnInit {
 		private teacherService: TeacherService) { }
 
 	getTeachers() {
-    this.teacherService
-        .getTeachers()
-        .then(teachers => this.teachers = teachers)
-        .catch(error => this.error = error);
-  	}
+		this.teacherService
+			.getTeachers()
+			.then(teachers => this.teachers = teachers)
+			.catch(error => this.error = error);
+	}
 
 	ngOnInit() {
 		this.getTeachers();
 	}
 
 	onSelect(teacher: Teacher) {
-  		this.selectedTeacher = teacher;
-  		this.addingTeacher = false;
-  	}
+		this.selectedTeacher = teacher;
+		this.addingTeacher = false;
+	}
 
 	close(savedTeacher: Teacher) {
 		console.log("teacher component close function");
 		this.addingTeacher = false;
-  		if (savedTeacher) { this.getTeachers(); }
+		if (savedTeacher) { this.getTeachers(); }
 	}
 
 	goToDashboard() {
@@ -57,14 +58,14 @@ export class TeacherComponent implements OnInit {
 	}
 
 	deleteTeacher(clas: Teacher, event: any) {
-    event.stopPropagation();
-    this.teacherService
-        .delete(clas)
-        .then(res => {
-          this.teachers = this.teachers.filter(h => h !== clas);
-          if (this.selectedTeacher === clas) { this.selectedTeacher = null; }
-        })
-        .catch(error => this.error = error);
-  }
+		event.stopPropagation();
+		this.teacherService
+			.delete(clas)
+			.then(res => {
+				this.teachers = this.teachers.filter(h => h !== clas);
+				if (this.selectedTeacher === clas) { this.selectedTeacher = null; }
+			})
+			.catch(error => this.error = error);
+	}
 
 }

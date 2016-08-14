@@ -6,32 +6,30 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class SubjectGroupSubjectService {
-  //private subjectGroupSubjectUrl = 'app/subject-group-subject';
-  private subjectGroupSubjectUrl =  'http://localhost:8080/guldu/webapi/subjectgroupsubject/subjectgroup';
-  private postUrl = 'http://localhost:8080/guldu/webapi/subjectgroupsubject';
+  private sgsUrl = 'http://localhost:8080/guldu/webapi/subjectgroupsubject';
   private authToken: string;
 
-  constructor(private http: Http, private cookieService:CookieService) {
+  constructor(private http: Http, private cookieService: CookieService) {
     this.authToken = this.cookieService.get("auth_token");
   }
-  
+
   getSubjectGroupSubjects(id: number): Promise<SubjectGroupSubject[]> {
-    let headers = new Headers({'Content-Type': 'application/json'});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('Authorization', `Bearer ${this.authToken}`);
-    let url = `${this.subjectGroupSubjectUrl}/${id}`;
+    let url = `${this.sgsUrl}/subjectgroup/${id}`;
     return this.http
-               .get(url, {headers: headers})
-               .toPromise()
-               .then(response => response.json())
-               .catch(this.handleError);
+      .get(url, { headers: headers })
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
   }
 
   getSubjectGroupSubject(id: number) {
     return this.getSubjectGroupSubjects(id)
-               .then(subjectGroupSubjects => subjectGroupSubjects.find(subjectGroupSubject => subjectGroupSubject.id === id));
+      .then(subjectGroupSubjects => subjectGroupSubjects.find(subjectGroupSubject => subjectGroupSubject.id === id));
   }
 
-  save(subjectGroupSubject: SubjectGroupSubject): Promise<SubjectGroupSubject>  {
+  save(subjectGroupSubject: SubjectGroupSubject): Promise<SubjectGroupSubject> {
     if (subjectGroupSubject.id) {
       return this.put(subjectGroupSubject);
     }
@@ -39,39 +37,39 @@ export class SubjectGroupSubjectService {
   }
 
   delete(subjectGroupSubject: SubjectGroupSubject) {
-    let headers = new Headers({'Content-Type': 'application/json'});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('Authorization', `Bearer ${this.authToken}`);
-    let url = `${this.postUrl}/${subjectGroupSubject.id}`;
+    let url = `${this.sgsUrl}/${subjectGroupSubject.id}`;
     return this.http
-               .delete(url, {headers: headers})
-               .toPromise()
-               .catch(this.handleError);
+      .delete(url, { headers: headers })
+      .toPromise()
+      .catch(this.handleError);
   }
 
   private post(subjectGroupSubject: SubjectGroupSubject): Promise<SubjectGroupSubject> {
-    let headers = new Headers({'Content-Type': 'application/json'});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('Authorization', `Bearer ${this.authToken}`);
     return this.http
-               .post(this.postUrl, JSON.stringify(subjectGroupSubject), {headers: headers})
-               .toPromise()
-               .then(res => res.json())
-               .catch(this.handleError);
+      .post(this.sgsUrl, JSON.stringify(subjectGroupSubject), { headers: headers })
+      .toPromise()
+      .then(res => res.json())
+      .catch(this.handleError);
   }
 
   private put(subjectGroupSubject: SubjectGroupSubject) {
-    let headers = new Headers({'Content-Type': 'application/json'});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('Authorization', `Bearer ${this.authToken}`);
-    let url = `${this.postUrl}/${subjectGroupSubject.id}`;
+    let url = `${this.sgsUrl}/${subjectGroupSubject.id}`;
     return this.http
-               .put(url, JSON.stringify(subjectGroupSubject), {headers: headers})
-               .toPromise()
-               .then(() => subjectGroupSubject)
-               .catch(this.handleError);
+      .put(url, JSON.stringify(subjectGroupSubject), { headers: headers })
+      .toPromise()
+      .then(() => subjectGroupSubject)
+      .catch(this.handleError);
   }
 
   private handleError(error: any) {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
-  
+
 }

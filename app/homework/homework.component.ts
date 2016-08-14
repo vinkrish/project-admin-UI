@@ -75,13 +75,13 @@ export class HomeworkComponent {
 	getHomeworks(id: number, date: string) {
 		this.homeworkService
 			.getHomeworks(id, date)
-			.then(homeworks => { 
+			.then(homeworks => {
 				this.homeworks = homeworks;
 			})
-			.catch(error => this.error = error )
+			.catch(error => this.error = error)
 	}
 
-	fetchHomeworks(){
+	fetchHomeworks() {
 		this.getHomeworks(this.selectedSection.id, this.homeworkDate);
 	}
 
@@ -95,11 +95,11 @@ export class HomeworkComponent {
 
 	delete(homework: Homework, event: any) {
 		event.stopPropagation();
-    	this.homeworkService
-      		.delete(homework)
-      		.then(() => this.fetchHomeworks())
-      		.catch(error => this.error = error);
-		}
+		this.homeworkService
+			.delete(homework)
+			.then(() => this.fetchHomeworks())
+			.catch(error => this.error = error);
+	}
 
 	ngOnInit() {
 		this.getClasses();

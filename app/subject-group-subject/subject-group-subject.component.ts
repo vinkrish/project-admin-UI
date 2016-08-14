@@ -1,10 +1,10 @@
 import { Component, OnInit }     	from '@angular/core';
 import { Router }                	from '@angular/router';
-import { SubjectGroup }				from '../subject-group/subject-group';
+import { SubjectGroup }				    from '../subject-group/subject-group';
 import { SubjectGroupService }		from '../subject-group/subject-group.service';
 import { SubjectGroupSubject }		from './subject-group-subject'
-import { SubjectGroupSubjectService } from './subject-group-subject.service';
-import { SubjectGroupSubjectEditComponent }  from './subject-group-subject-edit.component';
+import { SubjectGroupSubjectService }         from './subject-group-subject.service';
+import { SubjectGroupSubjectEditComponent }   from './subject-group-subject-edit.component';
 import { CookieService } from 'angular2-cookie/core';
 
 @Component({

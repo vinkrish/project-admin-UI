@@ -7,30 +7,28 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class SubjectTeacherService {
-  //private subjectTeacherUrl = 'app/subject-teacher';
-  private subjectTeacherUrl =  'http://localhost:8080/guldu/webapi/subjectteacher/section';
-  private postUrl = 'http://localhost:8080/guldu/webapi/subjectteacher';
+  private subjectTeacherUrl = 'http://localhost:8080/guldu/webapi/subjectteacher';
   private sharedUrl = 'http://localhost:8080/guldu/webapi/shared/subjectteacher';
   private authToken: string;
 
-  constructor(private http: Http, private cookieService:CookieService) {
+  constructor(private http: Http, private cookieService: CookieService) {
     this.authToken = this.cookieService.get("auth_token");
   }
-  
+
   getSubjectTeachers(id: number): Promise<SubjectTeacher[]> {
-    let headers = new Headers({'Content-Type': 'application/json'});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('Authorization', `Bearer ${this.authToken}`);
-    let url = `${this.subjectTeacherUrl}/${id}`;
+    let url = `${this.subjectTeacherUrl}/section/${id}`;
     return this.http
-               .get(url, {headers: headers})
-               .toPromise()
-               .then(response => response.json())
-               .catch(this.handleError);
+      .get(url, { headers: headers })
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
   }
 
   getSubjectTeacher(sectionId: number, subjectTeacherId: number) {
     return this.getSubjectTeachers(sectionId)
-               .then(subjectTeachers => subjectTeachers.find(subjectTeacher => subjectTeacher.id === subjectTeacherId));
+      .then(subjectTeachers => subjectTeachers.find(subjectTeacher => subjectTeacher.id === subjectTeacherId));
   }
 
   save(clas: Clas) {
@@ -38,38 +36,38 @@ export class SubjectTeacherService {
   }
 
   delete(subjectTeacher: SubjectTeacher) {
-    let headers = new Headers({'Content-Type': 'application/json'});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('Authorization', `Bearer ${this.authToken}`);
-    let url = `${this.postUrl}/${subjectTeacher.id}`;
+    let url = `${this.subjectTeacherUrl}/${subjectTeacher.id}`;
     return this.http
-               .delete(url, {headers: headers})
-               .toPromise()
-               .catch(this.handleError);
+      .delete(url, { headers: headers })
+      .toPromise()
+      .catch(this.handleError);
   }
 
-  private post(clas: Clas){
-    let headers = new Headers({'Content-Type': 'application/json'});
+  private post(clas: Clas) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('Authorization', `Bearer ${this.authToken}`);
     return this.http
-               .post(this.sharedUrl, JSON.stringify(clas), {headers: headers})
-               .toPromise()
-               .catch(this.handleError);
+      .post(this.sharedUrl, JSON.stringify(clas), { headers: headers })
+      .toPromise()
+      .catch(this.handleError);
   }
 
   put(subjectTeacher: SubjectTeacher) {
-    let headers = new Headers({'Content-Type': 'application/json'});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('Authorization', `Bearer ${this.authToken}`);
-    let url = `${this.postUrl}/${subjectTeacher.id}`;
+    let url = `${this.subjectTeacherUrl}/${subjectTeacher.id}`;
     return this.http
-               .put(url, JSON.stringify(subjectTeacher), {headers: headers})
-               .toPromise()
-               .then(() => subjectTeacher)
-               .catch(this.handleError);
+      .put(url, JSON.stringify(subjectTeacher), { headers: headers })
+      .toPromise()
+      .then(() => subjectTeacher)
+      .catch(this.handleError);
   }
 
   private handleError(error: any) {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
-  
+
 }

@@ -6,33 +6,30 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class SectionService {
-  //private sectionUrl = 'app/section';
-  //private sectionUrl = 'app/section/sections.json';
-  private sectionUrl =  'http://localhost:8080/guldu/webapi/section/class';
-  private postUrl = 'http://localhost:8080/guldu/webapi/section';
+  private sectionUrl = 'http://localhost:8080/guldu/webapi/section';
   private authToken: string;
 
-  constructor(private http: Http, private cookieService:CookieService) {
+  constructor(private http: Http, private cookieService: CookieService) {
     this.authToken = this.cookieService.get("auth_token");
   }
-  
+
   getSections(id: number): Promise<Section[]> {
-    let headers = new Headers({'Content-Type': 'application/json'});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('Authorization', `Bearer ${this.authToken}`);
-    let url = `${this.sectionUrl}/${id}`;
+    let url = `${this.sectionUrl}/class/${id}`;
     return this.http
-               .get(url, {headers: headers})
-               .toPromise()
-               .then(response => response.json())
-               .catch(this.handleError);
+      .get(url, { headers: headers })
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
   }
 
   getSection(classId: number, sectionId: number) {
     return this.getSections(classId)
-               .then(sections => sections.find(section => section.id === sectionId));
+      .then(sections => sections.find(section => section.id === sectionId));
   }
 
-  save(section: Section): Promise<Section>  {
+  save(section: Section): Promise<Section> {
     if (section.id) {
       return this.put(section);
     }
@@ -40,39 +37,39 @@ export class SectionService {
   }
 
   delete(section: Section) {
-    let headers = new Headers({'Content-Type': 'application/json'});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('Authorization', `Bearer ${this.authToken}`);
-    let url = `${this.postUrl}/${section.id}`;
+    let url = `${this.sectionUrl}/${section.id}`;
     return this.http
-               .delete(url, {headers: headers})
-               .toPromise()
-               .catch(this.handleError);
+      .delete(url, { headers: headers })
+      .toPromise()
+      .catch(this.handleError);
   }
 
   private post(section: Section): Promise<Section> {
-    let headers = new Headers({'Content-Type': 'application/json'});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('Authorization', `Bearer ${this.authToken}`);
     return this.http
-               .post(this.postUrl, JSON.stringify(section), {headers: headers})
-               .toPromise()
-               .then(res => res.json())
-               .catch(this.handleError);
+      .post(this.sectionUrl, JSON.stringify(section), { headers: headers })
+      .toPromise()
+      .then(res => res.json())
+      .catch(this.handleError);
   }
 
   private put(section: Section) {
-    let headers = new Headers({'Content-Type': 'application/json'});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('Authorization', `Bearer ${this.authToken}`);
-    let url = `${this.postUrl}/${section.id}`;
+    let url = `${this.sectionUrl}/${section.id}`;
     return this.http
-               .put(url, JSON.stringify(section), {headers: headers})
-               .toPromise()
-               .then(() => section)
-               .catch(this.handleError);
+      .put(url, JSON.stringify(section), { headers: headers })
+      .toPromise()
+      .then(() => section)
+      .catch(this.handleError);
   }
 
   private handleError(error: any) {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
-  
+
 }

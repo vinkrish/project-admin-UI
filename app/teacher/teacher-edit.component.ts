@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
 import { ActivatedRoute }    from '@angular/router';
-import {CookieService}       from 'angular2-cookie/core';
 import { Teacher }           from './teacher';
 import { Gender }            from '../shared/gender';
 import { TeacherService }    from './teacher.service';
@@ -10,21 +9,23 @@ import { TeacherService }    from './teacher.service';
   templateUrl: 'app/teacher/teacher-edit.component.html',
   styleUrls: ['app/teacher/teacher-edit.component.css']
 })
+
 export class TeacherEditComponent implements OnInit, OnDestroy {
   @Input() teacher: Teacher;
   @Output() close = new EventEmitter();
   error: any;
   sub: any;
-  navigated = false; // true if navigated here
+  navigated = false;
   genders = [
     new Gender("M"),
     new Gender("F")
   ];
+
   constructor(
     private teacherService: TeacherService,
-    private route: ActivatedRoute,
-    private _cookieService:CookieService) {
+    private route: ActivatedRoute) {
   }
+
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       if (params['id'] !== undefined) {
@@ -38,20 +39,24 @@ export class TeacherEditComponent implements OnInit, OnDestroy {
       }
     });
   }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
+
   save() {
     this.teacherService
         .save(this.teacher)
         .then(teacher => {
-          this.teacher = teacher; // saved hero, w/ id if new
+          this.teacher = teacher;
           this.goBack(teacher);
         })
-        .catch(error => this.error = error); // TODO: Display error message
+        .catch(error => this.error = error);
   }
+
   goBack(savedTeacher: Teacher = null) {
     this.close.emit(savedTeacher);
     if (this.navigated) { window.history.back(); }
   }
+
 }

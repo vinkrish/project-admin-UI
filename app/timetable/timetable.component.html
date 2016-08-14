@@ -17,9 +17,9 @@
 <br/>
 <div>
     <label>Select Day: </label>
-    <select [(ngModel)]="selectedDay" (change)="daySelected($event.target.value)" >
-    <option *ngFor="let day of days" value={{day}}>{{day}}</option>
-</select>
+    <select [(ngModel)]="selectedDay" (change)="daySelected($event.target.value)">
+        <option *ngFor="let day of days" value={{day}}>{{day}}</option>
+    </select>
 </div>
 <br/>
 <div class="row col-md-10">
@@ -73,7 +73,7 @@
     <br/>
     <div>
         <label>Period: </label>
-        <input [(ngModel)]="newTimetable.periodNo"/>
+        <input [(ngModel)]="newTimetable.periodNo" />
     </div>
     <br/>
     <div>
@@ -85,12 +85,12 @@
     <br/>
     <div>
         <label>Timing From: </label>
-        <input [(ngModel)]="newTimetable.timingFrom"/>
+        <input [(ngModel)]="newTimetable.timingFrom" />
     </div>
     <br/>
     <div>
         <label>Timing To: </label>
-        <input [(ngModel)]="newTimetable.timingTo"/>
+        <input [(ngModel)]="newTimetable.timingTo" />
     </div>
     <br/>
     <button class="btn btn-normal btn-md" (click)="goBack()">Back</button>

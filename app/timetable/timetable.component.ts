@@ -12,10 +12,10 @@ import { SubjectsService }		from '../subjects/subjects.service';
 import { CookieService }		from 'angular2-cookie/core';
 
 @Component({
-  selector: 'ui-timetable',
-  templateUrl: 'app/timetable/timetable.component.html',
-  styleUrls:  ['app/timetable/timetable.component.css'],
-  directives: []
+	selector: 'ui-timetable',
+	templateUrl: 'app/timetable/timetable.component.html',
+	styleUrls: ['app/timetable/timetable.component.css'],
+	directives: []
 })
 
 export class TimetableComponent {
@@ -62,7 +62,7 @@ export class TimetableComponent {
 		this.timetables = [];
 		this.selectedTimetable = [];
 		this.selectedDay = "";
-	    this.days = [];
+		this.days = [];
 	}
 
 	getSections(id: number) {
@@ -82,35 +82,35 @@ export class TimetableComponent {
 		this.timetables = [];
 		this.selectedTimetable = [];
 		this.selectedDay = "";
-	    this.days = [];
-	    this.getTimetable(this.selectedSection.id);
+		this.days = [];
+		this.getTimetable(this.selectedSection.id);
 	}
 
-	getTimetable(sectionId: number){
+	getTimetable(sectionId: number) {
 		this.timetableService
-	      .getTimetables(sectionId)
-	      .then(timetables => {
-	      	this.timetables = timetables;
-	      	this.days = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	      })
-	      .catch(error => this.error = error);
+			.getTimetables(sectionId)
+			.then(timetables => {
+				this.timetables = timetables;
+				this.days = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+			})
+			.catch(error => this.error = error);
 	}
 
-	daySelected(day:string) {
+	daySelected(day: string) {
 		this.selectedTimetable = [];
-		for(let timetab of this.timetables) {
-			if(timetab.dayOfWeek == day) {
+		for (let timetab of this.timetables) {
+			if (timetab.dayOfWeek == day) {
 				this.selectedTimetable.push(timetab);
 			}
 		}
 	}
 
 	getSubjects(id: number) {
-    this.subjectsService
-        .getClassSubjects(id)
-        .then(subjects => this.subjects = subjects)
-        .catch(error => this.error = error);
-  	}
+		this.subjectsService
+			.getClassSubjects(id)
+			.then(subjects => this.subjects = subjects)
+			.catch(error => this.error = error);
+	}
 
 	ngOnInit() {
 		this.getClasses();
@@ -120,62 +120,62 @@ export class TimetableComponent {
 
 	save(timetable: Timetable, event: any) {
 		event.stopPropagation();
-	    this.timetableService
-	        .save(timetable)
-	        .then(() => {
-	        	this.selectedDay = "";
-	        	this.days = [];
-	        	this.timetables = [];
-	        	this.selectedTimetable = [];
-	        	this.getTimetable(this.selectedSection.id);
-	        })
-	        .catch(error => this.error = error);
+		this.timetableService
+			.save(timetable)
+			.then(() => {
+				this.selectedDay = "";
+				this.days = [];
+				this.timetables = [];
+				this.selectedTimetable = [];
+				this.getTimetable(this.selectedSection.id);
+			})
+			.catch(error => this.error = error);
 	}
 
 	insert() {
 		this.timetableService
-	        .save(this.newTimetable)
-	        .then(() => {
-	        	this.goBack();
-	        	this.selectedDay = "";
-	        	this.days = [];
-	        	this.timetables = [];
-	        	this.selectedTimetable = [];
-	        	this.getTimetable(this.selectedSection.id);
-	        })
-	        .catch(error => this.error = error);
+			.save(this.newTimetable)
+			.then(() => {
+				this.goBack();
+				this.selectedDay = "";
+				this.days = [];
+				this.timetables = [];
+				this.selectedTimetable = [];
+				this.getTimetable(this.selectedSection.id);
+			})
+			.catch(error => this.error = error);
 	}
 
 	delete(timetable: Timetable, event: any) {
-	    event.stopPropagation();
-	    this.timetableService
-	        .delete(timetable)
-	        .then(() => {
-	        	this.selectedDay = "";
-	        	this.days = [];
-	        	this.timetables = [];
-	        	this.selectedTimetable = [];
-	        	this.getTimetable(this.selectedSection.id);
-	        })
-	        .catch(error => this.error = error);
-  	}
+		event.stopPropagation();
+		this.timetableService
+			.delete(timetable)
+			.then(() => {
+				this.selectedDay = "";
+				this.days = [];
+				this.timetables = [];
+				this.selectedTimetable = [];
+				this.getTimetable(this.selectedSection.id);
+			})
+			.catch(error => this.error = error);
+	}
 
-  	add() {
-  		this.newTimetable = new Timetable();
-  		this.newTimetable.sectionId = this.selectedSection.id;
-  		this.newTimetable.dayOfWeek = this.selectedDay;
-  		this.enableNewTimetable();
-  	}
+	add() {
+		this.newTimetable = new Timetable();
+		this.newTimetable.sectionId = this.selectedSection.id;
+		this.newTimetable.dayOfWeek = this.selectedDay;
+		this.enableNewTimetable();
+	}
 
-  	enableNewTimetable() {
-  		if(this.selectedSection != null && this.selectedDay != ""){
-  			this.isNewTimetable = true;
-  		}
-  	}
+	enableNewTimetable() {
+		if (this.selectedSection != null && this.selectedDay != "") {
+			this.isNewTimetable = true;
+		}
+	}
 
-  	goBack() {
-  		this.newTimetable = null;
-  		this.isNewTimetable = false;
-  	}
+	goBack() {
+		this.newTimetable = null;
+		this.isNewTimetable = false;
+	}
 
 }

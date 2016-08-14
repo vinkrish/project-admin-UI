@@ -1,16 +1,17 @@
 import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Teacher }       from '../teacher/teacher';
-import { TeacherService }    from '../teacher/teacher.service';
-import { Section }           from './section';
-import { SectionService }   from './section.service';
-import { CookieService } from 'angular2-cookie/core';
+import { ActivatedRoute }  from '@angular/router';
+import { Teacher }         from '../teacher/teacher';
+import { TeacherService }  from '../teacher/teacher.service';
+import { Section }         from './section';
+import { SectionService }  from './section.service';
+import { CookieService }   from 'angular2-cookie/core';
 
 @Component({
   selector: 'ui-section-detail',
   templateUrl: 'app/section/section-edit.component.html',
   styleUrls: ['app/section/section-edit.component.css']
 })
+
 export class SectionEditComponent implements OnInit, OnDestroy {
   teachers: Teacher[];
   @Input() section: Section;
@@ -20,12 +21,14 @@ export class SectionEditComponent implements OnInit, OnDestroy {
   navigated = false;
   className: string = this._cookieService.get("className");
   classId: number = +this._cookieService.get("classId");
+
   constructor(
     private route: ActivatedRoute,
     private _cookieService:CookieService,
     private sectionService: SectionService,
     private teacherService: TeacherService) {
   }
+
   ngOnInit() {
     this.getTeachers();
     this.sub = this.route.params.subscribe(params => {
@@ -48,15 +51,18 @@ export class SectionEditComponent implements OnInit, OnDestroy {
       }
     });
   }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
+
   getTeachers() {
     this.teacherService
         .getTeachers()
         .then(teachers => this.teachers = teachers)
         .catch(error => this.error = error);
-    }
+  }
+
   save() {
     this.sectionService
         .save(this.section)
@@ -66,8 +72,10 @@ export class SectionEditComponent implements OnInit, OnDestroy {
         })
         .catch(error => this.error = error); // TODO: Display error message
   }
+
   goBack(savedSection: Section = null) {
     this.close.emit(savedSection);
     if (this.navigated) { window.history.back(); }
   }
+
 }
