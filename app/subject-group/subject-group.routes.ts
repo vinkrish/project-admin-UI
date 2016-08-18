@@ -1,14 +1,17 @@
-import { RouterConfig }         from '@angular/router';
-import { SubjectGroupComponent } from './subject-group.component';
-import { SubjectGroupEditComponent } from './subject-group-edit.component';
+import { RouterConfig }         		from '@angular/router';
+import { SubjectGroupComponent } 		from './subject-group.component';
+import { SubjectGroupEditComponent } 	from './subject-group-edit.component';
+import { LoggedInGuard }        		from '../login/logged-in.guard';
 
 export const subjectGroupRoutes: RouterConfig = [
   {
     path: 'subject-group',
-    component: SubjectGroupComponent
+    component: SubjectGroupComponent,
+    canActivate: [LoggedInGuard]
   },
   {
     path: 'subject-group/edit/:id',
-    component: SubjectGroupEditComponent
+    component: SubjectGroupEditComponent,
+    canActivate: [LoggedInGuard]
   }
 ];

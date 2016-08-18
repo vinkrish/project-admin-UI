@@ -17,7 +17,6 @@ import { TimetableService }        	from './timetable/timetable.service';
 @Component({
   selector: 'my-app',
   template: `
-    <br/>
 	  <router-outlet></router-outlet>
   `,
   styleUrls: ['app/app.component.css'],

@@ -9,6 +9,7 @@ import { bootstrap }      from '@angular/platform-browser-dynamic';
 import { HTTP_PROVIDERS } from '@angular/http';
 
 import { AppComponent }         from './app.component';
+import { provideRouter }  		from '@angular/router';
 import { appRouterProviders }   from './app.routes';
 
 import { LoginService }		from './login/credentials.service';
