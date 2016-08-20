@@ -1,17 +1,17 @@
 import { provideRouter, RouterConfig }  from '@angular/router';
 import { LoggedInGuard }                from '../login/logged-in.guard';
-import { attendanceRoutes }             from '../attendance/attendance.routes'
-import { clasRoutes }                   from '../class/clas.routes';
-import { clasSubjectGroupRoutes }       from '../class-subject-group/class-subject-group.routes';
-import { homeworkRoutes }               from '../homework/homework.routes';
-import { sectionRoutes }                from '../section/section.routes';
-import { studentRoutes }                from '../student/student.routes';
-import { subjectGroupRoutes }           from '../subject-group/subject-group.routes'
-import { subjectGroupSubjectRoutes }    from '../subject-group-subject/subject-group-subject.routes'
-import { subjectTeacherRoutes }         from '../subject-teacher/subject-teacher.routes';
-import { subjectsRoutes }               from '../subjects/subjects.routes';
-import { teacherRoutes }                from '../teacher/teacher.routes';
-import { timetableRoutes }              from '../timetable/timetable.routes';
+import { attendanceRoutes }             from '../content/attendance/attendance.routes'
+import { clasRoutes }                   from '../content/class/clas.routes';
+import { clasSubjectGroupRoutes }       from '../content/class-subject-group/class-subject-group.routes';
+import { homeworkRoutes }               from '../content/homework/homework.routes';
+import { sectionRoutes }                from '../content/section/section.routes';
+import { studentRoutes }                from '../content/student/student.routes';
+import { subjectGroupRoutes }           from '../content/subject-group/subject-group.routes'
+import { subjectGroupSubjectRoutes }    from '../content/subject-group-subject/subject-group-subject.routes'
+import { subjectTeacherRoutes }         from '../content/subject-teacher/subject-teacher.routes';
+import { subjectsRoutes }               from '../content/subjects/subjects.routes';
+import { teacherRoutes }                from '../content/teacher/teacher.routes';
+import { timetableRoutes }              from '../content/timetable/timetable.routes';
 
 export const dashboardRoutes: RouterConfig = [
   ...clasRoutes,
