@@ -44,9 +44,10 @@ var DashboardComponent = (function () {
     };
     DashboardComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'ui-dashboard',
-            templateUrl: 'app/dashboard/dashboard.component.html',
-            styleUrls: ['app/dashboard/dashboard.component.css']
+            templateUrl: 'dashboard.component.html',
+            styleUrls: ['dashboard.component.css']
         }), 
         __metadata('design:paramtypes', [router_1.Router, core_2.CookieService])
     ], DashboardComponent);

@@ -3,6 +3,7 @@ import { LoggedInGuard }                from './login/logged-in.guard';
 import { LoginComponent }               from './login/credentials.component';
 import { WelcomeComponent }             from './welcome/welcome.component';
 import { DashboardComponent }           from './dashboard/dashboard.component';
+import { ExamDashboardComponent }       from './exam-dashboard/exam-dashboard.component';
 import { welcomeRoutes }                from './welcome/welcome.routes'
 import { dashboardRoutes }              from './dashboard/dashboard.routes';
 
@@ -29,6 +30,11 @@ const routes: RouterConfig = [
       {
         path: 'dashboard',
         component: DashboardComponent,
+        canActivate: [LoggedInGuard]
+      },
+      {
+        path: 'exam-dashboard',
+        component: ExamDashboardComponent,
         canActivate: [LoggedInGuard]
       },
       ...welcomeRoutes

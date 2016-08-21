@@ -1,12 +1,13 @@
 import { Component } 		from '@angular/core';
 import { Router }    		from '@angular/router'
 import { CookieService }	from 'angular2-cookie/core';
-import { DashboardItem } 	from  '../shared/dashboard-item';
+import { DashboardItem } 	from  '../shared/component/dashboard-item';
 
 @Component({
+	moduleId: module.id,
 	selector: 'ui-exam-dashboard',
-	templateUrl: 'app/exam-dashboard/exam-dashboard.component.html',
-	styleUrls: ['app/exam-dashboard/exam-dashboard.component.css']
+	templateUrl: 'exam-dashboard.component.html',
+	styleUrls: ['exam-dashboard.component.css']
 })
 
 export class ExamDashboardComponent {
@@ -23,6 +24,7 @@ export class ExamDashboardComponent {
 	}
 
 	gotoDetail(item: string) {
+		console.log(item);
 		let link = ['/', item];
 		this.router.navigate(link);
 	}

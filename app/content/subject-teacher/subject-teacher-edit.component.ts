@@ -4,7 +4,7 @@ import { Teacher }                 from '../teacher/Teacher';
 import { TeacherService }          from '../teacher/teacher.service';
 import { SubjectTeacher }          from './subject-teacher'
 import { SubjectTeacherService }   from './subject-teacher.service';
-import { Gender }                  from '../../shared/gender';
+import { Gender }                  from '../../shared/component/gender';
 import { CookieService }           from 'angular2-cookie/core';
 
 @Component({

@@ -15,7 +15,6 @@ var LoggedInGuard = (function () {
     function LoggedInGuard(loginService, router) {
         this.loginService = loginService;
         this.router = router;
-        console.log("in constructor");
     }
     LoggedInGuard.prototype.canActivate = function (route, state) {
         if (this.loginService.isLoggedIn()) {

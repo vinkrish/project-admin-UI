@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
 import { ActivatedRoute }    from '@angular/router';
 import { Teacher }           from './teacher';
-import { Gender }            from '../../shared/gender';
+import { Gender }            from '../../shared/component/gender';
 import { TeacherService }    from './teacher.service';
 
 @Component({

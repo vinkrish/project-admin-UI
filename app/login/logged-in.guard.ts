@@ -8,7 +8,6 @@ import { LoginService } from './credentials.service';
 export class LoggedInGuard implements CanActivate {
 	
   constructor(private loginService: LoginService, private router: Router) {
-  	console.log("in constructor");
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

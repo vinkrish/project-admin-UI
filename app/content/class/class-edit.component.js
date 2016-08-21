@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var clas_1 = require('./clas');
-var attendance_type_1 = require('../../shared/attendance-type');
+var attendance_type_1 = require('../../shared/component/attendance-type');
 var class_service_1 = require('./class.service');
 var ClassEditComponent = (function () {
     function ClassEditComponent(classService, route) {

@@ -4,6 +4,7 @@ var logged_in_guard_1 = require('./login/logged-in.guard');
 var credentials_component_1 = require('./login/credentials.component');
 var welcome_component_1 = require('./welcome/welcome.component');
 var dashboard_component_1 = require('./dashboard/dashboard.component');
+var exam_dashboard_component_1 = require('./exam-dashboard/exam-dashboard.component');
 var welcome_routes_1 = require('./welcome/welcome.routes');
 var routes = [
     {
@@ -28,6 +29,11 @@ var routes = [
             {
                 path: 'dashboard',
                 component: dashboard_component_1.DashboardComponent,
+                canActivate: [logged_in_guard_1.LoggedInGuard]
+            },
+            {
+                path: 'exam-dashboard',
+                component: exam_dashboard_component_1.ExamDashboardComponent,
                 canActivate: [logged_in_guard_1.LoggedInGuard]
             }
         ].concat(welcome_routes_1.welcomeRoutes)

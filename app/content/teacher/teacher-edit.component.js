@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var teacher_1 = require('./teacher');
-var gender_1 = require('../../shared/gender');
+var gender_1 = require('../../shared/component/gender');
 var teacher_service_1 = require('./teacher.service');
 var TeacherEditComponent = (function () {
     function TeacherEditComponent(teacherService, route) {

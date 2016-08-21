@@ -24,14 +24,16 @@ var ExamDashboardComponent = (function () {
         this._cookieService.put("auth_token", "ms3e45u5os67tgo4ubfckmt2eit9g7");
     }
     ExamDashboardComponent.prototype.gotoDetail = function (item) {
+        console.log(item);
         var link = ['/', item];
         this.router.navigate(link);
     };
     ExamDashboardComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'ui-exam-dashboard',
-            templateUrl: 'app/exam-dashboard/exam-dashboard.component.html',
-            styleUrls: ['app/exam-dashboard/exam-dashboard.component.css']
+            templateUrl: 'exam-dashboard.component.html',
+            styleUrls: ['exam-dashboard.component.css']
         }), 
         __metadata('design:paramtypes', [router_1.Router, core_2.CookieService])
     ], ExamDashboardComponent);

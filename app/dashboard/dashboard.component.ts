@@ -1,12 +1,13 @@
 import { Component } 		from '@angular/core';
 import { Router }    		from '@angular/router'
 import { CookieService }	from 'angular2-cookie/core';
-import { DashboardItem } 	from  '../shared/dashboard-item';
+import { DashboardItem } 	from  '../shared/component/dashboard-item';
 
 @Component({
+	moduleId: module.id,
 	selector: 'ui-dashboard',
-	templateUrl: 'app/dashboard/dashboard.component.html',
-	styleUrls: ['app/dashboard/dashboard.component.css']
+	templateUrl: 'dashboard.component.html',
+	styleUrls: ['dashboard.component.css']
 })
 
 export class DashboardComponent {

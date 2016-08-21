@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Clas }           from './clas';
-import { AttendanceType } from '../../shared/attendance-type';
+import { AttendanceType } from '../../shared/component/attendance-type';
 import { ClassService }   from './class.service';
 
 @Component({

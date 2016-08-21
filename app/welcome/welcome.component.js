@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var header_component_1 = require('../shared/header/header.component');
 var attendance_service_1 = require('../content/attendance/attendance.service');
 var class_service_1 = require('../content/class/class.service');
 var class_subject_group_service_1 = require('../content/class-subject-group/class-subject-group.service');
@@ -22,14 +23,15 @@ var subject_teacher_service_1 = require('../content/subject-teacher/subject-teac
 var subjects_service_1 = require('../content/subjects/subjects.service');
 var teacher_service_1 = require('../content/teacher/teacher.service');
 var timetable_service_1 = require('../content/timetable/timetable.service');
+var exam_service_1 = require('../content/exam/exam.service');
 var WelcomeComponent = (function () {
     function WelcomeComponent() {
     }
     WelcomeComponent = __decorate([
         core_1.Component({
             selector: 'ui-welcome',
-            template: "\n\t<nav class=\"navbar navbar-default\">\n\t  <div class=\"container-fluid\">\n\t    <div class=\"navbar-header\">\n\t      <a class=\"navbar-brand\" href=\"#\">Instituition name goes here</a>\n\t    </div>\n\t    <ul class=\"nav navbar-nav\">\n\t      <li class=\"active\"><a [routerLink]=\"['/dashboard']\" routerLinkActive=\"active\">Dashboard</a></li>\n\t      <li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">Others <span class=\"caret\"></span></a>\n\t        <ul class=\"dropdown-menu\">\n\t          <li><a [routerLink]=\"['/exam']\">Exam</a></li>\n\t        </ul>\n\t      </li>\n\t    </ul>\n\t    <ul class=\"nav navbar-nav navbar-right\">\n\t      <li><a href=\"#\"><span class=\"glyphicon glyphicon-log-in\"></span> Logout</a></li>\n\t    </ul>\n\t  </div>\n\t</nav>\n\t  <router-outlet></router-outlet>\n\t",
-            directives: [router_1.ROUTER_DIRECTIVES],
+            template: "\n\t<ui-header></ui-header>\n\t<div class = \"container\">\n\t\t<router-outlet></router-outlet>\n\t</div>\n\t",
+            directives: [router_1.ROUTER_DIRECTIVES, header_component_1.HeaderComponent],
             styleUrls: ['app/welcome/welcome.component.css'],
             providers: [
                 attendance_service_1.AttendanceService,
@@ -43,7 +45,8 @@ var WelcomeComponent = (function () {
                 subject_teacher_service_1.SubjectTeacherService,
                 subjects_service_1.SubjectsService,
                 teacher_service_1.TeacherService,
-                timetable_service_1.TimetableService
+                timetable_service_1.TimetableService,
+                exam_service_1.ExamService
             ]
         }), 
         __metadata('design:paramtypes', [])

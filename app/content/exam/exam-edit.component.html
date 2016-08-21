@@ -1,0 +1,31 @@
+<div *ngIf="exam">
+    <h3>Exam Details</h3>
+
+    <br/>
+    <div>
+        <label>name: </label>
+        <input [(ngModel)]="exam.examName" placeholder="Exam Name" />
+    </div>
+    <br/>
+    <div>
+        <label>Class: {{className}} </label>
+    </div>
+    <br/>
+    <div>
+        <label>Term: </label>
+        <input [(ngModel)]="exam.term" placeholder="Term" />
+    </div>
+    <br/>
+    <div>
+        <label>Type: </label>
+        <input [(ngModel)]="exam.type" placeholder="Mark or Grade" />
+    </div>
+    <br/>
+    <div>
+        <label>Percentage: </label>
+        <input [(ngModel)]="exam.percentage" placeholder="Percentage" />
+    </div>
+    <br/>
+    <button class="btn btn-normal btn-md" (click)="goBack()">Back</button>
+    <button class="btn btn-success btn-md" (click)="save()">Save</button>
+</div>
