@@ -1,18 +1,20 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Instituition name goes here</a>
+<div *ngIf="hasLoggedIn">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">{{instituitionName}}</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a [routerLink]="['/dashboard']" routerLinkActive="active">Dashboard</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Others <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a [routerLink]="['/exam-dashboard']">Exam</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a (click)="logout()">Logout</a></li>
+            </ul>
         </div>
-        <ul class="nav navbar-nav">
-            <li class="active"><a [routerLink]="['/dashboard']" routerLinkActive="active">Dashboard</a></li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Others <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a [routerLink]="['/exam-dashboard']">Exam</a></li>
-                </ul>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-        </ul>
-    </div>
-</nav>
+    </nav>
+</div>

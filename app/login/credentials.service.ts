@@ -1,48 +1,95 @@
-import { Injectable }     from '@angular/core';
-import { Headers, Http }  from '@angular/http';
-import { Credentials }    from './credentials';
-import { Observable }     from 'rxjs/Observable';
+import { Injectable }               from '@angular/core';
+import { Headers, Http, Response }  from '@angular/http';
+import { Credentials }              from './credentials';
+import { AuthResponse }             from './auth-response';
+import { CookieService }            from 'angular2-cookie/core';
+import { Observable }               from 'rxjs/Observable';
+import { BehaviorSubject }          from 'rxjs/BehaviorSubject'
 import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class LoginService {
-  private loggedIn = true;
+  private loggedIn = false;
+  private auth_response: AuthResponse;
+  private loginUrl = 'http://localhost:8080/guldu/webapi/login';
+  private isLoggedInSubject: BehaviorSubject<boolean>;
 
-  constructor(private http: Http) {
-    //this.loggedIn = this.cookieService.get("auth_token");
-    //this.loggedIn = !!localStorage.getItem('auth_token');
+  constructor(
+    private http: Http,
+    private cookieService: CookieService) {
+      this.isLoggedInSubject = new BehaviorSubject(this.checkIsLoggedIn());
   }
 
-  login(credentials: Credentials) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this.http
-      .post(
-      '/login',
-      JSON.stringify({ credentials }),
-      { headers }
-      )
-      .map(res => res.json())
-      .map((res) => {
-        if (res.success) {
-          localStorage.setItem('auth_token', res.auth_token);
-          this.loggedIn = true;
-        }
+  get loggedInObservable() {
+        return this.isLoggedInSubject.asObservable();
+    }
 
-        return res.success;
-      });
+    checkIsLoggedIn() {
+        let isLoggedIn = false;
+        isLoggedIn = (this.cookieService.get("isLoggedIn") === "true");
+        return isLoggedIn;
+    }
+
+
+  login(credentials: Credentials) : Observable<boolean> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    return this.http
+      .post(this.loginUrl, JSON.stringify({ credentials }), { headers: headers })
+      .map(this.extractData);
+  }
+
+  private extractData(res: Response) {
+    let body = res;
+    if (res.status == 200) {
+        var header = res.headers;
+          this.auth_response = body.json();
+          console.log(this.auth_response.token);
+          this.cookieService.put("schoolId", ""+this.auth_response.schoolId);
+          this.cookieService.put("schoolName", this.auth_response.schoolName);
+          this.cookieService.put("auth_token",this.auth_response.token);
+          this.cookieService.put("isLoggedIn", ""+true);
+          this.isLoggedInSubject.next(this.checkIsLoggedIn());
+          return true;
+        }
+    return false;
+  }
+
+  post(credentials: Credentials): Promise<boolean> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    return this.http
+      .post(this.loginUrl, JSON.stringify(credentials), { headers: headers })
+      .toPromise()
+      .then(res => {
+        if (res.status === 200) {
+          this.auth_response = res.json();
+          console.log(this.auth_response.token);
+          this.cookieService.put("schoolId", ""+this.auth_response.schoolId);
+          this.cookieService.put("schoolName", this.auth_response.schoolName);
+          this.cookieService.put("auth_token",this.auth_response.token);
+          this.cookieService.put("isLoggedIn", ""+true);
+          this.isLoggedInSubject.next(this.checkIsLoggedIn());
+          return true;
+        }
+        return false;
+      })
+      .catch(this.handleError);
   }
 
   logout() {
-    localStorage.removeItem('auth_token');
+    //localStorage.removeItem('auth_token');
+    this.cookieService.put("isLoggedIn", ""+false);
+    this.cookieService.put("auth_token", "");
+    this.isLoggedInSubject.next(this.checkIsLoggedIn());
     this.loggedIn = false;
   }
 
   isLoggedIn() {
-    return this.loggedIn;
+    return this.checkIsLoggedIn();
+  }
+
+  private handleError(error: any) {
+    console.error('An error occurred', error);
+    return Promise.reject(error.message || error);
   }
 
 }

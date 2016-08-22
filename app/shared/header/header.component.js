@@ -10,9 +10,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var router_2 = require('@angular/router');
+var core_2 = require('angular2-cookie/core');
+var credentials_service_1 = require('../../login/credentials.service');
 var HeaderComponent = (function () {
-    function HeaderComponent() {
+    function HeaderComponent(loginService, router, cookieService) {
+        this.loginService = loginService;
+        this.router = router;
+        this.cookieService = cookieService;
     }
+    HeaderComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.loginSub = this.loginService.loggedInObservable.subscribe(function (val) {
+            _this.hasLoggedIn = val;
+            _this.instituitionName = _this.cookieService.get("schoolName");
+        });
+    };
+    HeaderComponent.prototype.ngOnDestroy = function () {
+        this.loginSub.unsubscribe();
+    };
+    HeaderComponent.prototype.logout = function () {
+        this.loginService.logout();
+        this.hasLoggedIn = this.loginService.isLoggedIn();
+        this.router.navigate(['/login']);
+    };
     HeaderComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -21,7 +42,7 @@ var HeaderComponent = (function () {
             styleUrls: ['header.component.css'],
             directives: [router_1.ROUTER_DIRECTIVES],
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [credentials_service_1.LoginService, router_2.Router, core_2.CookieService])
     ], HeaderComponent);
     return HeaderComponent;
 }());

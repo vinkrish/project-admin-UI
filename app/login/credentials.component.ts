@@ -1,28 +1,49 @@
-import { ElementRef }    from '@angular/core';
-import { Component }     from '@angular/core';
-import { Router }        from '@angular/router';
-import { Credentials }   from './credentials';
-import { LoginService }  from './credentials.service';
+import { ElementRef }           from '@angular/core';
+import { Component, OnInit }    from '@angular/core';
+import { Router }               from '@angular/router';
+import { Credentials }          from './credentials';
+import { LoginService }         from './credentials.service';
 
 @Component({
+    moduleId: module.id,
     selector: 'login-form',
-    templateUrl: 'app/login/credentials.component.html',
-    styleUrls: ['app/login/credentials.component.css']
+    templateUrl: 'credentials.component.html',
+    styleUrls: ['credentials.component.css']
 })
 
-export class LoginComponent {
-
+export class LoginComponent implements OnInit{
+    error: any;
     public user = new Credentials('', '');
     public errorMsg = '';
 
-    constructor(private loginService: LoginService, private router: Router) { }
+    constructor(
+        private loginService: LoginService,
+        private router: Router) { 
+    }
 
     login() {
-        localStorage.setItem('user', JSON.stringify(this.user));
-        this.loginService.login(this.user).subscribe((result) => {
+        this.loginService.login(this.user)
+            .subscribe((result) => {
             if (result) {
                 this.router.navigate(['/dashboard']);
             }
         });
+    }
+
+    login2() {
+        this.loginService
+          .post(this.user)
+          .then(result => {
+            if (result) {
+                this.router.navigate(['/dashboard']);
+            }
+          })
+          .catch(error => this.error = error);
+      }
+
+    ngOnInit(){
+        if (this.loginService.isLoggedIn()) {
+            this.router.navigate(['/dashboard']);
+        }
     }
 }

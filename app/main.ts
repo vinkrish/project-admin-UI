@@ -12,10 +12,12 @@ import { AppComponent }         from './app.component';
 import { provideRouter }  		from '@angular/router';
 import { appRouterProviders }   from './app.routes';
 
+import { CookieService }    from 'angular2-cookie/core';
 import { LoginService }		from './login/credentials.service';
 import { LoggedInGuard }	from './login/logged-in.guard';
 
 bootstrap(AppComponent, [
+	CookieService,
     appRouterProviders,
     HTTP_PROVIDERS,
     LoginService,

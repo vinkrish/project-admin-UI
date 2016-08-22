@@ -1,16 +1,15 @@
 import { provideRouter, RouterConfig }  from '@angular/router';
 import { LoggedInGuard }                from './login/logged-in.guard';
 import { LoginComponent }               from './login/credentials.component';
-import { WelcomeComponent }             from './welcome/welcome.component';
 import { DashboardComponent }           from './dashboard/dashboard.component';
 import { ExamDashboardComponent }       from './exam-dashboard/exam-dashboard.component';
-import { welcomeRoutes }                from './welcome/welcome.routes'
 import { dashboardRoutes }              from './dashboard/dashboard.routes';
+import { examDashboardRoutes }          from './exam-dashboard/exam-dashboard.routes';
 
 const routes: RouterConfig = [
   {
     path: '',
-    redirectTo: '',
+    redirectTo: '/dashboard',
     pathMatch: 'full'
   },
   {
@@ -18,28 +17,17 @@ const routes: RouterConfig = [
     component: LoginComponent
   },
   {
-    path: '',
-    component: WelcomeComponent,
-    canActivate: [LoggedInGuard],
-    children: [
-      {
-        path: '',
-        redirectTo: '/dashboard',
-        pathMatch: 'full'
-      },
-      {
-        path: 'dashboard',
-        component: DashboardComponent,
-        canActivate: [LoggedInGuard]
-      },
-      {
-        path: 'exam-dashboard',
-        component: ExamDashboardComponent,
-        canActivate: [LoggedInGuard]
-      },
-      ...welcomeRoutes
-    ]
-  }
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [LoggedInGuard]
+  },
+  {
+    path: 'exam-dashboard',
+    component: ExamDashboardComponent,
+    canActivate: [LoggedInGuard]
+  },
+  ...dashboardRoutes,
+  ...examDashboardRoutes
 ];
 
 export const appRouterProviders = [

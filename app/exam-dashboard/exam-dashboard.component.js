@@ -10,18 +10,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var core_2 = require('angular2-cookie/core');
 var ExamDashboardComponent = (function () {
-    function ExamDashboardComponent(router, _cookieService) {
+    function ExamDashboardComponent(router) {
         this.router = router;
-        this._cookieService = _cookieService;
         this.Items1 = [
             { name: 'Exam', link: 'exam' },
             { name: 'Exam Subject Group', link: 'exam-subject-group' },
             { name: 'Exam Subject', link: 'exam-subject' }
         ];
-        this._cookieService.put("schoolId", "107");
-        this._cookieService.put("auth_token", "ms3e45u5os67tgo4ubfckmt2eit9g7");
     }
     ExamDashboardComponent.prototype.gotoDetail = function (item) {
         console.log(item);
@@ -35,7 +31,7 @@ var ExamDashboardComponent = (function () {
             templateUrl: 'exam-dashboard.component.html',
             styleUrls: ['exam-dashboard.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.Router, core_2.CookieService])
+        __metadata('design:paramtypes', [router_1.Router])
     ], ExamDashboardComponent);
     return ExamDashboardComponent;
 }());

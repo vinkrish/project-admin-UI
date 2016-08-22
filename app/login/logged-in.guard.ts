@@ -7,7 +7,9 @@ import { LoginService } from './credentials.service';
 @Injectable()
 export class LoggedInGuard implements CanActivate {
 	
-  constructor(private loginService: LoginService, private router: Router) {
+  constructor(
+    private loginService: LoginService,
+    private router: Router) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

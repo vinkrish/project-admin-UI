@@ -21,18 +21,35 @@ var LoginComponent = (function () {
     }
     LoginComponent.prototype.login = function () {
         var _this = this;
-        localStorage.setItem('user', JSON.stringify(this.user));
-        this.loginService.login(this.user).subscribe(function (result) {
+        this.loginService.login(this.user)
+            .subscribe(function (result) {
             if (result) {
                 _this.router.navigate(['/dashboard']);
             }
         });
     };
+    LoginComponent.prototype.login2 = function () {
+        var _this = this;
+        this.loginService
+            .post(this.user)
+            .then(function (result) {
+            if (result) {
+                _this.router.navigate(['/dashboard']);
+            }
+        })
+            .catch(function (error) { return _this.error = error; });
+    };
+    LoginComponent.prototype.ngOnInit = function () {
+        if (this.loginService.isLoggedIn()) {
+            this.router.navigate(['/dashboard']);
+        }
+    };
     LoginComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'login-form',
-            templateUrl: 'app/login/credentials.component.html',
-            styleUrls: ['app/login/credentials.component.css']
+            templateUrl: 'credentials.component.html',
+            styleUrls: ['credentials.component.css']
         }), 
         __metadata('design:paramtypes', [credentials_service_1.LoginService, router_1.Router])
     ], LoginComponent);

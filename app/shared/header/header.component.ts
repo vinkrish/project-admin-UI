@@ -1,5 +1,8 @@
-import { Component }	from '@angular/core';
+import { Component, OnInit }	from '@angular/core';
 import { ROUTER_DIRECTIVES }	from '@angular/router';
+import { Router }             from '@angular/router';
+import { CookieService }      from 'angular2-cookie/core';
+import { LoginService } 		  from '../../login/credentials.service';
 
  @Component({
  	moduleId: module.id,
@@ -9,5 +12,32 @@ import { ROUTER_DIRECTIVES }	from '@angular/router';
    	directives: [ROUTER_DIRECTIVES],
  })
 
- export class HeaderComponent{
+ export class HeaderComponent implements OnInit{
+ 	private hasLoggedIn: boolean;
+  private loginSub;
+  private instituitionName: string;
+
+ 	constructor(
+   		private loginService: LoginService,
+   		private router: Router,
+      private cookieService: CookieService) {
+  	}
+
+  	ngOnInit(){
+        this.loginSub = this.loginService.loggedInObservable.subscribe(val => {
+        this.hasLoggedIn = val;
+        this.instituitionName = this.cookieService.get("schoolName");
+      });
+  	}
+
+    ngOnDestroy() {
+      this.loginSub.unsubscribe();
+    }
+
+  	logout(){
+  		this.loginService.logout();
+  		this.hasLoggedIn = this.loginService.isLoggedIn();
+  		this.router.navigate(['/login']);
+  	}
+
  }

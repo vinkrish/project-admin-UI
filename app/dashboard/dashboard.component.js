@@ -10,11 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var core_2 = require('angular2-cookie/core');
 var DashboardComponent = (function () {
-    function DashboardComponent(router, _cookieService) {
+    function DashboardComponent(router) {
         this.router = router;
-        this._cookieService = _cookieService;
         this.Items1 = [
             { name: 'Class', link: 'class' },
             { name: 'Section', link: 'section' }
@@ -35,8 +33,6 @@ var DashboardComponent = (function () {
             { name: 'Student', link: 'student' },
             { name: 'Teacher', link: 'teacher' }
         ];
-        this._cookieService.put("schoolId", "107");
-        this._cookieService.put("auth_token", "ms3e45u5os67tgo4ubfckmt2eit9g7");
     }
     DashboardComponent.prototype.gotoDetail = function (item) {
         var link = ['/', item];
@@ -49,7 +45,7 @@ var DashboardComponent = (function () {
             templateUrl: 'dashboard.component.html',
             styleUrls: ['dashboard.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.Router, core_2.CookieService])
+        __metadata('design:paramtypes', [router_1.Router])
     ], DashboardComponent);
     return DashboardComponent;
 }());
