@@ -51,13 +51,14 @@ export class SubjectGroupSubjectEditComponent implements OnInit, OnDestroy {
       .then(subjects => this.subjects = subjects)
       .catch(error => this.error = error);
     }
+
     subjectSelected(subjectId) {
-    for (var i = 0; i < this.subjects.length; i++) {
-      if (this.subjects[i].id == subjectId) {
-        this.subjectGroupSubject.subjectName = this.subjects[i].subjectName;
+      for (var i = 0; i < this.subjects.length; i++) {
+        if (this.subjects[i].id == subjectId) {
+          this.subjectGroupSubject.subjectName = this.subjects[i].subjectName;
+        }
       }
     }
-  }
 
   save() {
     this.sgsService

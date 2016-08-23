@@ -24,6 +24,7 @@ var subjects_service_1 = require('../app/content/subjects/subjects.service');
 var teacher_service_1 = require('../app/content/teacher/teacher.service');
 var timetable_service_1 = require('../app/content/timetable/timetable.service');
 var exam_service_1 = require('../app/content/exam/exam.service');
+var exam_subject_group_service_1 = require('../app/content/exam-subject-group/exam-subject-group.service');
 var AppComponent = (function () {
     function AppComponent() {
     }
@@ -46,7 +47,8 @@ var AppComponent = (function () {
                 subjects_service_1.SubjectsService,
                 teacher_service_1.TeacherService,
                 timetable_service_1.TimetableService,
-                exam_service_1.ExamService
+                exam_service_1.ExamService,
+                exam_subject_group_service_1.ExamSubjectGroupService
             ]
         }), 
         __metadata('design:paramtypes', [])

@@ -1,0 +1,159 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var clas_1 = require('../class/clas');
+var class_service_1 = require('../class/class.service');
+var exam_1 = require('../exam/exam');
+var exam_service_1 = require('../exam/exam.service');
+var subject_group_service_1 = require('../subject-group/subject-group.service');
+var exam_subject_group_1 = require('./exam-subject-group');
+var exam_subject_group_service_1 = require('./exam-subject-group.service');
+var core_2 = require('angular2-cookie/core');
+var ExamSubjectGroupComponent = (function () {
+    function ExamSubjectGroupComponent(router, _cookieService, classService, examService, subjectGroupService, esgService) {
+        this.router = router;
+        this._cookieService = _cookieService;
+        this.classService = classService;
+        this.examService = examService;
+        this.subjectGroupService = subjectGroupService;
+        this.esgService = esgService;
+        this.addingEsg = false;
+    }
+    ExamSubjectGroupComponent.prototype.getClasses = function () {
+        var _this = this;
+        this.classService
+            .getClasses()
+            .then(function (classes) { return _this.classes = classes; })
+            .catch(function (error) { return _this.error = error; });
+    };
+    ExamSubjectGroupComponent.prototype.classSelected = function (classId) {
+        //this.selectedClass = null;
+        for (var i = 0; i < this.classes.length; i++) {
+            if (this.classes[i].id == classId) {
+                this.selectedClass = this.classes[i];
+            }
+        }
+        this.examSubjectGroups = null;
+        this.getExams(this.selectedClass.id);
+        this._cookieService.put("classId", "" + this.selectedClass.id);
+        this._cookieService.put("className", this.selectedClass.className);
+        this.addingEsg = false;
+    };
+    ExamSubjectGroupComponent.prototype.getExams = function (id) {
+        var _this = this;
+        this.examService
+            .getExams(id)
+            .then(function (exams) { return _this.exams = exams; })
+            .catch(function (error) { return _this.error = error; });
+    };
+    ExamSubjectGroupComponent.prototype.examSelected = function (examId) {
+        for (var i = 0; i < this.exams.length; i++) {
+            if (this.exams[i].id == examId) {
+                this.selectedExam = this.exams[i];
+            }
+        }
+        this.examSubjectGroups = null;
+        this.getExamSubjectGroup(this.selectedExam.id);
+        this._cookieService.put("examId", "" + this.selectedExam.id);
+        this._cookieService.put("examName", this.selectedExam.examName);
+        this.addingEsg = false;
+    };
+    ExamSubjectGroupComponent.prototype.getExamSubjectGroup = function (id) {
+        var _this = this;
+        this.esgService
+            .getExamSubjectGroups(id)
+            .then(function (esgs) { return _this.examSubjectGroups = esgs; })
+            .catch(function (error) { return _this.error = error; });
+    };
+    ExamSubjectGroupComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.getSubjectGroups();
+        this.selectedClass = new clas_1.Clas();
+        this.selectedExam = new exam_1.Exam();
+    };
+    ExamSubjectGroupComponent.prototype.onSelect = function (esg) {
+        this.selectedEsg = esg;
+        this.addingEsg = false;
+    };
+    ExamSubjectGroupComponent.prototype.close = function (savedEsg) {
+        this.addingEsg = false;
+        if (savedEsg) {
+            this.getExams(this.selectedEsg.id);
+        }
+    };
+    ExamSubjectGroupComponent.prototype.goToDashboard = function () {
+        this.router.navigate(['/dashboard']);
+    };
+    ExamSubjectGroupComponent.prototype.add = function () {
+        if (this.addingEsg) {
+            this.addingEsg = false;
+        }
+        else {
+            this.examSubjectGroup = new exam_subject_group_1.ExamSubjectGroup();
+            this.examSubjectGroup.examId = this.selectedExam.id;
+            this.addingEsg = true;
+        }
+        this.selectedEsg = null;
+    };
+    ExamSubjectGroupComponent.prototype.delete = function (esg, event) {
+        var _this = this;
+        event.stopPropagation();
+        this.esgService
+            .delete(esg)
+            .then(function (res) {
+            _this.examSubjectGroups = _this.examSubjectGroups.filter(function (h) { return h !== esg; });
+            if (_this.selectedEsg === esg) {
+                _this.selectedEsg = null;
+            }
+        })
+            .catch(function (error) { return _this.error = error; });
+    };
+    ExamSubjectGroupComponent.prototype.getSubjectGroups = function () {
+        var _this = this;
+        this.subjectGroupService
+            .getSubjectGroups()
+            .then(function (subjectGroups) { return _this.subjectGroups = subjectGroups; })
+            .catch(function (error) { return _this.error = error; });
+    };
+    ExamSubjectGroupComponent.prototype.subjectGroupSelected = function (subjectGroupId) {
+        for (var i = 0; i < this.subjectGroups.length; i++) {
+            if (this.subjectGroups[i].id == subjectGroupId) {
+                this.examSubjectGroup.subjectGroupName = this.subjectGroups[i].subjectGroupName;
+            }
+        }
+    };
+    ExamSubjectGroupComponent.prototype.save = function () {
+        var _this = this;
+        this.esgService
+            .post(this.examSubjectGroup)
+            .then(function (examSubjectGroup) {
+            _this.addingEsg = false;
+            _this.examSubjectGroup = null;
+            _this.examSubjectGroups = null;
+            _this.selectedExam = new exam_1.Exam();
+        })
+            .catch(function (error) { return _this.error = error; });
+    };
+    ExamSubjectGroupComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'ui-esg',
+            templateUrl: 'exam-subject-group.component.html',
+            styleUrls: ['exam-subject-group.component.css'],
+            directives: []
+        }), 
+        __metadata('design:paramtypes', [router_1.Router, core_2.CookieService, class_service_1.ClassService, exam_service_1.ExamService, subject_group_service_1.SubjectGroupService, exam_subject_group_service_1.ExamSubjectGroupService])
+    ], ExamSubjectGroupComponent);
+    return ExamSubjectGroupComponent;
+}());
+exports.ExamSubjectGroupComponent = ExamSubjectGroupComponent;
+//# sourceMappingURL=exam-subject-group.component.js.map
