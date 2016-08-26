@@ -16,6 +16,7 @@ import { CookieService }           from 'angular2-cookie/core';
 
 export class SubjectTeacherEditComponent implements OnInit, OnDestroy {
   subjectTeacher: SubjectTeacher;
+  subjectName: string;
   teachers: Teacher[];
   @Output() close = new EventEmitter();
   error: any;
@@ -42,6 +43,7 @@ export class SubjectTeacherEditComponent implements OnInit, OnDestroy {
         this.subjectTeacherService.getSubjectTeacher(this.sectionId, subjectTeacherId)
           .then(subjectTeacher => {
             this.subjectTeacher = subjectTeacher;
+            this.subjectName = subjectTeacher.subjectName;
           });
       }
     });
@@ -69,11 +71,11 @@ export class SubjectTeacherEditComponent implements OnInit, OnDestroy {
   save() {
     this.subjectTeacherService
       .put(this.subjectTeacher)
-      .then(hero => {
-        this.subjectTeacher = hero; // saved hero, w/ id if new
-        this.goBack(hero);
+      .then(subjectTeacher => {
+        this.subjectTeacher = subjectTeacher;
+        this.goBack(subjectTeacher);
       })
-      .catch(error => this.error = error); // TODO: Display error message
+      .catch(error => this.error = error);
   }
 
   goBack(savedSubjectTeacher: SubjectTeacher = null) {

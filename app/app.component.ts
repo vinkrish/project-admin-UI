@@ -15,6 +15,7 @@ import { TeacherService }        	  from '../app/content/teacher/teacher.service
 import { TimetableService }        	from '../app/content/timetable/timetable.service';
 import { ExamService }        		  from '../app/content/exam/exam.service';
 import { ExamSubjectGroupService }  from '../app/content/exam-subject-group/exam-subject-group.service';
+import { ExamSubjectService }       from '../app/content/exam-subject/exam-subject.service';
 
 @Component({
   selector: 'my-app',
@@ -40,7 +41,8 @@ import { ExamSubjectGroupService }  from '../app/content/exam-subject-group/exam
     TeacherService,
     TimetableService,
     ExamService,
-    ExamSubjectGroupService
+    ExamSubjectGroupService,
+    ExamSubjectService
   ]
 })
 export class AppComponent { }

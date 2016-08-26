@@ -1,0 +1,107 @@
+<ul class="breadcrumb">
+    <li class="active">Exam Subject</li>
+</ul>
+<div>
+    <label>Class: </label>
+    <select [(ngModel)]="selectedClass.id" (change)="classSelected($event.target.value)">
+        <option *ngFor="let clas of classes" value={{clas.id}}>{{clas.className}}</option>
+    </select>
+</div>
+<br/>
+<div>
+    <label>Exam: </label>
+    <select [(ngModel)]="selectedExam.id" (change)="examSelected($event.target.value)">
+        <option *ngFor="let exam of exams" value={{exam.id}}>{{exam.examName}}</option>
+    </select>
+</div>
+<br/>
+<div>
+    <label>Exam Subject Group: </label>
+    <select [(ngModel)]="selectedEsg.subjectGroupId" (change)="esgSelected($event.target.value)">
+        <option *ngFor="let esg of examSubjectGroups" value={{esg.subjectGroupId}}>{{esg.subjectGroupName}}</option>
+    </select>
+</div>
+<div class="row col-md-12">
+    <table class="table table-bordered table-striped">
+        <caption></caption>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Max Mark</th>
+                <th>Fail Mark</th>
+                <th>Percentage</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let exmSubject of examSubjects" (click)="onSelect(exmSubject)" [class.selected]="exmSubject === selectedExamSubject">
+                <td class="col-md-4">{{exmSubject.subjectName}}</td>
+                <td class="col-md-2">
+                    <input [(ngModel)]="exmSubject.maximumMark" placeholder="Max Mark" />
+                </td>
+                <td class="col-md-2">
+                    <input [(ngModel)]="exmSubject.failMark" placeholder="Fail Mark" />
+                </td>
+                <td class="col-md-2">
+                    <input [(ngModel)]="exmSubject.percentage" placeholder="%" />
+                </td>
+                <td class="col-md-1">
+                    <button type="button" class="btn btn-primary btn-xs center-block" (click)="update(exmSubject, $event)">
+                        update
+                    </button>
+                </td>
+                <td class="col-md-1">
+                    <button type="button" class="btn btn-danger btn-xs center-block" (click)="delete(exmSubject, $event)">
+                        delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="clearfix"></div>
+<div class="error" *ngIf="error">{{error}}</div>
+<button type="button" class="btn btn-success btn-md" (click)="add()">Add </button>
+<div *ngIf="addingExamSubject">
+    <div *ngIf="examSubject">
+    <h3>Exam Subject Details</h3>
+    <br/>
+    <div>
+        <label>Class: {{selectedClass.className}} </label>
+    </div>
+    <br/>
+    <div>
+        <label>Exam: {{selectedExam.examName}} </label>
+    </div>
+    <br/>
+    <div>
+        <label>Subject Group: {{selectedEsg.subjectGroupName}} </label>
+    </div>
+    <br/>
+    <div>
+        <label>Maximum Mark: </label>
+        <input [(ngModel)]="examSubject.maximumMark" placeholder="Maximum Mark" />
+    </div>
+    <br/>
+    <div>
+        <label>Fail Mark: </label>
+        <input [(ngModel)]="examSubject.failMark" placeholder="Fail Mark" />
+    </div>
+    <br/>
+    <div>
+        <label>Percentage: </label>
+        <input [(ngModel)]="examSubject.percentage" placeholder="Percentage" />
+    </div>
+    <br/>
+    <div>
+        <label>Subject: </label>
+        <select [(ngModel)]="examSubject.subjectId" (change)="subjectSelected($event.target.value)">
+            <option *ngFor="let sgs of subjectGroupSubjects" value={{sgs.subjectId}}>{{sgs.subjectName}}</option>
+        </select>
+    </div>
+    <br/>
+    <button class="btn btn-normal btn-md" (click)="goBack()">Back</button>
+    <button class="btn btn-success btn-md" (click)="save()">Save</button>
+</div>
+</div>

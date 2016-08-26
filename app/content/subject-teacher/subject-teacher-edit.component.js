@@ -36,6 +36,7 @@ var SubjectTeacherEditComponent = (function () {
                 _this.subjectTeacherService.getSubjectTeacher(_this.sectionId, subjectTeacherId)
                     .then(function (subjectTeacher) {
                     _this.subjectTeacher = subjectTeacher;
+                    _this.subjectName = subjectTeacher.subjectName;
                 });
             }
         });
@@ -61,11 +62,11 @@ var SubjectTeacherEditComponent = (function () {
         var _this = this;
         this.subjectTeacherService
             .put(this.subjectTeacher)
-            .then(function (hero) {
-            _this.subjectTeacher = hero; // saved hero, w/ id if new
-            _this.goBack(hero);
+            .then(function (subjectTeacher) {
+            _this.subjectTeacher = subjectTeacher;
+            _this.goBack(subjectTeacher);
         })
-            .catch(function (error) { return _this.error = error; }); // TODO: Display error message
+            .catch(function (error) { return _this.error = error; });
     };
     SubjectTeacherEditComponent.prototype.goBack = function (savedSubjectTeacher) {
         if (savedSubjectTeacher === void 0) { savedSubjectTeacher = null; }

@@ -4,19 +4,17 @@ import { Clas }               from '../class/clas';
 import { ClassService }       from '../class/class.service';
 import { Exam }			 		      from '../exam/exam';
 import { ExamService }		 	  from '../exam/exam.service';
-import { SubjectGroup }       from '../subject-group/subject-group';
-import { SubjectGroupService }     from '../subject-group/subject-group.service';
+import { ClassSubjectGroup }       from '../class-subject-group/class-subject-group';
+import { ClassSubjectGroupService }from '../class-subject-group/class-subject-group.service';
 import { ExamSubjectGroup }        from './exam-subject-group';
 import { ExamSubjectGroupService } from './exam-subject-group.service';
-import { ExamSubjectGroupEditComponent } 	from './exam-subject-group-edit.component';
-import { CookieService }       from 'angular2-cookie/core';
+import { CookieService }           from 'angular2-cookie/core';
 
 @Component({
 	moduleId: module.id,
 	selector: 'ui-esg',
 	templateUrl: 'exam-subject-group.component.html',
-	styleUrls: ['exam-subject-group.component.css'],
-	directives: []
+	styleUrls: ['exam-subject-group.component.css']
 })
 
 export class ExamSubjectGroupComponent implements OnInit {
@@ -24,7 +22,7 @@ export class ExamSubjectGroupComponent implements OnInit {
   selectedClass: Clas;
   exams: Exam[];
   selectedExam: Exam;
-  subjectGroups: SubjectGroup[];
+  classSubjectGroups: ClassSubjectGroup[];
   examSubjectGroup: ExamSubjectGroup;
   examSubjectGroups: ExamSubjectGroup[];
   selectedEsg: ExamSubjectGroup;
@@ -36,7 +34,7 @@ export class ExamSubjectGroupComponent implements OnInit {
     private _cookieService: CookieService,
     private classService: ClassService,
     private examService: ExamService,
-    private subjectGroupService: SubjectGroupService,
+    private csgService: ClassSubjectGroupService,
     private esgService: ExamSubjectGroupService) { 
   }
 
@@ -54,10 +52,10 @@ export class ExamSubjectGroupComponent implements OnInit {
         this.selectedClass = this.classes[i];
       }
     }
+    this.classSubjectGroups = null;
+    this.getClassSubjectGroups(this.selectedClass.id);
     this.examSubjectGroups = null;
     this.getExams(this.selectedClass.id);
-    this._cookieService.put("classId", "" + this.selectedClass.id);
-    this._cookieService.put("className", this.selectedClass.className);
     this.addingEsg = false;
   }
 
@@ -76,8 +74,6 @@ export class ExamSubjectGroupComponent implements OnInit {
     }
     this.examSubjectGroups = null;
     this.getExamSubjectGroup(this.selectedExam.id);
-    this._cookieService.put("examId", "" + this.selectedExam.id);
-    this._cookieService.put("examName", this.selectedExam.examName);
     this.addingEsg = false;
   }
 
@@ -90,7 +86,6 @@ export class ExamSubjectGroupComponent implements OnInit {
 
   ngOnInit() {
     this.getClasses();
-    this.getSubjectGroups();
     this.selectedClass = new Clas();
     this.selectedExam = new Exam();
   }
@@ -131,17 +126,17 @@ export class ExamSubjectGroupComponent implements OnInit {
       .catch(error => this.error = error);
   }
 
-  getSubjectGroups() {
-    this.subjectGroupService
-      .getSubjectGroups()
-      .then(subjectGroups => this.subjectGroups = subjectGroups)
+  getClassSubjectGroups(id: number) {
+    this.csgService
+      .getClassSubjectGroups(id)
+      .then(classSubjectGroups => this.classSubjectGroups = classSubjectGroups)
       .catch(error => this.error = error);
   }
 
-  subjectGroupSelected(subjectGroupId) {
-      for (var i = 0; i < this.subjectGroups.length; i++) {
-        if (this.subjectGroups[i].id == subjectGroupId) {
-          this.examSubjectGroup.subjectGroupName = this.subjectGroups[i].subjectGroupName;
+  csgSelected(csgId) {
+      for (var i = 0; i < this.classSubjectGroups.length; i++) {
+        if (this.classSubjectGroups[i].subjectGroupId == csgId) {
+          this.examSubjectGroup.subjectGroupName = this.classSubjectGroups[i].subjectGroupName;
         }
       }
     }
