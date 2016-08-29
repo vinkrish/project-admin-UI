@@ -2,14 +2,12 @@ import { Component, OnInit } 	from '@angular/core';
 import { Router }            	from '@angular/router';
 import { Subjects }			 	from './subjects';
 import { SubjectsService }		from './subjects.service';
-import { SubjectsEditComponent }from './subjects-edit.component';
 
 @Component({
 	moduleId: module.id,
 	selector: 'ui-subjects',
 	templateUrl: 'subjects.component.html',
-	styleUrls: ['subjects.component.css'],
-	directives: [SubjectsEditComponent]
+	styleUrls: ['subjects.component.css']
 })
 
 export class SubjectsComponent implements OnInit {
@@ -42,10 +40,6 @@ export class SubjectsComponent implements OnInit {
 		console.log("class component close function");
 		this.addingSubject = false;
 		if (savedClass) { this.getSubjects(); }
-	}
-
-	goToDashboard() {
-		this.router.navigate(['/dashboard']);
 	}
 
 	addSubject() {

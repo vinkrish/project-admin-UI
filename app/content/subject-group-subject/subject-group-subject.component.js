@@ -16,9 +16,9 @@ var subject_group_subject_service_1 = require('./subject-group-subject.service')
 var subject_group_subject_edit_component_1 = require('./subject-group-subject-edit.component');
 var core_2 = require('angular2-cookie/core');
 var SubjectGroupSubjectComponent = (function () {
-    function SubjectGroupSubjectComponent(router, _cookieService, subjectGroupService, subjectGroupSubjectService) {
+    function SubjectGroupSubjectComponent(router, cookieService, subjectGroupService, subjectGroupSubjectService) {
         this.router = router;
-        this._cookieService = _cookieService;
+        this.cookieService = cookieService;
         this.subjectGroupService = subjectGroupService;
         this.subjectGroupSubjectService = subjectGroupSubjectService;
         this.addingSGS = false;
@@ -38,8 +38,8 @@ var SubjectGroupSubjectComponent = (function () {
             }
         }
         this.getSubjectGroupSubjects(this.selectedSubjectGroup.id);
-        this._cookieService.put("subjectGroupId", "" + this.selectedSubjectGroup.id);
-        this._cookieService.put("subjectGroupName", this.selectedSubjectGroup.subjectGroupName);
+        this.cookieService.put("subjectGroupId", "" + this.selectedSubjectGroup.id);
+        this.cookieService.put("subjectGroupName", this.selectedSubjectGroup.subjectGroupName);
         this.addingSGS = false;
     };
     SubjectGroupSubjectComponent.prototype.getSubjectGroupSubjects = function (id) {
@@ -62,9 +62,6 @@ var SubjectGroupSubjectComponent = (function () {
         if (savedSGS) {
             this.getSubjectGroupSubjects(this.selectedSGS.id);
         }
-    };
-    SubjectGroupSubjectComponent.prototype.goToDashboard = function () {
-        this.router.navigate(['/dashboard']);
     };
     SubjectGroupSubjectComponent.prototype.addSubjectGroupSubject = function () {
         if (this.addingSGS) {

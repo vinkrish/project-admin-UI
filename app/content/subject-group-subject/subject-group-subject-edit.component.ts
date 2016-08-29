@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subjects }       from '../subjects/subjects';
-import { SubjectsService }    from '../subjects/subjects.service';
-import { SubjectGroupSubject }    from './subject-group-subject'
+import { ActivatedRoute }             from '@angular/router';
+import { Subjects }                   from '../subjects/subjects';
+import { SubjectsService }            from '../subjects/subjects.service';
+import { SubjectGroupSubject }        from './subject-group-subject'
 import { SubjectGroupSubjectService } from './subject-group-subject.service';
-import { CookieService } from 'angular2-cookie/core';
+import { CookieService }              from 'angular2-cookie/core';
 
 @Component({
   moduleId: module.id,
@@ -15,17 +15,17 @@ import { CookieService } from 'angular2-cookie/core';
 
 export class SubjectGroupSubjectEditComponent implements OnInit, OnDestroy {
   subjects: Subjects[];
-  @Input() subjectGroupSubject: SubjectGroupSubject;
+  subjectGroupSubject: SubjectGroupSubject;
   @Output() close = new EventEmitter();
   error: any;
   sub: any;
   navigated = false;
-  subjectGroupId: number = +this._cookieService.get("subjectGroupId");
-  subjectGroupName: string = this._cookieService.get("subjectGroupName");
+  subjectGroupId: number = +this.cookieService.get("subjectGroupId");
+  subjectGroupName: string = this.cookieService.get("subjectGroupName");
 
   constructor(
     private route: ActivatedRoute,
-    private _cookieService: CookieService,
+    private cookieService: CookieService,
     private sgsService: SubjectGroupSubjectService,
     private subjectsService: SubjectsService) {
   }
@@ -63,11 +63,11 @@ export class SubjectGroupSubjectEditComponent implements OnInit, OnDestroy {
   save() {
     this.sgsService
       .save(this.subjectGroupSubject)
-      .then(hero => {
-        this.subjectGroupSubject = hero; // saved hero, w/ id if new
-        this.goBack(hero);
+      .then(subjectGroupSubject => {
+        this.subjectGroupSubject = subjectGroupSubject;
+        this.goBack(subjectGroupSubject);
       })
-      .catch(error => this.error = error); // TODO: Display error message
+      .catch(error => this.error = error);
   }
 
   goBack(savedSection: SubjectGroupSubject = null) {

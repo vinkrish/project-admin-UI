@@ -17,11 +17,9 @@ var exam_service_1 = require('../exam/exam.service');
 var class_subject_group_service_1 = require('../class-subject-group/class-subject-group.service');
 var exam_subject_group_1 = require('./exam-subject-group');
 var exam_subject_group_service_1 = require('./exam-subject-group.service');
-var core_2 = require('angular2-cookie/core');
 var ExamSubjectGroupComponent = (function () {
-    function ExamSubjectGroupComponent(router, _cookieService, classService, examService, csgService, esgService) {
+    function ExamSubjectGroupComponent(router, classService, examService, csgService, esgService) {
         this.router = router;
-        this._cookieService = _cookieService;
         this.classService = classService;
         this.examService = examService;
         this.csgService = csgService;
@@ -87,9 +85,6 @@ var ExamSubjectGroupComponent = (function () {
             this.getExams(this.selectedEsg.id);
         }
     };
-    ExamSubjectGroupComponent.prototype.goToDashboard = function () {
-        this.router.navigate(['/dashboard']);
-    };
     ExamSubjectGroupComponent.prototype.add = function () {
         if (this.addingEsg) {
             this.addingEsg = false;
@@ -147,7 +142,7 @@ var ExamSubjectGroupComponent = (function () {
             templateUrl: 'exam-subject-group.component.html',
             styleUrls: ['exam-subject-group.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.Router, core_2.CookieService, class_service_1.ClassService, exam_service_1.ExamService, class_subject_group_service_1.ClassSubjectGroupService, exam_subject_group_service_1.ExamSubjectGroupService])
+        __metadata('design:paramtypes', [router_1.Router, class_service_1.ClassService, exam_service_1.ExamService, class_subject_group_service_1.ClassSubjectGroupService, exam_subject_group_service_1.ExamSubjectGroupService])
     ], ExamSubjectGroupComponent);
     return ExamSubjectGroupComponent;
 }());

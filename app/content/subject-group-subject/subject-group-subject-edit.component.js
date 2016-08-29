@@ -15,15 +15,15 @@ var subject_group_subject_1 = require('./subject-group-subject');
 var subject_group_subject_service_1 = require('./subject-group-subject.service');
 var core_2 = require('angular2-cookie/core');
 var SubjectGroupSubjectEditComponent = (function () {
-    function SubjectGroupSubjectEditComponent(route, _cookieService, sgsService, subjectsService) {
+    function SubjectGroupSubjectEditComponent(route, cookieService, sgsService, subjectsService) {
         this.route = route;
-        this._cookieService = _cookieService;
+        this.cookieService = cookieService;
         this.sgsService = sgsService;
         this.subjectsService = subjectsService;
         this.close = new core_1.EventEmitter();
         this.navigated = false;
-        this.subjectGroupId = +this._cookieService.get("subjectGroupId");
-        this.subjectGroupName = this._cookieService.get("subjectGroupName");
+        this.subjectGroupId = +this.cookieService.get("subjectGroupId");
+        this.subjectGroupName = this.cookieService.get("subjectGroupName");
     }
     SubjectGroupSubjectEditComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -57,11 +57,11 @@ var SubjectGroupSubjectEditComponent = (function () {
         var _this = this;
         this.sgsService
             .save(this.subjectGroupSubject)
-            .then(function (hero) {
-            _this.subjectGroupSubject = hero; // saved hero, w/ id if new
-            _this.goBack(hero);
+            .then(function (subjectGroupSubject) {
+            _this.subjectGroupSubject = subjectGroupSubject;
+            _this.goBack(subjectGroupSubject);
         })
-            .catch(function (error) { return _this.error = error; }); // TODO: Display error message
+            .catch(function (error) { return _this.error = error; });
     };
     SubjectGroupSubjectEditComponent.prototype.goBack = function (savedSection) {
         if (savedSection === void 0) { savedSection = null; }
@@ -70,10 +70,6 @@ var SubjectGroupSubjectEditComponent = (function () {
             window.history.back();
         }
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', subject_group_subject_1.SubjectGroupSubject)
-    ], SubjectGroupSubjectEditComponent.prototype, "subjectGroupSubject", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)

@@ -20,11 +20,9 @@ var exam_subject_group_service_1 = require('../exam-subject-group/exam-subject-g
 var subject_group_subject_service_1 = require('../subject-group-subject/subject-group-subject.service');
 var exam_subject_1 = require('./exam-subject');
 var exam_subject_service_1 = require('./exam-subject.service');
-var core_2 = require('angular2-cookie/core');
 var ExamSubjectComponent = (function () {
-    function ExamSubjectComponent(router, _cookieService, classService, examService, csgService, esgService, sgsService, examSubjectService) {
+    function ExamSubjectComponent(router, classService, examService, csgService, esgService, sgsService, examSubjectService) {
         this.router = router;
-        this._cookieService = _cookieService;
         this.classService = classService;
         this.examService = examService;
         this.csgService = csgService;
@@ -41,7 +39,7 @@ var ExamSubjectComponent = (function () {
             .catch(function (error) { return _this.error = error; });
     };
     ExamSubjectComponent.prototype.classSelected = function (classId) {
-        //this.selectedClass = null;
+        this.examSubjects = null;
         for (var i = 0; i < this.classes.length; i++) {
             if (this.classes[i].id == classId) {
                 this.selectedClass = this.classes[i];
@@ -61,6 +59,7 @@ var ExamSubjectComponent = (function () {
             .catch(function (error) { return _this.error = error; });
     };
     ExamSubjectComponent.prototype.examSelected = function (examId) {
+        this.examSubjects = null;
         for (var i = 0; i < this.exams.length; i++) {
             if (this.exams[i].id == examId) {
                 this.selectedExam = this.exams[i];
@@ -189,7 +188,7 @@ var ExamSubjectComponent = (function () {
             templateUrl: 'exam-subject.component.html',
             styleUrls: ['exam-subject.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.Router, core_2.CookieService, class_service_1.ClassService, exam_service_1.ExamService, class_subject_group_service_1.ClassSubjectGroupService, exam_subject_group_service_1.ExamSubjectGroupService, subject_group_subject_service_1.SubjectGroupSubjectService, exam_subject_service_1.ExamSubjectService])
+        __metadata('design:paramtypes', [router_1.Router, class_service_1.ClassService, exam_service_1.ExamService, class_subject_group_service_1.ClassSubjectGroupService, exam_subject_group_service_1.ExamSubjectGroupService, subject_group_subject_service_1.SubjectGroupSubjectService, exam_subject_service_1.ExamSubjectService])
     ], ExamSubjectComponent);
     return ExamSubjectComponent;
 }());

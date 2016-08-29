@@ -15,15 +15,15 @@ var class_subject_group_1 = require('./class-subject-group');
 var class_subject_group_service_1 = require('./class-subject-group.service');
 var core_2 = require('angular2-cookie/core');
 var ClassSubjectGroupEditComponent = (function () {
-    function ClassSubjectGroupEditComponent(route, _cookieService, csgService, subjectGroupService) {
+    function ClassSubjectGroupEditComponent(route, cookieService, csgService, subjectGroupService) {
         this.route = route;
-        this._cookieService = _cookieService;
+        this.cookieService = cookieService;
         this.csgService = csgService;
         this.subjectGroupService = subjectGroupService;
         this.close = new core_1.EventEmitter();
         this.navigated = false;
-        this.classId = +this._cookieService.get("classId");
-        this.className = this._cookieService.get("className");
+        this.classId = +this.cookieService.get("classId");
+        this.className = this.cookieService.get("className");
     }
     ClassSubjectGroupEditComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -58,10 +58,10 @@ var ClassSubjectGroupEditComponent = (function () {
         this.csgService
             .save(this.classSubjectGroup)
             .then(function (classSubjectGroup) {
-            _this.classSubjectGroup = classSubjectGroup; // saved hero, w/ id if new
+            _this.classSubjectGroup = classSubjectGroup;
             _this.goBack(classSubjectGroup);
         })
-            .catch(function (error) { return _this.error = error; }); // TODO: Display error message
+            .catch(function (error) { return _this.error = error; });
     };
     ClassSubjectGroupEditComponent.prototype.goBack = function (savedSection) {
         if (savedSection === void 0) { savedSection = null; }
@@ -70,10 +70,6 @@ var ClassSubjectGroupEditComponent = (function () {
             window.history.back();
         }
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', class_subject_group_1.ClassSubjectGroup)
-    ], ClassSubjectGroupEditComponent.prototype, "classSubjectGroup", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
 import { ActivatedRoute }     from '@angular/router';
-import {CookieService}        from 'angular2-cookie/core';
 import { Subjects }           from './subjects';
 import { Partition }          from './partition';
 import { SubjectsService }    from './subjects.service';
@@ -28,8 +27,7 @@ export class SubjectsEditComponent implements OnInit, OnDestroy {
 
   constructor(
     private subjectsService: SubjectsService,
-    private route: ActivatedRoute,
-    private _cookieService: CookieService) {
+    private route: ActivatedRoute) {
   }
 
   ngOnInit() {

@@ -17,11 +17,11 @@ export class ExamEditComponent {
   error: any;
   sub: any;
   navigated = false;
-  classId: number = +this._cookieService.get("classId");
-  className: string = this._cookieService.get("className");
+  classId: number = +this.cookieService.get("classId");
+  className: string = this.cookieService.get("className");
 
   constructor(
-    private _cookieService: CookieService,
+    private cookieService: CookieService,
     private examService: ExamService,
     private route: ActivatedRoute) {
   }

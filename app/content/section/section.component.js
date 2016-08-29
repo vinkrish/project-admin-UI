@@ -64,9 +64,6 @@ var SectionComponent = (function () {
             this.getSections(this.selectedSection.id);
         }
     };
-    SectionComponent.prototype.goToDashboard = function () {
-        this.router.navigate(['/dashboard']);
-    };
     SectionComponent.prototype.addSection = function () {
         if (this.addingSection) {
             this.addingSection = false;
@@ -74,7 +71,6 @@ var SectionComponent = (function () {
         else {
             this.addingSection = true;
         }
-        //this.addingSection = true;
         this.selectedSection = null;
     };
     SectionComponent.prototype.gotoEdit = function (section, event) {

@@ -39,9 +39,6 @@ var SubjectGroupComponent = (function () {
             this.getSubjectGroups();
         }
     };
-    SubjectGroupComponent.prototype.goToDashboard = function () {
-        this.router.navigate(['/dashboard']);
-    };
     SubjectGroupComponent.prototype.addSubjectGroup = function () {
         this.addingSubjectGroup = true;
         this.selectedSubjectGroup = null;

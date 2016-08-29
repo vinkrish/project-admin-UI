@@ -42,10 +42,10 @@ var SubjectGroupEditComponent = (function () {
         this.subjectGroupService
             .save(this.subjectGroup)
             .then(function (subjectGroup) {
-            _this.subjectGroup = subjectGroup; // saved hero, w/ id if new
+            _this.subjectGroup = subjectGroup;
             _this.goBack(subjectGroup);
         })
-            .catch(function (error) { return _this.error = error; }); // TODO: Display error message
+            .catch(function (error) { return _this.error = error; });
     };
     SubjectGroupEditComponent.prototype.goBack = function (savedSubjectGroup) {
         if (savedSubjectGroup === void 0) { savedSubjectGroup = null; }
@@ -54,10 +54,6 @@ var SubjectGroupEditComponent = (function () {
             window.history.back();
         }
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', subject_group_1.SubjectGroup)
-    ], SubjectGroupEditComponent.prototype, "subjectGroup", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)

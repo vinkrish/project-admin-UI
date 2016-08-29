@@ -39,9 +39,6 @@ var TeacherComponent = (function () {
             this.getTeachers();
         }
     };
-    TeacherComponent.prototype.goToDashboard = function () {
-        this.router.navigate(['/dashboard']);
-    };
     TeacherComponent.prototype.addTeacher = function () {
         this.addingTeacher = true;
         this.selectedTeacher = null;

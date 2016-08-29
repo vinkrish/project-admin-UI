@@ -4,15 +4,14 @@ import { Clas }               from '../class/clas';
 import { ClassService }       from '../class/class.service';
 import { Exam }			 		      from '../exam/exam';
 import { ExamService }		 	  from '../exam/exam.service';
-import { ClassSubjectGroup }       from '../class-subject-group/class-subject-group';
-import { ClassSubjectGroupService }from '../class-subject-group/class-subject-group.service';
-import { ExamSubjectGroup }   from '../exam-subject-group/exam-subject-group';
-import { ExamSubjectGroupService }   from '../exam-subject-group/exam-subject-group.service';
-import { SubjectGroupSubject }    from '../subject-group-subject/subject-group-subject'
+import { ClassSubjectGroup }        from '../class-subject-group/class-subject-group';
+import { ClassSubjectGroupService } from '../class-subject-group/class-subject-group.service';
+import { ExamSubjectGroup }         from '../exam-subject-group/exam-subject-group';
+import { ExamSubjectGroupService }  from '../exam-subject-group/exam-subject-group.service';
+import { SubjectGroupSubject }      from '../subject-group-subject/subject-group-subject'
 import { SubjectGroupSubjectService }  from '../subject-group-subject/subject-group-subject.service';
-import { ExamSubject }        from './exam-subject';
-import { ExamSubjectService } from './exam-subject.service';
-import { CookieService }           from 'angular2-cookie/core';
+import { ExamSubject }         from './exam-subject';
+import { ExamSubjectService }  from './exam-subject.service';
 
 @Component({
 	moduleId: module.id,
@@ -39,7 +38,6 @@ export class ExamSubjectComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private _cookieService: CookieService,
     private classService: ClassService,
     private examService: ExamService,
     private csgService: ClassSubjectGroupService,
@@ -56,7 +54,7 @@ export class ExamSubjectComponent implements OnInit {
     }
 
   classSelected(classId) {
-    //this.selectedClass = null;
+    this.examSubjects = null;
     for (var i = 0; i < this.classes.length; i++) {
       if (this.classes[i].id == classId) {
         this.selectedClass = this.classes[i];
@@ -77,6 +75,7 @@ export class ExamSubjectComponent implements OnInit {
   }
 
   examSelected(examId){
+    this.examSubjects = null;
     for (var i = 0; i < this.exams.length; i++) {
       if (this.exams[i].id == examId) {
         this.selectedExam = this.exams[i];

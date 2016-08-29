@@ -23,7 +23,7 @@ var ClassEditComponent = (function () {
             new attendance_type_1.AttendanceType("Session"),
             new attendance_type_1.AttendanceType("Period")
         ];
-        this.navigated = false; // true if navigated here
+        this.navigated = false;
     }
     ClassEditComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -60,10 +60,6 @@ var ClassEditComponent = (function () {
             window.history.back();
         }
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', clas_1.Clas)
-    ], ClassEditComponent.prototype, "clas", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)

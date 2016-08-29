@@ -10,15 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var core_2 = require('angular2-cookie/core');
 var subjects_1 = require('./subjects');
 var partition_1 = require('./partition');
 var subjects_service_1 = require('./subjects.service');
 var SubjectsEditComponent = (function () {
-    function SubjectsEditComponent(subjectsService, route, _cookieService) {
+    function SubjectsEditComponent(subjectsService, route) {
         this.subjectsService = subjectsService;
         this.route = route;
-        this._cookieService = _cookieService;
         this.partitionView = false;
         this.close = new core_1.EventEmitter();
         this.partitions = [
@@ -98,7 +96,7 @@ var SubjectsEditComponent = (function () {
             templateUrl: 'subjects-edit.component.html',
             styleUrls: ['subjects-edit.component.css']
         }), 
-        __metadata('design:paramtypes', [subjects_service_1.SubjectsService, router_1.ActivatedRoute, core_2.CookieService])
+        __metadata('design:paramtypes', [subjects_service_1.SubjectsService, router_1.ActivatedRoute])
     ], SubjectsEditComponent);
     return SubjectsEditComponent;
 }());

@@ -14,14 +14,14 @@ var exam_1 = require('./exam');
 var exam_service_1 = require('./exam.service');
 var core_2 = require('angular2-cookie/core');
 var ExamEditComponent = (function () {
-    function ExamEditComponent(_cookieService, examService, route) {
-        this._cookieService = _cookieService;
+    function ExamEditComponent(cookieService, examService, route) {
+        this.cookieService = cookieService;
         this.examService = examService;
         this.route = route;
         this.close = new core_1.EventEmitter();
         this.navigated = false;
-        this.classId = +this._cookieService.get("classId");
-        this.className = this._cookieService.get("className");
+        this.classId = +this.cookieService.get("classId");
+        this.className = this.cookieService.get("className");
     }
     ExamEditComponent.prototype.ngOnInit = function () {
         var _this = this;

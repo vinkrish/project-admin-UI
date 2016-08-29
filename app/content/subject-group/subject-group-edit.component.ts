@@ -11,7 +11,7 @@ import { SubjectGroupService }  from './subject-group.service';
 })
 
 export class SubjectGroupEditComponent implements OnInit, OnDestroy {
-  @Input() subjectGroup: SubjectGroup;
+  subjectGroup: SubjectGroup;
   @Output() close = new EventEmitter();
   error: any;
   sub: any;
@@ -44,10 +44,10 @@ export class SubjectGroupEditComponent implements OnInit, OnDestroy {
     this.subjectGroupService
       .save(this.subjectGroup)
       .then(subjectGroup => {
-        this.subjectGroup = subjectGroup; // saved hero, w/ id if new
+        this.subjectGroup = subjectGroup;
         this.goBack(subjectGroup);
       })
-      .catch(error => this.error = error); // TODO: Display error message
+      .catch(error => this.error = error);
   }
 
   goBack(savedSubjectGroup: SubjectGroup = null) {

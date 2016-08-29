@@ -18,9 +18,9 @@ var subject_teacher_service_1 = require('./subject-teacher.service');
 var subject_teacher_edit_component_1 = require('./subject-teacher-edit.component');
 var core_2 = require('angular2-cookie/core');
 var SubjectTeacherComponent = (function () {
-    function SubjectTeacherComponent(router, _cookieService, classService, sectionService, subjectTeacherService) {
+    function SubjectTeacherComponent(router, cookieService, classService, sectionService, subjectTeacherService) {
         this.router = router;
-        this._cookieService = _cookieService;
+        this.cookieService = cookieService;
         this.classService = classService;
         this.sectionService = sectionService;
         this.subjectTeacherService = subjectTeacherService;
@@ -40,8 +40,8 @@ var SubjectTeacherComponent = (function () {
             }
         }
         this.getSections(this.selectedClass.id);
-        this._cookieService.put("classId", "" + this.selectedClass.id);
-        this._cookieService.put("className", this.selectedClass.className);
+        this.cookieService.put("classId", "" + this.selectedClass.id);
+        this.cookieService.put("className", this.selectedClass.className);
         this.addingSubjectTeacher = true;
         this.subjectTeachers = null;
     };
@@ -59,8 +59,8 @@ var SubjectTeacherComponent = (function () {
             }
         }
         this.getSubjectTeachers(this.selectedSection.id);
-        this._cookieService.put("sectionId", "" + this.selectedSection.id);
-        this._cookieService.put("sectionName", this.selectedSection.sectionName);
+        this.cookieService.put("sectionId", "" + this.selectedSection.id);
+        this.cookieService.put("sectionName", this.selectedSection.sectionName);
     };
     SubjectTeacherComponent.prototype.getSubjectTeachers = function (id) {
         var _this = this;
@@ -83,9 +83,6 @@ var SubjectTeacherComponent = (function () {
         if (savedStudent) {
             this.getSubjectTeachers(this.selectedSubjectTeacher.id);
         }
-    };
-    SubjectTeacherComponent.prototype.goToDashboard = function () {
-        this.router.navigate(['/dashboard']);
     };
     SubjectTeacherComponent.prototype.setupSubjectTeacher = function () {
         this.subjectTeacherService.save(this.selectedClass);

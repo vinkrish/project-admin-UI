@@ -8,7 +8,6 @@ import { ClassSubjectGroup }       from '../class-subject-group/class-subject-gr
 import { ClassSubjectGroupService }from '../class-subject-group/class-subject-group.service';
 import { ExamSubjectGroup }        from './exam-subject-group';
 import { ExamSubjectGroupService } from './exam-subject-group.service';
-import { CookieService }           from 'angular2-cookie/core';
 
 @Component({
 	moduleId: module.id,
@@ -31,7 +30,6 @@ export class ExamSubjectGroupComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private _cookieService: CookieService,
     private classService: ClassService,
     private examService: ExamService,
     private csgService: ClassSubjectGroupService,
@@ -98,10 +96,6 @@ export class ExamSubjectGroupComponent implements OnInit {
   close(savedEsg: ExamSubjectGroup) {
     this.addingEsg = false;
     if (savedEsg) { this.getExams(this.selectedEsg.id); }
-  }
-
-  goToDashboard() {
-    this.router.navigate(['/dashboard']);
   }
 
   add() {

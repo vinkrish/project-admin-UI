@@ -6,15 +6,13 @@ import { Student }				      from './student'
 import { ClassService }         from '../class/class.service';
 import { SectionService }		    from '../section/section.service';
 import { StudentService }       from './student.service';
-import { StudentEditComponent } from './student-edit.component';
 import { CookieService }		    from 'angular2-cookie/core';
 
 @Component({
   moduleId: module.id,
   selector: 'ui-student',
   templateUrl: 'student.component.html',
-  styleUrls: ['student.component.css'],
-  directives: [StudentEditComponent]
+  styleUrls: ['student.component.css']
 })
 
 export class StudentComponent implements OnInit {
@@ -30,7 +28,7 @@ export class StudentComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private _cookieService: CookieService,
+    private cookieService: CookieService,
     private classService: ClassService,
     private sectionService: SectionService,
     private studentService: StudentService) { }
@@ -49,8 +47,8 @@ export class StudentComponent implements OnInit {
       }
     }
     this.getSections(this.selectedClass.id);
-    this._cookieService.put("classId", "" + this.selectedClass.id);
-    this._cookieService.put("className", this.selectedClass.className);
+    this.cookieService.put("classId", "" + this.selectedClass.id);
+    this.cookieService.put("className", this.selectedClass.className);
     this.addingStudent = false;
     this.selectingSection = false;
     this.students = null;
@@ -70,8 +68,8 @@ export class StudentComponent implements OnInit {
       }
     }
     this.getStudents(this.selectedSection.id);
-    this._cookieService.put("sectionId", "" + this.selectedSection.id);
-    this._cookieService.put("sectionName", this.selectedSection.sectionName);
+    this.cookieService.put("sectionId", "" + this.selectedSection.id);
+    this.cookieService.put("sectionName", this.selectedSection.sectionName);
     this.addingStudent = false;
     this.selectingSection = true;
   }
@@ -99,11 +97,7 @@ export class StudentComponent implements OnInit {
     this.addingStudent = false;
     if (savedStudent) { this.getStudents(this.selectedStudent.id); }
   }
-
-  goToDashboard() {
-    this.router.navigate(['/dashboard']);
-  }
-
+  
   addStudent() {
     if (this.selectingSection) {
       if (this.addingStudent) {

@@ -2,14 +2,12 @@ import { Component, OnInit } 	from '@angular/core';
 import { Router }            	from '@angular/router';
 import { Teacher }			 	from './teacher';
 import { TeacherService }		from './teacher.service';
-import { TeacherEditComponent } from './teacher-edit.component';
 
 @Component({
 	moduleId: module.id,
 	selector: 'ui-teacher',
 	templateUrl: 'teacher.component.html',
-	styleUrls: ['teacher.component.css'],
-	directives: [TeacherEditComponent]
+	styleUrls: ['teacher.component.css']
 })
 
 export class TeacherComponent implements OnInit {
@@ -42,10 +40,6 @@ export class TeacherComponent implements OnInit {
 		console.log("teacher component close function");
 		this.addingTeacher = false;
 		if (savedTeacher) { this.getTeachers(); }
-	}
-
-	goToDashboard() {
-		this.router.navigate(['/dashboard']);
 	}
 
 	addTeacher() {

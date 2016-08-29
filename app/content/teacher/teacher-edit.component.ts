@@ -12,7 +12,7 @@ import { TeacherService }    from './teacher.service';
 })
 
 export class TeacherEditComponent implements OnInit, OnDestroy {
-  @Input() teacher: Teacher;
+  teacher: Teacher;
   @Output() close = new EventEmitter();
   error: any;
   sub: any;

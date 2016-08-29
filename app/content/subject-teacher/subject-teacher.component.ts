@@ -1,20 +1,18 @@
-import { Component, OnInit }    from '@angular/core';
-import { Router }               from '@angular/router';
-import { Clas }                 from '../class/clas';
-import { Section }			        from '../section/section';
-import { SubjectTeacher }		    from './subject-teacher'
-import { ClassService }         from '../class/class.service';
-import { SectionService }		    from '../section/section.service';
-import { SubjectTeacherService }       from './subject-teacher.service';
-import { SubjectTeacherEditComponent } from './subject-teacher-edit.component';
-import { CookieService }		    from 'angular2-cookie/core';
+import { Component, OnInit }          from '@angular/core';
+import { Router }                     from '@angular/router';
+import { Clas }                       from '../class/clas';
+import { Section }			              from '../section/section';
+import { SubjectTeacher }		          from './subject-teacher'
+import { ClassService }               from '../class/class.service';
+import { SectionService }		          from '../section/section.service';
+import { SubjectTeacherService }      from './subject-teacher.service';
+import { CookieService }		          from 'angular2-cookie/core';
 
 @Component({
   moduleId: module.id,
   selector: 'ui-subject-teacher',
   templateUrl: 'subject-teacher.component.html',
-  styleUrls: ['subject-teacher.component.css'],
-  directives: [SubjectTeacherEditComponent]
+  styleUrls: ['subject-teacher.component.css']
 })
 
 export class SubjectTeacherComponent implements OnInit {
@@ -29,7 +27,7 @@ export class SubjectTeacherComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private _cookieService: CookieService,
+    private cookieService: CookieService,
     private classService: ClassService,
     private sectionService: SectionService,
     private subjectTeacherService: SubjectTeacherService) { }
@@ -48,8 +46,8 @@ export class SubjectTeacherComponent implements OnInit {
       }
     }
     this.getSections(this.selectedClass.id);
-    this._cookieService.put("classId", "" + this.selectedClass.id);
-    this._cookieService.put("className", this.selectedClass.className);
+    this.cookieService.put("classId", "" + this.selectedClass.id);
+    this.cookieService.put("className", this.selectedClass.className);
     this.addingSubjectTeacher = true;
     this.subjectTeachers = null;
   }
@@ -68,8 +66,8 @@ export class SubjectTeacherComponent implements OnInit {
       }
     }
     this.getSubjectTeachers(this.selectedSection.id);
-    this._cookieService.put("sectionId", "" + this.selectedSection.id);
-    this._cookieService.put("sectionName", this.selectedSection.sectionName);
+    this.cookieService.put("sectionId", "" + this.selectedSection.id);
+    this.cookieService.put("sectionName", this.selectedSection.sectionName);
   }
 
   getSubjectTeachers(id: number) {
@@ -94,10 +92,6 @@ export class SubjectTeacherComponent implements OnInit {
   close(savedStudent: SubjectTeacher) {
     this.addingSubjectTeacher = false;
     if (savedStudent) { this.getSubjectTeachers(this.selectedSubjectTeacher.id); }
-  }
-
-  goToDashboard() {
-    this.router.navigate(['/dashboard']);
   }
 
   setupSubjectTeacher() {

@@ -15,15 +15,15 @@ var section_1 = require('./section');
 var section_service_1 = require('./section.service');
 var core_2 = require('angular2-cookie/core');
 var SectionEditComponent = (function () {
-    function SectionEditComponent(route, _cookieService, sectionService, teacherService) {
+    function SectionEditComponent(route, cookieService, sectionService, teacherService) {
         this.route = route;
-        this._cookieService = _cookieService;
+        this.cookieService = cookieService;
         this.sectionService = sectionService;
         this.teacherService = teacherService;
         this.close = new core_1.EventEmitter();
         this.navigated = false;
-        this.className = this._cookieService.get("className");
-        this.classId = +this._cookieService.get("classId");
+        this.className = this.cookieService.get("className");
+        this.classId = +this.cookieService.get("classId");
     }
     SectionEditComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -62,9 +62,9 @@ var SectionEditComponent = (function () {
         var _this = this;
         this.sectionService
             .save(this.section)
-            .then(function (hero) {
-            _this.section = hero; // saved hero, w/ id if new
-            _this.goBack(hero);
+            .then(function (section) {
+            _this.section = section;
+            _this.goBack(section);
         })
             .catch(function (error) { return _this.error = error; }); // TODO: Display error message
     };
@@ -75,10 +75,6 @@ var SectionEditComponent = (function () {
             window.history.back();
         }
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', section_1.Section)
-    ], SectionEditComponent.prototype, "section", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)

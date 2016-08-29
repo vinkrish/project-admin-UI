@@ -14,17 +14,17 @@ var teacher_service_1 = require('../teacher/teacher.service');
 var subject_teacher_service_1 = require('./subject-teacher.service');
 var core_2 = require('angular2-cookie/core');
 var SubjectTeacherEditComponent = (function () {
-    function SubjectTeacherEditComponent(route, _cookieService, teacherService, subjectTeacherService) {
+    function SubjectTeacherEditComponent(route, cookieService, teacherService, subjectTeacherService) {
         this.route = route;
-        this._cookieService = _cookieService;
+        this.cookieService = cookieService;
         this.teacherService = teacherService;
         this.subjectTeacherService = subjectTeacherService;
         this.close = new core_1.EventEmitter();
         this.navigated = false;
-        this.className = this._cookieService.get("className");
-        this.classId = +this._cookieService.get("classId");
-        this.sectionName = this._cookieService.get("sectionName");
-        this.sectionId = +this._cookieService.get("sectionId");
+        this.className = this.cookieService.get("className");
+        this.classId = +this.cookieService.get("classId");
+        this.sectionName = this.cookieService.get("sectionName");
+        this.sectionId = +this.cookieService.get("sectionId");
     }
     SubjectTeacherEditComponent.prototype.ngOnInit = function () {
         var _this = this;

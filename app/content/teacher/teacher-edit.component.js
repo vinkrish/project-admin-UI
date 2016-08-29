@@ -60,10 +60,6 @@ var TeacherEditComponent = (function () {
         }
     };
     __decorate([
-        core_1.Input(), 
-        __metadata('design:type', teacher_1.Teacher)
-    ], TeacherEditComponent.prototype, "teacher", void 0);
-    __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
     ], TeacherEditComponent.prototype, "close", void 0);

@@ -22,14 +22,14 @@ export class SubjectTeacherEditComponent implements OnInit, OnDestroy {
   error: any;
   sub: any;
   navigated = false;
-  className: string = this._cookieService.get("className");
-  classId: number = +this._cookieService.get("classId");
-  sectionName: string = this._cookieService.get("sectionName");
-  sectionId: number = +this._cookieService.get("sectionId");
+  className: string = this.cookieService.get("className");
+  classId: number = +this.cookieService.get("classId");
+  sectionName: string = this.cookieService.get("sectionName");
+  sectionId: number = +this.cookieService.get("sectionId");
 
   constructor(
     private route: ActivatedRoute,
-    private _cookieService: CookieService,
+    private cookieService: CookieService,
     private teacherService: TeacherService,
     private subjectTeacherService: SubjectTeacherService) {
   }

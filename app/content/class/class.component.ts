@@ -2,14 +2,12 @@ import { Component, OnInit } 	from '@angular/core';
 import { Router }            	from '@angular/router';
 import { Clas }			 		from './clas';
 import { ClassService }		 	from './class.service';
-import { ClassEditComponent } 	from './class-edit.component';
 
 @Component({
 	moduleId: module.id,
 	selector: 'ui-class',
 	templateUrl: 'class.component.html',
-	styleUrls: ['class.component.css'],
-	directives: [ClassEditComponent]
+	styleUrls: ['class.component.css']
 })
 
 export class ClassComponent implements OnInit {
@@ -41,10 +39,6 @@ export class ClassComponent implements OnInit {
 	close(savedClass: Clas) {
 		this.addingClass = false;
 		if (savedClass) { this.getClasses(); }
-	}
-
-	goToDashboard() {
-		this.router.navigate(['/dashboard']);
 	}
 
 	addClass() {

@@ -39,9 +39,6 @@ var SubjectsComponent = (function () {
             this.getSubjects();
         }
     };
-    SubjectsComponent.prototype.goToDashboard = function () {
-        this.router.navigate(['/dashboard']);
-    };
     SubjectsComponent.prototype.addSubject = function () {
         this.addingSubject = true;
         this.selectedSubject = null;

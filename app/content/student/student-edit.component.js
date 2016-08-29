@@ -15,9 +15,9 @@ var student_service_1 = require('./student.service');
 var gender_1 = require('../../shared/component/gender');
 var core_2 = require('angular2-cookie/core');
 var StudentEditComponent = (function () {
-    function StudentEditComponent(route, _cookieService, studentService) {
+    function StudentEditComponent(route, cookieService, studentService) {
         this.route = route;
-        this._cookieService = _cookieService;
+        this.cookieService = cookieService;
         this.studentService = studentService;
         this.close = new core_1.EventEmitter();
         this.navigated = false;
@@ -25,10 +25,10 @@ var StudentEditComponent = (function () {
             new gender_1.Gender("M"),
             new gender_1.Gender("F")
         ];
-        this.className = this._cookieService.get("className");
-        this.classId = +this._cookieService.get("classId");
-        this.sectionName = this._cookieService.get("sectionName");
-        this.sectionId = +this._cookieService.get("sectionId");
+        this.className = this.cookieService.get("className");
+        this.classId = +this.cookieService.get("classId");
+        this.sectionName = this.cookieService.get("sectionName");
+        this.sectionId = +this.cookieService.get("sectionId");
     }
     StudentEditComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -39,7 +39,6 @@ var StudentEditComponent = (function () {
                 _this.studentService.getStudent(_this.sectionId, studentId)
                     .then(function (student) {
                     _this.student = student;
-                    //this.student.classId = this.classId;
                 });
             }
             else {
@@ -55,11 +54,11 @@ var StudentEditComponent = (function () {
         var _this = this;
         this.studentService
             .save(this.student)
-            .then(function (hero) {
-            _this.student = hero; // saved hero, w/ id if new
-            _this.goBack(hero);
+            .then(function (student) {
+            _this.student = student;
+            _this.goBack(student);
         })
-            .catch(function (error) { return _this.error = error; }); // TODO: Display error message
+            .catch(function (error) { return _this.error = error; });
     };
     StudentEditComponent.prototype.goBack = function (savedStudent) {
         if (savedStudent === void 0) { savedStudent = null; }
@@ -68,10 +67,6 @@ var StudentEditComponent = (function () {
             window.history.back();
         }
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', student_1.Student)
-    ], StudentEditComponent.prototype, "student", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)

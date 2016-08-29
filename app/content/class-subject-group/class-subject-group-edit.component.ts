@@ -15,17 +15,17 @@ import { CookieService }            from 'angular2-cookie/core';
 
 export class ClassSubjectGroupEditComponent implements OnInit, OnDestroy {
   subjectGroups: SubjectGroup[];
-  @Input() classSubjectGroup: ClassSubjectGroup;
+  classSubjectGroup: ClassSubjectGroup;
   @Output() close = new EventEmitter();
   error: any;
   sub: any;
   navigated = false;
-  classId: number = +this._cookieService.get("classId");
-  className: string = this._cookieService.get("className");
+  classId: number = +this.cookieService.get("classId");
+  className: string = this.cookieService.get("className");
 
   constructor(
     private route: ActivatedRoute,
-    private _cookieService: CookieService,
+    private cookieService: CookieService,
     private csgService: ClassSubjectGroupService,
     private subjectGroupService: SubjectGroupService) {
   }
@@ -64,10 +64,10 @@ export class ClassSubjectGroupEditComponent implements OnInit, OnDestroy {
     this.csgService
       .save(this.classSubjectGroup)
       .then(classSubjectGroup => {
-        this.classSubjectGroup = classSubjectGroup; // saved hero, w/ id if new
+        this.classSubjectGroup = classSubjectGroup;
         this.goBack(classSubjectGroup);
       })
-      .catch(error => this.error = error); // TODO: Display error message
+      .catch(error => this.error = error);
   }
 
   goBack(savedSection: ClassSubjectGroup = null) {

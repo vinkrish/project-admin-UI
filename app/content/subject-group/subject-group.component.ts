@@ -2,14 +2,12 @@ import { Component, OnInit } 		from '@angular/core';
 import { Router }            		from '@angular/router';
 import { SubjectGroup }			 	from './subject-group';
 import { SubjectGroupService }		from './subject-group.service';
-import { SubjectGroupEditComponent } from './subject-group-edit.component';
 
 @Component({
 	moduleId: module.id,
 	selector: 'ui-subject-group',
 	templateUrl: 'subject-group.component.html',
-	styleUrls: ['subject-group.component.css'],
-	directives: [SubjectGroupEditComponent]
+	styleUrls: ['subject-group.component.css']
 })
 
 export class SubjectGroupComponent implements OnInit {
@@ -42,10 +40,6 @@ export class SubjectGroupComponent implements OnInit {
 		console.log("class component close function");
 		this.addingSubjectGroup = false;
 		if (savedClass) { this.getSubjectGroups(); }
-	}
-
-	goToDashboard() {
-		this.router.navigate(['/dashboard']);
 	}
 
 	addSubjectGroup() {

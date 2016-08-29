@@ -1,4 +1,5 @@
-import { provideRouter, RouterConfig }  from '@angular/router';
+import { RouterModule, Routes }         from '@angular/router';
+import { ModuleWithProviders }          from '@angular/core';
 import { LoggedInGuard }                from './login/logged-in.guard';
 import { LoginComponent }               from './login/credentials.component';
 import { DashboardComponent }           from './dashboard/dashboard.component';
@@ -6,7 +7,7 @@ import { ExamDashboardComponent }       from './exam-dashboard/exam-dashboard.co
 import { dashboardRoutes }              from './dashboard/dashboard.routes';
 import { examDashboardRoutes }          from './exam-dashboard/exam-dashboard.routes';
 
-const routes: RouterConfig = [
+const routes: Routes = [
   {
     path: '',
     redirectTo: '/dashboard',
@@ -30,6 +31,4 @@ const routes: RouterConfig = [
   ...examDashboardRoutes
 ];
 
-export const appRouterProviders = [
-  provideRouter(routes)
-];
+export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

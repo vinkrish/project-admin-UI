@@ -12,7 +12,7 @@ import { ClassService }   from './class.service';
 })
 
 export class ClassEditComponent implements OnInit, OnDestroy {
-  @Input() clas: Clas;
+  clas: Clas;
   @Output() close = new EventEmitter();
   attendanceTypes = [
     new AttendanceType("Daily"),
@@ -21,12 +21,11 @@ export class ClassEditComponent implements OnInit, OnDestroy {
   ];
   error: any;
   sub: any;
-  navigated = false; // true if navigated here
+  navigated = false;
 
   constructor(
     private classService: ClassService,
-    private route: ActivatedRoute) {
-  }
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {

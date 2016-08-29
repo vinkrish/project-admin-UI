@@ -16,9 +16,9 @@ var exam_service_1 = require('./exam.service');
 var exam_edit_component_1 = require('./exam-edit.component');
 var core_2 = require('angular2-cookie/core');
 var ExamComponent = (function () {
-    function ExamComponent(router, _cookieService, classService, examService) {
+    function ExamComponent(router, cookieService, classService, examService) {
         this.router = router;
-        this._cookieService = _cookieService;
+        this.cookieService = cookieService;
         this.classService = classService;
         this.examService = examService;
         this.addingExam = false;
@@ -38,8 +38,8 @@ var ExamComponent = (function () {
             }
         }
         this.getExams(this.selectedClass.id);
-        this._cookieService.put("classId", "" + this.selectedClass.id);
-        this._cookieService.put("className", this.selectedClass.className);
+        this.cookieService.put("classId", "" + this.selectedClass.id);
+        this.cookieService.put("className", this.selectedClass.className);
         this.addingExam = false;
     };
     ExamComponent.prototype.getExams = function (id) {
@@ -62,9 +62,6 @@ var ExamComponent = (function () {
         if (savedExam) {
             this.getExams(this.selectedExam.id);
         }
-    };
-    ExamComponent.prototype.goToDashboard = function () {
-        this.router.navigate(['/dashboard']);
     };
     ExamComponent.prototype.gotoEdit = function (exam, event) {
         event.stopPropagation();

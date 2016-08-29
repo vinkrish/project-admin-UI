@@ -4,15 +4,13 @@ import { Clas }                           from '../class/clas';
 import { ClassService }                   from '../class/class.service';
 import { ClassSubjectGroup }              from './class-subject-group'
 import { ClassSubjectGroupService }       from './class-subject-group.service';
-import { ClassSubjectGroupEditComponent } from './class-subject-group-edit.component';
 import { CookieService }                  from 'angular2-cookie/core';
 
 @Component({
   moduleId: module.id,
   selector: 'ui-class-subject-group',
   templateUrl: 'class-subject-group.component.html',
-  styleUrls: ['class-subject-group.component.css'],
-  directives: [ClassSubjectGroupEditComponent]
+  styleUrls: ['class-subject-group.component.css']
 })
 
 export class ClassSubjectGroupComponent implements OnInit {
@@ -25,7 +23,7 @@ export class ClassSubjectGroupComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private _cookieService: CookieService,
+    private cookieService: CookieService,
     private classService: ClassService,
     private csgService: ClassSubjectGroupService) { }
 
@@ -44,8 +42,8 @@ export class ClassSubjectGroupComponent implements OnInit {
       }
     }
     this.getClassSubjectGroups(this.selectedClass.id);
-    this._cookieService.put("classId", "" + this.selectedClass.id);
-    this._cookieService.put("className", this.selectedClass.className);
+    this.cookieService.put("classId", "" + this.selectedClass.id);
+    this.cookieService.put("className", this.selectedClass.className);
     this.addingCSG = false;
   }
 
@@ -69,10 +67,6 @@ export class ClassSubjectGroupComponent implements OnInit {
   close(savedSGS: ClassSubjectGroup) {
     this.addingCSG = false;
     if (savedSGS) { this.getClassSubjectGroups(this.selectedCSG.id); }
-  }
-
-  goToDashboard() {
-    this.router.navigate(['/dashboard']);
   }
 
   addCSG() {

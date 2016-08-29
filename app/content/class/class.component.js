@@ -38,9 +38,6 @@ var ClassComponent = (function () {
             this.getClasses();
         }
     };
-    ClassComponent.prototype.goToDashboard = function () {
-        this.router.navigate(['/dashboard']);
-    };
     ClassComponent.prototype.addClass = function () {
         this.addingClass = true;
         this.selectedClass = null;

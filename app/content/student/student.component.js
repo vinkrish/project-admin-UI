@@ -18,9 +18,9 @@ var student_service_1 = require('./student.service');
 var student_edit_component_1 = require('./student-edit.component');
 var core_2 = require('angular2-cookie/core');
 var StudentComponent = (function () {
-    function StudentComponent(router, _cookieService, classService, sectionService, studentService) {
+    function StudentComponent(router, cookieService, classService, sectionService, studentService) {
         this.router = router;
-        this._cookieService = _cookieService;
+        this.cookieService = cookieService;
         this.classService = classService;
         this.sectionService = sectionService;
         this.studentService = studentService;
@@ -41,8 +41,8 @@ var StudentComponent = (function () {
             }
         }
         this.getSections(this.selectedClass.id);
-        this._cookieService.put("classId", "" + this.selectedClass.id);
-        this._cookieService.put("className", this.selectedClass.className);
+        this.cookieService.put("classId", "" + this.selectedClass.id);
+        this.cookieService.put("className", this.selectedClass.className);
         this.addingStudent = false;
         this.selectingSection = false;
         this.students = null;
@@ -61,8 +61,8 @@ var StudentComponent = (function () {
             }
         }
         this.getStudents(this.selectedSection.id);
-        this._cookieService.put("sectionId", "" + this.selectedSection.id);
-        this._cookieService.put("sectionName", this.selectedSection.sectionName);
+        this.cookieService.put("sectionId", "" + this.selectedSection.id);
+        this.cookieService.put("sectionName", this.selectedSection.sectionName);
         this.addingStudent = false;
         this.selectingSection = true;
     };
@@ -87,9 +87,6 @@ var StudentComponent = (function () {
         if (savedStudent) {
             this.getStudents(this.selectedStudent.id);
         }
-    };
-    StudentComponent.prototype.goToDashboard = function () {
-        this.router.navigate(['/dashboard']);
     };
     StudentComponent.prototype.addStudent = function () {
         if (this.selectingSection) {

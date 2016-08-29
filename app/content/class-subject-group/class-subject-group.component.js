@@ -16,9 +16,9 @@ var class_subject_group_service_1 = require('./class-subject-group.service');
 var class_subject_group_edit_component_1 = require('./class-subject-group-edit.component');
 var core_2 = require('angular2-cookie/core');
 var ClassSubjectGroupComponent = (function () {
-    function ClassSubjectGroupComponent(router, _cookieService, classService, csgService) {
+    function ClassSubjectGroupComponent(router, cookieService, classService, csgService) {
         this.router = router;
-        this._cookieService = _cookieService;
+        this.cookieService = cookieService;
         this.classService = classService;
         this.csgService = csgService;
         this.addingCSG = false;
@@ -38,8 +38,8 @@ var ClassSubjectGroupComponent = (function () {
             }
         }
         this.getClassSubjectGroups(this.selectedClass.id);
-        this._cookieService.put("classId", "" + this.selectedClass.id);
-        this._cookieService.put("className", this.selectedClass.className);
+        this.cookieService.put("classId", "" + this.selectedClass.id);
+        this.cookieService.put("className", this.selectedClass.className);
         this.addingCSG = false;
     };
     ClassSubjectGroupComponent.prototype.getClassSubjectGroups = function (id) {
@@ -62,9 +62,6 @@ var ClassSubjectGroupComponent = (function () {
         if (savedSGS) {
             this.getClassSubjectGroups(this.selectedCSG.id);
         }
-    };
-    ClassSubjectGroupComponent.prototype.goToDashboard = function () {
-        this.router.navigate(['/dashboard']);
     };
     ClassSubjectGroupComponent.prototype.addCSG = function () {
         if (this.addingCSG) {

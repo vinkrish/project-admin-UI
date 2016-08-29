@@ -15,17 +15,17 @@ import { CookieService }   from 'angular2-cookie/core';
 
 export class SectionEditComponent implements OnInit, OnDestroy {
   teachers: Teacher[];
-  @Input() section: Section;
+  section: Section;
   @Output() close = new EventEmitter();
   error: any;
   sub: any;
   navigated = false;
-  className: string = this._cookieService.get("className");
-  classId: number = +this._cookieService.get("classId");
+  className: string = this.cookieService.get("className");
+  classId: number = +this.cookieService.get("classId");
 
   constructor(
     private route: ActivatedRoute,
-    private _cookieService:CookieService,
+    private cookieService:CookieService,
     private sectionService: SectionService,
     private teacherService: TeacherService) {
   }
@@ -67,9 +67,9 @@ export class SectionEditComponent implements OnInit, OnDestroy {
   save() {
     this.sectionService
         .save(this.section)
-        .then(hero => {
-          this.section = hero; // saved hero, w/ id if new
-          this.goBack(hero);
+        .then(section => {
+          this.section = section;
+          this.goBack(section);
         })
         .catch(error => this.error = error); // TODO: Display error message
   }

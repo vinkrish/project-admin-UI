@@ -4,15 +4,13 @@ import { Clas }                  from '../class/clas';
 import { Section }			         from './section';
 import { SectionService }		     from './section.service';
 import { ClassService }          from '../class/class.service';
-import { SectionEditComponent }  from './section-edit.component';
 import { CookieService }         from 'angular2-cookie/core';
 
 @Component({
   moduleId: module.id,
   selector: 'ui-section',
   templateUrl: 'section.component.html',
-  styleUrls: ['section.component.css'],
-  directives: [SectionEditComponent]
+  styleUrls: ['section.component.css']
 })
 
 export class SectionComponent implements OnInit {
@@ -72,17 +70,12 @@ export class SectionComponent implements OnInit {
     if (savedSection) { this.getSections(this.selectedSection.id); }
   }
 
-  goToDashboard() {
-    this.router.navigate(['/dashboard']);
-  }
-
   addSection() {
     if (this.addingSection) {
       this.addingSection = false;
     } else {
       this.addingSection = true;
     }
-    //this.addingSection = true;
     this.selectedSection = null;
   }
 

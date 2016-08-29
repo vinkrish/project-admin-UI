@@ -4,15 +4,13 @@ import { Clas }               from '../class/clas';
 import { ClassService }       from '../class/class.service';
 import { Exam }			 		      from './exam';
 import { ExamService }		 	  from './exam.service';
-import { ExamEditComponent } 	from './exam-edit.component';
 import { CookieService }      from 'angular2-cookie/core';
 
 @Component({
 	moduleId: module.id,
 	selector: 'ui-exam',
 	templateUrl: 'exam.component.html',
-	styleUrls: ['exam.component.css'],
-	directives: [ExamEditComponent]
+	styleUrls: ['exam.component.css']
 })
 
 export class ExamComponent implements OnInit {
@@ -25,7 +23,7 @@ export class ExamComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private _cookieService: CookieService,
+    private cookieService: CookieService,
     private classService: ClassService,
     private examService: ExamService) { }
 
@@ -44,8 +42,8 @@ export class ExamComponent implements OnInit {
       }
     }
     this.getExams(this.selectedClass.id);
-    this._cookieService.put("classId", "" + this.selectedClass.id);
-    this._cookieService.put("className", this.selectedClass.className);
+    this.cookieService.put("classId", "" + this.selectedClass.id);
+    this.cookieService.put("className", this.selectedClass.className);
     this.addingExam = false;
   }
 
@@ -69,10 +67,6 @@ export class ExamComponent implements OnInit {
   close(savedExam: Exam) {
     this.addingExam = false;
     if (savedExam) { this.getExams(this.selectedExam.id); }
-  }
-
-  goToDashboard() {
-    this.router.navigate(['/dashboard']);
   }
 
   gotoEdit(exam: Exam, event: any) {
