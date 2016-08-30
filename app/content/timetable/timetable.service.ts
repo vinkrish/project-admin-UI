@@ -7,18 +7,17 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class TimetableService {
   private timetableUrl = 'http://localhost:8080/guldu/webapi/timetable';
-  private authToken: string;
+  private headers;
 
   constructor(private http: Http, private cookieService: CookieService) {
-    this.authToken = this.cookieService.get("auth_token");
+    this.headers = new Headers({ 'Content-Type': 'application/json' });
+    this.headers.append('Authorization', `Bearer ${this.cookieService.get("auth_token")}`);
   }
 
   getTimetables(id: number): Promise<Timetable[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.timetableUrl}/section/${id}`;
     return this.http
-      .get(url, { headers: headers })
+      .get(url, { headers: this.headers, body: '' })
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
@@ -32,31 +31,25 @@ export class TimetableService {
   }
 
   delete(timetable: Timetable) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.timetableUrl}/${timetable.id}`;
     return this.http
-      .delete(url, { headers: headers })
+      .delete(url, { headers: this.headers })
       .toPromise()
       .catch(this.handleError);
   }
 
   private post(timetable: Timetable): Promise<Timetable> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     return this.http
-      .post(this.timetableUrl, JSON.stringify(timetable), { headers: headers })
+      .post(this.timetableUrl, JSON.stringify(timetable), { headers: this.headers })
       .toPromise()
       .then(res => res.json())
       .catch(this.handleError);
   }
 
   private put(timetable: Timetable) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.timetableUrl}/${timetable.id}`;
     return this.http
-      .put(url, JSON.stringify(timetable), { headers: headers })
+      .put(url, JSON.stringify(timetable), { headers: this.headers })
       .toPromise()
       .then(() => timetable)
       .catch(this.handleError);

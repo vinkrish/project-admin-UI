@@ -15,7 +15,6 @@ var section_1 = require('../section/section');
 var class_service_1 = require('../class/class.service');
 var section_service_1 = require('../section/section.service');
 var student_service_1 = require('./student.service');
-var student_edit_component_1 = require('./student-edit.component');
 var core_2 = require('angular2-cookie/core');
 var StudentComponent = (function () {
     function StudentComponent(router, cookieService, classService, sectionService, studentService) {
@@ -121,8 +120,7 @@ var StudentComponent = (function () {
             moduleId: module.id,
             selector: 'ui-student',
             templateUrl: 'student.component.html',
-            styleUrls: ['student.component.css'],
-            directives: [student_edit_component_1.StudentEditComponent]
+            styleUrls: ['student.component.css']
         }), 
         __metadata('design:paramtypes', [router_1.Router, core_2.CookieService, class_service_1.ClassService, section_service_1.SectionService, student_service_1.StudentService])
     ], StudentComponent);

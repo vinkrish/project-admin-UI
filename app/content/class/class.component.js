@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var class_service_1 = require('./class.service');
-var class_edit_component_1 = require('./class-edit.component');
 var ClassComponent = (function () {
     function ClassComponent(router, classService) {
         this.router = router;
@@ -64,8 +63,7 @@ var ClassComponent = (function () {
             moduleId: module.id,
             selector: 'ui-class',
             templateUrl: 'class.component.html',
-            styleUrls: ['class.component.css'],
-            directives: [class_edit_component_1.ClassEditComponent]
+            styleUrls: ['class.component.css']
         }), 
         __metadata('design:paramtypes', [router_1.Router, class_service_1.ClassService])
     ], ClassComponent);

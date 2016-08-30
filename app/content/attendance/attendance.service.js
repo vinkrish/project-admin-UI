@@ -21,72 +21,59 @@ var AttendanceService = (function () {
         this.dailyUnmarkedUrl = 'http://localhost:8080/guldu/webapi/attendance/daily/unmarked';
         this.sessionMarkedUrl = 'http://localhost:8080/guldu/webapi/attendance/session/marked';
         this.sessionUnmarkedUrl = 'http://localhost:8080/guldu/webapi/attendance/session/unmarked';
-        this.authToken = this.cookieService.get("auth_token");
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        this.headers.append('Authorization', "Bearer " + this.cookieService.get("auth_token"));
     }
     AttendanceService.prototype.dailyAttendanceMarked = function (sectionId, dateAttendance) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.dailyMarkedUrl + "/section/" + sectionId + "/date/" + dateAttendance;
         return this.http
-            .get(url, { headers: headers })
+            .get(url, { headers: this.headers, body: '' })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     AttendanceService.prototype.dailyAttendanceUnmarked = function (sectionId, dateAttendance) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.dailyUnmarkedUrl + "/section/" + sectionId + "/date/" + dateAttendance;
         return this.http
-            .get(url, { headers: headers })
+            .get(url, { headers: this.headers, body: '' })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     AttendanceService.prototype.sessionAttendanceMarked = function (session, sectionId, dateAttendance) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.sessionMarkedUrl + "/" + session + "/" + sectionId + "/" + dateAttendance;
         return this.http
-            .get(url, { headers: headers })
+            .get(url, { headers: this.headers, body: '' })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     AttendanceService.prototype.sessionAttendanceUnmarked = function (session, sectionId, dateAttendance) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.sessionUnmarkedUrl + "/" + session + "/" + sectionId + "/" + dateAttendance;
         return this.http
-            .get(url, { headers: headers })
+            .get(url, { headers: this.headers, body: '' })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     AttendanceService.prototype.delete = function (attendance) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.attendanceUrl + "/" + attendance.id;
         return this.http
-            .delete(url, { headers: headers })
+            .delete(url, { headers: this.headers })
             .toPromise()
             .catch(this.handleError);
     };
     AttendanceService.prototype.post = function (attendance) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.attendanceUrl + "/list";
         return this.http
-            .post(url, JSON.stringify(attendance), { headers: headers })
+            .post(url, JSON.stringify(attendance), { headers: this.headers })
             .toPromise()
             .catch(this.handleError);
     };
     AttendanceService.prototype.put = function (attendance) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.attendanceUrl + "/" + attendance.id;
         return this.http
-            .put(url, JSON.stringify(attendance), { headers: headers })
+            .put(url, JSON.stringify(attendance), { headers: this.headers })
             .toPromise()
             .then(function () { return attendance; })
             .catch(this.handleError);

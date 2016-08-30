@@ -17,14 +17,13 @@ var SubjectGroupService = (function () {
         this.http = http;
         this.cookieService = cookieService;
         this.subjectGroupUrl = 'http://localhost:8080/guldu/webapi/subjectgroup';
-        this.authToken = this.cookieService.get("auth_token");
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        this.headers.append('Authorization', "Bearer " + this.cookieService.get("auth_token"));
     }
     SubjectGroupService.prototype.getSubjectGroups = function () {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.subjectGroupUrl + "/school/" + +this.cookieService.get("schoolId");
         return this.http
-            .get(url, { headers: headers })
+            .get(url, { headers: this.headers, body: '' })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -40,30 +39,24 @@ var SubjectGroupService = (function () {
         return this.post(subjectGroup);
     };
     SubjectGroupService.prototype.delete = function (subjectGroup) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.subjectGroupUrl + "/" + subjectGroup.id;
         return this.http
-            .delete(url, { headers: headers })
+            .delete(url, { headers: this.headers })
             .toPromise()
             .catch(this.handleError);
     };
     SubjectGroupService.prototype.post = function (subjectGroup) {
         subjectGroup.schoolId = +this.cookieService.get("schoolId");
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
-            .post(this.subjectGroupUrl, JSON.stringify(subjectGroup), { headers: headers })
+            .post(this.subjectGroupUrl, JSON.stringify(subjectGroup), { headers: this.headers })
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     SubjectGroupService.prototype.put = function (subjectGroup) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.subjectGroupUrl + "/" + subjectGroup.id;
         return this.http
-            .put(url, JSON.stringify(subjectGroup), { headers: headers })
+            .put(url, JSON.stringify(subjectGroup), { headers: this.headers })
             .toPromise()
             .then(function () { return subjectGroup; })
             .catch(this.handleError);

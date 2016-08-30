@@ -17,14 +17,13 @@ var StudentService = (function () {
         this.http = http;
         this.cookieService = cookieService;
         this.studentUrl = 'http://localhost:8080/guldu/webapi/student';
-        this.authToken = this.cookieService.get("auth_token");
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        this.headers.append('Authorization', "Bearer " + this.cookieService.get("auth_token"));
     }
     StudentService.prototype.getStudents = function (id) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.studentUrl + "/section/" + id;
         return this.http
-            .get(url, { headers: headers })
+            .get(url, { headers: this.headers, body: '' })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -40,29 +39,23 @@ var StudentService = (function () {
         return this.post(student);
     };
     StudentService.prototype.delete = function (student) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.studentUrl + "/" + student.id;
         return this.http
-            .delete(url, { headers: headers })
+            .delete(url, { headers: this.headers })
             .toPromise()
             .catch(this.handleError);
     };
     StudentService.prototype.post = function (student) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
-            .post(this.studentUrl, JSON.stringify(student), { headers: headers })
+            .post(this.studentUrl, JSON.stringify(student), { headers: this.headers })
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     StudentService.prototype.put = function (student) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.studentUrl + "/" + student.id;
         return this.http
-            .put(url, JSON.stringify(student), { headers: headers })
+            .put(url, JSON.stringify(student), { headers: this.headers })
             .toPromise()
             .then(function () { return student; })
             .catch(this.handleError);

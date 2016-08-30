@@ -7,18 +7,18 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class ClassService {
   private classUrl = 'http://localhost:8080/guldu/webapi/class';
-  private authToken: string;
+  private headers;
 
-  constructor(private http: Http, private cookieService: CookieService) {
-    this.authToken = this.cookieService.get("auth_token");
+  constructor(private http: Http, 
+    private cookieService: CookieService) {
+    this.headers = new Headers({ 'Content-Type': 'application/json' });
+    this.headers.append('Authorization', `Bearer ${this.cookieService.get("auth_token")}`);
   }
 
   getClasses(): Promise<Clas[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.classUrl}/school/${+this.cookieService.get("schoolId")}`;
     return this.http
-      .get(url, { headers: headers })
+      .get(url, { headers: this.headers, body: '' })
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
@@ -37,11 +37,9 @@ export class ClassService {
   }
 
   delete(clas: Clas) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.classUrl}/${clas.id}`;
     return this.http
-      .delete(url, { headers: headers })
+      .delete(url, { headers: this.headers })
       .toPromise()
       .catch(this.handleError);
   }
@@ -49,21 +47,17 @@ export class ClassService {
   private post(clas: Clas): Promise<Clas> {
     clas.id = 0;
     clas.schoolId = + this.cookieService.get("schoolId");
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     return this.http
-      .post(this.classUrl, JSON.stringify(clas), { headers: headers })
+      .post(this.classUrl, JSON.stringify(clas), { headers: this.headers })
       .toPromise()
       .then(res => res.json())
       .catch(this.handleError);
   }
 
   private put(clas: Clas) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.classUrl}/${clas.id}`;
     return this.http
-      .put(url, JSON.stringify(clas), { headers: headers })
+      .put(url, JSON.stringify(clas), { headers: this.headers })
       .toPromise()
       .then(() => clas)
       .catch(this.handleError);

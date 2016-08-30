@@ -17,14 +17,13 @@ var HomeworkService = (function () {
         this.http = http;
         this.cookieService = cookieService;
         this.homeworkUrl = 'http://localhost:8080/guldu/webapi/homework';
-        this.authToken = this.cookieService.get("auth_token");
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        this.headers.append('Authorization', "Bearer " + this.cookieService.get("auth_token"));
     }
     HomeworkService.prototype.getHomeworks = function (sectionId, homeworkDate) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.homeworkUrl + "/section/" + sectionId + "/date/" + homeworkDate;
         return this.http
-            .get(url, { headers: headers })
+            .get(url, { headers: this.headers, body: '' })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -36,29 +35,23 @@ var HomeworkService = (function () {
         return this.post(homework);
     };
     HomeworkService.prototype.delete = function (homework) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.homeworkUrl + "/" + homework.id;
         return this.http
-            .delete(url, { headers: headers })
+            .delete(url, { headers: this.headers })
             .toPromise()
             .catch(this.handleError);
     };
     HomeworkService.prototype.post = function (homework) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
-            .post(this.homeworkUrl, JSON.stringify(homework), { headers: headers })
+            .post(this.homeworkUrl, JSON.stringify(homework), { headers: this.headers })
             .toPromise()
             .then(function (res) { return res.json().data; })
             .catch(this.handleError);
     };
     HomeworkService.prototype.put = function (homework) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.homeworkUrl + "/" + homework.id;
         return this.http
-            .put(url, JSON.stringify(homework), { headers: headers })
+            .put(url, JSON.stringify(homework), { headers: this.headers })
             .toPromise()
             .then(function () { return homework; })
             .catch(this.handleError);

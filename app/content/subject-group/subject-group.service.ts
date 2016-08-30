@@ -7,18 +7,17 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class SubjectGroupService {
   private subjectGroupUrl = 'http://localhost:8080/guldu/webapi/subjectgroup';
-  private authToken: string;
+  private headers;
 
   constructor(private http: Http, private cookieService: CookieService) {
-    this.authToken = this.cookieService.get("auth_token");
+    this.headers = new Headers({ 'Content-Type': 'application/json' });
+    this.headers.append('Authorization', `Bearer ${this.cookieService.get("auth_token")}`);
   }
 
   getSubjectGroups(): Promise<SubjectGroup[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.subjectGroupUrl}/school/${+this.cookieService.get("schoolId")}`;
     return this.http
-      .get(url, { headers: headers })
+      .get(url, { headers: this.headers, body: '' })
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
@@ -37,32 +36,26 @@ export class SubjectGroupService {
   }
 
   delete(subjectGroup: SubjectGroup) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.subjectGroupUrl}/${subjectGroup.id}`;
     return this.http
-      .delete(url, { headers: headers })
+      .delete(url, { headers: this.headers })
       .toPromise()
       .catch(this.handleError);
   }
 
   private post(subjectGroup: SubjectGroup): Promise<SubjectGroup> {
     subjectGroup.schoolId = + this.cookieService.get("schoolId");
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     return this.http
-      .post(this.subjectGroupUrl, JSON.stringify(subjectGroup), { headers: headers })
+      .post(this.subjectGroupUrl, JSON.stringify(subjectGroup), { headers: this.headers })
       .toPromise()
       .then(res => res.json())
       .catch(this.handleError);
   }
 
   private put(subjectGroup: SubjectGroup) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.subjectGroupUrl}/${subjectGroup.id}`;
     return this.http
-      .put(url, JSON.stringify(subjectGroup), { headers: headers })
+      .put(url, JSON.stringify(subjectGroup), { headers: this.headers })
       .toPromise()
       .then(() => subjectGroup)
       .catch(this.handleError);

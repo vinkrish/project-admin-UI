@@ -7,18 +7,17 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class HomeworkService {
   private homeworkUrl = 'http://localhost:8080/guldu/webapi/homework';
-  private authToken: string;
+  private headers;
 
   constructor(private http: Http, private cookieService: CookieService) {
-    this.authToken = this.cookieService.get("auth_token");
+    this.headers = new Headers({ 'Content-Type': 'application/json' });
+    this.headers.append('Authorization', `Bearer ${this.cookieService.get("auth_token")}`);
   }
 
   getHomeworks(sectionId: number, homeworkDate: string): Promise<Homework[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.homeworkUrl}/section/${sectionId}/date/${homeworkDate}`;
     return this.http
-      .get(url, { headers: headers })
+      .get(url, { headers: this.headers, body: '' })
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
@@ -32,31 +31,25 @@ export class HomeworkService {
   }
 
   delete(homework: Homework) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.homeworkUrl}/${homework.id}`;
     return this.http
-      .delete(url, { headers: headers })
+      .delete(url, { headers: this.headers })
       .toPromise()
       .catch(this.handleError);
   }
 
   private post(homework: Homework): Promise<Homework> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     return this.http
-      .post(this.homeworkUrl, JSON.stringify(homework), { headers: headers })
+      .post(this.homeworkUrl, JSON.stringify(homework), { headers: this.headers })
       .toPromise()
       .then(res => res.json().data)
       .catch(this.handleError);
   }
 
   private put(homework: Homework) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.homeworkUrl}/${homework.id}`;
     return this.http
-      .put(url, JSON.stringify(homework), { headers: headers })
+      .put(url, JSON.stringify(homework), { headers: this.headers })
       .toPromise()
       .then(() => homework)
       .catch(this.handleError);

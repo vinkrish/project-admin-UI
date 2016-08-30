@@ -17,14 +17,13 @@ var TimetableService = (function () {
         this.http = http;
         this.cookieService = cookieService;
         this.timetableUrl = 'http://localhost:8080/guldu/webapi/timetable';
-        this.authToken = this.cookieService.get("auth_token");
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        this.headers.append('Authorization', "Bearer " + this.cookieService.get("auth_token"));
     }
     TimetableService.prototype.getTimetables = function (id) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.timetableUrl + "/section/" + id;
         return this.http
-            .get(url, { headers: headers })
+            .get(url, { headers: this.headers, body: '' })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -36,29 +35,23 @@ var TimetableService = (function () {
         return this.post(timetable);
     };
     TimetableService.prototype.delete = function (timetable) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.timetableUrl + "/" + timetable.id;
         return this.http
-            .delete(url, { headers: headers })
+            .delete(url, { headers: this.headers })
             .toPromise()
             .catch(this.handleError);
     };
     TimetableService.prototype.post = function (timetable) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
-            .post(this.timetableUrl, JSON.stringify(timetable), { headers: headers })
+            .post(this.timetableUrl, JSON.stringify(timetable), { headers: this.headers })
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     TimetableService.prototype.put = function (timetable) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.timetableUrl + "/" + timetable.id;
         return this.http
-            .put(url, JSON.stringify(timetable), { headers: headers })
+            .put(url, JSON.stringify(timetable), { headers: this.headers })
             .toPromise()
             .then(function () { return timetable; })
             .catch(this.handleError);

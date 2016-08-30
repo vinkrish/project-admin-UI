@@ -11,82 +11,69 @@ export class AttendanceService {
   private dailyUnmarkedUrl = 'http://localhost:8080/guldu/webapi/attendance/daily/unmarked';
   private sessionMarkedUrl = 'http://localhost:8080/guldu/webapi/attendance/session/marked';
   private sessionUnmarkedUrl = 'http://localhost:8080/guldu/webapi/attendance/session/unmarked';
-  private authToken: string;
+  private headers;
 
   constructor(private http: Http, private cookieService: CookieService) {
-    this.authToken = this.cookieService.get("auth_token");
+    this.headers = new Headers({ 'Content-Type': 'application/json' });
+    this.headers.append('Authorization', `Bearer ${this.cookieService.get("auth_token")}`);
   }
 
   dailyAttendanceMarked(sectionId: number, dateAttendance: string): Promise<Attendance[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.dailyMarkedUrl}/section/${sectionId}/date/${dateAttendance}`;
     return this.http
-      .get(url, { headers: headers })
+      .get(url, { headers: this.headers, body: '' })
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
   dailyAttendanceUnmarked(sectionId: number, dateAttendance: string): Promise<Attendance[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.dailyUnmarkedUrl}/section/${sectionId}/date/${dateAttendance}`;
     return this.http
-      .get(url, { headers: headers })
+      .get(url, { headers: this.headers, body: '' })
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
   sessionAttendanceMarked(session: number, sectionId: number, dateAttendance: string): Promise<Attendance[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.sessionMarkedUrl}/${session}/${sectionId}/${dateAttendance}`;
     return this.http
-      .get(url, { headers: headers })
+      .get(url, { headers: this.headers, body: '' })
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
   sessionAttendanceUnmarked(session: number, sectionId: number, dateAttendance: string): Promise<Attendance[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.sessionUnmarkedUrl}/${session}/${sectionId}/${dateAttendance}`;
     return this.http
-      .get(url, { headers: headers })
+      .get(url, { headers: this.headers, body: '' })
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
   delete(attendance: Attendance) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.attendanceUrl}/${attendance.id}`;
     return this.http
-      .delete(url, { headers: headers })
+      .delete(url, { headers: this.headers })
       .toPromise()
       .catch(this.handleError);
   }
 
   post(attendance: Attendance[]) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.attendanceUrl}/list`;
     return this.http
-      .post(url, JSON.stringify(attendance), { headers: headers })
+      .post(url, JSON.stringify(attendance), { headers: this.headers })
       .toPromise()
       .catch(this.handleError);
   }
 
   private put(attendance: Attendance) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.attendanceUrl}/${attendance.id}`;
     return this.http
-      .put(url, JSON.stringify(attendance), { headers: headers })
+      .put(url, JSON.stringify(attendance), { headers: this.headers })
       .toPromise()
       .then(() => attendance)
       .catch(this.handleError);

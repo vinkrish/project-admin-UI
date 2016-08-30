@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var subject_group_service_1 = require('./subject-group.service');
-var subject_group_edit_component_1 = require('./subject-group-edit.component');
 var SubjectGroupComponent = (function () {
     function SubjectGroupComponent(router, subjectGroupService) {
         this.router = router;
@@ -65,8 +64,7 @@ var SubjectGroupComponent = (function () {
             moduleId: module.id,
             selector: 'ui-subject-group',
             templateUrl: 'subject-group.component.html',
-            styleUrls: ['subject-group.component.css'],
-            directives: [subject_group_edit_component_1.SubjectGroupEditComponent]
+            styleUrls: ['subject-group.component.css']
         }), 
         __metadata('design:paramtypes', [router_1.Router, subject_group_service_1.SubjectGroupService])
     ], SubjectGroupComponent);

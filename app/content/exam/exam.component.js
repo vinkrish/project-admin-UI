@@ -13,7 +13,6 @@ var router_1 = require('@angular/router');
 var clas_1 = require('../class/clas');
 var class_service_1 = require('../class/class.service');
 var exam_service_1 = require('./exam.service');
-var exam_edit_component_1 = require('./exam-edit.component');
 var core_2 = require('angular2-cookie/core');
 var ExamComponent = (function () {
     function ExamComponent(router, cookieService, classService, examService) {
@@ -94,8 +93,7 @@ var ExamComponent = (function () {
             moduleId: module.id,
             selector: 'ui-exam',
             templateUrl: 'exam.component.html',
-            styleUrls: ['exam.component.css'],
-            directives: [exam_edit_component_1.ExamEditComponent]
+            styleUrls: ['exam.component.css']
         }), 
         __metadata('design:paramtypes', [router_1.Router, core_2.CookieService, class_service_1.ClassService, exam_service_1.ExamService])
     ], ExamComponent);

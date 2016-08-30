@@ -18,14 +18,13 @@ var SubjectTeacherService = (function () {
         this.cookieService = cookieService;
         this.subjectTeacherUrl = 'http://localhost:8080/guldu/webapi/subjectteacher';
         this.sharedUrl = 'http://localhost:8080/guldu/webapi/shared/subjectteacher';
-        this.authToken = this.cookieService.get("auth_token");
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        this.headers.append('Authorization', "Bearer " + this.cookieService.get("auth_token"));
     }
     SubjectTeacherService.prototype.getSubjectTeachers = function (id) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.subjectTeacherUrl + "/section/" + id;
         return this.http
-            .get(url, { headers: headers })
+            .get(url, { headers: this.headers, body: '' })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -38,28 +37,22 @@ var SubjectTeacherService = (function () {
         return this.post(clas);
     };
     SubjectTeacherService.prototype.delete = function (subjectTeacher) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.subjectTeacherUrl + "/" + subjectTeacher.id;
         return this.http
-            .delete(url, { headers: headers })
+            .delete(url, { headers: this.headers })
             .toPromise()
             .catch(this.handleError);
     };
     SubjectTeacherService.prototype.post = function (clas) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
-            .post(this.sharedUrl, JSON.stringify(clas), { headers: headers })
+            .post(this.sharedUrl, JSON.stringify(clas), { headers: this.headers })
             .toPromise()
             .catch(this.handleError);
     };
     SubjectTeacherService.prototype.put = function (subjectTeacher) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.subjectTeacherUrl + "/" + subjectTeacher.id;
         return this.http
-            .put(url, JSON.stringify(subjectTeacher), { headers: headers })
+            .put(url, JSON.stringify(subjectTeacher), { headers: this.headers })
             .toPromise()
             .then(function () { return subjectTeacher; })
             .catch(this.handleError);

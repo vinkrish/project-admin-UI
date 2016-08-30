@@ -13,7 +13,6 @@ var router_1 = require('@angular/router');
 var clas_1 = require('../class/clas');
 var section_service_1 = require('./section.service');
 var class_service_1 = require('../class/class.service');
-var section_edit_component_1 = require('./section-edit.component');
 var core_2 = require('angular2-cookie/core');
 var SectionComponent = (function () {
     function SectionComponent(router, _cookieService, classService, sectionService) {
@@ -95,8 +94,7 @@ var SectionComponent = (function () {
             moduleId: module.id,
             selector: 'ui-section',
             templateUrl: 'section.component.html',
-            styleUrls: ['section.component.css'],
-            directives: [section_edit_component_1.SectionEditComponent]
+            styleUrls: ['section.component.css']
         }), 
         __metadata('design:paramtypes', [router_1.Router, core_2.CookieService, class_service_1.ClassService, section_service_1.SectionService])
     ], SectionComponent);

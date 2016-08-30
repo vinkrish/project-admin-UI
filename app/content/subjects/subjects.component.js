@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var subjects_service_1 = require('./subjects.service');
-var subjects_edit_component_1 = require('./subjects-edit.component');
 var SubjectsComponent = (function () {
     function SubjectsComponent(router, subjectsService) {
         this.router = router;
@@ -65,8 +64,7 @@ var SubjectsComponent = (function () {
             moduleId: module.id,
             selector: 'ui-subjects',
             templateUrl: 'subjects.component.html',
-            styleUrls: ['subjects.component.css'],
-            directives: [subjects_edit_component_1.SubjectsEditComponent]
+            styleUrls: ['subjects.component.css']
         }), 
         __metadata('design:paramtypes', [router_1.Router, subjects_service_1.SubjectsService])
     ], SubjectsComponent);

@@ -17,24 +17,21 @@ var SubjectsService = (function () {
         this.http = http;
         this.cookieService = cookieService;
         this.subjectUrl = 'http://localhost:8080/guldu/webapi/subject';
-        this.authToken = this.cookieService.get("auth_token");
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        this.headers.append('Authorization', "Bearer " + this.cookieService.get("auth_token"));
     }
     SubjectsService.prototype.getSubjects = function () {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.subjectUrl + "/school/" + +this.cookieService.get("schoolId");
         return this.http
-            .get(url, { headers: headers })
+            .get(url, { headers: this.headers, body: '' })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     SubjectsService.prototype.getClassSubjects = function (id) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.subjectUrl + "/class/" + id;
         return this.http
-            .get(url, { headers: headers })
+            .get(url, { headers: this.headers, body: '' })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -50,30 +47,24 @@ var SubjectsService = (function () {
         return this.post(subject);
     };
     SubjectsService.prototype.delete = function (subject) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.subjectUrl + "/" + subject.id;
         return this.http
-            .delete(url, { headers: headers })
+            .delete(url, { headers: this.headers })
             .toPromise()
             .catch(this.handleError);
     };
     SubjectsService.prototype.post = function (subject) {
         subject.schoolId = +this.cookieService.get("schoolId");
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
-            .post(this.subjectUrl, JSON.stringify(subject), { headers: headers })
+            .post(this.subjectUrl, JSON.stringify(subject), { headers: this.headers })
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     SubjectsService.prototype.put = function (subject) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.subjectUrl + "/" + subject.id;
         return this.http
-            .put(url, JSON.stringify(subject), { headers: headers })
+            .put(url, JSON.stringify(subject), { headers: this.headers })
             .toPromise()
             .then(function () { return subject; })
             .catch(this.handleError);

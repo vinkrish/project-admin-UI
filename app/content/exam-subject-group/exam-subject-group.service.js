@@ -17,32 +17,27 @@ var ExamSubjectGroupService = (function () {
         this.http = http;
         this.cookieService = cookieService;
         this.esgUrl = 'http://localhost:8080/guldu/webapi/examsubjectgroup';
-        this.authToken = this.cookieService.get("auth_token");
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        this.headers.append('Authorization', "Bearer " + this.cookieService.get("auth_token"));
     }
     ExamSubjectGroupService.prototype.getExamSubjectGroups = function (id) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.esgUrl + "/exam/" + id;
         return this.http
-            .get(url, { headers: headers })
+            .get(url, { headers: this.headers, body: '' })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     ExamSubjectGroupService.prototype.delete = function (esg) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.esgUrl + "/" + esg.id;
         return this.http
-            .delete(url, { headers: headers })
+            .delete(url, { headers: this.headers })
             .toPromise()
             .catch(this.handleError);
     };
     ExamSubjectGroupService.prototype.post = function (esg) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
-            .post(this.esgUrl, JSON.stringify(esg), { headers: headers })
+            .post(this.esgUrl, JSON.stringify(esg), { headers: this.headers })
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);

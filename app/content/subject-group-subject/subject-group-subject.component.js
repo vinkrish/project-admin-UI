@@ -13,7 +13,6 @@ var router_1 = require('@angular/router');
 var subject_group_1 = require('../subject-group/subject-group');
 var subject_group_service_1 = require('../subject-group/subject-group.service');
 var subject_group_subject_service_1 = require('./subject-group-subject.service');
-var subject_group_subject_edit_component_1 = require('./subject-group-subject-edit.component');
 var core_2 = require('angular2-cookie/core');
 var SubjectGroupSubjectComponent = (function () {
     function SubjectGroupSubjectComponent(router, cookieService, subjectGroupService, subjectGroupSubjectService) {
@@ -90,8 +89,7 @@ var SubjectGroupSubjectComponent = (function () {
             moduleId: module.id,
             selector: 'ui-subject-group-subject',
             templateUrl: 'subject-group-subject.component.html',
-            styleUrls: ['subject-group-subject.component.css'],
-            directives: [subject_group_subject_edit_component_1.SubjectGroupSubjectEditComponent]
+            styleUrls: ['subject-group-subject.component.css']
         }), 
         __metadata('design:paramtypes', [router_1.Router, core_2.CookieService, subject_group_service_1.SubjectGroupService, subject_group_subject_service_1.SubjectGroupSubjectService])
     ], SubjectGroupSubjectComponent);

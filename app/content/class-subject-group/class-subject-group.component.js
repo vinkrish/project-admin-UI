@@ -13,7 +13,6 @@ var router_1 = require('@angular/router');
 var clas_1 = require('../class/clas');
 var class_service_1 = require('../class/class.service');
 var class_subject_group_service_1 = require('./class-subject-group.service');
-var class_subject_group_edit_component_1 = require('./class-subject-group-edit.component');
 var core_2 = require('angular2-cookie/core');
 var ClassSubjectGroupComponent = (function () {
     function ClassSubjectGroupComponent(router, cookieService, classService, csgService) {
@@ -90,8 +89,7 @@ var ClassSubjectGroupComponent = (function () {
             moduleId: module.id,
             selector: 'ui-class-subject-group',
             templateUrl: 'class-subject-group.component.html',
-            styleUrls: ['class-subject-group.component.css'],
-            directives: [class_subject_group_edit_component_1.ClassSubjectGroupEditComponent]
+            styleUrls: ['class-subject-group.component.css']
         }), 
         __metadata('design:paramtypes', [router_1.Router, core_2.CookieService, class_service_1.ClassService, class_subject_group_service_1.ClassSubjectGroupService])
     ], ClassSubjectGroupComponent);

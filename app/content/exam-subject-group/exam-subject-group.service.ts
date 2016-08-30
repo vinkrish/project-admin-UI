@@ -7,38 +7,33 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class ExamSubjectGroupService {
   private esgUrl = 'http://localhost:8080/guldu/webapi/examsubjectgroup';
-  private authToken: string;
+  private headers;
 
   constructor(private http: Http, private cookieService: CookieService) {
-    this.authToken = this.cookieService.get("auth_token");
+    this.headers = new Headers({ 'Content-Type': 'application/json' });
+    this.headers.append('Authorization', `Bearer ${this.cookieService.get("auth_token")}`);
   }
 
   getExamSubjectGroups(id: number): Promise<ExamSubjectGroup[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.esgUrl}/exam/${id}`;
     return this.http
-      .get(url, { headers: headers })
+      .get(url, { headers: this.headers, body: '' })
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
   delete(esg: ExamSubjectGroup) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.esgUrl}/${esg.id}`;
     return this.http
-      .delete(url, { headers: headers })
+      .delete(url, { headers: this.headers })
       .toPromise()
       .catch(this.handleError);
   }
 
   post(esg: ExamSubjectGroup): Promise<ExamSubjectGroup> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     return this.http
-      .post(this.esgUrl, JSON.stringify(esg), { headers: headers })
+      .post(this.esgUrl, JSON.stringify(esg), { headers: this.headers })
       .toPromise()
       .then(res => res.json())
       .catch(this.handleError);

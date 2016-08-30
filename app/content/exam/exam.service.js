@@ -17,14 +17,13 @@ var ExamService = (function () {
         this.http = http;
         this.cookieService = cookieService;
         this.examUrl = 'http://localhost:8080/guldu/webapi/exam';
-        this.authToken = this.cookieService.get("auth_token");
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        this.headers.append('Authorization', "Bearer " + this.cookieService.get("auth_token"));
     }
     ExamService.prototype.getExams = function (id) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.examUrl + "/class/" + id;
         return this.http
-            .get(url, { headers: headers })
+            .get(url, { headers: this.headers, body: '' })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -40,29 +39,23 @@ var ExamService = (function () {
         return this.post(exam);
     };
     ExamService.prototype.delete = function (exam) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.examUrl + "/" + exam.id;
         return this.http
-            .delete(url, { headers: headers })
+            .delete(url, { headers: this.headers })
             .toPromise()
             .catch(this.handleError);
     };
     ExamService.prototype.post = function (exam) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
-            .post(this.examUrl, JSON.stringify(exam), { headers: headers })
+            .post(this.examUrl, JSON.stringify(exam), { headers: this.headers })
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     ExamService.prototype.put = function (exam) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.examUrl + "/" + exam.id;
         return this.http
-            .put(url, JSON.stringify(exam), { headers: headers })
+            .put(url, JSON.stringify(exam), { headers: this.headers })
             .toPromise()
             .then(function () { return exam; })
             .catch(this.handleError);

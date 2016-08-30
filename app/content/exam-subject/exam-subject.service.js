@@ -17,14 +17,13 @@ var ExamSubjectService = (function () {
         this.http = http;
         this.cookieService = cookieService;
         this.examSubjectUrl = 'http://localhost:8080/guldu/webapi/examsubject';
-        this.authToken = this.cookieService.get("auth_token");
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        this.headers.append('Authorization', "Bearer " + this.cookieService.get("auth_token"));
     }
     ExamSubjectService.prototype.getExamSubjects = function (id) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.examSubjectUrl + "/exam/" + id;
         return this.http
-            .get(url, { headers: headers })
+            .get(url, { headers: this.headers, body: '' })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -36,28 +35,22 @@ var ExamSubjectService = (function () {
         return this.post(examSubject);
     };
     ExamSubjectService.prototype.delete = function (examSubject) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.examSubjectUrl + "/" + examSubject.id;
         return this.http
-            .delete(url, { headers: headers })
+            .delete(url, { headers: this.headers })
             .toPromise()
             .catch(this.handleError);
     };
     ExamSubjectService.prototype.post = function (examSubject) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
-            .post(this.examSubjectUrl, JSON.stringify(examSubject), { headers: headers })
+            .post(this.examSubjectUrl, JSON.stringify(examSubject), { headers: this.headers })
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     ExamSubjectService.prototype.put = function (examSubject) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
-            .put(this.examSubjectUrl, JSON.stringify(examSubject), { headers: headers })
+            .put(this.examSubjectUrl, JSON.stringify(examSubject), { headers: this.headers })
             .toPromise()
             .then(function () { return examSubject; })
             .catch(this.handleError);

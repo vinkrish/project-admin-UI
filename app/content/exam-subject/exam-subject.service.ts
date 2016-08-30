@@ -7,18 +7,17 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class ExamSubjectService {
   private examSubjectUrl = 'http://localhost:8080/guldu/webapi/examsubject';
-  private authToken: string;
+  private headers;
 
   constructor(private http: Http, private cookieService: CookieService) {
-    this.authToken = this.cookieService.get("auth_token");
+    this.headers = new Headers({ 'Content-Type': 'application/json' });
+    this.headers.append('Authorization', `Bearer ${this.cookieService.get("auth_token")}`);
   }
 
   getExamSubjects(id: number): Promise<ExamSubject[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.examSubjectUrl}/exam/${id}`;
     return this.http
-      .get(url, { headers: headers })
+      .get(url, { headers: this.headers, body: '' })
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
@@ -32,30 +31,24 @@ export class ExamSubjectService {
   }
 
   delete(examSubject: ExamSubject) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     let url = `${this.examSubjectUrl}/${examSubject.id}`;
     return this.http
-      .delete(url, { headers: headers })
+      .delete(url, { headers: this.headers })
       .toPromise()
       .catch(this.handleError);
   }
 
   post(examSubject: ExamSubject): Promise<ExamSubject> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     return this.http
-      .post(this.examSubjectUrl, JSON.stringify(examSubject), { headers: headers })
+      .post(this.examSubjectUrl, JSON.stringify(examSubject), { headers: this.headers })
       .toPromise()
       .then(res => res.json())
       .catch(this.handleError);
   }
 
   put(examSubject: ExamSubject) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', `Bearer ${this.authToken}`);
     return this.http
-      .put(this.examSubjectUrl, JSON.stringify(examSubject), { headers: headers })
+      .put(this.examSubjectUrl, JSON.stringify(examSubject), { headers: this.headers })
       .toPromise()
       .then(() => examSubject)
       .catch(this.handleError);

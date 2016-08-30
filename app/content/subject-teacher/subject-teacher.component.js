@@ -15,7 +15,6 @@ var section_1 = require('../section/section');
 var class_service_1 = require('../class/class.service');
 var section_service_1 = require('../section/section.service');
 var subject_teacher_service_1 = require('./subject-teacher.service');
-var subject_teacher_edit_component_1 = require('./subject-teacher-edit.component');
 var core_2 = require('angular2-cookie/core');
 var SubjectTeacherComponent = (function () {
     function SubjectTeacherComponent(router, cookieService, classService, sectionService, subjectTeacherService) {
@@ -109,8 +108,7 @@ var SubjectTeacherComponent = (function () {
             moduleId: module.id,
             selector: 'ui-subject-teacher',
             templateUrl: 'subject-teacher.component.html',
-            styleUrls: ['subject-teacher.component.css'],
-            directives: [subject_teacher_edit_component_1.SubjectTeacherEditComponent]
+            styleUrls: ['subject-teacher.component.css']
         }), 
         __metadata('design:paramtypes', [router_1.Router, core_2.CookieService, class_service_1.ClassService, section_service_1.SectionService, subject_teacher_service_1.SubjectTeacherService])
     ], SubjectTeacherComponent);

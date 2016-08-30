@@ -17,14 +17,13 @@ var SectionService = (function () {
         this.http = http;
         this.cookieService = cookieService;
         this.sectionUrl = 'http://localhost:8080/guldu/webapi/section';
-        this.authToken = this.cookieService.get("auth_token");
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        this.headers.append('Authorization', "Bearer " + this.cookieService.get("auth_token"));
     }
     SectionService.prototype.getSections = function (id) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.sectionUrl + "/class/" + id;
         return this.http
-            .get(url, { headers: headers })
+            .get(url, { headers: this.headers, body: '' })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -40,29 +39,23 @@ var SectionService = (function () {
         return this.post(section);
     };
     SectionService.prototype.delete = function (section) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.sectionUrl + "/" + section.id;
         return this.http
-            .delete(url, { headers: headers })
+            .delete(url, { headers: this.headers })
             .toPromise()
             .catch(this.handleError);
     };
     SectionService.prototype.post = function (section) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         return this.http
-            .post(this.sectionUrl, JSON.stringify(section), { headers: headers })
+            .post(this.sectionUrl, JSON.stringify(section), { headers: this.headers })
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     SectionService.prototype.put = function (section) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', "Bearer " + this.authToken);
         var url = this.sectionUrl + "/" + section.id;
         return this.http
-            .put(url, JSON.stringify(section), { headers: headers })
+            .put(url, JSON.stringify(section), { headers: this.headers })
             .toPromise()
             .then(function () { return section; })
             .catch(this.handleError);

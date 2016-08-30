@@ -27,7 +27,5 @@ var routes = [
         canActivate: [logged_in_guard_1.LoggedInGuard]
     }
 ].concat(dashboard_routes_1.dashboardRoutes, exam_dashboard_routes_1.examDashboardRoutes);
-exports.appRouterProviders = [
-    router_1.provideRouter(routes)
-];
+exports.routing = router_1.RouterModule.forRoot(routes);
 //# sourceMappingURL=app.routes.js.map
