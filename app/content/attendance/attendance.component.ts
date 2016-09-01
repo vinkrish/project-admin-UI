@@ -27,7 +27,7 @@ export class AttendanceComponent {
 	sections: Section[];
 	selectedSection: Section;
 	selectingSection = false;
-	dateAttendance: string;
+	dateAttendance: Date;
 	timetables: Timetable[];
 	periods: number[];
 	markedAttendances: Attendance[];
@@ -170,7 +170,7 @@ export class AttendanceComponent {
 			.catch(error => this.error = error);
 	}
 
-	getMarkedAttendance(sectionId: number, date: string) {
+	getMarkedAttendance(sectionId: number, date: Date) {
 		this.attendanceService
 			.dailyAttendanceMarked(sectionId, date)
 			.then(attendances => {
@@ -179,7 +179,7 @@ export class AttendanceComponent {
 			.catch(error => this.error = error)
 	}
 
-	getUnmarkedAttendance(sectionId: number, date: string) {
+	getUnmarkedAttendance(sectionId: number, date: Date) {
 		this.attendanceService
 			.dailyAttendanceUnmarked(sectionId, date)
 			.then(attendances => {
@@ -188,7 +188,7 @@ export class AttendanceComponent {
 			.catch(error => this.error = error)
 	}
 
-	getMarkedSessionAttendance(session: number, sectionId: number, date: string) {
+	getMarkedSessionAttendance(session: number, sectionId: number, date: Date) {
 		this.attendanceService
 			.sessionAttendanceMarked(session, sectionId, date)
 			.then(attendances => {
@@ -197,7 +197,7 @@ export class AttendanceComponent {
 			.catch(error => this.error = error)
 	}
 
-	getUnmarkedSessionAttendance(session: number, sectionId: number, date: string) {
+	getUnmarkedSessionAttendance(session: number, sectionId: number, date: Date) {
 		this.attendanceService
 			.sessionAttendanceUnmarked(session, sectionId, date)
 			.then(attendances => {

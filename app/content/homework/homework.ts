@@ -3,5 +3,5 @@ export class Homework{
 	sectionId: number;
 	subjectId: number;
 	homeworkMessage: string;
-	homeworkDate: string;
+	homeworkDate: Date;
 }

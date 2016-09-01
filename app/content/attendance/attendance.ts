@@ -6,6 +6,6 @@ export class Attendance {
 	subjectId: number;
 	type: string;
 	session: number;
-	dateAttendance: string;
+	dateAttendance: Date;
 	typeOfLeave: string;
 }

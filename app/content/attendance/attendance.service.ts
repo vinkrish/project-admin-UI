@@ -18,7 +18,7 @@ export class AttendanceService {
     this.headers.append('Authorization', `Bearer ${this.cookieService.get("auth_token")}`);
   }
 
-  dailyAttendanceMarked(sectionId: number, dateAttendance: string): Promise<Attendance[]> {
+  dailyAttendanceMarked(sectionId: number, dateAttendance: Date): Promise<Attendance[]> {
     let url = `${this.dailyMarkedUrl}/section/${sectionId}/date/${dateAttendance}`;
     return this.http
       .get(url, { headers: this.headers, body: '' })
@@ -27,7 +27,7 @@ export class AttendanceService {
       .catch(this.handleError);
   }
 
-  dailyAttendanceUnmarked(sectionId: number, dateAttendance: string): Promise<Attendance[]> {
+  dailyAttendanceUnmarked(sectionId: number, dateAttendance: Date): Promise<Attendance[]> {
     let url = `${this.dailyUnmarkedUrl}/section/${sectionId}/date/${dateAttendance}`;
     return this.http
       .get(url, { headers: this.headers, body: '' })
@@ -36,7 +36,7 @@ export class AttendanceService {
       .catch(this.handleError);
   }
 
-  sessionAttendanceMarked(session: number, sectionId: number, dateAttendance: string): Promise<Attendance[]> {
+  sessionAttendanceMarked(session: number, sectionId: number, dateAttendance: Date): Promise<Attendance[]> {
     let url = `${this.sessionMarkedUrl}/${session}/${sectionId}/${dateAttendance}`;
     return this.http
       .get(url, { headers: this.headers, body: '' })
@@ -45,7 +45,7 @@ export class AttendanceService {
       .catch(this.handleError);
   }
 
-  sessionAttendanceUnmarked(session: number, sectionId: number, dateAttendance: string): Promise<Attendance[]> {
+  sessionAttendanceUnmarked(session: number, sectionId: number, dateAttendance: Date): Promise<Attendance[]> {
     let url = `${this.sessionUnmarkedUrl}/${session}/${sectionId}/${dateAttendance}`;
     return this.http
       .get(url, { headers: this.headers, body: '' })

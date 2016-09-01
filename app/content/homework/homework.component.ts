@@ -23,7 +23,7 @@ export class HomeworkComponent {
 	sections: Section[];
 	selectedSection: Section;
 	selectingSection = false;
-	homeworkDate: string;
+	homeworkDate: Date;
 	homeworks: Homework[];
 	error: any;
 
@@ -73,7 +73,7 @@ export class HomeworkComponent {
 		this.homeworks = null;
 	}
 
-	getHomeworks(id: number, date: string) {
+	getHomeworks(id: number, date: Date) {
 		this.homeworkService
 			.getHomeworks(id, date)
 			.then(homeworks => {

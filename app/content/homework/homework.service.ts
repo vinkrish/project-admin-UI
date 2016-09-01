@@ -14,7 +14,7 @@ export class HomeworkService {
     this.headers.append('Authorization', `Bearer ${this.cookieService.get("auth_token")}`);
   }
 
-  getHomeworks(sectionId: number, homeworkDate: string): Promise<Homework[]> {
+  getHomeworks(sectionId: number, homeworkDate: Date): Promise<Homework[]> {
     let url = `${this.homeworkUrl}/section/${sectionId}/date/${homeworkDate}`;
     return this.http
       .get(url, { headers: this.headers, body: '' })
