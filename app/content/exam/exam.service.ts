@@ -38,7 +38,7 @@ export class ExamService {
   delete(exam: Exam) {
     let url = `${this.examUrl}/${exam.id}`;
     return this.http
-      .delete(url, { headers: this.headers })
+      .delete(url, { headers: this.headers, body: '' })
       .toPromise()
       .catch(this.handleError);
   }

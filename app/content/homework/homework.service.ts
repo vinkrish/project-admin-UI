@@ -33,7 +33,7 @@ export class HomeworkService {
   delete(homework: Homework) {
     let url = `${this.homeworkUrl}/${homework.id}`;
     return this.http
-      .delete(url, { headers: this.headers })
+      .delete(url, { headers: this.headers, body: '' })
       .toPromise()
       .catch(this.handleError);
   }

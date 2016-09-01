@@ -41,7 +41,7 @@ var SectionService = (function () {
     SectionService.prototype.delete = function (section) {
         var url = this.sectionUrl + "/" + section.id;
         return this.http
-            .delete(url, { headers: this.headers })
+            .delete(url, { headers: this.headers, body: '' })
             .toPromise()
             .catch(this.handleError);
     };

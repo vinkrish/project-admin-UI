@@ -41,7 +41,7 @@ var TeacherService = (function () {
     TeacherService.prototype.delete = function (teacher) {
         var url = this.teacherUrl + "/" + teacher.id;
         return this.http
-            .delete(url, { headers: this.headers })
+            .delete(url, { headers: this.headers, body: '' })
             .toPromise()
             .catch(this.handleError);
     };

@@ -37,7 +37,7 @@ var HomeworkService = (function () {
     HomeworkService.prototype.delete = function (homework) {
         var url = this.homeworkUrl + "/" + homework.id;
         return this.http
-            .delete(url, { headers: this.headers })
+            .delete(url, { headers: this.headers, body: '' })
             .toPromise()
             .catch(this.handleError);
     };

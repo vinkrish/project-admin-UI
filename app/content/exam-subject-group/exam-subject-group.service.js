@@ -31,7 +31,7 @@ var ExamSubjectGroupService = (function () {
     ExamSubjectGroupService.prototype.delete = function (esg) {
         var url = this.esgUrl + "/" + esg.id;
         return this.http
-            .delete(url, { headers: this.headers })
+            .delete(url, { headers: this.headers, body: '' })
             .toPromise()
             .catch(this.handleError);
     };

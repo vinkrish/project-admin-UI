@@ -7,7 +7,7 @@
         <option *ngFor="let classs of classes" value={{classs.id}}>{{classs.className}}</option>
     </select>
 </div>
-<div class="row col-md-6">
+<div *ngIf="selectedClass" class="row col-md-6">
     <table class="table table-bordered table-striped">
         <caption></caption>
         <thead>

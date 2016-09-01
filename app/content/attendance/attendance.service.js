@@ -59,7 +59,7 @@ var AttendanceService = (function () {
     AttendanceService.prototype.delete = function (attendance) {
         var url = this.attendanceUrl + "/" + attendance.id;
         return this.http
-            .delete(url, { headers: this.headers })
+            .delete(url, { headers: this.headers, body: '' })
             .toPromise()
             .catch(this.handleError);
     };

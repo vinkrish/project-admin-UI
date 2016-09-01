@@ -47,7 +47,7 @@ export class SubjectsService {
   delete(subject: Subjects) {
     let url = `${this.subjectUrl}/${subject.id}`;
     return this.http
-      .delete(url, { headers: this.headers })
+      .delete(url, { headers: this.headers, body: '' })
       .toPromise()
       .catch(this.handleError);
   }

@@ -41,7 +41,7 @@ var ExamService = (function () {
     ExamService.prototype.delete = function (exam) {
         var url = this.examUrl + "/" + exam.id;
         return this.http
-            .delete(url, { headers: this.headers })
+            .delete(url, { headers: this.headers, body: '' })
             .toPromise()
             .catch(this.handleError);
     };

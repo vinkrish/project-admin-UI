@@ -37,6 +37,7 @@ var ClassEditComponent = (function () {
             else {
                 _this.navigated = false;
                 _this.clas = new clas_1.Clas();
+                _this.clas.attendanceType = _this.attendanceTypes[0].type;
             }
         });
     };

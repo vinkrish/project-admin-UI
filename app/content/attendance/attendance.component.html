@@ -1,45 +1,47 @@
 <ul class="breadcrumb">
     <li class="active">Attendance</li>
 </ul>
-<div>
-    <label>Select Class: </label>
-    <select [(ngModel)]="selectedClass.id" (change)="classSelected($event.target.value)">
-        <option *ngFor="let classs of classes" value={{classs.id}}>{{classs.className}}</option>
-    </select>
-</div>
-<br/>
-<div>
-    <label>Select Section: </label>
-    <select [(ngModel)]="selectedSection.id" (change)="sectionSelected($event.target.value)">
-        <option *ngFor="let section of sections" value={{section.id}}>{{section.sectionName}}</option>
-    </select>
-</div>
-<br/>
-<div *ngIf="selectedClass.attendanceType == 'Daily'">
-    <label>Date: </label>
-    <input [(ngModel)]="dateAttendance" placeholder="Attendance Date" />
-    <button class="btn btn-normal btn-md" (click)="fetchAttendance()">Fetch Attendance</button>
-</div>
-<div *ngIf="selectedClass.attendanceType == 'Session'">
-    <label>Date: </label>
-    <input [(ngModel)]="dateAttendance" placeholder="Attendance Date" />
+<form #attendanceForm="ngForm">
+    <div>
+        <label for="className" class="col-md-2">Select Class :</label>
+        <select name="className" required [(ngModel)]="selectedClass.id" (change)="classSelected($event.target.value)">
+            <option *ngFor="let classs of classes" value={{classs.id}}>{{classs.className}}</option>
+        </select>
+    </div>
     <br/>
-    <label>Session: </label>
-    <select [(ngModel)]="session">
-        <option *ngFor="let sess of sessions" value={{sess.value}}>{{sess.type}}</option>
-    </select>
-    <button class="btn btn-normal btn-md" (click)="fetchSessionAttendance()">Fetch Session Attendance</button>
-</div>
-<div *ngIf="selectedClass.attendanceType == 'Period'">
-    <label>Date: </label>
-    <input [(ngModel)]="dateAttendance" placeholder="Attendance Date" />
+    <div>
+        <label for="sectionName" class="col-md-2">Select Section :</label>
+        <select name="sectionName" required [(ngModel)]="selectedSection.id" (change)="sectionSelected($event.target.value)">
+            <option *ngFor="let section of sections" value={{section.id}}>{{section.sectionName}}</option>
+        </select>
+    </div>
     <br/>
-    <label>Period: </label>
-    <select [(ngModel)]="session">
-        <option *ngFor="let period of periods" value={{period}}>{{period}}</option>
-    </select>
-    <button class="btn btn-normal btn-md" (click)="fetchSessionAttendance()">Fetch Period Attendance</button>
-</div>
+    <div *ngIf="selectedClass.attendanceType == 'Daily'">
+        <label for="date" class="col-md-2">Date :</label>
+        <input name="date" required [(ngModel)]="dateAttendance" placeholder="Attendance Date" />
+        <button class="btn btn-normal btn-md" (click)="fetchAttendance()">Fetch Attendance</button>
+    </div>
+    <div *ngIf="selectedClass.attendanceType == 'Session'">
+        <label for="sessionDate" class="col-md-2">Date :</label>
+        <input name="sessionDate" required [(ngModel)]="dateAttendance" placeholder="Attendance Date" />
+        <br/>
+        <label for="session" class="col-md-2">Session: </label>
+        <select name="session" [(ngModel)]="session">
+            <option *ngFor="let sess of sessions" value={{sess.value}}>{{sess.type}}</option>
+        </select>
+        <button class="btn btn-normal btn-md" (click)="fetchSessionAttendance()">Fetch Session Attendance</button>
+    </div>
+    <div *ngIf="selectedClass.attendanceType == 'Period'">
+        <label for="periodDate" class="col-md-2">Date :</label>
+        <input name="periodDate" required [(ngModel)]="dateAttendance" placeholder="Attendance Date" />
+        <br/>
+        <label for="period" class="col-md-2">Period :</label>
+        <select name="period" [(ngModel)]="session">
+            <option *ngFor="let period of periods" value={{period}}>{{period}}</option>
+        </select>
+        <button class="btn btn-normal btn-md" (click)="fetchSessionAttendance()">Fetch Period Attendance</button>
+    </div>
+</form>
 <h3>Marked</h3>
 <div class="row col-md-5">
     <table class="table table-bordered table-striped">

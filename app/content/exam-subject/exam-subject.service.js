@@ -37,7 +37,7 @@ var ExamSubjectService = (function () {
     ExamSubjectService.prototype.delete = function (examSubject) {
         var url = this.examSubjectUrl + "/" + examSubject.id;
         return this.http
-            .delete(url, { headers: this.headers })
+            .delete(url, { headers: this.headers, body: '' })
             .toPromise()
             .catch(this.handleError);
     };

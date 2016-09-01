@@ -37,7 +37,7 @@ var TimetableService = (function () {
     TimetableService.prototype.delete = function (timetable) {
         var url = this.timetableUrl + "/" + timetable.id;
         return this.http
-            .delete(url, { headers: this.headers })
+            .delete(url, { headers: this.headers, body: '' })
             .toPromise()
             .catch(this.handleError);
     };

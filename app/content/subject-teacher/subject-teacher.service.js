@@ -39,7 +39,7 @@ var SubjectTeacherService = (function () {
     SubjectTeacherService.prototype.delete = function (subjectTeacher) {
         var url = this.subjectTeacherUrl + "/" + subjectTeacher.id;
         return this.http
-            .delete(url, { headers: this.headers })
+            .delete(url, { headers: this.headers, body: '' })
             .toPromise()
             .catch(this.handleError);
     };

@@ -38,7 +38,7 @@ export class TeacherService {
   delete(teacher: Teacher) {
     let url = `${this.teacherUrl}/${teacher.id}`;
     return this.http
-      .delete(url, { headers: this.headers })
+      .delete(url, { headers: this.headers, body: '' })
       .toPromise()
       .catch(this.handleError);
   }

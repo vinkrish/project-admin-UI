@@ -38,7 +38,7 @@ export class ClassSubjectGroupService {
   delete(classSubjectGroup: ClassSubjectGroup) {
     let url = `${this.csgUrl}/${classSubjectGroup.id}`;
     return this.http
-      .delete(url, { headers: this.headers })
+      .delete(url, { headers: this.headers, body: '' })
       .toPromise()
       .catch(this.handleError);
   }

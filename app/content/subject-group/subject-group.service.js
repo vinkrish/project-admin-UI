@@ -41,7 +41,7 @@ var SubjectGroupService = (function () {
     SubjectGroupService.prototype.delete = function (subjectGroup) {
         var url = this.subjectGroupUrl + "/" + subjectGroup.id;
         return this.http
-            .delete(url, { headers: this.headers })
+            .delete(url, { headers: this.headers, body: '' })
             .toPromise()
             .catch(this.handleError);
     };

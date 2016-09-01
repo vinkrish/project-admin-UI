@@ -38,7 +38,7 @@ export class SectionService {
   delete(section: Section) {
     let url = `${this.sectionUrl}/${section.id}`;
     return this.http
-      .delete(url, { headers: this.headers })
+      .delete(url, { headers: this.headers, body: '' })
       .toPromise()
       .catch(this.handleError);
   }
