@@ -109,16 +109,17 @@ var TimetableComponent = (function () {
         this.timetableService
             .save(timetable)
             .then(function () {
-            _this.selectedDay = "";
-            _this.days = [];
-            _this.timetables = [];
-            _this.selectedTimetable = [];
-            _this.getTimetable(_this.selectedSection.id);
+            // this.selectedDay = "";
+            // this.days = [];
+            // this.timetables = [];
+            // this.selectedTimetable = [];
+            // this.getTimetable(this.selectedSection.id);
         })
             .catch(function (error) { return _this.error = error; });
     };
     TimetableComponent.prototype.insert = function () {
         var _this = this;
+        console.log(this.newTimetable.timingFrom);
         this.timetableService
             .save(this.newTimetable)
             .then(function () {

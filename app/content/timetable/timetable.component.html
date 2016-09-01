@@ -45,11 +45,11 @@
                 </td>
                 <td class="col-md-2">
                     <div>
-                        <input [(ngModel)]="timetable.timingFrom" />
+                        <input type="time" [(ngModel)]="timetable.timingFrom" />
                     </div>
                 </td>
                 <td class="col-md-2">
-                    <input [(ngModel)]="timetable.timingTo" />
+                    <input type="time" [(ngModel)]="timetable.timingTo" />
                 </td>
                 <td class="col-md-1">
                     <button type="button" class="btn btn-primary btn-xs center-block" (click)="save(timetable, $event)">
@@ -71,7 +71,7 @@
 <div *ngIf="isNewTimetable">
     <h3>New Timetable Details</h3>
     <br/>
-    <form (ngSubmit)="save()" #classForm="ngForm">
+    <form (ngSubmit)="insert()" #timetableForm="ngForm">
         <div class="form-group row">
             <label for="period" class="col-md-2">Period</label>
             <div class="col-md-4">
@@ -79,23 +79,23 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="type" class="col-md-2">Attendance Type</label>
+            <label for="subject" class="col-md-2">Subject</label>
             <div class="col-md-4">
-                <select class="form-control" id="type" name="type" required [(ngModel)]="newTimetable.subjectId">
+                <select class="form-control" id="subject" name="subject" required [(ngModel)]="newTimetable.subjectId">
                     <option *ngFor="let subj of subjects" [value]="subj.id">{{subj.subjectName}}</option>
                 </select>
             </div>
         </div>
         <div class="form-group row">
             <label for="timingFrom" class="col-md-2">Timing From</label>
-            <div class="col-md-4">
-                <input type="text" class="form-control" id="timingFrom" name="timingFrom" required [(ngModel)]="newTimetable.timingFrom">
+            <div class="col-md-2">
+                <input type="time" class="form-control" id="timingFrom" name="timingFrom" required [(ngModel)]="newTimetable.timingFrom">
             </div>
         </div>
         <div class="form-group row">
             <label for="timingTo" class="col-md-2">Timing To</label>
-            <div class="col-md-4">
-                <input type="text" class="form-control" id="timingTo" name="timingTo" required [(ngModel)]="newTimetable.timingTo">
+            <div class="col-md-2">
+                <input type="time" class="form-control" id="timingTo" name="timingTo" required [(ngModel)]="newTimetable.timingTo">
             </div>
         </div>
         <button type="button" class="btn btn-normal btn-md" (click)="goBack()">Back</button>

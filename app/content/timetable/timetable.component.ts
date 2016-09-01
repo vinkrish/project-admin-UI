@@ -124,16 +124,18 @@ export class TimetableComponent {
 		this.timetableService
 			.save(timetable)
 			.then(() => {
-				this.selectedDay = "";
-				this.days = [];
-				this.timetables = [];
-				this.selectedTimetable = [];
-				this.getTimetable(this.selectedSection.id);
+				// this.selectedDay = "";
+				// this.days = [];
+				// this.timetables = [];
+				// this.selectedTimetable = [];
+				// this.getTimetable(this.selectedSection.id);
 			})
 			.catch(error => this.error = error);
+			
 	}
 
 	insert() {
+		console.log(this.newTimetable.timingFrom);
 		this.timetableService
 			.save(this.newTimetable)
 			.then(() => {
