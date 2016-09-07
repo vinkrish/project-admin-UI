@@ -18,6 +18,11 @@ export class ExamDashboardComponent {
 		{ name: 'Exam Subject', link: 'exam-subject' }
 	];
 
+	Items2: DashboardItem[] = [
+		{ name: 'Activity', link: 'activity' },
+		{ name: 'Sub-Activity', link: 'subactivity' }
+	];
+
 	constructor(private router: Router) {
 	}
 

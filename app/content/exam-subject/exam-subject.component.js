@@ -110,11 +110,8 @@ var ExamSubjectComponent = (function () {
         this.selectedExamSubject = examSubject;
         this.addingExamSubject = false;
     };
-    ExamSubjectComponent.prototype.close = function (savedEsg) {
+    ExamSubjectComponent.prototype.close = function () {
         this.addingExamSubject = false;
-        if (savedEsg) {
-            this.getExams(this.selectedEsg.id);
-        }
     };
     ExamSubjectComponent.prototype.goToDashboard = function () {
         this.router.navigate(['/dashboard']);

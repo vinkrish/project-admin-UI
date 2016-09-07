@@ -47,6 +47,8 @@ var timetable_service_1 = require('../app/content/timetable/timetable.service');
 var exam_service_1 = require('../app/content/exam/exam.service');
 var exam_subject_group_service_1 = require('../app/content/exam-subject-group/exam-subject-group.service');
 var exam_subject_service_1 = require('../app/content/exam-subject/exam-subject.service');
+var activity_service_1 = require('../app/content/activity/activity.service');
+var subactivity_service_1 = require('../app/content/subactivity/subactivity.service');
 exports.myComponents = [
     app_component_1.AppComponent,
     header_component_1.HeaderComponent,
@@ -97,6 +99,8 @@ exports.myServices = [
     timetable_service_1.TimetableService,
     exam_service_1.ExamService,
     exam_subject_group_service_1.ExamSubjectGroupService,
-    exam_subject_service_1.ExamSubjectService
+    exam_subject_service_1.ExamSubjectService,
+    activity_service_1.ActivityService,
+    subactivity_service_1.SubActivityService
 ];
 //# sourceMappingURL=external.module.js.map

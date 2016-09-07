@@ -79,11 +79,8 @@ var ExamSubjectGroupComponent = (function () {
         this.selectedEsg = esg;
         this.addingEsg = false;
     };
-    ExamSubjectGroupComponent.prototype.close = function (savedEsg) {
+    ExamSubjectGroupComponent.prototype.close = function () {
         this.addingEsg = false;
-        if (savedEsg) {
-            this.getExams(this.selectedEsg.id);
-        }
     };
     ExamSubjectGroupComponent.prototype.add = function () {
         if (this.addingEsg) {

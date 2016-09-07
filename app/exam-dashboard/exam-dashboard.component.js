@@ -18,6 +18,10 @@ var ExamDashboardComponent = (function () {
             { name: 'Exam Subject Group', link: 'exam-subject-group' },
             { name: 'Exam Subject', link: 'exam-subject' }
         ];
+        this.Items2 = [
+            { name: 'Activity', link: 'activity' },
+            { name: 'Sub-Activity', link: 'subactivity' }
+        ];
     }
     ExamDashboardComponent.prototype.gotoDetail = function (item) {
         console.log(item);

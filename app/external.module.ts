@@ -47,6 +47,8 @@ import { TimetableService }        	from '../app/content/timetable/timetable.ser
 import { ExamService }        		from '../app/content/exam/exam.service';
 import { ExamSubjectGroupService }  from '../app/content/exam-subject-group/exam-subject-group.service';
 import { ExamSubjectService }       from '../app/content/exam-subject/exam-subject.service';
+import { ActivityService }     		from '../app/content/activity/activity.service';
+import { SubActivityService }     	from '../app/content/subactivity/subactivity.service';
 
 export const myComponents = [
 	AppComponent, 
@@ -99,5 +101,7 @@ export const myServices = [
     TimetableService,
     ExamService,
     ExamSubjectGroupService,
-    ExamSubjectService
+    ExamSubjectService,
+    ActivityService,
+    SubActivityService
 ]

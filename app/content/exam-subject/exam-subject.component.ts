@@ -130,9 +130,8 @@ export class ExamSubjectComponent implements OnInit {
     this.addingExamSubject = false;
   }
 
-  close(savedEsg: ExamSubjectGroup) {
+  close() {
     this.addingExamSubject = false;
-    if (savedEsg) { this.getExams(this.selectedEsg.id); }
   }
 
   goToDashboard() {
