@@ -49,6 +49,7 @@ import { ExamSubjectGroupService }  from '../app/content/exam-subject-group/exam
 import { ExamSubjectService }       from '../app/content/exam-subject/exam-subject.service';
 import { ActivityService }     		from '../app/content/activity/activity.service';
 import { SubActivityService }     	from '../app/content/subactivity/subactivity.service';
+import { SubjectStudentService } 	from '../app/content/subject-student/subject-student.service';
 
 export const myComponents = [
 	AppComponent, 
@@ -103,5 +104,6 @@ export const myServices = [
     ExamSubjectGroupService,
     ExamSubjectService,
     ActivityService,
-    SubActivityService
+    SubActivityService,
+    SubjectStudentService
 ]

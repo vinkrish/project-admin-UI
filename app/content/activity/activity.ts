@@ -8,4 +8,5 @@ export class Activity {
 	weightage: number;
 	calculation: number;
 	activityAvg: number;
+	orders: number;
 }

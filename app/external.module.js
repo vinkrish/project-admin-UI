@@ -49,6 +49,7 @@ var exam_subject_group_service_1 = require('../app/content/exam-subject-group/ex
 var exam_subject_service_1 = require('../app/content/exam-subject/exam-subject.service');
 var activity_service_1 = require('../app/content/activity/activity.service');
 var subactivity_service_1 = require('../app/content/subactivity/subactivity.service');
+var subject_student_service_1 = require('../app/content/subject-student/subject-student.service');
 exports.myComponents = [
     app_component_1.AppComponent,
     header_component_1.HeaderComponent,
@@ -101,6 +102,7 @@ exports.myServices = [
     exam_subject_group_service_1.ExamSubjectGroupService,
     exam_subject_service_1.ExamSubjectService,
     activity_service_1.ActivityService,
-    subactivity_service_1.SubActivityService
+    subactivity_service_1.SubActivityService,
+    subject_student_service_1.SubjectStudentService
 ];
 //# sourceMappingURL=external.module.js.map

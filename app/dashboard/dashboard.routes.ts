@@ -9,6 +9,7 @@ import { studentRoutes }                from '../content/student/student.routes'
 import { subjectGroupRoutes }           from '../content/subject-group/subject-group.routes'
 import { subjectGroupSubjectRoutes }    from '../content/subject-group-subject/subject-group-subject.routes'
 import { subjectTeacherRoutes }         from '../content/subject-teacher/subject-teacher.routes';
+import { subjectStudentRoutes }         from '../content/subject-student/subject-student.routes';
 import { subjectsRoutes }               from '../content/subjects/subjects.routes';
 import { teacherRoutes }                from '../content/teacher/teacher.routes';
 import { timetableRoutes }              from '../content/timetable/timetable.routes';
@@ -22,6 +23,7 @@ export const dashboardRoutes: RouterConfig = [
   ...subjectGroupRoutes,
   ...subjectGroupSubjectRoutes,
   ...subjectTeacherRoutes,
+  ...subjectStudentRoutes,
   ...subjectsRoutes,
   ...teacherRoutes,
   ...attendanceRoutes,

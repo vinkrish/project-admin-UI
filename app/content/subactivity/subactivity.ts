@@ -6,4 +6,5 @@ export class SubActivity {
 	weightage: number;
 	calculation: number;
 	subActivityAvg: number;
+	orders: number;
 }

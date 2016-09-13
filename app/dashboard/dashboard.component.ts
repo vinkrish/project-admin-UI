@@ -26,6 +26,7 @@ export class DashboardComponent {
 		{ name: 'Subject Group', link: 'subject-group' },
 		{ name: 'Subject Group Subject', link: 'subject-group-subject' },
 		{ name: 'Subject Teacher', link: 'subject-teacher' },
+		{ name: 'Subject Student', link: 'subject-student' },
 		{ name: 'Class Subject Group', link: 'class-subject-group' }
 	];
 	Items4: DashboardItem[] = [
