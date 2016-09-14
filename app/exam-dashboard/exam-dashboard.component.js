@@ -16,11 +16,14 @@ var ExamDashboardComponent = (function () {
         this.Items1 = [
             { name: 'Exam', link: 'exam' },
             { name: 'Exam Subject Group', link: 'exam-subject-group' },
-            { name: 'Exam Subject', link: 'exam-subject' }
+            { name: 'Exam Subject', link: 'exam-subject' },
+            { name: 'Mark', link: 'mark' }
         ];
         this.Items2 = [
             { name: 'Activity', link: 'activity' },
-            { name: 'Sub-Activity', link: 'subactivity' }
+            { name: 'Sub-Activity', link: 'subactivity' },
+            { name: 'Activity Score', link: 'activity-score' },
+            { name: 'SubActivity Score', link: 'subactivity-score' }
         ];
     }
     ExamDashboardComponent.prototype.gotoDetail = function (item) {

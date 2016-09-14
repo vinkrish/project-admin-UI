@@ -36,6 +36,14 @@ var SubjectsService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    SubjectsService.prototype.getPartitionSubjects = function (id) {
+        var url = this.subjectUrl + "/" + id;
+        return this.http
+            .get(url, { headers: this.headers, body: '' })
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     SubjectsService.prototype.getSubject = function (id) {
         return this.getSubjects()
             .then(function (subjects) { return subjects.find(function (subject) { return subject.id === id; }); });

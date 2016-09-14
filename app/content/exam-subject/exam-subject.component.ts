@@ -10,6 +10,8 @@ import { ExamSubjectGroup }         from '../exam-subject-group/exam-subject-gro
 import { ExamSubjectGroupService }  from '../exam-subject-group/exam-subject-group.service';
 import { SubjectGroupSubject }      from '../subject-group-subject/subject-group-subject'
 import { SubjectGroupSubjectService }  from '../subject-group-subject/subject-group-subject.service';
+import { Subjects }            from '../subjects/subjects';
+import { SubjectsService }     from '../subjects/subjects.service';
 import { ExamSubject }         from './exam-subject';
 import { ExamSubjectService }  from './exam-subject.service';
 
@@ -30,10 +32,13 @@ export class ExamSubjectComponent implements OnInit {
   examSubjectGroups: ExamSubjectGroup[];
   selectedEsg: ExamSubjectGroup;
   subjectGroupSubjects: SubjectGroupSubject[];
+  partitionSubjects: Subjects[];
   examSubject: ExamSubject;
   examSubjects: ExamSubject[];
   selectedExamSubject: ExamSubject;
   addingExamSubject = false;
+  isPartitionSubject = false;
+  addingPartitionSubject = false;
   error: any;
 
   constructor(
@@ -43,6 +48,7 @@ export class ExamSubjectComponent implements OnInit {
     private csgService: ClassSubjectGroupService,
     private esgService: ExamSubjectGroupService,
     private sgsService: SubjectGroupSubjectService,
+    private subjectsService: SubjectsService,
     private examSubjectService: ExamSubjectService) { 
   }
 
@@ -118,27 +124,42 @@ export class ExamSubjectComponent implements OnInit {
       .catch(error => this.error = error)
   }
 
+  getPartitionSubjects() {
+    this.subjectsService
+      .getPartitionSubjects(this.selectedExamSubject.subjectId)
+      .then(partitionSubjects => {
+        this.partitionSubjects = partitionSubjects;
+        if(this.partitionSubjects.length != 0) {
+          this.isPartitionSubject = true;
+        } else {
+          this.isPartitionSubject = false;
+          this.addingPartitionSubject = false;
+        }
+      })
+      .catch(error => this.error = error)
+  }
+
   ngOnInit() {
     this.getClasses();
     this.selectedClass = new Clas();
     this.selectedExam = new Exam();
     this.selectedEsg = new ExamSubjectGroup();
+    this.partitionSubjects = [];
   }
 
   onSelect(examSubject: ExamSubject) {
     this.selectedExamSubject = examSubject;
     this.addingExamSubject = false;
+    this.partitionSubjects = [];
+    this.getPartitionSubjects();
   }
 
   close() {
     this.addingExamSubject = false;
   }
 
-  goToDashboard() {
-    this.router.navigate(['/dashboard']);
-  }
-
   add() {
+    this.addingPartitionSubject = false;
     if (this.addingExamSubject) {
       this.addingExamSubject = false;
     } else {
@@ -147,6 +168,17 @@ export class ExamSubjectComponent implements OnInit {
       this.addingExamSubject = true;
     }
     this.selectedExamSubject = null;
+  }
+
+  enablePartition() {
+    this.addingExamSubject = false;
+    if (this.addingPartitionSubject) {
+      this.addingPartitionSubject = false;
+    } else {
+      this.examSubject = new ExamSubject();
+      this.examSubject.examId = this.selectedExam.id;
+      this.addingPartitionSubject = true;
+    }
   }
 
   delete(examSubject: ExamSubject, event: any) {
@@ -175,11 +207,20 @@ export class ExamSubjectComponent implements OnInit {
       }
     }
 
+    partitionSubjectSelected(subjectId) {
+      for (var i = 0; i < this.partitionSubjects.length; i++) {
+        if (this.partitionSubjects[i].id == subjectId) {
+          this.examSubject.subjectName = this.partitionSubjects[i].subjectName;
+        }
+      }
+    }
+
   save() {
     this.examSubjectService
       .post(this.examSubject)
       .then(examSubject => {
         this.addingExamSubject = false;
+        this.addingPartitionSubject = false;
         this.examSubjectGroup = null;
         this.examSubjectGroups = null;
         this.selectedExam = new Exam();

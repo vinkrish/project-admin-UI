@@ -23,6 +23,7 @@ import { SubjectGroupSubjectComponent}	from '../app/content/subject-group-subjec
 import { SubjectGroupSubjectEditComponent}	from '../app/content/subject-group-subject/subject-group-subject-edit.component';
 import { SubjectTeacherComponent }    	from '../app/content/subject-teacher/subject-teacher.component';
 import { SubjectTeacherEditComponent }  from '../app/content/subject-teacher/subject-teacher-edit.component';
+import { SubjectStudentComponent }    	from '../app/content/subject-student/subject-student.component';
 import { SubjectsComponent }        	from '../app/content/subjects/subjects.component';
 import { SubjectsEditComponent }        from '../app/content/subjects/subjects-edit.component';
 import { TeacherComponent }        		from '../app/content/teacher/teacher.component';
@@ -50,6 +51,9 @@ import { ExamSubjectService }       from '../app/content/exam-subject/exam-subje
 import { ActivityService }     		from '../app/content/activity/activity.service';
 import { SubActivityService }     	from '../app/content/subactivity/subactivity.service';
 import { SubjectStudentService } 	from '../app/content/subject-student/subject-student.service';
+import { MarkService }				from '../app/content/mark/mark.service';
+import { ActivityScoreService }		from '../app/content/activity-score/activity-score.service';
+import { SubActivityScoreService }	from '../app/content/subactivity-score/subactivity-score.service';
 
 export const myComponents = [
 	AppComponent, 
@@ -77,6 +81,7 @@ export const myComponents = [
 	SubjectGroupSubjectEditComponent,
 	SubjectTeacherComponent,
 	SubjectTeacherEditComponent,
+	SubjectStudentComponent,
 	SubjectsComponent,
 	SubjectsEditComponent,
 	TeacherComponent,
@@ -105,5 +110,8 @@ export const myServices = [
     ExamSubjectService,
     ActivityService,
     SubActivityService,
-    SubjectStudentService
+    SubjectStudentService,
+    MarkService,
+    ActivityScoreService,
+    SubActivityScoreService
 ]

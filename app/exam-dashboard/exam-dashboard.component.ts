@@ -15,12 +15,15 @@ export class ExamDashboardComponent {
 	Items1: DashboardItem[] = [
 		{ name: 'Exam', link: 'exam' },
 		{ name: 'Exam Subject Group', link: 'exam-subject-group' },
-		{ name: 'Exam Subject', link: 'exam-subject' }
+		{ name: 'Exam Subject', link: 'exam-subject' },
+		{ name: 'Mark', link: 'mark' }
 	];
 
 	Items2: DashboardItem[] = [
 		{ name: 'Activity', link: 'activity' },
-		{ name: 'Sub-Activity', link: 'subactivity' }
+		{ name: 'Sub-Activity', link: 'subactivity' },
+		{ name: 'Activity Score', link: 'activity-score' },
+		{ name: 'SubActivity Score', link: 'subactivity-score' }
 	];
 
 	constructor(private router: Router) {

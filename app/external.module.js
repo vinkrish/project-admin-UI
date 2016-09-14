@@ -24,6 +24,7 @@ var subject_group_subject_component_1 = require('../app/content/subject-group-su
 var subject_group_subject_edit_component_1 = require('../app/content/subject-group-subject/subject-group-subject-edit.component');
 var subject_teacher_component_1 = require('../app/content/subject-teacher/subject-teacher.component');
 var subject_teacher_edit_component_1 = require('../app/content/subject-teacher/subject-teacher-edit.component');
+var subject_student_component_1 = require('../app/content/subject-student/subject-student.component');
 var subjects_component_1 = require('../app/content/subjects/subjects.component');
 var subjects_edit_component_1 = require('../app/content/subjects/subjects-edit.component');
 var teacher_component_1 = require('../app/content/teacher/teacher.component');
@@ -50,6 +51,9 @@ var exam_subject_service_1 = require('../app/content/exam-subject/exam-subject.s
 var activity_service_1 = require('../app/content/activity/activity.service');
 var subactivity_service_1 = require('../app/content/subactivity/subactivity.service');
 var subject_student_service_1 = require('../app/content/subject-student/subject-student.service');
+var mark_service_1 = require('../app/content/mark/mark.service');
+var activity_score_service_1 = require('../app/content/activity-score/activity-score.service');
+var subactivity_score_service_1 = require('../app/content/subactivity-score/subactivity-score.service');
 exports.myComponents = [
     app_component_1.AppComponent,
     header_component_1.HeaderComponent,
@@ -76,6 +80,7 @@ exports.myComponents = [
     subject_group_subject_edit_component_1.SubjectGroupSubjectEditComponent,
     subject_teacher_component_1.SubjectTeacherComponent,
     subject_teacher_edit_component_1.SubjectTeacherEditComponent,
+    subject_student_component_1.SubjectStudentComponent,
     subjects_component_1.SubjectsComponent,
     subjects_edit_component_1.SubjectsEditComponent,
     teacher_component_1.TeacherComponent,
@@ -103,6 +108,9 @@ exports.myServices = [
     exam_subject_service_1.ExamSubjectService,
     activity_service_1.ActivityService,
     subactivity_service_1.SubActivityService,
-    subject_student_service_1.SubjectStudentService
+    subject_student_service_1.SubjectStudentService,
+    mark_service_1.MarkService,
+    activity_score_service_1.ActivityScoreService,
+    subactivity_score_service_1.SubActivityScoreService
 ];
 //# sourceMappingURL=external.module.js.map

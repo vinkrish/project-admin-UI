@@ -32,6 +32,15 @@ export class SubjectsService {
       .catch(this.handleError);
   }
 
+  getPartitionSubjects(id: number): Promise<Subjects[]> {
+    let url = `${this.subjectUrl}/${id}`;
+    return this.http
+      .get(url, { headers: this.headers, body: '' })
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
   getSubject(id: number) {
     return this.getSubjects()
       .then(subjects => subjects.find(subject => subject.id === id));

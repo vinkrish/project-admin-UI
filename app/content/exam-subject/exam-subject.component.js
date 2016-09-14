@@ -18,18 +18,22 @@ var class_subject_group_service_1 = require('../class-subject-group/class-subjec
 var exam_subject_group_1 = require('../exam-subject-group/exam-subject-group');
 var exam_subject_group_service_1 = require('../exam-subject-group/exam-subject-group.service');
 var subject_group_subject_service_1 = require('../subject-group-subject/subject-group-subject.service');
+var subjects_service_1 = require('../subjects/subjects.service');
 var exam_subject_1 = require('./exam-subject');
 var exam_subject_service_1 = require('./exam-subject.service');
 var ExamSubjectComponent = (function () {
-    function ExamSubjectComponent(router, classService, examService, csgService, esgService, sgsService, examSubjectService) {
+    function ExamSubjectComponent(router, classService, examService, csgService, esgService, sgsService, subjectsService, examSubjectService) {
         this.router = router;
         this.classService = classService;
         this.examService = examService;
         this.csgService = csgService;
         this.esgService = esgService;
         this.sgsService = sgsService;
+        this.subjectsService = subjectsService;
         this.examSubjectService = examSubjectService;
         this.addingExamSubject = false;
+        this.isPartitionSubject = false;
+        this.addingPartitionSubject = false;
     }
     ExamSubjectComponent.prototype.getClasses = function () {
         var _this = this;
@@ -100,23 +104,40 @@ var ExamSubjectComponent = (function () {
             .then(function (examSubjects) { return _this.examSubjects = examSubjects; })
             .catch(function (error) { return _this.error = error; });
     };
+    ExamSubjectComponent.prototype.getPartitionSubjects = function () {
+        var _this = this;
+        this.subjectsService
+            .getPartitionSubjects(this.selectedExamSubject.subjectId)
+            .then(function (partitionSubjects) {
+            _this.partitionSubjects = partitionSubjects;
+            if (_this.partitionSubjects.length != 0) {
+                _this.isPartitionSubject = true;
+            }
+            else {
+                _this.isPartitionSubject = false;
+                _this.addingPartitionSubject = false;
+            }
+        })
+            .catch(function (error) { return _this.error = error; });
+    };
     ExamSubjectComponent.prototype.ngOnInit = function () {
         this.getClasses();
         this.selectedClass = new clas_1.Clas();
         this.selectedExam = new exam_1.Exam();
         this.selectedEsg = new exam_subject_group_1.ExamSubjectGroup();
+        this.partitionSubjects = [];
     };
     ExamSubjectComponent.prototype.onSelect = function (examSubject) {
         this.selectedExamSubject = examSubject;
         this.addingExamSubject = false;
+        this.partitionSubjects = [];
+        this.getPartitionSubjects();
     };
     ExamSubjectComponent.prototype.close = function () {
         this.addingExamSubject = false;
     };
-    ExamSubjectComponent.prototype.goToDashboard = function () {
-        this.router.navigate(['/dashboard']);
-    };
     ExamSubjectComponent.prototype.add = function () {
+        this.addingPartitionSubject = false;
         if (this.addingExamSubject) {
             this.addingExamSubject = false;
         }
@@ -126,6 +147,17 @@ var ExamSubjectComponent = (function () {
             this.addingExamSubject = true;
         }
         this.selectedExamSubject = null;
+    };
+    ExamSubjectComponent.prototype.enablePartition = function () {
+        this.addingExamSubject = false;
+        if (this.addingPartitionSubject) {
+            this.addingPartitionSubject = false;
+        }
+        else {
+            this.examSubject = new exam_subject_1.ExamSubject();
+            this.examSubject.examId = this.selectedExam.id;
+            this.addingPartitionSubject = true;
+        }
     };
     ExamSubjectComponent.prototype.delete = function (examSubject, event) {
         var _this = this;
@@ -154,12 +186,20 @@ var ExamSubjectComponent = (function () {
             }
         }
     };
+    ExamSubjectComponent.prototype.partitionSubjectSelected = function (subjectId) {
+        for (var i = 0; i < this.partitionSubjects.length; i++) {
+            if (this.partitionSubjects[i].id == subjectId) {
+                this.examSubject.subjectName = this.partitionSubjects[i].subjectName;
+            }
+        }
+    };
     ExamSubjectComponent.prototype.save = function () {
         var _this = this;
         this.examSubjectService
             .post(this.examSubject)
             .then(function (examSubject) {
             _this.addingExamSubject = false;
+            _this.addingPartitionSubject = false;
             _this.examSubjectGroup = null;
             _this.examSubjectGroups = null;
             _this.selectedExam = new exam_1.Exam();
@@ -185,7 +225,7 @@ var ExamSubjectComponent = (function () {
             templateUrl: 'exam-subject.component.html',
             styleUrls: ['exam-subject.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.Router, class_service_1.ClassService, exam_service_1.ExamService, class_subject_group_service_1.ClassSubjectGroupService, exam_subject_group_service_1.ExamSubjectGroupService, subject_group_subject_service_1.SubjectGroupSubjectService, exam_subject_service_1.ExamSubjectService])
+        __metadata('design:paramtypes', [router_1.Router, class_service_1.ClassService, exam_service_1.ExamService, class_subject_group_service_1.ClassSubjectGroupService, exam_subject_group_service_1.ExamSubjectGroupService, subject_group_subject_service_1.SubjectGroupSubjectService, subjects_service_1.SubjectsService, exam_subject_service_1.ExamSubjectService])
     ], ExamSubjectComponent);
     return ExamSubjectComponent;
 }());
