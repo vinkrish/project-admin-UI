@@ -1,9 +1,9 @@
-import { RouterConfig }         from '@angular/router';
+import { Routes }         from '@angular/router';
 import { SectionComponent } 	from './section.component';
 import { SectionEditComponent } from './section-edit.component';
 import { LoggedInGuard }        from '../../login/logged-in.guard';
 
-export const sectionRoutes: RouterConfig = [
+export const sectionRoutes: Routes = [
     {
     path: 'section',
     component: SectionComponent,

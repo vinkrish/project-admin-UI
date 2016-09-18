@@ -1,9 +1,9 @@
-import { RouterConfig }         		    from '@angular/router';
+import { Routes }         		          from '@angular/router';
 import { SubjectGroupComponent } 		    from './subject-group.component';
 import { SubjectGroupEditComponent } 	  from './subject-group-edit.component';
 import { LoggedInGuard }        		    from '../../login/logged-in.guard';
 
-export const subjectGroupRoutes: RouterConfig = [
+export const subjectGroupRoutes: Routes = [
   {
     path: 'subject-group',
     component: SubjectGroupComponent,

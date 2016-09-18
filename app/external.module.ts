@@ -12,6 +12,8 @@ import { ExamComponent }        		from '../app/content/exam/exam.component';
 import { ExamEditComponent }        	from '../app/content/exam/exam-edit.component';
 import { ExamSubjectComponent }       	from '../app/content/exam-subject/exam-subject.component';
 import { ExamSubjectGroupComponent }  	from '../app/content/exam-subject-group/exam-subject-group.component';
+import { ActivityComponent }          	from '../app/content/activity/activity.component';
+import { SubActivityComponent }         from '../app/content/subactivity/subactivity.component';
 import { HomeworkComponent }          	from '../app/content/homework/homework.component';
 import { SectionComponent }           	from '../app/content/section/section.component';
 import { SectionEditComponent }         from '../app/content/section/section-edit.component';
@@ -29,6 +31,7 @@ import { SubjectsEditComponent }        from '../app/content/subjects/subjects-e
 import { TeacherComponent }        		from '../app/content/teacher/teacher.component';
 import { TeacherEditComponent }        	from '../app/content/teacher/teacher-edit.component';
 import { TimetableComponent }        	from '../app/content/timetable/timetable.component';
+import { MarkComponent }        		from '../app/content/mark/mark.component';
 
 import { CookieService }          	from 'angular2-cookie/core';
 import { LoginService }				from './login/credentials.service';
@@ -70,6 +73,8 @@ export const myComponents = [
 	ExamEditComponent,
 	ExamSubjectComponent,
 	ExamSubjectGroupComponent,
+	ActivityComponent,
+	SubActivityComponent,
 	HomeworkComponent,
 	SectionComponent,
 	SectionEditComponent,
@@ -86,7 +91,8 @@ export const myComponents = [
 	SubjectsEditComponent,
 	TeacherComponent,
 	TeacherEditComponent,
-	TimetableComponent
+	TimetableComponent,
+	MarkComponent
 ];
 
 export const myServices = [

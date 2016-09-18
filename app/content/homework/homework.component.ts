@@ -13,8 +13,7 @@ import { CookieService }		from 'angular2-cookie/core';
 	moduleId: module.id,
 	selector: 'ui-homework',
 	templateUrl: 'homework.component.html',
-	styleUrls: ['homework.component.css'],
-	directives: []
+	styleUrls: ['homework.component.css']
 })
 
 export class HomeworkComponent {

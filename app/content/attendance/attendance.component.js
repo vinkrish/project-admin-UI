@@ -201,8 +201,7 @@ var AttendanceComponent = (function () {
             moduleId: module.id,
             selector: 'ui-attendance',
             templateUrl: 'attendance.component.html',
-            styleUrls: ['attendance.component.css'],
-            directives: []
+            styleUrls: ['attendance.component.css']
         }), 
         __metadata('design:paramtypes', [router_1.Router, core_2.CookieService, class_service_1.ClassService, section_service_1.SectionService, timetable_service_1.TimetableService, attendance_service_1.AttendanceService])
     ], AttendanceComponent);

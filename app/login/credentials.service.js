@@ -33,12 +33,6 @@ var LoginService = (function () {
         isLoggedIn = (this.cookieService.get("isLoggedIn") === "true");
         return isLoggedIn;
     };
-    LoginService.prototype.login = function (credentials) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        return this.http
-            .post(this.loginUrl, JSON.stringify({ credentials: credentials }), { headers: headers })
-            .map(this.extractData);
-    };
     LoginService.prototype.extractData = function (res) {
         var body = res;
         if (res.status == 200) {

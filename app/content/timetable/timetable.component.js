@@ -166,8 +166,7 @@ var TimetableComponent = (function () {
             moduleId: module.id,
             selector: 'ui-timetable',
             templateUrl: 'timetable.component.html',
-            styleUrls: ['timetable.component.css'],
-            directives: []
+            styleUrls: ['timetable.component.css']
         }), 
         __metadata('design:paramtypes', [router_1.Router, core_2.CookieService, class_service_1.ClassService, section_service_1.SectionService, timetable_service_1.TimetableService, subjects_service_1.SubjectsService])
     ], TimetableComponent);

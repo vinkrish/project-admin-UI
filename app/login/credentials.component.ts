@@ -22,15 +22,6 @@ export class LoginComponent implements OnInit{
     }
 
     login() {
-        this.loginService.login(this.user)
-            .subscribe((result) => {
-            if (result) {
-                this.router.navigate(['/dashboard']);
-            }
-        });
-    }
-
-    login2() {
         this.loginService
           .post(this.user)
           .then(result => {

@@ -1,4 +1,4 @@
-import { provideRouter, RouterConfig }  from '@angular/router';
+import { Routes }                       from '@angular/router';
 import { LoggedInGuard }                from '../login/logged-in.guard';
 import { attendanceRoutes }             from '../content/attendance/attendance.routes'
 import { clasRoutes }                   from '../content/class/clas.routes';
@@ -14,7 +14,7 @@ import { subjectsRoutes }               from '../content/subjects/subjects.route
 import { teacherRoutes }                from '../content/teacher/teacher.routes';
 import { timetableRoutes }              from '../content/timetable/timetable.routes';
 
-export const dashboardRoutes: RouterConfig = [
+export const dashboardRoutes: Routes = [
   ...clasRoutes,
   ...clasSubjectGroupRoutes,
   ...homeworkRoutes,

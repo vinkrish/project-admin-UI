@@ -1,9 +1,9 @@
-import { RouterConfig }          from '@angular/router';
+import { Routes }               from '@angular/router';
 import { ExamComponent }        from './exam.component';
 import { ExamEditComponent }    from './exam-edit.component';
-import { LoggedInGuard }         from '../../login/logged-in.guard';
+import { LoggedInGuard }        from '../../login/logged-in.guard';
 
-export const examRoutes: RouterConfig = [
+export const examRoutes: Routes = [
   {
     path: 'exam',
     component: ExamComponent,

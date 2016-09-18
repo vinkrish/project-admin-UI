@@ -17,39 +17,31 @@ export class LoginService {
   constructor(
     private http: Http,
     private cookieService: CookieService) {
-      this.isLoggedInSubject = new BehaviorSubject(this.checkIsLoggedIn());
+    this.isLoggedInSubject = new BehaviorSubject(this.checkIsLoggedIn());
   }
 
   get loggedInObservable() {
-        return this.isLoggedInSubject.asObservable();
-    }
+    return this.isLoggedInSubject.asObservable();
+  }
 
-    checkIsLoggedIn() {
-        let isLoggedIn = false;
-        isLoggedIn = (this.cookieService.get("isLoggedIn") === "true");
-        return isLoggedIn;
-    }
-
-
-  login(credentials: Credentials) : Observable<boolean> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    return this.http
-      .post(this.loginUrl, JSON.stringify({ credentials }), { headers: headers })
-      .map(this.extractData);
+  checkIsLoggedIn() {
+    let isLoggedIn = false;
+    isLoggedIn = (this.cookieService.get("isLoggedIn") === "true");
+    return isLoggedIn;
   }
 
   private extractData(res: Response) {
     let body = res;
     if (res.status == 200) {
-        var header = res.headers;
-          this.auth_response = body.json();
-          console.log(this.auth_response.token);
-          this.cookieService.put("schoolId", ""+this.auth_response.schoolId);
-          this.cookieService.put("schoolName", this.auth_response.schoolName);
-          this.cookieService.put("auth_token",this.auth_response.token);
-          this.cookieService.put("isLoggedIn", ""+true);
-          this.isLoggedInSubject.next(this.checkIsLoggedIn());
-          return true;
+      var header = res.headers;
+      this.auth_response = body.json();
+      console.log(this.auth_response.token);
+      this.cookieService.put("schoolId", "" + this.auth_response.schoolId);
+      this.cookieService.put("schoolName", this.auth_response.schoolName);
+      this.cookieService.put("auth_token", this.auth_response.token);
+      this.cookieService.put("isLoggedIn", "" + true);
+      this.isLoggedInSubject.next(this.checkIsLoggedIn());
+      return true;
         }
     return false;
   }
@@ -63,10 +55,10 @@ export class LoginService {
         if (res.status === 200) {
           this.auth_response = res.json();
           console.log(this.auth_response.token);
-          this.cookieService.put("schoolId", ""+this.auth_response.schoolId);
+          this.cookieService.put("schoolId", "" + this.auth_response.schoolId);
           this.cookieService.put("schoolName", this.auth_response.schoolName);
-          this.cookieService.put("auth_token",this.auth_response.token);
-          this.cookieService.put("isLoggedIn", ""+true);
+          this.cookieService.put("auth_token", this.auth_response.token);
+          this.cookieService.put("isLoggedIn", "" + true);
           this.isLoggedInSubject.next(this.checkIsLoggedIn());
           return true;
         }
@@ -77,7 +69,7 @@ export class LoginService {
 
   logout() {
     //localStorage.removeItem('auth_token');
-    this.cookieService.put("isLoggedIn", ""+false);
+    this.cookieService.put("isLoggedIn", "" + false);
     this.cookieService.put("auth_token", "");
     this.isLoggedInSubject.next(this.checkIsLoggedIn());
     this.loggedIn = false;

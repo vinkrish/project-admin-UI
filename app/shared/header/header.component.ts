@@ -1,5 +1,4 @@
 import { Component, OnInit }	from '@angular/core';
-import { ROUTER_DIRECTIVES }	from '@angular/router';
 import { Router }             from '@angular/router';
 import { CookieService }      from 'angular2-cookie/core';
 import { LoginService } 		  from '../../login/credentials.service';
@@ -8,8 +7,7 @@ import { LoginService } 		  from '../../login/credentials.service';
  	moduleId: module.id,
    	selector: 'ui-header',
    	templateUrl: 'header.component.html',
-   	styleUrls: ['header.component.css'],
-   	directives: [ROUTER_DIRECTIVES],
+   	styleUrls: ['header.component.css']
  })
 
  export class HeaderComponent implements OnInit{

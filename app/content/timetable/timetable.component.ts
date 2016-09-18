@@ -15,8 +15,7 @@ import { CookieService }		from 'angular2-cookie/core';
 	moduleId: module.id,
 	selector: 'ui-timetable',
 	templateUrl: 'timetable.component.html',
-	styleUrls: ['timetable.component.css'],
-	directives: []
+	styleUrls: ['timetable.component.css']
 })
 
 export class TimetableComponent {

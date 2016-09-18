@@ -13,6 +13,8 @@ var exam_component_1 = require('../app/content/exam/exam.component');
 var exam_edit_component_1 = require('../app/content/exam/exam-edit.component');
 var exam_subject_component_1 = require('../app/content/exam-subject/exam-subject.component');
 var exam_subject_group_component_1 = require('../app/content/exam-subject-group/exam-subject-group.component');
+var activity_component_1 = require('../app/content/activity/activity.component');
+var subactivity_component_1 = require('../app/content/subactivity/subactivity.component');
 var homework_component_1 = require('../app/content/homework/homework.component');
 var section_component_1 = require('../app/content/section/section.component');
 var section_edit_component_1 = require('../app/content/section/section-edit.component');
@@ -30,6 +32,7 @@ var subjects_edit_component_1 = require('../app/content/subjects/subjects-edit.c
 var teacher_component_1 = require('../app/content/teacher/teacher.component');
 var teacher_edit_component_1 = require('../app/content/teacher/teacher-edit.component');
 var timetable_component_1 = require('../app/content/timetable/timetable.component');
+var mark_component_1 = require('../app/content/mark/mark.component');
 var core_1 = require('angular2-cookie/core');
 var credentials_service_1 = require('./login/credentials.service');
 var logged_in_guard_1 = require('./login/logged-in.guard');
@@ -69,6 +72,8 @@ exports.myComponents = [
     exam_edit_component_1.ExamEditComponent,
     exam_subject_component_1.ExamSubjectComponent,
     exam_subject_group_component_1.ExamSubjectGroupComponent,
+    activity_component_1.ActivityComponent,
+    subactivity_component_1.SubActivityComponent,
     homework_component_1.HomeworkComponent,
     section_component_1.SectionComponent,
     section_edit_component_1.SectionEditComponent,
@@ -85,7 +90,8 @@ exports.myComponents = [
     subjects_edit_component_1.SubjectsEditComponent,
     teacher_component_1.TeacherComponent,
     teacher_edit_component_1.TeacherEditComponent,
-    timetable_component_1.TimetableComponent
+    timetable_component_1.TimetableComponent,
+    mark_component_1.MarkComponent
 ];
 exports.myServices = [
     core_1.CookieService,

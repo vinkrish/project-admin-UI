@@ -1,9 +1,9 @@
-import { RouterConfig }         from '@angular/router';
+import { Routes }               from '@angular/router';
 import { StudentComponent }     from './student.component';
 import { StudentEditComponent } from './student-edit.component';
 import { LoggedInGuard }        from '../../login/logged-in.guard';
 
-export const studentRoutes: RouterConfig = [
+export const studentRoutes: Routes = [
    {
     path: 'student',
     component: StudentComponent,

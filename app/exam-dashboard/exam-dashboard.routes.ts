@@ -1,4 +1,4 @@
-import { provideRouter, RouterConfig }  from '@angular/router';
+import { Routes }                       from '@angular/router';
 import { LoggedInGuard }                from '../login/logged-in.guard';
 import { examRoutes }                	  from '../content/exam/exam.routes';
 import { ExamSubjectComponent }    		  from '../content/exam-subject/exam-subject.component';
@@ -7,7 +7,7 @@ import { MarkComponent }                from '../content/mark/mark.component';
 import { ActivityComponent }            from '../content/activity/activity.component';
 import { SubActivityComponent }         from '../content/subactivity/subactivity.component';
 
-export const examDashboardRoutes: RouterConfig = [
+export const examDashboardRoutes: Routes = [
   ...examRoutes,
   {
     path: 'exam-subject-group',

@@ -21,15 +21,6 @@ var LoginComponent = (function () {
     }
     LoginComponent.prototype.login = function () {
         var _this = this;
-        this.loginService.login(this.user)
-            .subscribe(function (result) {
-            if (result) {
-                _this.router.navigate(['/dashboard']);
-            }
-        });
-    };
-    LoginComponent.prototype.login2 = function () {
-        var _this = this;
         this.loginService
             .post(this.user)
             .then(function (result) {

@@ -10,12 +10,8 @@ import { myServices }       from './external.module'
 @NgModule({
 	bootstrap:    [AppComponent],
 	imports:      [BrowserModule, HttpModule, routing, FormsModule],
-    declarations: [
-    	...myComponents
-    ],
-    providers: [
-    	...myServices
-  ]
+    declarations: [...myComponents],
+    providers:    [...myServices]
 })
 
 export class AppModule {}

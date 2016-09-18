@@ -17,8 +17,7 @@ import { CookieService }		from 'angular2-cookie/core';
 	moduleId: module.id,
 	selector: 'ui-attendance',
 	templateUrl: 'attendance.component.html',
-	styleUrls: ['attendance.component.css'],
-	directives: []
+	styleUrls: ['attendance.component.css']
 })
 
 export class AttendanceComponent {

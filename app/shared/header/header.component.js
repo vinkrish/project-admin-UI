@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var router_2 = require('@angular/router');
 var core_2 = require('angular2-cookie/core');
 var credentials_service_1 = require('../../login/credentials.service');
 var HeaderComponent = (function () {
@@ -39,10 +38,9 @@ var HeaderComponent = (function () {
             moduleId: module.id,
             selector: 'ui-header',
             templateUrl: 'header.component.html',
-            styleUrls: ['header.component.css'],
-            directives: [router_1.ROUTER_DIRECTIVES],
+            styleUrls: ['header.component.css']
         }), 
-        __metadata('design:paramtypes', [credentials_service_1.LoginService, router_2.Router, core_2.CookieService])
+        __metadata('design:paramtypes', [credentials_service_1.LoginService, router_1.Router, core_2.CookieService])
     ], HeaderComponent);
     return HeaderComponent;
 }());
