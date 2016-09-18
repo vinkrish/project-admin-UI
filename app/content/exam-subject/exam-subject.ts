@@ -3,6 +3,7 @@ export class ExamSubject {
 	examId: number;
 	subjectId: number;
 	subjectName: string;
+	type: string;
 	maximumMark: number;
 	failMark: number;
 	percentage: number;

@@ -4,6 +4,7 @@ export class Activity {
 	examId: number;
 	subjectId: number;
 	activityName: string;
+	type: string;
 	maximumMark: number;
 	weightage: number;
 	calculation: number;

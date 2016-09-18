@@ -35,6 +35,7 @@ var MarkService = (function () {
             .catch(this.handleError);
     };
     MarkService.prototype.put = function (marks) {
+        console.log(marks);
         return this.http
             .put(this.markUrl, JSON.stringify(marks), { headers: this.headers })
             .toPromise()

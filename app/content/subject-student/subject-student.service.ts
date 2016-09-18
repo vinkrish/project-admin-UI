@@ -14,6 +14,15 @@ export class SubjectStudentService {
     this.headers.append('Authorization', `Bearer ${this.cookieService.get("auth_token")}`);
   }
 
+  getSubjectStudent(sectionId, subjectId): Promise<SubjectStudents> {
+    let url = `${this.subjectStudentUrl}/section/${sectionId}/subject/${subjectId}`;
+    return this.http
+      .get(url, { headers: this.headers, body: '' })
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
   getSubjectStudents(sectionId, subjectGroupId): Promise<SubjectStudents[]> {
     let url = `${this.subjectStudentUrl}/section/${sectionId}/subjectGroup/${subjectGroupId}`;
     return this.http

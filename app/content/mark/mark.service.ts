@@ -31,6 +31,7 @@ export class MarkService {
   }
 
   put(marks: Mark[]) {
+    console.log(marks);
     return this.http
       .put(this.markUrl, JSON.stringify(marks), { headers: this.headers })
       .toPromise()

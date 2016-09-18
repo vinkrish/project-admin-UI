@@ -20,6 +20,14 @@ var SubjectStudentService = (function () {
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         this.headers.append('Authorization', "Bearer " + this.cookieService.get("auth_token"));
     }
+    SubjectStudentService.prototype.getSubjectStudent = function (sectionId, subjectId) {
+        var url = this.subjectStudentUrl + "/section/" + sectionId + "/subject/" + subjectId;
+        return this.http
+            .get(url, { headers: this.headers, body: '' })
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     SubjectStudentService.prototype.getSubjectStudents = function (sectionId, subjectGroupId) {
         var url = this.subjectStudentUrl + "/section/" + sectionId + "/subjectGroup/" + subjectGroupId;
         return this.http
