@@ -82,6 +82,7 @@ export class MarkComponent implements OnInit {
         this.selectedSection = this.sections[i];
       }
     }
+    this.selectedExam = new Exam();
     this.selectedExamSubject = new ExamSubject();
     this.examStudents = [];
     this.marks = [];
@@ -113,6 +114,10 @@ export class MarkComponent implements OnInit {
         this.selectedExam = this.exams[i];
       }
     }
+    this.selectedExamSubject = new ExamSubject();
+    this.examStudents = [];
+    this.marks = [];
+    this.existingMarks = [];
     this.getExamSubjects(this.selectedExam.id);
   }
 
@@ -129,11 +134,13 @@ export class MarkComponent implements OnInit {
         this.selectedExamSubject = this.examSubjects[i];
       }
     }
+    this.marks = [];
+    this.existingMarks = [];
+    this.examStudents = [];
     this.getSubjectStudents();
   }
 
   getSubjectStudents() {
-    this.examStudents = [];
     this.ssService
       .getSubjectStudent(this.selectedSection.id, this.selectedExamSubject.subjectId)
       .then(subjectStudent => {
@@ -179,6 +186,7 @@ export class MarkComponent implements OnInit {
     marc.subjectId = this.selectedExamSubject.subjectId;
     marc.sectionId = this.selectedSection.id;
     marc.studentId = this.students[index].id;
+    marc.grade = '';
     this.marks.push(marc);
   }
 
@@ -191,7 +199,15 @@ export class MarkComponent implements OnInit {
           this.marks[i].grade = this.existingMarks[j].grade;
         }
       }
-        }
+    }
+  }
+
+  defaultMarks() {
+    for (var i = 0; i < this.marks.length; i++) {
+      if (typeof this.marks[i].mark == 'undefined') {
+        this.marks[i].mark = 0;
+      }
+    }
   }
 
   ngOnInit() {
@@ -213,6 +229,7 @@ export class MarkComponent implements OnInit {
   }
 
   save() {
+    this.defaultMarks();
     if (this.isMarksPresent) {
       this.markService
         .put(this.marks)

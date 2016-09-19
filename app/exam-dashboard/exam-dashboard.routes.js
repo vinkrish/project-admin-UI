@@ -5,6 +5,7 @@ var exam_subject_component_1 = require('../content/exam-subject/exam-subject.com
 var exam_subject_group_component_1 = require('../content/exam-subject-group/exam-subject-group.component');
 var mark_component_1 = require('../content/mark/mark.component');
 var activity_component_1 = require('../content/activity/activity.component');
+var activity_score_component_1 = require('../content/activity-score/activity-score.component');
 var subactivity_component_1 = require('../content/subactivity/subactivity.component');
 exports.examDashboardRoutes = exam_routes_1.examRoutes.concat([
     {
@@ -25,6 +26,11 @@ exports.examDashboardRoutes = exam_routes_1.examRoutes.concat([
     {
         path: 'activity',
         component: activity_component_1.ActivityComponent,
+        canActivate: [logged_in_guard_1.LoggedInGuard]
+    },
+    {
+        path: 'activity-score',
+        component: activity_score_component_1.ActivityScoreComponent,
         canActivate: [logged_in_guard_1.LoggedInGuard]
     },
     {

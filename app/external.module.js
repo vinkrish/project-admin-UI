@@ -33,6 +33,7 @@ var teacher_component_1 = require('../app/content/teacher/teacher.component');
 var teacher_edit_component_1 = require('../app/content/teacher/teacher-edit.component');
 var timetable_component_1 = require('../app/content/timetable/timetable.component');
 var mark_component_1 = require('../app/content/mark/mark.component');
+var activity_score_component_1 = require('../app/content/activity-score/activity-score.component');
 var core_1 = require('angular2-cookie/core');
 var credentials_service_1 = require('./login/credentials.service');
 var logged_in_guard_1 = require('./login/logged-in.guard');
@@ -91,7 +92,8 @@ exports.myComponents = [
     teacher_component_1.TeacherComponent,
     teacher_edit_component_1.TeacherEditComponent,
     timetable_component_1.TimetableComponent,
-    mark_component_1.MarkComponent
+    mark_component_1.MarkComponent,
+    activity_score_component_1.ActivityScoreComponent
 ];
 exports.myServices = [
     core_1.CookieService,

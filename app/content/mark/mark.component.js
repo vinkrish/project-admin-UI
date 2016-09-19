@@ -65,6 +65,7 @@ var MarkComponent = (function () {
                 this.selectedSection = this.sections[i];
             }
         }
+        this.selectedExam = new exam_1.Exam();
         this.selectedExamSubject = new exam_subject_1.ExamSubject();
         this.examStudents = [];
         this.marks = [];
@@ -95,6 +96,10 @@ var MarkComponent = (function () {
                 this.selectedExam = this.exams[i];
             }
         }
+        this.selectedExamSubject = new exam_subject_1.ExamSubject();
+        this.examStudents = [];
+        this.marks = [];
+        this.existingMarks = [];
         this.getExamSubjects(this.selectedExam.id);
     };
     MarkComponent.prototype.getExamSubjects = function (id) {
@@ -110,11 +115,13 @@ var MarkComponent = (function () {
                 this.selectedExamSubject = this.examSubjects[i];
             }
         }
+        this.marks = [];
+        this.existingMarks = [];
+        this.examStudents = [];
         this.getSubjectStudents();
     };
     MarkComponent.prototype.getSubjectStudents = function () {
         var _this = this;
-        this.examStudents = [];
         this.ssService
             .getSubjectStudent(this.selectedSection.id, this.selectedExamSubject.subjectId)
             .then(function (subjectStudent) {
@@ -160,6 +167,7 @@ var MarkComponent = (function () {
         marc.subjectId = this.selectedExamSubject.subjectId;
         marc.sectionId = this.selectedSection.id;
         marc.studentId = this.students[index].id;
+        marc.grade = '';
         this.marks.push(marc);
     };
     MarkComponent.prototype.exportMarks = function () {
@@ -170,6 +178,13 @@ var MarkComponent = (function () {
                     this.marks[i].mark = this.existingMarks[j].mark;
                     this.marks[i].grade = this.existingMarks[j].grade;
                 }
+            }
+        }
+    };
+    MarkComponent.prototype.defaultMarks = function () {
+        for (var i = 0; i < this.marks.length; i++) {
+            if (typeof this.marks[i].mark == 'undefined') {
+                this.marks[i].mark = 0;
             }
         }
     };
@@ -191,6 +206,7 @@ var MarkComponent = (function () {
     };
     MarkComponent.prototype.save = function () {
         var _this = this;
+        this.defaultMarks();
         if (this.isMarksPresent) {
             this.markService
                 .put(this.marks)

@@ -20,7 +20,7 @@ var SubActivityScoreService = (function () {
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         this.headers.append('Authorization', "Bearer " + this.cookieService.get("auth_token"));
     }
-    SubActivityScoreService.prototype.getMarks = function (subActivityId) {
+    SubActivityScoreService.prototype.getScore = function (subActivityId) {
         var url = this.scoreUrl + "/subactivity/" + subActivityId;
         return this.http
             .get(url, { headers: this.headers, body: '' })

@@ -14,7 +14,7 @@ export class ActivityScoreService {
     this.headers.append('Authorization', `Bearer ${this.cookieService.get("auth_token")}`);
   }
 
-  getMarks(activityId): Promise<ActivityScore[]> {
+  getScore(activityId): Promise<ActivityScore[]> {
     let url = `${this.scoreUrl}/activity/${activityId}`;
     return this.http
       .get(url, { headers: this.headers, body: '' })
@@ -24,6 +24,7 @@ export class ActivityScoreService {
   }
 
   post(scores: ActivityScore[]) {
+    console.log(scores);
     return this.http
       .post(this.scoreUrl, JSON.stringify(scores), { headers: this.headers })
       .toPromise()

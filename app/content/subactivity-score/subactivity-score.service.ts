@@ -14,7 +14,7 @@ export class SubActivityScoreService {
     this.headers.append('Authorization', `Bearer ${this.cookieService.get("auth_token")}`);
   }
 
-  getMarks(subActivityId): Promise<SubActivityScore[]> {
+  getScore(subActivityId): Promise<SubActivityScore[]> {
     let url = `${this.scoreUrl}/subactivity/${subActivityId}`;
     return this.http
       .get(url, { headers: this.headers, body: '' })

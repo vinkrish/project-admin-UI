@@ -5,6 +5,7 @@ import { ExamSubjectComponent }    		  from '../content/exam-subject/exam-subjec
 import { ExamSubjectGroupComponent }    from '../content/exam-subject-group/exam-subject-group.component';
 import { MarkComponent }                from '../content/mark/mark.component';
 import { ActivityComponent }            from '../content/activity/activity.component';
+import { ActivityScoreComponent }       from '../content/activity-score/activity-score.component';
 import { SubActivityComponent }         from '../content/subactivity/subactivity.component';
 
 export const examDashboardRoutes: Routes = [
@@ -27,6 +28,11 @@ export const examDashboardRoutes: Routes = [
   {
     path: 'activity',
     component: ActivityComponent,
+    canActivate: [LoggedInGuard]
+  },
+  {
+    path: 'activity-score',
+    component: ActivityScoreComponent,
     canActivate: [LoggedInGuard]
   },
   {

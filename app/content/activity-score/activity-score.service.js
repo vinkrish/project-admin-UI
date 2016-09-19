@@ -20,7 +20,7 @@ var ActivityScoreService = (function () {
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         this.headers.append('Authorization', "Bearer " + this.cookieService.get("auth_token"));
     }
-    ActivityScoreService.prototype.getMarks = function (activityId) {
+    ActivityScoreService.prototype.getScore = function (activityId) {
         var url = this.scoreUrl + "/activity/" + activityId;
         return this.http
             .get(url, { headers: this.headers, body: '' })
@@ -29,6 +29,7 @@ var ActivityScoreService = (function () {
             .catch(this.handleError);
     };
     ActivityScoreService.prototype.post = function (scores) {
+        console.log(scores);
         return this.http
             .post(this.scoreUrl, JSON.stringify(scores), { headers: this.headers })
             .toPromise()

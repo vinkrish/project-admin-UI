@@ -32,6 +32,7 @@ import { TeacherComponent }        		from '../app/content/teacher/teacher.compon
 import { TeacherEditComponent }        	from '../app/content/teacher/teacher-edit.component';
 import { TimetableComponent }        	from '../app/content/timetable/timetable.component';
 import { MarkComponent }        		from '../app/content/mark/mark.component';
+import { ActivityScoreComponent }      	from '../app/content/activity-score/activity-score.component';
 
 import { CookieService }          	from 'angular2-cookie/core';
 import { LoginService }				from './login/credentials.service';
@@ -92,7 +93,8 @@ export const myComponents = [
 	TeacherComponent,
 	TeacherEditComponent,
 	TimetableComponent,
-	MarkComponent
+	MarkComponent,
+	ActivityScoreComponent
 ];
 
 export const myServices = [
