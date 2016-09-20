@@ -29,7 +29,6 @@ var ActivityScoreService = (function () {
             .catch(this.handleError);
     };
     ActivityScoreService.prototype.post = function (scores) {
-        console.log(scores);
         return this.http
             .post(this.scoreUrl, JSON.stringify(scores), { headers: this.headers })
             .toPromise()

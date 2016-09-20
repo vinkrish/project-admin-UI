@@ -24,7 +24,6 @@ export class ActivityScoreService {
   }
 
   post(scores: ActivityScore[]) {
-    console.log(scores);
     return this.http
       .post(this.scoreUrl, JSON.stringify(scores), { headers: this.headers })
       .toPromise()
