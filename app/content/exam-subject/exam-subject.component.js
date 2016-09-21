@@ -14,7 +14,6 @@ var clas_1 = require('../class/clas');
 var class_service_1 = require('../class/class.service');
 var exam_1 = require('../exam/exam');
 var exam_service_1 = require('../exam/exam.service');
-var class_subject_group_service_1 = require('../class-subject-group/class-subject-group.service');
 var exam_subject_group_1 = require('../exam-subject-group/exam-subject-group');
 var exam_subject_group_service_1 = require('../exam-subject-group/exam-subject-group.service');
 var subject_group_subject_service_1 = require('../subject-group-subject/subject-group-subject.service');
@@ -22,11 +21,10 @@ var subjects_service_1 = require('../subjects/subjects.service');
 var exam_subject_1 = require('./exam-subject');
 var exam_subject_service_1 = require('./exam-subject.service');
 var ExamSubjectComponent = (function () {
-    function ExamSubjectComponent(router, classService, examService, csgService, esgService, sgsService, subjectsService, examSubjectService) {
+    function ExamSubjectComponent(router, classService, examService, esgService, sgsService, subjectsService, examSubjectService) {
         this.router = router;
         this.classService = classService;
         this.examService = examService;
-        this.csgService = csgService;
         this.esgService = esgService;
         this.sgsService = sgsService;
         this.subjectsService = subjectsService;
@@ -49,8 +47,6 @@ var ExamSubjectComponent = (function () {
                 this.selectedClass = this.classes[i];
             }
         }
-        this.classSubjectGroups = null;
-        this.getClassSubjectGroups(this.selectedClass.id);
         this.examSubjectGroups = null;
         this.getExams(this.selectedClass.id);
         this.addingExamSubject = false;
@@ -172,13 +168,6 @@ var ExamSubjectComponent = (function () {
         })
             .catch(function (error) { return _this.error = error; });
     };
-    ExamSubjectComponent.prototype.getClassSubjectGroups = function (id) {
-        var _this = this;
-        this.csgService
-            .getClassSubjectGroups(id)
-            .then(function (classSubjectGroups) { return _this.classSubjectGroups = classSubjectGroups; })
-            .catch(function (error) { return _this.error = error; });
-    };
     ExamSubjectComponent.prototype.subjectSelected = function (subjectId) {
         for (var i = 0; i < this.subjectGroupSubjects.length; i++) {
             if (this.subjectGroupSubjects[i].subjectId == subjectId) {
@@ -225,7 +214,7 @@ var ExamSubjectComponent = (function () {
             templateUrl: 'exam-subject.component.html',
             styleUrls: ['exam-subject.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.Router, class_service_1.ClassService, exam_service_1.ExamService, class_subject_group_service_1.ClassSubjectGroupService, exam_subject_group_service_1.ExamSubjectGroupService, subject_group_subject_service_1.SubjectGroupSubjectService, subjects_service_1.SubjectsService, exam_subject_service_1.ExamSubjectService])
+        __metadata('design:paramtypes', [router_1.Router, class_service_1.ClassService, exam_service_1.ExamService, exam_subject_group_service_1.ExamSubjectGroupService, subject_group_subject_service_1.SubjectGroupSubjectService, subjects_service_1.SubjectsService, exam_subject_service_1.ExamSubjectService])
     ], ExamSubjectComponent);
     return ExamSubjectComponent;
 }());

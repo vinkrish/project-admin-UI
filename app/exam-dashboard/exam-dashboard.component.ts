@@ -26,6 +26,10 @@ export class ExamDashboardComponent {
 		{ name: 'SubActivity Score', link: 'subactivity-score' }
 	];
 
+	Items3: DashboardItem[] = [
+		{ name: 'Portion', link: 'portion' },
+	];
+
 	constructor(private router: Router) {
 	}
 

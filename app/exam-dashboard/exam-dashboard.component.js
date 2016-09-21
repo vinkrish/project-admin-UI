@@ -25,6 +25,9 @@ var ExamDashboardComponent = (function () {
             { name: 'Activity Score', link: 'activity-score' },
             { name: 'SubActivity Score', link: 'subactivity-score' }
         ];
+        this.Items3 = [
+            { name: 'Portion', link: 'portion' },
+        ];
     }
     ExamDashboardComponent.prototype.gotoDetail = function (item) {
         console.log(item);

@@ -8,6 +8,7 @@ import { ActivityComponent }            from '../content/activity/activity.compo
 import { ActivityScoreComponent }       from '../content/activity-score/activity-score.component';
 import { SubActivityComponent }         from '../content/subactivity/subactivity.component';
 import { SubActivityScoreComponent }    from '../content/subactivity-score/subactivity-score.component';
+import { portionRoutes }                from '../content/portion/portion.routes';
 
 export const examDashboardRoutes: Routes = [
   ...examRoutes,
@@ -45,5 +46,6 @@ export const examDashboardRoutes: Routes = [
     path: 'subactivity-score',
     component: SubActivityScoreComponent,
     canActivate: [LoggedInGuard]
-  }
+  },
+  ...portionRoutes
 ];

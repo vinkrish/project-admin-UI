@@ -34,6 +34,8 @@ import { TimetableComponent }        	from '../app/content/timetable/timetable.c
 import { MarkComponent }        		from '../app/content/mark/mark.component';
 import { ActivityScoreComponent }      	from '../app/content/activity-score/activity-score.component';
 import { SubActivityScoreComponent }    from '../app/content/subactivity-score/subactivity-score.component';
+import { PortionComponent }        		from '../app/content/portion/portion.component';
+import { PortionEditComponent }         from '../app/content/portion/portion-edit.component';
 
 import { CookieService }          	from 'angular2-cookie/core';
 import { LoginService }				from './login/credentials.service';
@@ -59,6 +61,7 @@ import { SubjectStudentService } 	from '../app/content/subject-student/subject-s
 import { MarkService }				from '../app/content/mark/mark.service';
 import { ActivityScoreService }		from '../app/content/activity-score/activity-score.service';
 import { SubActivityScoreService }	from '../app/content/subactivity-score/subactivity-score.service';
+import { PortionService }			from '../app/content/portion/portion.service';
 
 export const myComponents = [
 	AppComponent, 
@@ -96,7 +99,9 @@ export const myComponents = [
 	TimetableComponent,
 	MarkComponent,
 	ActivityScoreComponent,
-	SubActivityScoreComponent
+	SubActivityScoreComponent,
+	PortionComponent,
+	PortionEditComponent
 ];
 
 export const myServices = [
@@ -123,5 +128,6 @@ export const myServices = [
     SubjectStudentService,
     MarkService,
     ActivityScoreService,
-    SubActivityScoreService
+    SubActivityScoreService,
+    PortionService
 ]

@@ -8,6 +8,7 @@ var activity_component_1 = require('../content/activity/activity.component');
 var activity_score_component_1 = require('../content/activity-score/activity-score.component');
 var subactivity_component_1 = require('../content/subactivity/subactivity.component');
 var subactivity_score_component_1 = require('../content/subactivity-score/subactivity-score.component');
+var portion_routes_1 = require('../content/portion/portion.routes');
 exports.examDashboardRoutes = exam_routes_1.examRoutes.concat([
     {
         path: 'exam-subject-group',
@@ -44,5 +45,5 @@ exports.examDashboardRoutes = exam_routes_1.examRoutes.concat([
         component: subactivity_score_component_1.SubActivityScoreComponent,
         canActivate: [logged_in_guard_1.LoggedInGuard]
     }
-]);
+], portion_routes_1.portionRoutes);
 //# sourceMappingURL=exam-dashboard.routes.js.map

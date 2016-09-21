@@ -4,8 +4,6 @@ import { Clas }               from '../class/clas';
 import { ClassService }       from '../class/class.service';
 import { Exam }			 		      from '../exam/exam';
 import { ExamService }		 	  from '../exam/exam.service';
-import { ClassSubjectGroup }        from '../class-subject-group/class-subject-group';
-import { ClassSubjectGroupService } from '../class-subject-group/class-subject-group.service';
 import { ExamSubjectGroup }         from '../exam-subject-group/exam-subject-group';
 import { ExamSubjectGroupService }  from '../exam-subject-group/exam-subject-group.service';
 import { SubjectGroupSubject }      from '../subject-group-subject/subject-group-subject'
@@ -27,7 +25,6 @@ export class ExamSubjectComponent implements OnInit {
   selectedClass: Clas;
   exams: Exam[];
   selectedExam: Exam;
-  classSubjectGroups: ClassSubjectGroup[];
   examSubjectGroup: ExamSubjectGroup;
   examSubjectGroups: ExamSubjectGroup[];
   selectedEsg: ExamSubjectGroup;
@@ -45,7 +42,6 @@ export class ExamSubjectComponent implements OnInit {
     private router: Router,
     private classService: ClassService,
     private examService: ExamService,
-    private csgService: ClassSubjectGroupService,
     private esgService: ExamSubjectGroupService,
     private sgsService: SubjectGroupSubjectService,
     private subjectsService: SubjectsService,
@@ -66,8 +62,6 @@ export class ExamSubjectComponent implements OnInit {
         this.selectedClass = this.classes[i];
       }
     }
-    this.classSubjectGroups = null;
-    this.getClassSubjectGroups(this.selectedClass.id);
     this.examSubjectGroups = null;
     this.getExams(this.selectedClass.id);
     this.addingExamSubject = false;
@@ -111,11 +105,11 @@ export class ExamSubjectComponent implements OnInit {
   }
 
   getSubjectGroupSubjects(id: number) {
-      this.sgsService
-          .getSubjectGroupSubjects(id)
-          .then(subjectGroupSubjects => this.subjectGroupSubjects = subjectGroupSubjects)
-          .catch(error => this.error = error);
-    }
+    this.sgsService
+        .getSubjectGroupSubjects(id)
+        .then(subjectGroupSubjects => this.subjectGroupSubjects = subjectGroupSubjects)
+        .catch(error => this.error = error);
+  }
 
   getExamSubjects(id: number){
     this.examSubjectService
@@ -192,28 +186,21 @@ export class ExamSubjectComponent implements OnInit {
       .catch(error => this.error = error);
   }
 
-  getClassSubjectGroups(id: number) {
-    this.csgService
-      .getClassSubjectGroups(id)
-      .then(classSubjectGroups => this.classSubjectGroups = classSubjectGroups)
-      .catch(error => this.error = error);
+  subjectSelected(subjectId) {
+    for (var i = 0; i < this.subjectGroupSubjects.length; i++) {
+      if (this.subjectGroupSubjects[i].subjectId == subjectId) {
+        this.examSubject.subjectName = this.subjectGroupSubjects[i].subjectName;
+      }
+    }
   }
 
-  subjectSelected(subjectId) {
-      for (var i = 0; i < this.subjectGroupSubjects.length; i++) {
-        if (this.subjectGroupSubjects[i].subjectId == subjectId) {
-          this.examSubject.subjectName = this.subjectGroupSubjects[i].subjectName;
-        }
+  partitionSubjectSelected(subjectId) {
+    for (var i = 0; i < this.partitionSubjects.length; i++) {
+      if (this.partitionSubjects[i].id == subjectId) {
+        this.examSubject.subjectName = this.partitionSubjects[i].subjectName;
       }
     }
-
-    partitionSubjectSelected(subjectId) {
-      for (var i = 0; i < this.partitionSubjects.length; i++) {
-        if (this.partitionSubjects[i].id == subjectId) {
-          this.examSubject.subjectName = this.partitionSubjects[i].subjectName;
-        }
-      }
-    }
+  }
 
   save() {
     this.examSubjectService
