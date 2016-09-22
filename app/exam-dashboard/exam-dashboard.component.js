@@ -27,6 +27,7 @@ var ExamDashboardComponent = (function () {
         ];
         this.Items3 = [
             { name: 'Portion', link: 'portion' },
+            { name: 'Sliptest', link: 'sliptest' },
         ];
     }
     ExamDashboardComponent.prototype.gotoDetail = function (item) {

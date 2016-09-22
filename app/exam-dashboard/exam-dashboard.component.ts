@@ -28,6 +28,7 @@ export class ExamDashboardComponent {
 
 	Items3: DashboardItem[] = [
 		{ name: 'Portion', link: 'portion' },
+		{ name: 'Sliptest', link: 'sliptest' },
 	];
 
 	constructor(private router: Router) {

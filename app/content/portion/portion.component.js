@@ -131,14 +131,14 @@ var PortionComponent = (function () {
         event.stopPropagation();
         this.router.navigate(['portion/edit', portion.id]);
     };
-    PortionComponent.prototype.deletePortion = function (section, event) {
+    PortionComponent.prototype.deletePortion = function (portion, event) {
         var _this = this;
         event.stopPropagation();
         this.portionService
-            .delete(section)
+            .delete(portion)
             .then(function (res) {
-            _this.portions = _this.portions.filter(function (h) { return h !== section; });
-            if (_this.selectedPortion === section) {
+            _this.portions = _this.portions.filter(function (h) { return h !== portion; });
+            if (_this.selectedPortion === portion) {
                 _this.selectedPortion = null;
             }
         })

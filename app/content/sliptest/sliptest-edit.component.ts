@@ -1,47 +1,47 @@
 import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
 import { ActivatedRoute }  from '@angular/router';
-import { Portion }         from './portion';
-import { PortionService }  from './portion.service';
+import { Sliptest }        from './sliptest';
+import { SliptestService } from './sliptest.service';
 import { CookieService }   from 'angular2-cookie/core';
 
 @Component({
   moduleId: module.id,
-  selector: 'ui-portion-detail',
-  templateUrl: 'portion-edit.component.html',
-  styleUrls: ['portion-edit.component.css']
+  selector: 'ui-sliptest-detail',
+  templateUrl: 'sliptest-edit.component.html',
+  styleUrls: ['sliptest-edit.component.css']
 })
 
-export class PortionEditComponent implements OnInit, OnDestroy {
-  portion: Portion;
+export class SliptestEditComponent implements OnInit, OnDestroy {
+  sliptest: Sliptest;
   @Output() close = new EventEmitter();
   error: any;
   sub: any;
   navigated = false;
   className: string = this.cookieService.get("className");
   classId: number = +this.cookieService.get("classId");
+  sectionName: string = this.cookieService.get("sectionName");
+  sectionId: number = +this.cookieService.get("sectionId");
   subjectName: string = this.cookieService.get("subjectName");
   subjectId: number = +this.cookieService.get("subjectId");
 
   constructor(
     private route: ActivatedRoute,
     private cookieService:CookieService,
-    private portionService: PortionService) {
+    private sliptestService: SliptestService) {
   }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       if (params['id'] !== undefined) {
-        let portionId = +params['id'];
+        let sliptestId = +params['id'];
         this.navigated = true;
-        this.portionService.getPortion(this.classId, this.subjectId, portionId)
-            .then(portion => {
-              this.portion = portion;
-            });
+        this.sliptestService.getSliptest(this.sectionId, this.subjectId, sliptestId)
+            .then(sliptest => this.sliptest = sliptest);
       } else {
         this.navigated = false;
-        this.portion = new Portion();
-        this.portion.classId = this.classId;
-        this.portion.subjectId = this.subjectId;
+        this.sliptest = new Sliptest();
+        this.sliptest.sectionId = this.sectionId;
+        this.sliptest.subjectId = this.subjectId;
       }
     });
   }
@@ -51,17 +51,17 @@ export class PortionEditComponent implements OnInit, OnDestroy {
   }
 
   save() {
-    this.portionService
-        .save(this.portion)
-        .then(portion => {
-          this.portion = portion;
-          this.goBack(portion);
+    this.sliptestService
+        .save(this.sliptest)
+        .then(sliptest => {
+          this.sliptest = sliptest;
+          this.goBack(sliptest);
         })
         .catch(error => this.error = error);
   }
 
-  goBack(savedPortion: Portion = null) {
-    this.close.emit(savedPortion);
+  goBack(savedSliptest: Sliptest = null) {
+    this.close.emit(savedSliptest);
     if (this.navigated) { window.history.back(); }
   }
 

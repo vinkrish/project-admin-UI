@@ -1,9 +1,11 @@
 import { Component, OnInit }        from '@angular/core';
 import { Router }                   from '@angular/router';
 import { Clas }                     from '../class/clas';
-import { Portion }			            from './portion';
-import { PortionService }		        from './portion.service';
+import { Section }                  from '../section/section';
+import { Sliptest }			            from './sliptest';
+import { SliptestService }		      from './sliptest.service';
 import { ClassService }             from '../class/class.service';
+import { SectionService }           from '../section/section.service';
 import { ClassSubjectGroup }        from '../class-subject-group/class-subject-group';
 import { ClassSubjectGroupService } from '../class-subject-group/class-subject-group.service';
 import { SubjectGroupSubject }      from '../subject-group-subject/subject-group-subject'
@@ -12,30 +14,33 @@ import { CookieService }            from 'angular2-cookie/core';
 
 @Component({
   moduleId: module.id,
-  selector: 'ui-portion',
-  templateUrl: 'portion.component.html',
-  styleUrls: ['portion.component.css']
+  selector: 'ui-sliptest',
+  templateUrl: 'sliptest.component.html',
+  styleUrls: ['sliptest.component.css']
 })
 
-export class PortionComponent implements OnInit {
+export class SliptestComponent implements OnInit {
   classes: Clas[];
   selectedClass: Clas;
+  sections: Section[];
+  selectedSection: Section;
   classSubjectGroups: ClassSubjectGroup[];
   selectedCSG: ClassSubjectGroup;
   subjectGroupSubjects: SubjectGroupSubject[];
   selectedSGS: SubjectGroupSubject;
-  portions: Portion[];
-  selectedPortion: Portion;
-  addingPortion = false;
+  sliptests: Sliptest[];
+  selectedSliptest: Sliptest;
+  addingSliptest = false;
   error: any;
 
   constructor(
     private router: Router,
     private cookieService: CookieService,
     private classService: ClassService,
+    private sectionService: SectionService,
     private csgService: ClassSubjectGroupService,
     private sgsService: SubjectGroupSubjectService,
-    private portionService: PortionService) { }
+    private sliptestService: SliptestService) { }
 
   getClasses() {
     this.classService
@@ -50,16 +55,33 @@ export class PortionComponent implements OnInit {
         this.selectedClass = this.classes[i];
       }
     }
-    this.selectedCSG = new ClassSubjectGroup();
-    this.selectedSGS = new SubjectGroupSubject();
-    this.selectedPortion = new Portion();
-    this.classSubjectGroups = [];
-    this.subjectGroupSubjects = [];
-    this.portions = [];
+    this.clearValues();
+    this.getSections(this.selectedClass.id);
     this.getClassSubjectGroups(this.selectedClass.id);
     this.cookieService.put("classId", "" + this.selectedClass.id);
     this.cookieService.put("className", this.selectedClass.className);
-    this.addingPortion = false;
+    this.addingSliptest = false;
+  }
+
+  getSections(id: number) {
+    this.sectionService
+      .getSections(id)
+      .then(sections => this.sections = sections)
+      .catch(error => this.error = error);
+  }
+
+  sectionSelected(sectionId) {
+    for (var i = 0; i < this.sections.length; i++) {
+      if (this.sections[i].id == sectionId) {
+        this.selectedSection = this.sections[i];
+      }
+    }
+    this.selectedSliptest = new Sliptest();
+    this.selectedSGS = new SubjectGroupSubject();
+    this.sliptests = [];
+    this.cookieService.put("sectionId", "" + this.selectedSection.id);
+    this.cookieService.put("sectionName", this.selectedSection.sectionName);
+    this.addingSliptest = false;
   }
 
   getClassSubjectGroups(id: number) {
@@ -76,11 +98,11 @@ export class PortionComponent implements OnInit {
       }
     }
     this.selectedSGS = new SubjectGroupSubject();
-    this.selectedPortion = new Portion();
+    this.selectedSliptest = new Sliptest();
     this.subjectGroupSubjects = [];
-    this.portions = [];
+    this.sliptests = [];
     this.getSubjectGroupSubjects(this.selectedCSG.subjectGroupId);
-    this.addingPortion = false;
+    this.addingSliptest = false;
   }
 
   getSubjectGroupSubjects(id: number) {
@@ -96,61 +118,69 @@ export class PortionComponent implements OnInit {
         this.selectedSGS = this.subjectGroupSubjects[i];
       }
     }
-    this.selectedPortion = new Portion();
-    this.portions = [];
-    this.getPortions();
+    this.selectedSliptest = new Sliptest();
+    this.sliptests = [];
+    this.getSliptests();
     this.cookieService.put("subjectId", "" + this.selectedSGS.subjectId);
     this.cookieService.put("subjectName", this.selectedSGS.subjectName);
-    this.addingPortion = false;
+    this.addingSliptest = false;
   }
 
-  getPortions() {
-    this.portionService
-      .getPortions(this.selectedClass.id, this.selectedSGS.subjectId)
-      .then(portions => this.portions = portions)
+  getSliptests() {
+    this.sliptestService
+      .getSliptests(this.selectedSection.id, this.selectedSGS.subjectId)
+      .then(sliptests => this.sliptests = sliptests)
       .catch(error => this.error = error);
   }
 
   ngOnInit() {
     this.getClasses();
     this.selectedClass = new Clas(0, "");
+    this.clearValues();
+  }
+
+  clearValues(){
+    this.selectedSection = new Section();
     this.selectedCSG = new ClassSubjectGroup();
     this.selectedSGS = new SubjectGroupSubject();
+    this.selectedSliptest = new Sliptest();
+    this.sections = [];
     this.classSubjectGroups = [];
     this.subjectGroupSubjects = [];
+    this.sliptests = [];
   }
 
-  onSelect(portion: Portion) {
-    this.selectedPortion = portion;
-    this.addingPortion = false;
+  onSelect(sliptest: Sliptest) {
+    this.selectedSliptest = sliptest;
+    this.addingSliptest = false;
   }
 
-  close(savedPortion: Portion) {
-    this.addingPortion = false;
-    if (savedPortion) { this.getPortions(); }
+  close(savedPortion: Sliptest) {
+    this.addingSliptest = false;
+    if (savedPortion) { this.getSliptests(); }
   }
 
-  addPortion() {
-    if (this.addingPortion) {
-      this.addingPortion = false;
+  addSliptest() {
+    if (this.addingSliptest) {
+      this.addingSliptest = false;
     } else {
-      this.addingPortion = true;
+      this.addingSliptest = true;
     }
-    this.selectedPortion = null;
+    this.selectedSliptest = null;
   }
 
-  gotoEdit(portion: Portion, event: any) {
+  gotoEdit(sliptest: Sliptest, event: any) {
     event.stopPropagation();
-    this.router.navigate(['portion/edit', portion.id]);
+    this.router.navigate(['sliptest/edit', sliptest.id]);
   }
 
-  deletePortion(portion: Portion, event: any) {
+  deleteSliptest(sliptest: Sliptest, event: any) {
     event.stopPropagation();
-    this.portionService
-      .delete(portion)
+    this.sliptestService
+      .delete(sliptest)
       .then(res => {
-        this.portions = this.portions.filter(h => h !== portion);
-        if (this.selectedPortion === portion) { this.selectedPortion = null; }
+        this.sliptests = this.sliptests.filter(h => h !== sliptest);
+        if (this.selectedSliptest === sliptest) { this.selectedSliptest = null; }
       })
       .catch(error => this.error = error);
   }

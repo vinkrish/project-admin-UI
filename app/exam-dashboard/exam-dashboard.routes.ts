@@ -9,6 +9,7 @@ import { ActivityScoreComponent }       from '../content/activity-score/activity
 import { SubActivityComponent }         from '../content/subactivity/subactivity.component';
 import { SubActivityScoreComponent }    from '../content/subactivity-score/subactivity-score.component';
 import { portionRoutes }                from '../content/portion/portion.routes';
+import { sliptestRoutes }               from '../content/sliptest/sliptest.routes';
 
 export const examDashboardRoutes: Routes = [
   ...examRoutes,
@@ -47,5 +48,6 @@ export const examDashboardRoutes: Routes = [
     component: SubActivityScoreComponent,
     canActivate: [LoggedInGuard]
   },
-  ...portionRoutes
+  ...portionRoutes,
+  ...sliptestRoutes
 ];
