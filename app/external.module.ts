@@ -38,6 +38,7 @@ import { PortionComponent }        		from '../app/content/portion/portion.compon
 import { PortionEditComponent }         from '../app/content/portion/portion-edit.component';
 import { SliptestComponent }        	from '../app/content/sliptest/sliptest.component';
 import { SliptestEditComponent }        from '../app/content/sliptest/sliptest-edit.component';
+import { SliptestScoreComponent }       from '../app/content/sliptest-score/sliptest-score.component';
 
 import { CookieService }          	from 'angular2-cookie/core';
 import { LoginService }				from './login/credentials.service';
@@ -65,6 +66,7 @@ import { ActivityScoreService }		from '../app/content/activity-score/activity-sc
 import { SubActivityScoreService }	from '../app/content/subactivity-score/subactivity-score.service';
 import { PortionService }			from '../app/content/portion/portion.service';
 import { SliptestService }			from '../app/content/sliptest/sliptest.service';
+import { SliptestScoreService }		from '../app/content/sliptest-score/sliptest-score.service';
 
 export const myComponents = [
 	AppComponent, 
@@ -106,7 +108,8 @@ export const myComponents = [
 	PortionComponent,
 	PortionEditComponent,
 	SliptestComponent,
-	SliptestEditComponent
+	SliptestEditComponent,
+	SliptestScoreComponent
 ];
 
 export const myServices = [
@@ -135,5 +138,6 @@ export const myServices = [
     ActivityScoreService,
     SubActivityScoreService,
     PortionService,
-    SliptestService
+    SliptestService,
+    SliptestScoreService
 ]

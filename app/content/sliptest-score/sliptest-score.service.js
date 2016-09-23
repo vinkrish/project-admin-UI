@@ -12,50 +12,50 @@ var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var core_2 = require('angular2-cookie/core');
 require('rxjs/add/operator/toPromise');
-var MarkService = (function () {
-    function MarkService(http, cookieService) {
+var SliptestScoreService = (function () {
+    function SliptestScoreService(http, cookieService) {
         this.http = http;
         this.cookieService = cookieService;
-        this.markUrl = 'http://localhost:8080/guldu/webapi/mark';
+        this.scoreUrl = 'http://localhost:8080/guldu/webapi/sliptestscore';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         this.headers.append('Authorization', "Bearer " + this.cookieService.get("auth_token"));
     }
-    MarkService.prototype.getMarks = function (examId, subjectId, sectionId) {
-        var url = this.markUrl + "/exam/" + examId + "/subject/" + subjectId + "/section/" + sectionId;
+    SliptestScoreService.prototype.getMarks = function (sliptestId) {
+        var url = this.scoreUrl + "/sliptest/" + sliptestId;
         return this.http
             .get(url, { headers: this.headers, body: '' })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    MarkService.prototype.post = function (marks) {
+    SliptestScoreService.prototype.post = function (marks) {
         return this.http
-            .post(this.markUrl, JSON.stringify(marks), { headers: this.headers })
+            .post(this.scoreUrl, JSON.stringify(marks), { headers: this.headers })
             .toPromise()
             .catch(this.handleError);
     };
-    MarkService.prototype.put = function (marks) {
+    SliptestScoreService.prototype.put = function (marks) {
         return this.http
-            .put(this.markUrl, JSON.stringify(marks), { headers: this.headers })
+            .put(this.scoreUrl, JSON.stringify(marks), { headers: this.headers })
             .toPromise()
             .catch(this.handleError);
     };
-    MarkService.prototype.delete = function (examId, subjectId, sectionId) {
-        var url = this.markUrl + "/exam/" + examId + "/subject/" + subjectId + "/section/" + sectionId;
+    SliptestScoreService.prototype.delete = function (sliptestId) {
+        var url = this.scoreUrl + "/sliptest/" + sliptestId;
         return this.http
             .delete(url, { headers: this.headers, body: '' })
             .toPromise()
             .catch(this.handleError);
     };
-    MarkService.prototype.handleError = function (error) {
+    SliptestScoreService.prototype.handleError = function (error) {
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);
     };
-    MarkService = __decorate([
+    SliptestScoreService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http, core_2.CookieService])
-    ], MarkService);
-    return MarkService;
+    ], SliptestScoreService);
+    return SliptestScoreService;
 }());
-exports.MarkService = MarkService;
-//# sourceMappingURL=mark.service.js.map
+exports.SliptestScoreService = SliptestScoreService;
+//# sourceMappingURL=sliptest-score.service.js.map

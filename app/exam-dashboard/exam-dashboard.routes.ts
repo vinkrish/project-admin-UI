@@ -10,6 +10,7 @@ import { SubActivityComponent }         from '../content/subactivity/subactivity
 import { SubActivityScoreComponent }    from '../content/subactivity-score/subactivity-score.component';
 import { portionRoutes }                from '../content/portion/portion.routes';
 import { sliptestRoutes }               from '../content/sliptest/sliptest.routes';
+import { SliptestScoreComponent }       from '../content/sliptest-score/sliptest-score.component';
 
 export const examDashboardRoutes: Routes = [
   ...examRoutes,
@@ -49,5 +50,10 @@ export const examDashboardRoutes: Routes = [
     canActivate: [LoggedInGuard]
   },
   ...portionRoutes,
-  ...sliptestRoutes
+  ...sliptestRoutes,
+  {
+    path: 'sliptest-score',
+    component: SliptestScoreComponent,
+    canActivate: [LoggedInGuard]
+  }
 ];

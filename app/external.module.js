@@ -39,6 +39,7 @@ var portion_component_1 = require('../app/content/portion/portion.component');
 var portion_edit_component_1 = require('../app/content/portion/portion-edit.component');
 var sliptest_component_1 = require('../app/content/sliptest/sliptest.component');
 var sliptest_edit_component_1 = require('../app/content/sliptest/sliptest-edit.component');
+var sliptest_score_component_1 = require('../app/content/sliptest-score/sliptest-score.component');
 var core_1 = require('angular2-cookie/core');
 var credentials_service_1 = require('./login/credentials.service');
 var logged_in_guard_1 = require('./login/logged-in.guard');
@@ -65,6 +66,7 @@ var activity_score_service_1 = require('../app/content/activity-score/activity-s
 var subactivity_score_service_1 = require('../app/content/subactivity-score/subactivity-score.service');
 var portion_service_1 = require('../app/content/portion/portion.service');
 var sliptest_service_1 = require('../app/content/sliptest/sliptest.service');
+var sliptest_score_service_1 = require('../app/content/sliptest-score/sliptest-score.service');
 exports.myComponents = [
     app_component_1.AppComponent,
     header_component_1.HeaderComponent,
@@ -105,7 +107,8 @@ exports.myComponents = [
     portion_component_1.PortionComponent,
     portion_edit_component_1.PortionEditComponent,
     sliptest_component_1.SliptestComponent,
-    sliptest_edit_component_1.SliptestEditComponent
+    sliptest_edit_component_1.SliptestEditComponent,
+    sliptest_score_component_1.SliptestScoreComponent
 ];
 exports.myServices = [
     core_1.CookieService,
@@ -133,6 +136,7 @@ exports.myServices = [
     activity_score_service_1.ActivityScoreService,
     subactivity_score_service_1.SubActivityScoreService,
     portion_service_1.PortionService,
-    sliptest_service_1.SliptestService
+    sliptest_service_1.SliptestService,
+    sliptest_score_service_1.SliptestScoreService
 ];
 //# sourceMappingURL=external.module.js.map

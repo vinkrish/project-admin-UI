@@ -1,12 +1,12 @@
 import { Injectable }         from '@angular/core';
 import { Headers, Http }      from '@angular/http';
 import { CookieService }      from 'angular2-cookie/core';
-import { Mark }	              from './mark';
+import { SliptestScore }	    from './sliptest-score';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class MarkService {
-  private markUrl = 'http://localhost:8080/guldu/webapi/mark';
+export class SliptestScoreService {
+  private scoreUrl = 'http://localhost:8080/guldu/webapi/sliptestscore';
   private headers;
 
   constructor(private http: Http, private cookieService: CookieService) {
@@ -14,8 +14,8 @@ export class MarkService {
     this.headers.append('Authorization', `Bearer ${this.cookieService.get("auth_token")}`);
   }
 
-  getMarks(examId, subjectId, sectionId): Promise<Mark[]> {
-    let url = `${this.markUrl}/exam/${examId}/subject/${subjectId}/section/${sectionId}`;
+  getMarks(sliptestId): Promise<SliptestScore[]> {
+    let url = `${this.scoreUrl}/sliptest/${sliptestId}`;
     return this.http
       .get(url, { headers: this.headers, body: '' })
       .toPromise()
@@ -23,22 +23,22 @@ export class MarkService {
       .catch(this.handleError);
   }
 
-  post(marks: Mark[]) {
+  post(marks: SliptestScore[]) {
     return this.http
-      .post(this.markUrl, JSON.stringify(marks), { headers: this.headers })
+      .post(this.scoreUrl, JSON.stringify(marks), { headers: this.headers })
       .toPromise()
       .catch(this.handleError);
   }
 
-  put(marks: Mark[]) {
+  put(marks: SliptestScore[]) {
     return this.http
-      .put(this.markUrl, JSON.stringify(marks), { headers: this.headers })
+      .put(this.scoreUrl, JSON.stringify(marks), { headers: this.headers })
       .toPromise()
       .catch(this.handleError);
   }
 
-  delete(examId, subjectId, sectionId) {
-    let url = `${this.markUrl}/exam/${examId}/subject/${subjectId}/section/${sectionId}`;
+  delete(sliptestId) {
+    let url = `${this.scoreUrl}/sliptest/${sliptestId}`;
     return this.http
       .delete(url, { headers: this.headers, body: '' })
       .toPromise()
