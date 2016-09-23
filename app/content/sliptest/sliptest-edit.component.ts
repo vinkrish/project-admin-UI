@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
 import { ActivatedRoute }  from '@angular/router';
+import { Portion }         from '../portion/portion';
+import { PortionService }  from '../portion/portion.service';
 import { Sliptest }        from './sliptest';
 import { SliptestService } from './sliptest.service';
 import { CookieService }   from 'angular2-cookie/core';
@@ -13,6 +15,8 @@ import { CookieService }   from 'angular2-cookie/core';
 
 export class SliptestEditComponent implements OnInit, OnDestroy {
   sliptest: Sliptest;
+  portions: Portion[];
+  portionIds: number[];
   @Output() close = new EventEmitter();
   error: any;
   sub: any;
@@ -27,16 +31,28 @@ export class SliptestEditComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private cookieService:CookieService,
+    private portionService: PortionService,
     private sliptestService: SliptestService) {
   }
 
+  getPortions() {
+    this.portionService
+      .getPortions(this.classId, this.subjectId)
+      .then(portions => this.portions = portions)
+      .catch(error => this.error = error);
+  }
+
   ngOnInit() {
+    this.getPortions();
     this.sub = this.route.params.subscribe(params => {
       if (params['id'] !== undefined) {
         let sliptestId = +params['id'];
         this.navigated = true;
         this.sliptestService.getSliptest(this.sectionId, this.subjectId, sliptestId)
-            .then(sliptest => this.sliptest = sliptest);
+            .then(sliptest => {
+              this.sliptest = sliptest;
+              this.portionIds = this.sliptest.portionIds.split(",").map(Number).filter(Boolean);
+            });
       } else {
         this.navigated = false;
         this.sliptest = new Sliptest();
@@ -51,6 +67,7 @@ export class SliptestEditComponent implements OnInit, OnDestroy {
   }
 
   save() {
+    this.appendPortionIds();
     this.sliptestService
         .save(this.sliptest)
         .then(sliptest => {
@@ -58,6 +75,10 @@ export class SliptestEditComponent implements OnInit, OnDestroy {
           this.goBack(sliptest);
         })
         .catch(error => this.error = error);
+  }
+
+  appendPortionIds() {
+    this.sliptest.portionIds = this.portionIds.map(o => o).join(',');
   }
 
   goBack(savedSliptest: Sliptest = null) {

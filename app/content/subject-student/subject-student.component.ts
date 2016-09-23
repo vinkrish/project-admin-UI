@@ -111,8 +111,7 @@ export class SubjectStudentComponent implements OnInit {
     }
 
   subjectGroupSubjectSelected(sgsId){
-    for (var i = 0; i < this.subjectGroupSubjects.length; i++)
-      {
+    for (var i = 0; i < this.subjectGroupSubjects.length; i++){
         if (this.subjectGroupSubjects[i].subjectId == sgsId) {
           this.selectedSGS = this.subjectGroupSubjects[i];
         }
