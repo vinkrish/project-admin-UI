@@ -29,7 +29,11 @@ export class ExamDashboardComponent {
 	Items3: DashboardItem[] = [
 		{ name: 'Portion', link: 'portion' },
 		{ name: 'Sliptest', link: 'sliptest' },
-		{ name: 'Sliptest Score', link: 'sliptest-score' },
+		{ name: 'Sliptest Score', link: 'sliptest-score' }
+	];
+
+	Items4: DashboardItem[] = [
+		{ name: 'Grade Class Wise', link: 'grade-class-wise' }
 	];
 
 	constructor(private router: Router) {

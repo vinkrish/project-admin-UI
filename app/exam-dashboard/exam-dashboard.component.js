@@ -28,7 +28,10 @@ var ExamDashboardComponent = (function () {
         this.Items3 = [
             { name: 'Portion', link: 'portion' },
             { name: 'Sliptest', link: 'sliptest' },
-            { name: 'Sliptest Score', link: 'sliptest-score' },
+            { name: 'Sliptest Score', link: 'sliptest-score' }
+        ];
+        this.Items4 = [
+            { name: 'Grade Class Wise', link: 'grade-class-wise' }
         ];
     }
     ExamDashboardComponent.prototype.gotoDetail = function (item) {

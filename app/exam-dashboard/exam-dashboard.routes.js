@@ -11,6 +11,7 @@ var subactivity_score_component_1 = require('../content/subactivity-score/subact
 var portion_routes_1 = require('../content/portion/portion.routes');
 var sliptest_routes_1 = require('../content/sliptest/sliptest.routes');
 var sliptest_score_component_1 = require('../content/sliptest-score/sliptest-score.component');
+var grade_class_wise_component_1 = require('../content/grade-class-wise/grade-class-wise.component');
 exports.examDashboardRoutes = exam_routes_1.examRoutes.concat([
     {
         path: 'exam-subject-group',
@@ -51,6 +52,11 @@ exports.examDashboardRoutes = exam_routes_1.examRoutes.concat([
     {
         path: 'sliptest-score',
         component: sliptest_score_component_1.SliptestScoreComponent,
+        canActivate: [logged_in_guard_1.LoggedInGuard]
+    },
+    {
+        path: 'grade-class-wise',
+        component: grade_class_wise_component_1.GradeClassWiseComponent,
         canActivate: [logged_in_guard_1.LoggedInGuard]
     }
 ]);

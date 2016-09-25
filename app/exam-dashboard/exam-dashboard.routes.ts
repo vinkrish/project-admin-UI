@@ -11,6 +11,7 @@ import { SubActivityScoreComponent }    from '../content/subactivity-score/subac
 import { portionRoutes }                from '../content/portion/portion.routes';
 import { sliptestRoutes }               from '../content/sliptest/sliptest.routes';
 import { SliptestScoreComponent }       from '../content/sliptest-score/sliptest-score.component';
+import { GradeClassWiseComponent }      from '../content/grade-class-wise/grade-class-wise.component';
 
 export const examDashboardRoutes: Routes = [
   ...examRoutes,
@@ -54,6 +55,11 @@ export const examDashboardRoutes: Routes = [
   {
     path: 'sliptest-score',
     component: SliptestScoreComponent,
+    canActivate: [LoggedInGuard]
+  },
+  {
+    path: 'grade-class-wise',
+    component: GradeClassWiseComponent,
     canActivate: [LoggedInGuard]
   }
 ];
