@@ -4,6 +4,7 @@ var header_component_1 = require('../app/shared/header/header.component');
 var credentials_component_1 = require('./login/credentials.component');
 var dashboard_component_1 = require('./dashboard/dashboard.component');
 var exam_dashboard_component_1 = require('./exam-dashboard/exam-dashboard.component');
+var cce_dashboard_component_1 = require('./cce-dashboard/cce-dashboard.component');
 var attendance_component_1 = require('../app/content/attendance/attendance.component');
 var class_component_1 = require('../app/content/class/class.component');
 var class_edit_component_1 = require('../app/content/class/class-edit.component');
@@ -41,6 +42,7 @@ var sliptest_component_1 = require('../app/content/sliptest/sliptest.component')
 var sliptest_edit_component_1 = require('../app/content/sliptest/sliptest-edit.component');
 var sliptest_score_component_1 = require('../app/content/sliptest-score/sliptest-score.component');
 var grade_class_wise_component_1 = require('../app/content/grade-class-wise/grade-class-wise.component');
+var cce_student_profile_component_1 = require('../app/content/cce-student-profile/cce-student-profile.component');
 var core_1 = require('angular2-cookie/core');
 var credentials_service_1 = require('./login/credentials.service');
 var logged_in_guard_1 = require('./login/logged-in.guard');
@@ -69,12 +71,14 @@ var portion_service_1 = require('../app/content/portion/portion.service');
 var sliptest_service_1 = require('../app/content/sliptest/sliptest.service');
 var sliptest_score_service_1 = require('../app/content/sliptest-score/sliptest-score.service');
 var grade_class_wise_service_1 = require('../app/content/grade-class-wise/grade-class-wise.service');
+var cce_student_profile_service_1 = require('../app/content/cce-student-profile/cce-student-profile.service');
 exports.myComponents = [
     app_component_1.AppComponent,
     header_component_1.HeaderComponent,
     credentials_component_1.LoginComponent,
     dashboard_component_1.DashboardComponent,
     exam_dashboard_component_1.ExamDashboardComponent,
+    cce_dashboard_component_1.CceDashboardComponent,
     attendance_component_1.AttendanceComponent,
     class_component_1.ClassComponent,
     class_edit_component_1.ClassEditComponent,
@@ -111,7 +115,8 @@ exports.myComponents = [
     sliptest_component_1.SliptestComponent,
     sliptest_edit_component_1.SliptestEditComponent,
     sliptest_score_component_1.SliptestScoreComponent,
-    grade_class_wise_component_1.GradeClassWiseComponent
+    grade_class_wise_component_1.GradeClassWiseComponent,
+    cce_student_profile_component_1.CceStudentProfileComponent
 ];
 exports.myServices = [
     core_1.CookieService,
@@ -141,6 +146,7 @@ exports.myServices = [
     portion_service_1.PortionService,
     sliptest_service_1.SliptestService,
     sliptest_score_service_1.SliptestScoreService,
-    grade_class_wise_service_1.GradeClassWiseService
+    grade_class_wise_service_1.GradeClassWiseService,
+    cce_student_profile_service_1.CceStudentProfileService
 ];
 //# sourceMappingURL=external.module.js.map

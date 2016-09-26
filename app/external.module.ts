@@ -3,6 +3,7 @@ import { HeaderComponent }			from '../app/shared/header/header.component';
 import { LoginComponent }			from './login/credentials.component';
 import { DashboardComponent }       from './dashboard/dashboard.component';
 import { ExamDashboardComponent }   from './exam-dashboard/exam-dashboard.component';
+import { CceDashboardComponent }   	from './cce-dashboard/cce-dashboard.component';
 import { AttendanceComponent }		from '../app/content/attendance/attendance.component';
 import { ClassComponent }			from '../app/content/class/class.component';
 import { ClassEditComponent }		from '../app/content/class/class-edit.component';
@@ -40,6 +41,7 @@ import { SliptestComponent }        	from '../app/content/sliptest/sliptest.comp
 import { SliptestEditComponent }        from '../app/content/sliptest/sliptest-edit.component';
 import { SliptestScoreComponent }       from '../app/content/sliptest-score/sliptest-score.component';
 import { GradeClassWiseComponent }      from '../app/content/grade-class-wise/grade-class-wise.component';
+import { CceStudentProfileComponent }   from '../app/content/cce-student-profile/cce-student-profile.component';
 
 import { CookieService }          	from 'angular2-cookie/core';
 import { LoginService }				from './login/credentials.service';
@@ -69,6 +71,7 @@ import { PortionService }			from '../app/content/portion/portion.service';
 import { SliptestService }			from '../app/content/sliptest/sliptest.service';
 import { SliptestScoreService }		from '../app/content/sliptest-score/sliptest-score.service';
 import { GradeClassWiseService }	from '../app/content/grade-class-wise/grade-class-wise.service';
+import { CceStudentProfileService } from '../app/content/cce-student-profile/cce-student-profile.service';
 
 export const myComponents = [
 	AppComponent, 
@@ -76,6 +79,7 @@ export const myComponents = [
 	LoginComponent,
 	DashboardComponent,
 	ExamDashboardComponent,
+	CceDashboardComponent,
 	AttendanceComponent,
 	ClassComponent,
 	ClassEditComponent,
@@ -112,7 +116,8 @@ export const myComponents = [
 	SliptestComponent,
 	SliptestEditComponent,
 	SliptestScoreComponent,
-	GradeClassWiseComponent
+	GradeClassWiseComponent,
+	CceStudentProfileComponent
 ];
 
 export const myServices = [
@@ -143,5 +148,6 @@ export const myServices = [
     PortionService,
     SliptestService,
     SliptestScoreService,
-    GradeClassWiseService
+    GradeClassWiseService,
+    CceStudentProfileService
 ]

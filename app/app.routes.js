@@ -4,8 +4,10 @@ var logged_in_guard_1 = require('./login/logged-in.guard');
 var credentials_component_1 = require('./login/credentials.component');
 var dashboard_component_1 = require('./dashboard/dashboard.component');
 var exam_dashboard_component_1 = require('./exam-dashboard/exam-dashboard.component');
+var cce_dashboard_component_1 = require('./cce-dashboard/cce-dashboard.component');
 var dashboard_routes_1 = require('./dashboard/dashboard.routes');
 var exam_dashboard_routes_1 = require('./exam-dashboard/exam-dashboard.routes');
+var cce_dashboard_routes_1 = require('./cce-dashboard/cce-dashboard.routes');
 var routes = [
     {
         path: '',
@@ -25,7 +27,12 @@ var routes = [
         path: 'exam-dashboard',
         component: exam_dashboard_component_1.ExamDashboardComponent,
         canActivate: [logged_in_guard_1.LoggedInGuard]
+    },
+    {
+        path: 'cce-dashboard',
+        component: cce_dashboard_component_1.CceDashboardComponent,
+        canActivate: [logged_in_guard_1.LoggedInGuard]
     }
-].concat(dashboard_routes_1.dashboardRoutes, exam_dashboard_routes_1.examDashboardRoutes);
+].concat(dashboard_routes_1.dashboardRoutes, exam_dashboard_routes_1.examDashboardRoutes, cce_dashboard_routes_1.cceDashboardRoutes);
 exports.routing = router_1.RouterModule.forRoot(routes);
 //# sourceMappingURL=app.routes.js.map
