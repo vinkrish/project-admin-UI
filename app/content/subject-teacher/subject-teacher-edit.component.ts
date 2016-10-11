@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
 import { ActivatedRoute }          from '@angular/router';
-import { Teacher }                 from '../teacher/Teacher';
+import { Teacher }                 from '../teacher/teacher';
 import { TeacherService }          from '../teacher/teacher.service';
-import { SubjectTeacher }          from './subject-teacher'
+import { SubjectTeacher }          from './subject-teacher';
 import { SubjectTeacherService }   from './subject-teacher.service';
 import { Gender }                  from '../../shared/component/gender';
 import { CookieService }           from 'angular2-cookie/core';
