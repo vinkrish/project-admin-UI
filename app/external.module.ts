@@ -44,6 +44,8 @@ import { GradeClassWiseComponent }      from '../app/content/grade-class-wise/gr
 import { CceStudentProfileComponent }   from '../app/content/cce-student-profile/cce-student-profile.component';
 import { CceCoschComponent }			from '../app/content/cce-coscholastic/cce-coscholastic.component';
 import { CceCoschEditComponent }		from '../app/content/cce-coscholastic/cce-coscholastic-edit.component';
+import { CceCoschClassComponent }		from '../app/content/cce-coscholastic-class/cce-coscholastic-class.component';
+import { CceCoschClassEditComponent }	from '../app/content/cce-coscholastic-class/cce-coscholastic-class-edit.component';
 
 import { CookieService }          	from 'angular2-cookie/core';
 import { LoginService }				from './login/credentials.service';
@@ -75,6 +77,7 @@ import { SliptestScoreService }		from '../app/content/sliptest-score/sliptest-sc
 import { GradeClassWiseService }	from '../app/content/grade-class-wise/grade-class-wise.service';
 import { CceStudentProfileService } from '../app/content/cce-student-profile/cce-student-profile.service';
 import { CceCoscholasticService }	from '../app/content/cce-coscholastic/cce-coscholastic.service';
+import { CceCoschClassService }		from '../app/content/cce-coscholastic-class/cce-coscholastic-class.service';
 
 export const myComponents = [
 	AppComponent, 
@@ -122,7 +125,9 @@ export const myComponents = [
 	GradeClassWiseComponent,
 	CceStudentProfileComponent,
 	CceCoschComponent,
-	CceCoschEditComponent
+	CceCoschEditComponent,
+	CceCoschClassComponent,
+	CceCoschClassEditComponent
 ];
 
 export const myServices = [
@@ -155,5 +160,6 @@ export const myServices = [
     SliptestScoreService,
     GradeClassWiseService,
     CceStudentProfileService,
-    CceCoscholasticService
+    CceCoscholasticService,
+    CceCoschClassService
 ]

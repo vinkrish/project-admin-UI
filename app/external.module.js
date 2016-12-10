@@ -45,6 +45,8 @@ var grade_class_wise_component_1 = require('../app/content/grade-class-wise/grad
 var cce_student_profile_component_1 = require('../app/content/cce-student-profile/cce-student-profile.component');
 var cce_coscholastic_component_1 = require('../app/content/cce-coscholastic/cce-coscholastic.component');
 var cce_coscholastic_edit_component_1 = require('../app/content/cce-coscholastic/cce-coscholastic-edit.component');
+var cce_coscholastic_class_component_1 = require('../app/content/cce-coscholastic-class/cce-coscholastic-class.component');
+var cce_coscholastic_class_edit_component_1 = require('../app/content/cce-coscholastic-class/cce-coscholastic-class-edit.component');
 var core_1 = require('angular2-cookie/core');
 var credentials_service_1 = require('./login/credentials.service');
 var logged_in_guard_1 = require('./login/logged-in.guard');
@@ -75,6 +77,7 @@ var sliptest_score_service_1 = require('../app/content/sliptest-score/sliptest-s
 var grade_class_wise_service_1 = require('../app/content/grade-class-wise/grade-class-wise.service');
 var cce_student_profile_service_1 = require('../app/content/cce-student-profile/cce-student-profile.service');
 var cce_coscholastic_service_1 = require('../app/content/cce-coscholastic/cce-coscholastic.service');
+var cce_coscholastic_class_service_1 = require('../app/content/cce-coscholastic-class/cce-coscholastic-class.service');
 exports.myComponents = [
     app_component_1.AppComponent,
     header_component_1.HeaderComponent,
@@ -121,7 +124,9 @@ exports.myComponents = [
     grade_class_wise_component_1.GradeClassWiseComponent,
     cce_student_profile_component_1.CceStudentProfileComponent,
     cce_coscholastic_component_1.CceCoschComponent,
-    cce_coscholastic_edit_component_1.CceCoschEditComponent
+    cce_coscholastic_edit_component_1.CceCoschEditComponent,
+    cce_coscholastic_class_component_1.CceCoschClassComponent,
+    cce_coscholastic_class_edit_component_1.CceCoschClassEditComponent
 ];
 exports.myServices = [
     core_1.CookieService,
@@ -153,6 +158,7 @@ exports.myServices = [
     sliptest_score_service_1.SliptestScoreService,
     grade_class_wise_service_1.GradeClassWiseService,
     cce_student_profile_service_1.CceStudentProfileService,
-    cce_coscholastic_service_1.CceCoscholasticService
+    cce_coscholastic_service_1.CceCoscholasticService,
+    cce_coscholastic_class_service_1.CceCoschClassService
 ];
 //# sourceMappingURL=external.module.js.map
