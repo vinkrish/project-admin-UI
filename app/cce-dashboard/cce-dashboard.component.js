@@ -14,7 +14,8 @@ var CceDashboardComponent = (function () {
     function CceDashboardComponent(router) {
         this.router = router;
         this.Items1 = [
-            { name: 'CCE Student Profile', link: 'cce-student-profile' }
+            { name: 'CCE Student Profile', link: 'cce-student-profile' },
+            { name: 'CCE Coscholastic', link: 'cce-coscholastic' }
         ];
     }
     CceDashboardComponent.prototype.gotoDetail = function (item) {

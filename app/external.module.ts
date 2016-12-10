@@ -42,6 +42,8 @@ import { SliptestEditComponent }        from '../app/content/sliptest/sliptest-e
 import { SliptestScoreComponent }       from '../app/content/sliptest-score/sliptest-score.component';
 import { GradeClassWiseComponent }      from '../app/content/grade-class-wise/grade-class-wise.component';
 import { CceStudentProfileComponent }   from '../app/content/cce-student-profile/cce-student-profile.component';
+import { CceCoschComponent }			from '../app/content/cce-coscholastic/cce-coscholastic.component';
+import { CceCoschEditComponent }		from '../app/content/cce-coscholastic/cce-coscholastic-edit.component';
 
 import { CookieService }          	from 'angular2-cookie/core';
 import { LoginService }				from './login/credentials.service';
@@ -72,6 +74,7 @@ import { SliptestService }			from '../app/content/sliptest/sliptest.service';
 import { SliptestScoreService }		from '../app/content/sliptest-score/sliptest-score.service';
 import { GradeClassWiseService }	from '../app/content/grade-class-wise/grade-class-wise.service';
 import { CceStudentProfileService } from '../app/content/cce-student-profile/cce-student-profile.service';
+import { CceCoscholasticService }	from '../app/content/cce-coscholastic/cce-coscholastic.service';
 
 export const myComponents = [
 	AppComponent, 
@@ -117,7 +120,9 @@ export const myComponents = [
 	SliptestEditComponent,
 	SliptestScoreComponent,
 	GradeClassWiseComponent,
-	CceStudentProfileComponent
+	CceStudentProfileComponent,
+	CceCoschComponent,
+	CceCoschEditComponent
 ];
 
 export const myServices = [
@@ -149,5 +154,6 @@ export const myServices = [
     SliptestService,
     SliptestScoreService,
     GradeClassWiseService,
-    CceStudentProfileService
+    CceStudentProfileService,
+    CceCoscholasticService
 ]

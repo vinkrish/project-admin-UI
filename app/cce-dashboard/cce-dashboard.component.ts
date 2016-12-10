@@ -13,7 +13,8 @@ import { DashboardItem } 	from  '../shared/component/dashboard-item';
 export class CceDashboardComponent {
 
 	Items1: DashboardItem[] = [
-		{ name: 'CCE Student Profile', link: 'cce-student-profile' }
+		{ name: 'CCE Student Profile', link: 'cce-student-profile' },
+		{ name: 'CCE Coscholastic', link: 'cce-coscholastic' }
 	];
 
 	constructor(private router: Router) {

@@ -43,6 +43,8 @@ var sliptest_edit_component_1 = require('../app/content/sliptest/sliptest-edit.c
 var sliptest_score_component_1 = require('../app/content/sliptest-score/sliptest-score.component');
 var grade_class_wise_component_1 = require('../app/content/grade-class-wise/grade-class-wise.component');
 var cce_student_profile_component_1 = require('../app/content/cce-student-profile/cce-student-profile.component');
+var cce_coscholastic_component_1 = require('../app/content/cce-coscholastic/cce-coscholastic.component');
+var cce_coscholastic_edit_component_1 = require('../app/content/cce-coscholastic/cce-coscholastic-edit.component');
 var core_1 = require('angular2-cookie/core');
 var credentials_service_1 = require('./login/credentials.service');
 var logged_in_guard_1 = require('./login/logged-in.guard');
@@ -72,6 +74,7 @@ var sliptest_service_1 = require('../app/content/sliptest/sliptest.service');
 var sliptest_score_service_1 = require('../app/content/sliptest-score/sliptest-score.service');
 var grade_class_wise_service_1 = require('../app/content/grade-class-wise/grade-class-wise.service');
 var cce_student_profile_service_1 = require('../app/content/cce-student-profile/cce-student-profile.service');
+var cce_coscholastic_service_1 = require('../app/content/cce-coscholastic/cce-coscholastic.service');
 exports.myComponents = [
     app_component_1.AppComponent,
     header_component_1.HeaderComponent,
@@ -116,7 +119,9 @@ exports.myComponents = [
     sliptest_edit_component_1.SliptestEditComponent,
     sliptest_score_component_1.SliptestScoreComponent,
     grade_class_wise_component_1.GradeClassWiseComponent,
-    cce_student_profile_component_1.CceStudentProfileComponent
+    cce_student_profile_component_1.CceStudentProfileComponent,
+    cce_coscholastic_component_1.CceCoschComponent,
+    cce_coscholastic_edit_component_1.CceCoschEditComponent
 ];
 exports.myServices = [
     core_1.CookieService,
@@ -147,6 +152,7 @@ exports.myServices = [
     sliptest_service_1.SliptestService,
     sliptest_score_service_1.SliptestScoreService,
     grade_class_wise_service_1.GradeClassWiseService,
-    cce_student_profile_service_1.CceStudentProfileService
+    cce_student_profile_service_1.CceStudentProfileService,
+    cce_coscholastic_service_1.CceCoscholasticService
 ];
 //# sourceMappingURL=external.module.js.map
