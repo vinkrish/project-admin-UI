@@ -46,6 +46,8 @@ import { CceCoschComponent }			from '../app/content/cce-coscholastic/cce-coschol
 import { CceCoschEditComponent }		from '../app/content/cce-coscholastic/cce-coscholastic-edit.component';
 import { CceCoschClassComponent }		from '../app/content/cce-coscholastic-class/cce-coscholastic-class.component';
 import { CceCoschClassEditComponent }	from '../app/content/cce-coscholastic-class/cce-coscholastic-class-edit.component';
+import { SectionHeadingComponent }   	from '../app/content/cce-section-heading/cce-section-heading.component';
+import { SectionHeadingEditComponent }	from '../app/content/cce-section-heading/cce-section-heading-edit.component';
 
 import { CookieService }          	from 'angular2-cookie/core';
 import { LoginService }				from './login/credentials.service';
@@ -78,6 +80,7 @@ import { GradeClassWiseService }	from '../app/content/grade-class-wise/grade-cla
 import { CceStudentProfileService } from '../app/content/cce-student-profile/cce-student-profile.service';
 import { CceCoscholasticService }	from '../app/content/cce-coscholastic/cce-coscholastic.service';
 import { CceCoschClassService }		from '../app/content/cce-coscholastic-class/cce-coscholastic-class.service';
+import { SectionHeadingService }    from '../app/content/cce-section-heading/cce-section-heading.service';
 
 export const myComponents = [
 	AppComponent, 
@@ -127,7 +130,9 @@ export const myComponents = [
 	CceCoschComponent,
 	CceCoschEditComponent,
 	CceCoschClassComponent,
-	CceCoschClassEditComponent
+	CceCoschClassEditComponent,
+	SectionHeadingComponent,
+	SectionHeadingEditComponent
 ];
 
 export const myServices = [
@@ -161,5 +166,6 @@ export const myServices = [
     GradeClassWiseService,
     CceStudentProfileService,
     CceCoscholasticService,
-    CceCoschClassService
+    CceCoschClassService,
+    SectionHeadingService
 ]

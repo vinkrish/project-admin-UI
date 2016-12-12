@@ -3,6 +3,7 @@ import { LoggedInGuard }                from '../login/logged-in.guard';
 import { CceStudentProfileComponent } 	from '../content/cce-student-profile/cce-student-profile.component';
 import { cceCoscholasticRoutes }		from '../content/cce-coscholastic/cce-coscholastic.routes';
 import { cceCoschClassRoutes }			from '../content/cce-coscholastic-class/cce-coscholastic-class.routes';
+import { sectionHeadingRoutes }			from '../content/cce-section-heading/cce-section-heading.routes';
 
 export const cceDashboardRoutes: Routes = [
   	{
@@ -11,5 +12,6 @@ export const cceDashboardRoutes: Routes = [
         canActivate: [LoggedInGuard]
     },
     ...cceCoscholasticRoutes,
-    ...cceCoschClassRoutes
+    ...cceCoschClassRoutes,
+    ...sectionHeadingRoutes
 ];

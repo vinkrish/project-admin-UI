@@ -47,6 +47,8 @@ var cce_coscholastic_component_1 = require('../app/content/cce-coscholastic/cce-
 var cce_coscholastic_edit_component_1 = require('../app/content/cce-coscholastic/cce-coscholastic-edit.component');
 var cce_coscholastic_class_component_1 = require('../app/content/cce-coscholastic-class/cce-coscholastic-class.component');
 var cce_coscholastic_class_edit_component_1 = require('../app/content/cce-coscholastic-class/cce-coscholastic-class-edit.component');
+var cce_section_heading_component_1 = require('../app/content/cce-section-heading/cce-section-heading.component');
+var cce_section_heading_edit_component_1 = require('../app/content/cce-section-heading/cce-section-heading-edit.component');
 var core_1 = require('angular2-cookie/core');
 var credentials_service_1 = require('./login/credentials.service');
 var logged_in_guard_1 = require('./login/logged-in.guard');
@@ -78,6 +80,7 @@ var grade_class_wise_service_1 = require('../app/content/grade-class-wise/grade-
 var cce_student_profile_service_1 = require('../app/content/cce-student-profile/cce-student-profile.service');
 var cce_coscholastic_service_1 = require('../app/content/cce-coscholastic/cce-coscholastic.service');
 var cce_coscholastic_class_service_1 = require('../app/content/cce-coscholastic-class/cce-coscholastic-class.service');
+var cce_section_heading_service_1 = require('../app/content/cce-section-heading/cce-section-heading.service');
 exports.myComponents = [
     app_component_1.AppComponent,
     header_component_1.HeaderComponent,
@@ -126,7 +129,9 @@ exports.myComponents = [
     cce_coscholastic_component_1.CceCoschComponent,
     cce_coscholastic_edit_component_1.CceCoschEditComponent,
     cce_coscholastic_class_component_1.CceCoschClassComponent,
-    cce_coscholastic_class_edit_component_1.CceCoschClassEditComponent
+    cce_coscholastic_class_edit_component_1.CceCoschClassEditComponent,
+    cce_section_heading_component_1.SectionHeadingComponent,
+    cce_section_heading_edit_component_1.SectionHeadingEditComponent
 ];
 exports.myServices = [
     core_1.CookieService,
@@ -159,6 +164,7 @@ exports.myServices = [
     grade_class_wise_service_1.GradeClassWiseService,
     cce_student_profile_service_1.CceStudentProfileService,
     cce_coscholastic_service_1.CceCoscholasticService,
-    cce_coscholastic_class_service_1.CceCoschClassService
+    cce_coscholastic_class_service_1.CceCoschClassService,
+    cce_section_heading_service_1.SectionHeadingService
 ];
 //# sourceMappingURL=external.module.js.map

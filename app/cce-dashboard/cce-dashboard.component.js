@@ -16,7 +16,8 @@ var CceDashboardComponent = (function () {
         this.Items1 = [
             { name: 'CCE Student Profile', link: 'cce-student-profile' },
             { name: 'CCE Coscholastic', link: 'cce-coscholastic' },
-            { name: 'CCE Coscholastic Class', link: 'cce-coscholastic-class' }
+            { name: 'CCE Coscholastic Class', link: 'cce-coscholastic-class' },
+            { name: 'CCE Section Heading', link: 'cce-section-heading' }
         ];
     }
     CceDashboardComponent.prototype.gotoDetail = function (item) {
