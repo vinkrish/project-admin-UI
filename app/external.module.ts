@@ -48,6 +48,8 @@ import { CceCoschClassComponent }		from '../app/content/cce-coscholastic-class/c
 import { CceCoschClassEditComponent }	from '../app/content/cce-coscholastic-class/cce-coscholastic-class-edit.component';
 import { SectionHeadingComponent }   	from '../app/content/cce-section-heading/cce-section-heading.component';
 import { SectionHeadingEditComponent }	from '../app/content/cce-section-heading/cce-section-heading-edit.component';
+import { TopicPrimaryComponent }   		from '../app/content/cce-topic-primary/cce-topic-primary.component';
+import { TopicPrimaryEditComponent }	from '../app/content/cce-topic-primary/cce-topic-primary-edit.component';
 
 import { CookieService }          	from 'angular2-cookie/core';
 import { LoginService }				from './login/credentials.service';
@@ -81,6 +83,7 @@ import { CceStudentProfileService } from '../app/content/cce-student-profile/cce
 import { CceCoscholasticService }	from '../app/content/cce-coscholastic/cce-coscholastic.service';
 import { CceCoschClassService }		from '../app/content/cce-coscholastic-class/cce-coscholastic-class.service';
 import { SectionHeadingService }    from '../app/content/cce-section-heading/cce-section-heading.service';
+import { TopicPrimaryService }    	from '../app/content/cce-topic-primary/cce-topic-primary.service';
 
 export const myComponents = [
 	AppComponent, 
@@ -132,7 +135,9 @@ export const myComponents = [
 	CceCoschClassComponent,
 	CceCoschClassEditComponent,
 	SectionHeadingComponent,
-	SectionHeadingEditComponent
+	SectionHeadingEditComponent,
+	TopicPrimaryComponent,
+	TopicPrimaryEditComponent
 ];
 
 export const myServices = [
@@ -167,5 +172,6 @@ export const myServices = [
     CceStudentProfileService,
     CceCoscholasticService,
     CceCoschClassService,
-    SectionHeadingService
+    SectionHeadingService,
+    TopicPrimaryService
 ]

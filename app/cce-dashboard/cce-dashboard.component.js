@@ -19,9 +19,11 @@ var CceDashboardComponent = (function () {
             { name: 'CCE Coscholastic Class', link: 'cce-coscholastic-class' },
             { name: 'CCE Section Heading', link: 'cce-section-heading' }
         ];
+        this.Items2 = [
+            { name: 'CCE Topic Primary', link: 'cce-topic-primary' }
+        ];
     }
     CceDashboardComponent.prototype.gotoDetail = function (item) {
-        console.log(item);
         var link = ['/', item];
         this.router.navigate(link);
     };

@@ -18,12 +18,14 @@ export class CceDashboardComponent {
 		{ name: 'CCE Coscholastic Class', link: 'cce-coscholastic-class' },
 		{ name: 'CCE Section Heading', link: 'cce-section-heading' }
 	];
+	Items2: DashboardItem[] = [
+		{ name: 'CCE Topic Primary', link: 'cce-topic-primary' }
+	];
 
 	constructor(private router: Router) {
 	}
 
 	gotoDetail(item: string) {
-		console.log(item);
 		let link = ['/', item];
 		this.router.navigate(link);
 	}

@@ -7,7 +7,7 @@
         <option *ngFor="let cosch of coscholastics" value={{cosch.id}}>{{cosch.name}}</option>
     </select>
 </div>
-<div *ngIf="selectedCosch" class="row col-md-6">
+<div class="row col-md-6">
     <table class="table table-bordered table-striped">
         <caption></caption>
         <thead>
@@ -26,7 +26,7 @@
                     </button>
                 </td>
                 <td class="col-md-1">
-                    <button type="button" class="btn btn-danger btn-xs center-block" (click)="deleteSection(sectionHeading, $event)">
+                    <button type="button" class="btn btn-danger btn-xs center-block" (click)="deleteSectionHeading(sectionHeading, $event)">
                         delete
                     </button>
                 </td>

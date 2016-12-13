@@ -34,10 +34,10 @@ export class SectionHeadingComponent implements OnInit {
       .catch(error => this.error = error);
     }
 
-  coschSelected(classId) {
+  coschSelected(coscholasticId) {
     //this.selectedClass = null;
     for (var i = 0; i < this.coscholastics.length; i++) {
-      if (this.coscholastics[i].id == classId) {
+      if (this.coscholastics[i].id == coscholasticId) {
         this.selectedCosch = this.coscholastics[i];
       }
     }
@@ -59,14 +59,14 @@ export class SectionHeadingComponent implements OnInit {
     this.selectedCosch = new CceCoscholastic(0, "");
   }
 
-  onSelect(section: CceSectionHeading) {
-    this.selectedSectionHeading = section;
+  onSelect(sectionHeading: CceSectionHeading) {
+    this.selectedSectionHeading = sectionHeading;
     this.addingSectionHeading = false;
   }
 
-  close(savedSection: CceSectionHeading) {
+  close(savedSectionHeading: CceSectionHeading) {
     this.addingSectionHeading = false;
-    if (savedSection) { this.getSectionHeadings(this.selectedSectionHeading.id); }
+    if (savedSectionHeading) { this.getSectionHeadings(this.selectedSectionHeading.id); }
   }
 
   addSectionHeading() {
@@ -78,12 +78,12 @@ export class SectionHeadingComponent implements OnInit {
     this.selectedSectionHeading = null;
   }
 
-  gotoEdit(section: CceSectionHeading, event: any) {
+  gotoEdit(sectionHeading: CceSectionHeading, event: any) {
     event.stopPropagation();
-    this.router.navigate(['cce-section-heading/edit', section.id]);
+    this.router.navigate(['cce-section-heading/edit', sectionHeading.id]);
   }
 
-  deleteSection(section: CceSectionHeading, event: any) {
+  deleteSectionHeading(section: CceSectionHeading, event: any) {
     event.stopPropagation();
     this.sectionHeadingService
       .delete(section)

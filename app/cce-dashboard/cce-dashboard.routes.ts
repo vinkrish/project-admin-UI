@@ -4,6 +4,7 @@ import { CceStudentProfileComponent } 	from '../content/cce-student-profile/cce-
 import { cceCoscholasticRoutes }		from '../content/cce-coscholastic/cce-coscholastic.routes';
 import { cceCoschClassRoutes }			from '../content/cce-coscholastic-class/cce-coscholastic-class.routes';
 import { sectionHeadingRoutes }			from '../content/cce-section-heading/cce-section-heading.routes';
+import { topicPrimaryRoutes }			from '../content/cce-topic-primary/cce-topic-primary.routes';
 
 export const cceDashboardRoutes: Routes = [
   	{
@@ -13,5 +14,6 @@ export const cceDashboardRoutes: Routes = [
     },
     ...cceCoscholasticRoutes,
     ...cceCoschClassRoutes,
-    ...sectionHeadingRoutes
+    ...sectionHeadingRoutes,
+    ...topicPrimaryRoutes
 ];

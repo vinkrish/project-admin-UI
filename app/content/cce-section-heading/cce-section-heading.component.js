@@ -29,10 +29,10 @@ var SectionHeadingComponent = (function () {
             .then(function (coscholastics) { return _this.coscholastics = coscholastics; })
             .catch(function (error) { return _this.error = error; });
     };
-    SectionHeadingComponent.prototype.coschSelected = function (classId) {
+    SectionHeadingComponent.prototype.coschSelected = function (coscholasticId) {
         //this.selectedClass = null;
         for (var i = 0; i < this.coscholastics.length; i++) {
-            if (this.coscholastics[i].id == classId) {
+            if (this.coscholastics[i].id == coscholasticId) {
                 this.selectedCosch = this.coscholastics[i];
             }
         }
@@ -52,13 +52,13 @@ var SectionHeadingComponent = (function () {
         this.getCoscholastics();
         this.selectedCosch = new cce_coscholastic_1.CceCoscholastic(0, "");
     };
-    SectionHeadingComponent.prototype.onSelect = function (section) {
-        this.selectedSectionHeading = section;
+    SectionHeadingComponent.prototype.onSelect = function (sectionHeading) {
+        this.selectedSectionHeading = sectionHeading;
         this.addingSectionHeading = false;
     };
-    SectionHeadingComponent.prototype.close = function (savedSection) {
+    SectionHeadingComponent.prototype.close = function (savedSectionHeading) {
         this.addingSectionHeading = false;
-        if (savedSection) {
+        if (savedSectionHeading) {
             this.getSectionHeadings(this.selectedSectionHeading.id);
         }
     };
@@ -71,11 +71,11 @@ var SectionHeadingComponent = (function () {
         }
         this.selectedSectionHeading = null;
     };
-    SectionHeadingComponent.prototype.gotoEdit = function (section, event) {
+    SectionHeadingComponent.prototype.gotoEdit = function (sectionHeading, event) {
         event.stopPropagation();
-        this.router.navigate(['cce-section-heading/edit', section.id]);
+        this.router.navigate(['cce-section-heading/edit', sectionHeading.id]);
     };
-    SectionHeadingComponent.prototype.deleteSection = function (section, event) {
+    SectionHeadingComponent.prototype.deleteSectionHeading = function (section, event) {
         var _this = this;
         event.stopPropagation();
         this.sectionHeadingService
