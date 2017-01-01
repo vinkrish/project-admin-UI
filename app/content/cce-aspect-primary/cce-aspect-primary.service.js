@@ -12,63 +12,63 @@ var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var core_2 = require('angular2-cookie/core');
 require('rxjs/add/operator/toPromise');
-var TopicPrimaryService = (function () {
-    function TopicPrimaryService(http, cookieService) {
+var AspectPrimaryService = (function () {
+    function AspectPrimaryService(http, cookieService) {
         this.http = http;
         this.cookieService = cookieService;
-        this.topicPrimaryUrl = 'http://localhost:8080/guldu/webapi/ccetopicprimary';
+        this.aspectPrimaryUrl = 'http://localhost:8080/guldu/webapi/cceaspectprimary';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         this.headers.append('Authorization', "Bearer " + this.cookieService.get("auth_token"));
     }
-    TopicPrimaryService.prototype.getTopicPrimarys = function (id) {
-        var url = this.topicPrimaryUrl + "/sectionheading/" + id;
+    AspectPrimaryService.prototype.getAspectPrimarys = function (id) {
+        var url = this.aspectPrimaryUrl + "/topicprimary/" + id;
         return this.http
             .get(url, { headers: this.headers, body: '' })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    TopicPrimaryService.prototype.getTopicPrimary = function (sectionHeadingId, topicPrimaryId) {
-        return this.getTopicPrimarys(sectionHeadingId)
-            .then(function (topicPrimarys) { return topicPrimarys.find(function (topicPrimary) { return topicPrimary.id === topicPrimaryId; }); });
+    AspectPrimaryService.prototype.getTopicPrimary = function (topicPrimaryId, aspectPrimaryId) {
+        return this.getAspectPrimarys(topicPrimaryId)
+            .then(function (aspectPrimarys) { return aspectPrimarys.find(function (aspectPrimary) { return aspectPrimary.id === aspectPrimaryId; }); });
     };
-    TopicPrimaryService.prototype.save = function (topicPrimary) {
-        if (topicPrimary.id) {
-            return this.put(topicPrimary);
+    AspectPrimaryService.prototype.save = function (aspectPrimary) {
+        if (aspectPrimary.id) {
+            return this.put(aspectPrimary);
         }
-        return this.post(topicPrimary);
+        return this.post(aspectPrimary);
     };
-    TopicPrimaryService.prototype.delete = function (topicPrimary) {
-        var url = this.topicPrimaryUrl + "/" + topicPrimary.id;
+    AspectPrimaryService.prototype.delete = function (aspectPrimary) {
+        var url = this.aspectPrimaryUrl + "/" + aspectPrimary.id;
         return this.http
             .delete(url, { headers: this.headers, body: '' })
             .toPromise()
             .catch(this.handleError);
     };
-    TopicPrimaryService.prototype.post = function (topicPrimary) {
+    AspectPrimaryService.prototype.post = function (aspectPrimary) {
         return this.http
-            .post(this.topicPrimaryUrl, JSON.stringify(topicPrimary), { headers: this.headers })
+            .post(this.aspectPrimaryUrl, JSON.stringify(aspectPrimary), { headers: this.headers })
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
-    TopicPrimaryService.prototype.put = function (topicPrimary) {
-        var url = this.topicPrimaryUrl + "/" + topicPrimary.id;
+    AspectPrimaryService.prototype.put = function (aspectPrimary) {
+        var url = this.aspectPrimaryUrl + "/" + aspectPrimary.id;
         return this.http
-            .put(url, JSON.stringify(topicPrimary), { headers: this.headers })
+            .put(url, JSON.stringify(aspectPrimary), { headers: this.headers })
             .toPromise()
-            .then(function () { return topicPrimary; })
+            .then(function () { return aspectPrimary; })
             .catch(this.handleError);
     };
-    TopicPrimaryService.prototype.handleError = function (error) {
+    AspectPrimaryService.prototype.handleError = function (error) {
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);
     };
-    TopicPrimaryService = __decorate([
+    AspectPrimaryService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http, core_2.CookieService])
-    ], TopicPrimaryService);
-    return TopicPrimaryService;
+    ], AspectPrimaryService);
+    return AspectPrimaryService;
 }());
-exports.TopicPrimaryService = TopicPrimaryService;
-//# sourceMappingURL=cce-topic-primary.service.js.map
+exports.AspectPrimaryService = AspectPrimaryService;
+//# sourceMappingURL=cce-aspect-primary.service.js.map

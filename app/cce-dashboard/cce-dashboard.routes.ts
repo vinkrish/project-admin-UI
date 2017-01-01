@@ -5,6 +5,7 @@ import { cceCoscholasticRoutes }		from '../content/cce-coscholastic/cce-coschola
 import { cceCoschClassRoutes }			from '../content/cce-coscholastic-class/cce-coscholastic-class.routes';
 import { sectionHeadingRoutes }			from '../content/cce-section-heading/cce-section-heading.routes';
 import { topicPrimaryRoutes }			from '../content/cce-topic-primary/cce-topic-primary.routes';
+import { AspectPrimaryComponent } 		from '../content/cce-aspect-primary/cce-aspect-primary.component';
 
 export const cceDashboardRoutes: Routes = [
   	{
@@ -15,5 +16,10 @@ export const cceDashboardRoutes: Routes = [
     ...cceCoscholasticRoutes,
     ...cceCoschClassRoutes,
     ...sectionHeadingRoutes,
-    ...topicPrimaryRoutes
+    ...topicPrimaryRoutes,
+    {
+        path: 'cce-aspect-primary',
+        component: AspectPrimaryComponent,
+        canActivate: [LoggedInGuard]
+    },
 ];

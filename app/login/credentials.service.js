@@ -18,6 +18,7 @@ var LoginService = (function () {
         this.http = http;
         this.cookieService = cookieService;
         this.loggedIn = false;
+        //private loginUrl = 'http://sample-env.m23riezw6z.us-west-2.elasticbeanstalk.com/guldu/webapi/login';
         this.loginUrl = 'http://localhost:8080/guldu/webapi/login';
         this.isLoggedInSubject = new BehaviorSubject_1.BehaviorSubject(this.checkIsLoggedIn());
     }

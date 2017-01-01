@@ -51,6 +51,7 @@ var cce_section_heading_component_1 = require('../app/content/cce-section-headin
 var cce_section_heading_edit_component_1 = require('../app/content/cce-section-heading/cce-section-heading-edit.component');
 var cce_topic_primary_component_1 = require('../app/content/cce-topic-primary/cce-topic-primary.component');
 var cce_topic_primary_edit_component_1 = require('../app/content/cce-topic-primary/cce-topic-primary-edit.component');
+var cce_aspect_primary_component_1 = require('../app/content/cce-aspect-primary/cce-aspect-primary.component');
 var core_1 = require('angular2-cookie/core');
 var credentials_service_1 = require('./login/credentials.service');
 var logged_in_guard_1 = require('./login/logged-in.guard');
@@ -84,6 +85,7 @@ var cce_coscholastic_service_1 = require('../app/content/cce-coscholastic/cce-co
 var cce_coscholastic_class_service_1 = require('../app/content/cce-coscholastic-class/cce-coscholastic-class.service');
 var cce_section_heading_service_1 = require('../app/content/cce-section-heading/cce-section-heading.service');
 var cce_topic_primary_service_1 = require('../app/content/cce-topic-primary/cce-topic-primary.service');
+var cce_aspect_primary_service_1 = require('../app/content/cce-aspect-primary/cce-aspect-primary.service');
 exports.myComponents = [
     app_component_1.AppComponent,
     header_component_1.HeaderComponent,
@@ -136,7 +138,8 @@ exports.myComponents = [
     cce_section_heading_component_1.SectionHeadingComponent,
     cce_section_heading_edit_component_1.SectionHeadingEditComponent,
     cce_topic_primary_component_1.TopicPrimaryComponent,
-    cce_topic_primary_edit_component_1.TopicPrimaryEditComponent
+    cce_topic_primary_edit_component_1.TopicPrimaryEditComponent,
+    cce_aspect_primary_component_1.AspectPrimaryComponent
 ];
 exports.myServices = [
     core_1.CookieService,
@@ -171,6 +174,7 @@ exports.myServices = [
     cce_coscholastic_service_1.CceCoscholasticService,
     cce_coscholastic_class_service_1.CceCoschClassService,
     cce_section_heading_service_1.SectionHeadingService,
-    cce_topic_primary_service_1.TopicPrimaryService
+    cce_topic_primary_service_1.TopicPrimaryService,
+    cce_aspect_primary_service_1.AspectPrimaryService
 ];
 //# sourceMappingURL=external.module.js.map

@@ -20,7 +20,8 @@ var CceDashboardComponent = (function () {
             { name: 'CCE Section Heading', link: 'cce-section-heading' }
         ];
         this.Items2 = [
-            { name: 'CCE Topic Primary', link: 'cce-topic-primary' }
+            { name: 'CCE Topic Primary', link: 'cce-topic-primary' },
+            { name: 'CCE Aspect Primary', link: 'cce-aspect-primary' }
         ];
     }
     CceDashboardComponent.prototype.gotoDetail = function (item) {

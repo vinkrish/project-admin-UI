@@ -15,7 +15,7 @@ export class TopicPrimaryService {
   }
 
   getTopicPrimarys(id: number): Promise<CceTopicPrimary[]> {
-    let url = `${this.topicPrimaryUrl}/topicprimary/${id}`;
+    let url = `${this.topicPrimaryUrl}/sectionheading/${id}`;
     return this.http
       .get(url, { headers: this.headers, body: '' })
       .toPromise()

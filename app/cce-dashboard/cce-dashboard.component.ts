@@ -19,7 +19,8 @@ export class CceDashboardComponent {
 		{ name: 'CCE Section Heading', link: 'cce-section-heading' }
 	];
 	Items2: DashboardItem[] = [
-		{ name: 'CCE Topic Primary', link: 'cce-topic-primary' }
+		{ name: 'CCE Topic Primary', link: 'cce-topic-primary' },
+		{ name: 'CCE Aspect Primary', link: 'cce-aspect-primary' }
 	];
 
 	constructor(private router: Router) {
