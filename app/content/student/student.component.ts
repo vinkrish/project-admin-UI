@@ -31,7 +31,14 @@ export class StudentComponent implements OnInit {
     private cookieService: CookieService,
     private classService: ClassService,
     private sectionService: SectionService,
-    private studentService: StudentService) { }
+    private studentService: StudentService) { 
+  }
+
+  ngOnInit() {
+    this.getClasses();
+    this.selectedClass = new Clas(0, "");
+    this.selectedSection = new Section(0, "");
+  }
 
   getClasses() {
     this.classService
@@ -79,13 +86,6 @@ export class StudentComponent implements OnInit {
       .getStudents(id)
       .then(students => this.students = students)
       .catch(error => this.error = error);
-  }
-
-
-  ngOnInit() {
-    this.getClasses();
-    this.selectedClass = new Clas(0, "");
-    this.selectedSection = new Section(0, "");
   }
 
   onSelect(student: Student) {

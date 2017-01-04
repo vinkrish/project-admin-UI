@@ -22,6 +22,10 @@ var SectionHeadingComponent = (function () {
         this.sectionHeadingService = sectionHeadingService;
         this.addingSectionHeading = false;
     }
+    SectionHeadingComponent.prototype.ngOnInit = function () {
+        this.getCoscholastics();
+        this.selectedCosch = new cce_coscholastic_1.CceCoscholastic(0, "");
+    };
     SectionHeadingComponent.prototype.getCoscholastics = function () {
         var _this = this;
         this.coschService
@@ -47,10 +51,6 @@ var SectionHeadingComponent = (function () {
             .getSectionHeadings(id)
             .then(function (sectionHeadings) { return _this.sectionHeadings = sectionHeadings; })
             .catch(function (error) { return _this.error = error; });
-    };
-    SectionHeadingComponent.prototype.ngOnInit = function () {
-        this.getCoscholastics();
-        this.selectedCosch = new cce_coscholastic_1.CceCoscholastic(0, "");
     };
     SectionHeadingComponent.prototype.onSelect = function (sectionHeading) {
         this.selectedSectionHeading = sectionHeading;

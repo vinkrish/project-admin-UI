@@ -17,15 +17,15 @@ var SubjectGroupComponent = (function () {
         this.subjectGroupService = subjectGroupService;
         this.addingSubjectGroup = false;
     }
+    SubjectGroupComponent.prototype.ngOnInit = function () {
+        this.getSubjectGroups();
+    };
     SubjectGroupComponent.prototype.getSubjectGroups = function () {
         var _this = this;
         this.subjectGroupService
             .getSubjectGroups()
             .then(function (subjectGroups) { return _this.subjectGroups = subjectGroups; })
             .catch(function (error) { return _this.error = error; });
-    };
-    SubjectGroupComponent.prototype.ngOnInit = function () {
-        this.getSubjectGroups();
     };
     SubjectGroupComponent.prototype.onSelect = function (subjectGroup) {
         this.selectedSubjectGroup = subjectGroup;

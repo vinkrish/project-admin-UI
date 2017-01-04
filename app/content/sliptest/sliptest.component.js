@@ -32,6 +32,11 @@ var SliptestComponent = (function () {
         this.sliptestService = sliptestService;
         this.addingSliptest = false;
     }
+    SliptestComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas(0, "");
+        this.clearValues();
+    };
     SliptestComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
@@ -118,11 +123,6 @@ var SliptestComponent = (function () {
             .getSliptests(this.selectedSection.id, this.selectedSGS.subjectId)
             .then(function (sliptests) { return _this.sliptests = sliptests; })
             .catch(function (error) { return _this.error = error; });
-    };
-    SliptestComponent.prototype.ngOnInit = function () {
-        this.getClasses();
-        this.selectedClass = new clas_1.Clas(0, "");
-        this.clearValues();
     };
     SliptestComponent.prototype.clearValues = function () {
         this.selectedSection = new section_1.Section();

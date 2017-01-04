@@ -27,6 +27,11 @@ export class SectionHeadingComponent implements OnInit {
     private coschService: CceCoscholasticService,
     private sectionHeadingService: SectionHeadingService) { }
 
+  ngOnInit() {
+    this.getCoscholastics();
+    this.selectedCosch = new CceCoscholastic(0, "");
+  }
+
   getCoscholastics() {
     this.coschService
       .getCceCoscholastics()
@@ -52,11 +57,6 @@ export class SectionHeadingComponent implements OnInit {
       .getSectionHeadings(id)
       .then(sectionHeadings => this.sectionHeadings = sectionHeadings)
       .catch(error => this.error = error);
-  }
-
-  ngOnInit() {
-    this.getCoscholastics();
-    this.selectedCosch = new CceCoscholastic(0, "");
   }
 
   onSelect(sectionHeading: CceSectionHeading) {

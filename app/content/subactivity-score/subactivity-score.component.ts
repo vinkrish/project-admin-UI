@@ -59,7 +59,14 @@ export class SubActivityScoreComponent implements OnInit {
     private ssService: SubjectStudentService,
     private activityService: ActivityService,
     private subActivityService: SubActivityService,
-    private subActScoreService: SubActivityScoreService) { }
+    private subActScoreService: SubActivityScoreService) { 
+  }
+
+  ngOnInit() {
+    this.getClasses();
+    this.selectedClass = new Clas(0, "");
+    this.clearValues();
+  }
 
   getClasses() {
     this.classService
@@ -267,12 +274,6 @@ export class SubActivityScoreComponent implements OnInit {
         this.score[i].mark = 0;
       }
     }
-  }
-
-  ngOnInit() {
-    this.getClasses();
-    this.selectedClass = new Clas(0, "");
-    this.clearValues();
   }
 
   clearValues() {

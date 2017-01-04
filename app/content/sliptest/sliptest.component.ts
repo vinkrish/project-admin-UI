@@ -40,7 +40,14 @@ export class SliptestComponent implements OnInit {
     private sectionService: SectionService,
     private csgService: ClassSubjectGroupService,
     private sgsService: SubjectGroupSubjectService,
-    private sliptestService: SliptestService) { }
+    private sliptestService: SliptestService) { 
+  }
+
+  ngOnInit() {
+    this.getClasses();
+    this.selectedClass = new Clas(0, "");
+    this.clearValues();
+  }
 
   getClasses() {
     this.classService
@@ -131,12 +138,6 @@ export class SliptestComponent implements OnInit {
       .getSliptests(this.selectedSection.id, this.selectedSGS.subjectId)
       .then(sliptests => this.sliptests = sliptests)
       .catch(error => this.error = error);
-  }
-
-  ngOnInit() {
-    this.getClasses();
-    this.selectedClass = new Clas(0, "");
-    this.clearValues();
   }
 
   clearValues(){

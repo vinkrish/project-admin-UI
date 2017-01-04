@@ -33,6 +33,13 @@ var ExamSubjectComponent = (function () {
         this.isPartitionSubject = false;
         this.addingPartitionSubject = false;
     }
+    ExamSubjectComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas();
+        this.selectedExam = new exam_1.Exam();
+        this.selectedEsg = new exam_subject_group_1.ExamSubjectGroup();
+        this.partitionSubjects = [];
+    };
     ExamSubjectComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
@@ -115,13 +122,6 @@ var ExamSubjectComponent = (function () {
             }
         })
             .catch(function (error) { return _this.error = error; });
-    };
-    ExamSubjectComponent.prototype.ngOnInit = function () {
-        this.getClasses();
-        this.selectedClass = new clas_1.Clas();
-        this.selectedExam = new exam_1.Exam();
-        this.selectedEsg = new exam_subject_group_1.ExamSubjectGroup();
-        this.partitionSubjects = [];
     };
     ExamSubjectComponent.prototype.onSelect = function (examSubject) {
         this.selectedExamSubject = examSubject;

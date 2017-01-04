@@ -27,6 +27,11 @@ export class CceCoschClassComponent implements OnInit {
     private coSchService: CceCoscholasticService,
 		private cccService: CceCoschClassService) { }
 
+  ngOnInit() {
+      this.getCceCoscholastics();
+      this.selectedCosch = new CceCoscholastic();
+  }
+
   getCceCoscholastics() {
     this.coSchService
         .getCceCoscholastics()
@@ -54,11 +59,6 @@ export class CceCoschClassComponent implements OnInit {
 	        .then(cceCoschClasses => this.cceCoschClasses = cceCoschClasses)
 	        .catch(error => this.error = error);
   	}
-
-	ngOnInit() {
-		this.getCceCoscholastics();
-    	this.selectedCosch = new CceCoscholastic();
-	}
 
 	onSelect(subjectGroupSubject: CceCoscholasticClass) {
     	this.selectedCCC = subjectGroupSubject;

@@ -42,6 +42,14 @@ export class ActivityComponent implements OnInit {
     private activityService: ActivityService) { 
   }
 
+  ngOnInit() {
+    this.getClasses();
+    this.selectedClass = new Clas();
+    this.selectedSection = new Section();
+    this.selectedExam = new Exam();
+    this.selectedExamSubject = new ExamSubject();
+  }
+
   getClasses() {
     this.classService
       .getClasses()
@@ -125,14 +133,6 @@ export class ActivityComponent implements OnInit {
       .getActivities(this.selectedSection.id, this.selectedExam.id, this.selectedExamSubject.subjectId)
       .then(activities => this.activities = activities)
       .catch(error => this.error = error);
-  }
-
-  ngOnInit() {
-    this.getClasses();
-    this.selectedClass = new Clas();
-    this.selectedSection = new Section();
-    this.selectedExam = new Exam();
-    this.selectedExamSubject = new ExamSubject();
   }
 
   onSelect(activity: Activity) {

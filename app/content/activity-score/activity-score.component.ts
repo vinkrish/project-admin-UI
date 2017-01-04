@@ -56,6 +56,12 @@ export class ActivityScoreComponent implements OnInit {
     private activityService: ActivityService,
     private actScoreService: ActivityScoreService) { }
 
+  ngOnInit() {
+    this.getClasses();
+    this.selectedClass = new Clas(0, "");
+    this.clearValues();
+  }
+
   getClasses() {
     this.classService
       .getClasses()
@@ -237,12 +243,6 @@ export class ActivityScoreComponent implements OnInit {
         this.score[i].mark = 0;
       }
     }
-  }
-
-  ngOnInit() {
-    this.getClasses();
-    this.selectedClass = new Clas(0, "");
-    this.clearValues();
   }
 
   clearValues() {

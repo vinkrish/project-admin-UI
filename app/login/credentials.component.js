@@ -19,6 +19,11 @@ var LoginComponent = (function () {
         this.user = new credentials_1.Credentials('', '');
         this.errorMsg = '';
     }
+    LoginComponent.prototype.ngOnInit = function () {
+        if (this.loginService.isLoggedIn()) {
+            this.router.navigate(['/dashboard']);
+        }
+    };
     LoginComponent.prototype.login = function () {
         var _this = this;
         this.loginService
@@ -29,11 +34,6 @@ var LoginComponent = (function () {
             }
         })
             .catch(function (error) { return _this.error = error; });
-    };
-    LoginComponent.prototype.ngOnInit = function () {
-        if (this.loginService.isLoggedIn()) {
-            this.router.navigate(['/dashboard']);
-        }
     };
     LoginComponent = __decorate([
         core_1.Component({

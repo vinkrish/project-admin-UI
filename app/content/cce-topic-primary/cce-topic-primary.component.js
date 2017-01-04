@@ -26,6 +26,11 @@ var TopicPrimaryComponent = (function () {
         this.selectingSecHead = false;
         this.addingTopicPrimary = false;
     }
+    TopicPrimaryComponent.prototype.ngOnInit = function () {
+        this.getCoscholastics();
+        this.selectedCosch = new cce_coscholastic_1.CceCoscholastic(0, "");
+        this.selectedSectionHeading = new cce_section_heading_1.CceSectionHeading(0, "");
+    };
     TopicPrimaryComponent.prototype.getCoscholastics = function () {
         var _this = this;
         this.coschService
@@ -72,11 +77,6 @@ var TopicPrimaryComponent = (function () {
             .getTopicPrimarys(id)
             .then(function (topicPrimarys) { return _this.topicPrimarys = topicPrimarys; })
             .catch(function (error) { return _this.error = error; });
-    };
-    TopicPrimaryComponent.prototype.ngOnInit = function () {
-        this.getCoscholastics();
-        this.selectedCosch = new cce_coscholastic_1.CceCoscholastic(0, "");
-        this.selectedSectionHeading = new cce_section_heading_1.CceSectionHeading(0, "");
     };
     TopicPrimaryComponent.prototype.onSelect = function (topicPrimary) {
         this.selectedTopicPrimary = topicPrimary;

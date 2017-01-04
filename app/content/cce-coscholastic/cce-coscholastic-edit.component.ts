@@ -19,7 +19,8 @@ export class CceCoschEditComponent implements OnInit, OnDestroy {
 
   constructor(
     private coschService: CceCoscholasticService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) { 
+  }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {

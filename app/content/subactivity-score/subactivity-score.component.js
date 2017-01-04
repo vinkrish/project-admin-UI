@@ -41,6 +41,11 @@ var SubActivityScoreComponent = (function () {
         this.subActivityService = subActivityService;
         this.subActScoreService = subActScoreService;
     }
+    SubActivityScoreComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas(0, "");
+        this.clearValues();
+    };
     SubActivityScoreComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
@@ -240,11 +245,6 @@ var SubActivityScoreComponent = (function () {
                 this.score[i].mark = 0;
             }
         }
-    };
-    SubActivityScoreComponent.prototype.ngOnInit = function () {
-        this.getClasses();
-        this.selectedClass = new clas_1.Clas(0, "");
-        this.clearValues();
     };
     SubActivityScoreComponent.prototype.clearValues = function () {
         this.selectedSection = new section_1.Section(0, "");

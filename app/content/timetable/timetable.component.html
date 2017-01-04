@@ -1,27 +1,28 @@
 <ul class="breadcrumb">
     <li class="active">Timetable</li>
 </ul>
+<form>
 <div>
-    <label>Select Class: </label>
-    <select [(ngModel)]="selectedClass.id" (change)="classSelected($event.target.value)">
+    <label class="col-md-2">Select Class: </label>
+    <select name="className" [(ngModel)]="selectedClass.id" (change)="classSelected($event.target.value)">
         <option *ngFor="let classs of classes" value={{classs.id}}>{{classs.className}}</option>
     </select>
 </div>
 <br/>
 <div>
-    <label>Select Section: </label>
-    <select [(ngModel)]="selectedSection.id" (change)="sectionSelected($event.target.value)">
+    <label class="col-md-2">Select Section: </label>
+    <select name="secName" [(ngModel)]="selectedSection.id" (change)="sectionSelected($event.target.value)">
         <option *ngFor="let section of sections" value={{section.id}}>{{section.sectionName}}</option>
     </select>
 </div>
 <br/>
 <div>
-    <label>Select Day: </label>
-    <select [(ngModel)]="selectedDay" (change)="daySelected($event.target.value)">
+    <label class="col-md-2">Select Day: </label>
+    <select name="dayName" [(ngModel)]="selectedDay" (change)="daySelected($event.target.value)">
         <option *ngFor="let day of days" value={{day}}>{{day}}</option>
     </select>
 </div>
-<br/>
+</form>
 <div class="row col-md-10">
     <table class="table table-bordered table-striped">
         <caption></caption>

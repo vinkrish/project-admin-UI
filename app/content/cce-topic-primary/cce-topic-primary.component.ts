@@ -33,6 +33,12 @@ export class TopicPrimaryComponent implements OnInit {
     private sectionHeadingService: SectionHeadingService,
     private topicPrimaryService: TopicPrimaryService) { }
 
+  ngOnInit() {
+    this.getCoscholastics();
+    this.selectedCosch = new CceCoscholastic(0, "");
+    this.selectedSectionHeading = new CceSectionHeading(0, "");
+  }
+
   getCoscholastics() {
     this.coschService
       .getCceCoscholastics()
@@ -80,12 +86,6 @@ export class TopicPrimaryComponent implements OnInit {
       .getTopicPrimarys(id)
       .then(topicPrimarys => this.topicPrimarys = topicPrimarys)
       .catch(error => this.error = error);
-  }
-
-  ngOnInit() {
-    this.getCoscholastics();
-    this.selectedCosch = new CceCoscholastic(0, "");
-    this.selectedSectionHeading = new CceSectionHeading(0, "");
   }
 
   onSelect(topicPrimary: CceTopicPrimary) {

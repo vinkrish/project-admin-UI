@@ -17,15 +17,15 @@ var CceCoschComponent = (function () {
         this.cceCoschService = cceCoschService;
         this.addingCceCosch = false;
     }
+    CceCoschComponent.prototype.ngOnInit = function () {
+        this.getCceCoschs();
+    };
     CceCoschComponent.prototype.getCceCoschs = function () {
         var _this = this;
         this.cceCoschService
             .getCceCoscholastics()
             .then(function (cceCoschs) { return _this.cceCoschs = cceCoschs; })
             .catch(function (error) { return _this.error = error; });
-    };
-    CceCoschComponent.prototype.ngOnInit = function () {
-        this.getCceCoschs();
     };
     CceCoschComponent.prototype.onSelect = function (cceCosch) {
         this.selectedCceCosch = cceCosch;

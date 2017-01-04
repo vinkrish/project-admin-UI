@@ -1,26 +1,28 @@
 <ul class="breadcrumb">
     <li class="active">CCE Aspect Primary</li>
 </ul>
+<form #aspectPrimaryForm="ngForm">
 <div>
     <label class="col-md-2">Coscholastic: </label>
-    <select [(ngModel)]="selectedCosch.id" (change)="coschSelected($event.target.value)">
+    <select name="coschName" [(ngModel)]="selectedCosch.id" (change)="coschSelected($event.target.value)">
         <option *ngFor="let cosch of coscholastics" value={{cosch.id}}>{{cosch.name}}</option>
     </select>
 </div>
 <br/>
 <div>
     <label class="col-md-2">Section Heading: </label>
-    <select [(ngModel)]="selectedSectionHeading.id" (change)="sectionHeadingSelected($event.target.value)">
+    <select name="secHeadName" [(ngModel)]="selectedSectionHeading.id" (change)="sectionHeadingSelected($event.target.value)">
         <option *ngFor="let secHead of sectionHeadings" value={{secHead.id}}>{{secHead.name}}</option>
     </select>
 </div>
 <br/>
 <div>
     <label for="topicName" class="col-md-2">Topic: </label>
-    <select name="topicName" [(ngModel)]="selectedTopicPrimary.id" (change)="topicSelected($event.target.value)">
+    <select name="topicName" name="topicName" [(ngModel)]="selectedTopicPrimary.id" (change)="topicSelected($event.target.value)">
         <option *ngFor="let topic of topicPrimarys" value={{topic.id}}>{{topic.name}}</option>
     </select>
 </div>
+</form>
 <div class="row col-md-6">
     <table class="table table-bordered table-striped">
         <caption></caption>
@@ -81,7 +83,7 @@
                 {{selectedTopicPrimary.name}}
             </div>
         </div>
-        <button type="button" class="btn btn-normal btn-md" (click)="goBack()">Back</button>
+        <button type="button" class="btn btn-normal btn-md" (click)="close()">Back</button>
         <button type="submit" class="btn btn-success btn-md">Save</button>
     </form>
     <br/>

@@ -37,6 +37,11 @@ var AttendanceComponent = (function () {
             new session_1.Session("Afternoon", 1)
         ];
     }
+    AttendanceComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas(0, "");
+        this.selectedSection = new section_1.Section(0, "");
+    };
     AttendanceComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
@@ -190,11 +195,6 @@ var AttendanceComponent = (function () {
             _this.unmarkedAttendances = attendances;
         })
             .catch(function (error) { return _this.error = error; });
-    };
-    AttendanceComponent.prototype.ngOnInit = function () {
-        this.getClasses();
-        this.selectedClass = new clas_1.Clas(0, "");
-        this.selectedSection = new section_1.Section(0, "");
     };
     AttendanceComponent = __decorate([
         core_1.Component({

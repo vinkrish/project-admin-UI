@@ -35,7 +35,17 @@ export class PortionComponent implements OnInit {
     private classService: ClassService,
     private csgService: ClassSubjectGroupService,
     private sgsService: SubjectGroupSubjectService,
-    private portionService: PortionService) { }
+    private portionService: PortionService) { 
+  }
+
+  ngOnInit() {
+    this.getClasses();
+    this.selectedClass = new Clas(0, "");
+    this.selectedCSG = new ClassSubjectGroup();
+    this.selectedSGS = new SubjectGroupSubject();
+    this.classSubjectGroups = [];
+    this.subjectGroupSubjects = [];
+  }
 
   getClasses() {
     this.classService
@@ -109,15 +119,6 @@ export class PortionComponent implements OnInit {
       .getPortions(this.selectedClass.id, this.selectedSGS.subjectId)
       .then(portions => this.portions = portions)
       .catch(error => this.error = error);
-  }
-
-  ngOnInit() {
-    this.getClasses();
-    this.selectedClass = new Clas(0, "");
-    this.selectedCSG = new ClassSubjectGroup();
-    this.selectedSGS = new SubjectGroupSubject();
-    this.classSubjectGroups = [];
-    this.subjectGroupSubjects = [];
   }
 
   onSelect(portion: Portion) {

@@ -22,6 +22,10 @@ var SubjectGroupSubjectComponent = (function () {
         this.subjectGroupSubjectService = subjectGroupSubjectService;
         this.addingSGS = false;
     }
+    SubjectGroupSubjectComponent.prototype.ngOnInit = function () {
+        this.getSubjectGroups();
+        this.selectedSubjectGroup = new subject_group_1.SubjectGroup();
+    };
     SubjectGroupSubjectComponent.prototype.getSubjectGroups = function () {
         var _this = this;
         this.subjectGroupService
@@ -47,10 +51,6 @@ var SubjectGroupSubjectComponent = (function () {
             .getSubjectGroupSubjects(id)
             .then(function (subjectGroupSubjects) { return _this.subjectGroupSubjects = subjectGroupSubjects; })
             .catch(function (error) { return _this.error = error; });
-    };
-    SubjectGroupSubjectComponent.prototype.ngOnInit = function () {
-        this.getSubjectGroups();
-        this.selectedSubjectGroup = new subject_group_1.SubjectGroup();
     };
     SubjectGroupSubjectComponent.prototype.onSelect = function (subjectGroupSubject) {
         this.selectedSGS = subjectGroupSubject;

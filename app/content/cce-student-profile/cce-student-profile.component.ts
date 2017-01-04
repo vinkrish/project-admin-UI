@@ -40,6 +40,12 @@ export class CceStudentProfileComponent implements OnInit {
     private studentService: StudentService,
     private cceProfileService: CceStudentProfileService) { }
 
+  ngOnInit() {
+    this.getClasses();
+    this.selectedClass = new Clas(0, "");
+    this.clearValues();
+  }
+
   getClasses() {
     this.classService
       .getClasses()
@@ -159,12 +165,6 @@ export class CceStudentProfileComponent implements OnInit {
         this.cceProfiles[i].weight = 0;
       }
     }
-  }
-
-  ngOnInit() {
-    this.getClasses();
-    this.selectedClass = new Clas(0, "");
-    this.clearValues();
   }
 
   clearValues(){

@@ -27,6 +27,11 @@ export class ExamComponent implements OnInit {
     private classService: ClassService,
     private examService: ExamService) { }
 
+  ngOnInit() {
+    this.getClasses();
+    this.selectedClass = new Clas();
+  }
+
   getClasses() {
     this.classService
       .getClasses()
@@ -52,11 +57,6 @@ export class ExamComponent implements OnInit {
       .getExams(id)
       .then(exams => this.exams = exams)
       .catch(error => this.error = error);
-  }
-
-  ngOnInit() {
-    this.getClasses();
-    this.selectedClass = new Clas();
   }
 
   onSelect(exam: Exam) {

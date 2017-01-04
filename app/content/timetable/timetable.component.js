@@ -29,6 +29,11 @@ var TimetableComponent = (function () {
         this.selectingSection = false;
         this.isNewTimetable = false;
     }
+    TimetableComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas(0, "");
+        this.selectedSection = new section_1.Section(0, "");
+    };
     TimetableComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
@@ -97,11 +102,6 @@ var TimetableComponent = (function () {
             .getClassSubjects(id)
             .then(function (subjects) { return _this.subjects = subjects; })
             .catch(function (error) { return _this.error = error; });
-    };
-    TimetableComponent.prototype.ngOnInit = function () {
-        this.getClasses();
-        this.selectedClass = new clas_1.Clas(0, "");
-        this.selectedSection = new section_1.Section(0, "");
     };
     TimetableComponent.prototype.save = function (timetable, event) {
         var _this = this;

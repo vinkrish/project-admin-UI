@@ -33,6 +33,14 @@ var SubActivityComponent = (function () {
         this.subActivityService = subActivityService;
         this.addingSubActivity = false;
     }
+    SubActivityComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas();
+        this.selectedSection = new section_1.Section();
+        this.selectedExam = new exam_1.Exam();
+        this.selectedExamSubject = new exam_subject_1.ExamSubject();
+        this.selectedActivity = new activity_1.Activity();
+    };
     SubActivityComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
@@ -134,14 +142,6 @@ var SubActivityComponent = (function () {
             .getSubActivities(this.selectedActivity.id)
             .then(function (subActivities) { return _this.subActivities = subActivities; })
             .catch(function (error) { return _this.error = error; });
-    };
-    SubActivityComponent.prototype.ngOnInit = function () {
-        this.getClasses();
-        this.selectedClass = new clas_1.Clas();
-        this.selectedSection = new section_1.Section();
-        this.selectedExam = new exam_1.Exam();
-        this.selectedExamSubject = new exam_subject_1.ExamSubject();
-        this.selectedActivity = new activity_1.Activity();
     };
     SubActivityComponent.prototype.onSelect = function (subactivity) {
         this.selectedSubActivity = subactivity;

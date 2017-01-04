@@ -22,6 +22,10 @@ var SectionComponent = (function () {
         this.sectionService = sectionService;
         this.addingSection = false;
     }
+    SectionComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas(0, "");
+    };
     SectionComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
@@ -48,10 +52,6 @@ var SectionComponent = (function () {
             .getSections(id)
             .then(function (sections) { return _this.sections = sections; })
             .catch(function (error) { return _this.error = error; });
-    };
-    SectionComponent.prototype.ngOnInit = function () {
-        this.getClasses();
-        this.selectedClass = new clas_1.Clas(0, "");
     };
     SectionComponent.prototype.onSelect = function (section) {
         this.selectedSection = section;

@@ -35,13 +35,6 @@ export class SliptestEditComponent implements OnInit, OnDestroy {
     private sliptestService: SliptestService) {
   }
 
-  getPortions() {
-    this.portionService
-      .getPortions(this.classId, this.subjectId)
-      .then(portions => this.portions = portions)
-      .catch(error => this.error = error);
-  }
-
   ngOnInit() {
     this.getPortions();
     this.sub = this.route.params.subscribe(params => {
@@ -60,6 +53,13 @@ export class SliptestEditComponent implements OnInit, OnDestroy {
         this.sliptest.subjectId = this.subjectId;
       }
     });
+  }
+
+  getPortions() {
+    this.portionService
+      .getPortions(this.classId, this.subjectId)
+      .then(portions => this.portions = portions)
+      .catch(error => this.error = error);
   }
 
   ngOnDestroy() {

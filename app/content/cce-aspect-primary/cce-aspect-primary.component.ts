@@ -36,6 +36,13 @@ export class AspectPrimaryComponent implements OnInit {
     private topicPrimaryService: TopicPrimaryService,
     private aspectPrimaryService: AspectPrimaryService) { }
 
+  ngOnInit() {
+    this.getCoscholastics();
+    this.selectedCosch = new CceCoscholastic(0, "");
+    this.selectedSectionHeading = new CceSectionHeading(0, "");
+    this.selectedTopicPrimary = new CceTopicPrimary(0, "");
+  }
+
   getCoscholastics() {
     this.coschService
       .getCceCoscholastics()
@@ -102,21 +109,14 @@ export class AspectPrimaryComponent implements OnInit {
       .catch(error => this.error = error);
   }
 
-  ngOnInit() {
-    this.getCoscholastics();
-    this.selectedCosch = new CceCoscholastic(0, "");
-    this.selectedSectionHeading = new CceSectionHeading(0, "");
-    this.selectedTopicPrimary = new CceTopicPrimary(0, "");
-  }
-
   onSelect(aspect: CceAspectPrimary) {
     this.selectedAspect = aspect;
     this.addingAspect = false;
   }
 
-  close(savedSection: CceAspectPrimary) {
+  close(savedAspect: CceAspectPrimary) {
     this.addingAspect = false;
-    if (savedSection) { this.getTopicPrimarys(this.selectedTopicPrimary.id); }
+    if (savedAspect) { this.getTopicPrimarys(this.selectedTopicPrimary.id); }
   }
 
   add() {

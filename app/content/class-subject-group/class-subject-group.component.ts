@@ -27,6 +27,11 @@ export class ClassSubjectGroupComponent implements OnInit {
     private classService: ClassService,
     private csgService: ClassSubjectGroupService) { }
 
+  ngOnInit() {
+    this.getClasses();
+    this.selectedClass = new Clas();
+  }
+
   getClasses() {
     this.classService
       .getClasses()
@@ -52,11 +57,6 @@ export class ClassSubjectGroupComponent implements OnInit {
       .getClassSubjectGroups(id)
       .then(clasSubjectGroups => this.clasSubjectGroups = clasSubjectGroups)
       .catch(error => this.error = error);
-  }
-
-  ngOnInit() {
-    this.getClasses();
-    this.selectedClass = new Clas();
   }
 
   onSelect(subjectGroupSubject: ClassSubjectGroup) {

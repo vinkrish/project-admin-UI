@@ -21,6 +21,10 @@ var GradeClassWiseComponent = (function () {
         this.gcwService = gcwService;
         this.addingGCW = false;
     }
+    GradeClassWiseComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas();
+    };
     GradeClassWiseComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
@@ -43,10 +47,6 @@ var GradeClassWiseComponent = (function () {
             .getGradesClassWise(id)
             .then(function (gradesClassWise) { return _this.gradesClassWise = gradesClassWise; })
             .catch(function (error) { return _this.error = error; });
-    };
-    GradeClassWiseComponent.prototype.ngOnInit = function () {
-        this.getClasses();
-        this.selectedClass = new clas_1.Clas();
     };
     GradeClassWiseComponent.prototype.onSelect = function (gradesClassWise) {
         this.selectedGCW = gradesClassWise;

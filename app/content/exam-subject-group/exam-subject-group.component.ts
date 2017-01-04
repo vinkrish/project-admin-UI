@@ -36,6 +36,12 @@ export class ExamSubjectGroupComponent implements OnInit {
     private esgService: ExamSubjectGroupService) { 
   }
 
+  ngOnInit() {
+    this.getClasses();
+    this.selectedClass = new Clas();
+    this.selectedExam = new Exam();
+  }
+
   getClasses() {
     this.classService
       .getClasses()
@@ -80,12 +86,6 @@ export class ExamSubjectGroupComponent implements OnInit {
       .getExamSubjectGroups(id)
       .then(esgs => this.examSubjectGroups = esgs)
       .catch(error => this.error = error);
-  }
-
-  ngOnInit() {
-    this.getClasses();
-    this.selectedClass = new Clas();
-    this.selectedExam = new Exam();
   }
 
   onSelect(esg: ExamSubjectGroup) {

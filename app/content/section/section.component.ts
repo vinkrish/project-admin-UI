@@ -25,7 +25,13 @@ export class SectionComponent implements OnInit {
     private router: Router,
     private _cookieService: CookieService,
     private classService: ClassService,
-    private sectionService: SectionService) { }
+    private sectionService: SectionService) { 
+  }
+
+  ngOnInit() {
+    this.getClasses();
+    this.selectedClass = new Clas(0, "");
+  }
 
   getClasses() {
     this.classService
@@ -53,11 +59,6 @@ export class SectionComponent implements OnInit {
       .getSections(id)
       .then(sections => this.sections = sections)
       .catch(error => this.error = error);
-  }
-
-  ngOnInit() {
-    this.getClasses();
-    this.selectedClass = new Clas(0, "");
   }
 
   onSelect(section: Section) {

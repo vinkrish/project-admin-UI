@@ -26,6 +26,11 @@ var ExamSubjectGroupComponent = (function () {
         this.esgService = esgService;
         this.addingEsg = false;
     }
+    ExamSubjectGroupComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas();
+        this.selectedExam = new exam_1.Exam();
+    };
     ExamSubjectGroupComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
@@ -69,11 +74,6 @@ var ExamSubjectGroupComponent = (function () {
             .getExamSubjectGroups(id)
             .then(function (esgs) { return _this.examSubjectGroups = esgs; })
             .catch(function (error) { return _this.error = error; });
-    };
-    ExamSubjectGroupComponent.prototype.ngOnInit = function () {
-        this.getClasses();
-        this.selectedClass = new clas_1.Clas();
-        this.selectedExam = new exam_1.Exam();
     };
     ExamSubjectGroupComponent.prototype.onSelect = function (esg) {
         this.selectedEsg = esg;

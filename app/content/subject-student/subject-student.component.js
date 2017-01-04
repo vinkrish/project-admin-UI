@@ -34,6 +34,11 @@ var SubjectStudentComponent = (function () {
         this.sgsService = sgsService;
         this.ssService = ssService;
     }
+    SubjectStudentComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas(0, "");
+        this.clearValues();
+    };
     SubjectStudentComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
@@ -138,11 +143,6 @@ var SubjectStudentComponent = (function () {
                 }
             }
         }
-    };
-    SubjectStudentComponent.prototype.ngOnInit = function () {
-        this.getClasses();
-        this.selectedClass = new clas_1.Clas(0, "");
-        this.clearValues();
     };
     SubjectStudentComponent.prototype.clearValues = function () {
         this.selectedSection = new section_1.Section(0, "");

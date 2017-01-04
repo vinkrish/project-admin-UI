@@ -27,6 +27,11 @@ export class GradeClassWiseComponent implements OnInit {
     private gcwService: GradeClassWiseService) { 
   }
 
+  ngOnInit() {
+    this.getClasses();
+    this.selectedClass = new Clas();
+  }
+
   getClasses() {
     this.classService
       .getClasses()
@@ -49,11 +54,6 @@ export class GradeClassWiseComponent implements OnInit {
       .getGradesClassWise(id)
       .then(gradesClassWise => this.gradesClassWise = gradesClassWise)
       .catch(error => this.error = error)
-  }
-
-  ngOnInit() {
-    this.getClasses();
-    this.selectedClass = new Clas();
   }
 
   onSelect(gradesClassWise: GradeClassWise) {

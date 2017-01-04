@@ -29,13 +29,6 @@ var SliptestEditComponent = (function () {
         this.subjectName = this.cookieService.get("subjectName");
         this.subjectId = +this.cookieService.get("subjectId");
     }
-    SliptestEditComponent.prototype.getPortions = function () {
-        var _this = this;
-        this.portionService
-            .getPortions(this.classId, this.subjectId)
-            .then(function (portions) { return _this.portions = portions; })
-            .catch(function (error) { return _this.error = error; });
-    };
     SliptestEditComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.getPortions();
@@ -56,6 +49,13 @@ var SliptestEditComponent = (function () {
                 _this.sliptest.subjectId = _this.subjectId;
             }
         });
+    };
+    SliptestEditComponent.prototype.getPortions = function () {
+        var _this = this;
+        this.portionService
+            .getPortions(this.classId, this.subjectId)
+            .then(function (portions) { return _this.portions = portions; })
+            .catch(function (error) { return _this.error = error; });
     };
     SliptestEditComponent.prototype.ngOnDestroy = function () {
         this.sub.unsubscribe();

@@ -26,6 +26,11 @@ var StudentComponent = (function () {
         this.selectingSection = false;
         this.addingStudent = false;
     }
+    StudentComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas(0, "");
+        this.selectedSection = new section_1.Section(0, "");
+    };
     StudentComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
@@ -71,11 +76,6 @@ var StudentComponent = (function () {
             .getStudents(id)
             .then(function (students) { return _this.students = students; })
             .catch(function (error) { return _this.error = error; });
-    };
-    StudentComponent.prototype.ngOnInit = function () {
-        this.getClasses();
-        this.selectedClass = new clas_1.Clas(0, "");
-        this.selectedSection = new section_1.Section(0, "");
     };
     StudentComponent.prototype.onSelect = function (student) {
         this.selectedStudent = student;

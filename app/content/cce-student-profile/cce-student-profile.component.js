@@ -27,6 +27,11 @@ var CceStudentProfileComponent = (function () {
         this.studentService = studentService;
         this.cceProfileService = cceProfileService;
     }
+    CceStudentProfileComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas(0, "");
+        this.clearValues();
+    };
     CceStudentProfileComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
@@ -142,11 +147,6 @@ var CceStudentProfileComponent = (function () {
                 this.cceProfiles[i].weight = 0;
             }
         }
-    };
-    CceStudentProfileComponent.prototype.ngOnInit = function () {
-        this.getClasses();
-        this.selectedClass = new clas_1.Clas(0, "");
-        this.clearValues();
     };
     CceStudentProfileComponent.prototype.clearValues = function () {
         this.selectedSection = new section_1.Section();

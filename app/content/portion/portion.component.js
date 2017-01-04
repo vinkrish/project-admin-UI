@@ -29,6 +29,14 @@ var PortionComponent = (function () {
         this.portionService = portionService;
         this.addingPortion = false;
     }
+    PortionComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas(0, "");
+        this.selectedCSG = new class_subject_group_1.ClassSubjectGroup();
+        this.selectedSGS = new subject_group_subject_1.SubjectGroupSubject();
+        this.classSubjectGroups = [];
+        this.subjectGroupSubjects = [];
+    };
     PortionComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
@@ -99,14 +107,6 @@ var PortionComponent = (function () {
             .getPortions(this.selectedClass.id, this.selectedSGS.subjectId)
             .then(function (portions) { return _this.portions = portions; })
             .catch(function (error) { return _this.error = error; });
-    };
-    PortionComponent.prototype.ngOnInit = function () {
-        this.getClasses();
-        this.selectedClass = new clas_1.Clas(0, "");
-        this.selectedCSG = new class_subject_group_1.ClassSubjectGroup();
-        this.selectedSGS = new subject_group_subject_1.SubjectGroupSubject();
-        this.classSubjectGroups = [];
-        this.subjectGroupSubjects = [];
     };
     PortionComponent.prototype.onSelect = function (portion) {
         this.selectedPortion = portion;

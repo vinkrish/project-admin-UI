@@ -17,15 +17,15 @@ var ClassComponent = (function () {
         this.classService = classService;
         this.addingClass = false;
     }
+    ClassComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+    };
     ClassComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
             .getClasses()
             .then(function (classes) { return _this.classes = classes; })
             .catch(function (error) { return _this.error = error; });
-    };
-    ClassComponent.prototype.ngOnInit = function () {
-        this.getClasses();
     };
     ClassComponent.prototype.onSelect = function (clas) {
         this.selectedClass = clas;

@@ -47,6 +47,15 @@ export class SubActivityComponent implements OnInit {
     private subActivityService: SubActivityService) { 
   }
 
+  ngOnInit() {
+    this.getClasses();
+    this.selectedClass = new Clas();
+    this.selectedSection = new Section();
+    this.selectedExam = new Exam();
+    this.selectedExamSubject = new ExamSubject();
+    this.selectedActivity = new Activity();
+  }
+
   getClasses() {
     this.classService
       .getClasses()
@@ -152,15 +161,6 @@ export class SubActivityComponent implements OnInit {
       .getSubActivities(this.selectedActivity.id)
       .then(subActivities => this.subActivities = subActivities)
       .catch(error => this.error = error);
-  }
-
-  ngOnInit() {
-    this.getClasses();
-    this.selectedClass = new Clas();
-    this.selectedSection = new Section();
-    this.selectedExam = new Exam();
-    this.selectedExamSubject = new ExamSubject();
-    this.selectedActivity = new Activity();
   }
 
   onSelect(subactivity: SubActivity) {

@@ -1,93 +1,93 @@
-import { Component, OnInit }     	from '@angular/core';
-import { Router }                	from '@angular/router';
-import { SubjectGroup }				    from '../subject-group/subject-group';
-import { SubjectGroupService }		from '../subject-group/subject-group.service';
-import { SubjectGroupSubject }		from './subject-group-subject'
-import { SubjectGroupSubjectService }  from './subject-group-subject.service';
-import { CookieService }          from 'angular2-cookie/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SubjectGroup } from '../subject-group/subject-group';
+import { SubjectGroupService } from '../subject-group/subject-group.service';
+import { SubjectGroupSubject } from './subject-group-subject'
+import { SubjectGroupSubjectService } from './subject-group-subject.service';
+import { CookieService } from 'angular2-cookie/core';
 
 @Component({
   moduleId: module.id,
   selector: 'ui-subject-group-subject',
   templateUrl: 'subject-group-subject.component.html',
-  styleUrls:  ['subject-group-subject.component.css']
+  styleUrls: ['subject-group-subject.component.css']
 })
 
 export class SubjectGroupSubjectComponent implements OnInit {
-  	subjectGroups: SubjectGroup[];
-  	selectedSubjectGroup: SubjectGroup;
-	  subjectGroupSubjects: SubjectGroupSubject[];
-	  selectedSGS: SubjectGroupSubject;
-	  addingSGS = false;
-	  error: any;
+  subjectGroups: SubjectGroup[];
+  selectedSubjectGroup: SubjectGroup;
+  subjectGroupSubjects: SubjectGroupSubject[];
+  selectedSGS: SubjectGroupSubject;
+  addingSGS = false;
+  error: any;
 
-	constructor(
-		private router: Router,
-    private cookieService:CookieService,
+  constructor(
+    private router: Router,
+    private cookieService: CookieService,
     private subjectGroupService: SubjectGroupService,
-		private subjectGroupSubjectService: SubjectGroupSubjectService) { }
+    private subjectGroupSubjectService: SubjectGroupSubjectService) {
+  }
+
+  ngOnInit() {
+    this.getSubjectGroups();
+    this.selectedSubjectGroup = new SubjectGroup();
+  }
 
   getSubjectGroups() {
     this.subjectGroupService
-        .getSubjectGroups()
-        .then(subjectGroups => this.subjectGroups = subjectGroups)
-        .catch(error => this.error = error);
-    }
+      .getSubjectGroups()
+      .then(subjectGroups => this.subjectGroups = subjectGroups)
+      .catch(error => this.error = error);
+  }
 
-   subjectGroupSelected(subjectGroupId){
-     //this.selectedClass = null;
-      for (var i = 0; i < this.subjectGroups.length; i++)
-      {
-        if (this.subjectGroups[i].id == subjectGroupId) {
-          this.selectedSubjectGroup = this.subjectGroups[i];
-        }
+  subjectGroupSelected(subjectGroupId) {
+  //this.selectedClass = null;
+    for (var i = 0; i < this.subjectGroups.length; i++) {
+      if (this.subjectGroups[i].id == subjectGroupId) {
+      this.selectedSubjectGroup = this.subjectGroups[i];
       }
-     this.getSubjectGroupSubjects(this.selectedSubjectGroup.id);
-     this.cookieService.put("subjectGroupId", ""+this.selectedSubjectGroup.id);
-     this.cookieService.put("subjectGroupName", this.selectedSubjectGroup.subjectGroupName);
-     this.addingSGS = false;
-   }
+    }
+    this.getSubjectGroupSubjects(this.selectedSubjectGroup.id);
+    this.cookieService.put("subjectGroupId", "" + this.selectedSubjectGroup.id);
+    this.cookieService.put("subjectGroupName", this.selectedSubjectGroup.subjectGroupName);
+    this.addingSGS = false;
+  }
 
-	getSubjectGroupSubjects(id: number) {
-	    this.subjectGroupSubjectService
-	        .getSubjectGroupSubjects(id)
-	        .then(subjectGroupSubjects => this.subjectGroupSubjects = subjectGroupSubjects)
-	        .catch(error => this.error = error);
-  	}
+  getSubjectGroupSubjects(id: number) {
+    this.subjectGroupSubjectService
+      .getSubjectGroupSubjects(id)
+      .then(subjectGroupSubjects => this.subjectGroupSubjects = subjectGroupSubjects)
+      .catch(error => this.error = error);
+  }
 
-	ngOnInit() {
-		this.getSubjectGroups();
-    	this.selectedSubjectGroup = new SubjectGroup();
-	}
+  onSelect(subjectGroupSubject: SubjectGroupSubject) {
+    this.selectedSGS = subjectGroupSubject;
+    this.addingSGS = false;
+  }
 
-	onSelect(subjectGroupSubject: SubjectGroupSubject) {
-    	this.selectedSGS = subjectGroupSubject;
-    	this.addingSGS = false;
-  	}
+  close(savedSGS: SubjectGroupSubject) {
+    this.addingSGS = false;
+    if (savedSGS) { this.getSubjectGroupSubjects(this.selectedSGS.id); }
+  }
 
-  	close(savedSGS: SubjectGroupSubject) {
-  		this.addingSGS = false;
-    	if (savedSGS) { this.getSubjectGroupSubjects(this.selectedSGS.id); }
-  	}
+  addSubjectGroupSubject() {
+    if (this.addingSGS) {
+      this.addingSGS = false;
+    } else {
+      this.addingSGS = true;
+    }
+    this.selectedSGS = null;
+  }
 
-	addSubjectGroupSubject() {
-	    if(this.addingSGS) {
-	      this.addingSGS = false;
-	    } else {
-	      this.addingSGS = true;
-	    }
-		this.selectedSGS = null;
-	}
-
-	deleteSubjectGroupSubject(sgs: SubjectGroupSubject, event: any) {
+  deleteSubjectGroupSubject(sgs: SubjectGroupSubject, event: any) {
     event.stopPropagation();
     this.subjectGroupSubjectService
-        .delete(sgs)
-        .then(res => {
-          this.subjectGroupSubjects = this.subjectGroupSubjects.filter(h => h !== sgs);
-          if (this.selectedSGS === sgs) { this.selectedSGS = null; }
-        })
-        .catch(error => this.error = error);
+      .delete(sgs)
+      .then(res => {
+      this.subjectGroupSubjects = this.subjectGroupSubjects.filter(h => h !== sgs);
+      if (this.selectedSGS === sgs) { this.selectedSGS = null; }
+      })
+      .catch(error => this.error = error);
   }
 
 }

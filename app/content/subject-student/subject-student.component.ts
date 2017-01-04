@@ -46,7 +46,14 @@ export class SubjectStudentComponent implements OnInit {
     private studentService: StudentService,
     private csgService: ClassSubjectGroupService,
     private sgsService: SubjectGroupSubjectService,
-    private ssService: SubjectStudentService) { }
+    private ssService: SubjectStudentService) { 
+  }
+
+  ngOnInit() {
+    this.getClasses();
+    this.selectedClass = new Clas(0, "");
+    this.clearValues();
+  }
 
   getClasses() {
     this.classService
@@ -159,12 +166,6 @@ export class SubjectStudentComponent implements OnInit {
         }
       }
     }
-  }
-
-  ngOnInit() {
-    this.getClasses();
-    this.selectedClass = new Clas(0, "");
-    this.clearValues();
   }
 
   clearValues() {

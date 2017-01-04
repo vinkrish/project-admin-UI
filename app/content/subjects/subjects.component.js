@@ -17,15 +17,15 @@ var SubjectsComponent = (function () {
         this.subjectsService = subjectsService;
         this.addingSubject = false;
     }
+    SubjectsComponent.prototype.ngOnInit = function () {
+        this.getSubjects();
+    };
     SubjectsComponent.prototype.getSubjects = function () {
         var _this = this;
         this.subjectsService
             .getSubjects()
             .then(function (subjects) { return _this.subjects = subjects; })
             .catch(function (error) { return _this.error = error; });
-    };
-    SubjectsComponent.prototype.ngOnInit = function () {
-        this.getSubjects();
     };
     SubjectsComponent.prototype.onSelect = function (subject) {
         this.selectedSubject = subject;

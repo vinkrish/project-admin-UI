@@ -38,6 +38,11 @@ var ActivityScoreComponent = (function () {
         this.activityService = activityService;
         this.actScoreService = actScoreService;
     }
+    ActivityScoreComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas(0, "");
+        this.clearValues();
+    };
     ActivityScoreComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
@@ -213,11 +218,6 @@ var ActivityScoreComponent = (function () {
                 this.score[i].mark = 0;
             }
         }
-    };
-    ActivityScoreComponent.prototype.ngOnInit = function () {
-        this.getClasses();
-        this.selectedClass = new clas_1.Clas(0, "");
-        this.clearValues();
     };
     ActivityScoreComponent.prototype.clearValues = function () {
         this.selectedSection = new section_1.Section(0, "");

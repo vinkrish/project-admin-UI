@@ -25,6 +25,11 @@ var HomeworkComponent = (function () {
         this.homeworkService = homeworkService;
         this.selectingSection = false;
     }
+    HomeworkComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas(0, "");
+        this.selectedSection = new section_1.Section(0, "");
+    };
     HomeworkComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
@@ -89,11 +94,6 @@ var HomeworkComponent = (function () {
             .delete(homework)
             .then(function () { return _this.fetchHomeworks(); })
             .catch(function (error) { return _this.error = error; });
-    };
-    HomeworkComponent.prototype.ngOnInit = function () {
-        this.getClasses();
-        this.selectedClass = new clas_1.Clas(0, "");
-        this.selectedSection = new section_1.Section(0, "");
     };
     HomeworkComponent = __decorate([
         core_1.Component({

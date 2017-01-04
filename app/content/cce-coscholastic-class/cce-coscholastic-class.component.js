@@ -22,6 +22,10 @@ var CceCoschClassComponent = (function () {
         this.cccService = cccService;
         this.addingCCC = false;
     }
+    CceCoschClassComponent.prototype.ngOnInit = function () {
+        this.getCceCoscholastics();
+        this.selectedCosch = new cce_coscholastic_1.CceCoscholastic();
+    };
     CceCoschClassComponent.prototype.getCceCoscholastics = function () {
         var _this = this;
         this.coSchService
@@ -47,10 +51,6 @@ var CceCoschClassComponent = (function () {
             .getCceCoschClasses(id)
             .then(function (cceCoschClasses) { return _this.cceCoschClasses = cceCoschClasses; })
             .catch(function (error) { return _this.error = error; });
-    };
-    CceCoschClassComponent.prototype.ngOnInit = function () {
-        this.getCceCoscholastics();
-        this.selectedCosch = new cce_coscholastic_1.CceCoscholastic();
     };
     CceCoschClassComponent.prototype.onSelect = function (subjectGroupSubject) {
         this.selectedCCC = subjectGroupSubject;

@@ -35,6 +35,11 @@ var MarkComponent = (function () {
         this.ssService = ssService;
         this.markService = markService;
     }
+    MarkComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas(0, "");
+        this.clearValues();
+    };
     MarkComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
@@ -187,11 +192,6 @@ var MarkComponent = (function () {
                 this.marks[i].mark = 0;
             }
         }
-    };
-    MarkComponent.prototype.ngOnInit = function () {
-        this.getClasses();
-        this.selectedClass = new clas_1.Clas(0, "");
-        this.clearValues();
     };
     MarkComponent.prototype.clearValues = function () {
         this.selectedSection = new section_1.Section(0, "");

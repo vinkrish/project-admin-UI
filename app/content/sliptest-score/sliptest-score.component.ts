@@ -54,7 +54,14 @@ export class SliptestScoreComponent implements OnInit {
     private sgsService: SubjectGroupSubjectService,
     private ssService: SubjectStudentService,
     private sliptestService: SliptestService,
-    private stsService: SliptestScoreService) { }
+    private stsService: SliptestScoreService) { 
+  }
+
+  ngOnInit() {
+    this.getClasses();
+    this.selectedClass = new Clas(0, "");
+    this.clearValues();
+  }
 
   getClasses() {
     this.classService
@@ -233,12 +240,6 @@ export class SliptestScoreComponent implements OnInit {
         this.marks[i].mark = 0;
       }
     }
-  }
-
-  ngOnInit() {
-    this.getClasses();
-    this.selectedClass = new Clas(0, "");
-    this.clearValues();
   }
 
   clearValues(){

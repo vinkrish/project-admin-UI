@@ -25,6 +25,11 @@ var SubjectTeacherComponent = (function () {
         this.subjectTeacherService = subjectTeacherService;
         this.addingSubjectTeacher = false;
     }
+    SubjectTeacherComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas(0, "");
+        this.selectedSection = new section_1.Section(0, "");
+    };
     SubjectTeacherComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
@@ -67,11 +72,6 @@ var SubjectTeacherComponent = (function () {
             .getSubjectTeachers(id)
             .then(function (subjectTeachers) { return _this.subjectTeachers = subjectTeachers; })
             .catch(function (error) { return _this.error = error; });
-    };
-    SubjectTeacherComponent.prototype.ngOnInit = function () {
-        this.getClasses();
-        this.selectedClass = new clas_1.Clas(0, "");
-        this.selectedSection = new section_1.Section(0, "");
     };
     SubjectTeacherComponent.prototype.onSelect = function (subjectTeacher) {
         this.selectedSubjectTeacher = subjectTeacher;

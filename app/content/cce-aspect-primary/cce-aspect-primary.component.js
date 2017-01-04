@@ -27,6 +27,12 @@ var AspectPrimaryComponent = (function () {
         this.aspectPrimaryService = aspectPrimaryService;
         this.addingAspect = false;
     }
+    AspectPrimaryComponent.prototype.ngOnInit = function () {
+        this.getCoscholastics();
+        this.selectedCosch = new cce_coscholastic_1.CceCoscholastic(0, "");
+        this.selectedSectionHeading = new cce_section_heading_1.CceSectionHeading(0, "");
+        this.selectedTopicPrimary = new cce_topic_primary_1.CceTopicPrimary(0, "");
+    };
     AspectPrimaryComponent.prototype.getCoscholastics = function () {
         var _this = this;
         this.coschService
@@ -90,19 +96,13 @@ var AspectPrimaryComponent = (function () {
             .then(function (aspectPrimarys) { return _this.aspects = aspectPrimarys; })
             .catch(function (error) { return _this.error = error; });
     };
-    AspectPrimaryComponent.prototype.ngOnInit = function () {
-        this.getCoscholastics();
-        this.selectedCosch = new cce_coscholastic_1.CceCoscholastic(0, "");
-        this.selectedSectionHeading = new cce_section_heading_1.CceSectionHeading(0, "");
-        this.selectedTopicPrimary = new cce_topic_primary_1.CceTopicPrimary(0, "");
-    };
     AspectPrimaryComponent.prototype.onSelect = function (aspect) {
         this.selectedAspect = aspect;
         this.addingAspect = false;
     };
-    AspectPrimaryComponent.prototype.close = function (savedSection) {
+    AspectPrimaryComponent.prototype.close = function (savedAspect) {
         this.addingAspect = false;
-        if (savedSection) {
+        if (savedAspect) {
             this.getTopicPrimarys(this.selectedTopicPrimary.id);
         }
     };

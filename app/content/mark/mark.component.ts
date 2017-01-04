@@ -49,7 +49,14 @@ export class MarkComponent implements OnInit {
     private examService: ExamService,
     private examSubjectService: ExamSubjectService,
     private ssService: SubjectStudentService,
-    private markService: MarkService) { }
+    private markService: MarkService) { 
+  }
+
+  ngOnInit() {
+    this.getClasses();
+    this.selectedClass = new Clas(0, "");
+    this.clearValues();
+  }
 
   getClasses() {
     this.classService
@@ -208,12 +215,6 @@ export class MarkComponent implements OnInit {
         this.marks[i].mark = 0;
       }
     }
-  }
-
-  ngOnInit() {
-    this.getClasses();
-    this.selectedClass = new Clas(0, "");
-    this.clearValues();
   }
 
   clearValues() {

@@ -22,6 +22,10 @@ var ExamComponent = (function () {
         this.examService = examService;
         this.addingExam = false;
     }
+    ExamComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas();
+    };
     ExamComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
@@ -47,10 +51,6 @@ var ExamComponent = (function () {
             .getExams(id)
             .then(function (exams) { return _this.exams = exams; })
             .catch(function (error) { return _this.error = error; });
-    };
-    ExamComponent.prototype.ngOnInit = function () {
-        this.getClasses();
-        this.selectedClass = new clas_1.Clas();
     };
     ExamComponent.prototype.onSelect = function (exam) {
         this.selectedExam = exam;

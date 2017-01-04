@@ -45,7 +45,15 @@ export class ExamSubjectComponent implements OnInit {
     private esgService: ExamSubjectGroupService,
     private sgsService: SubjectGroupSubjectService,
     private subjectsService: SubjectsService,
-    private examSubjectService: ExamSubjectService) { 
+    private examSubjectService: ExamSubjectService) {
+  }
+
+  ngOnInit() {
+    this.getClasses();
+    this.selectedClass = new Clas();
+    this.selectedExam = new Exam();
+    this.selectedEsg = new ExamSubjectGroup();
+    this.partitionSubjects = [];
   }
 
   getClasses() {
@@ -131,14 +139,6 @@ export class ExamSubjectComponent implements OnInit {
         }
       })
       .catch(error => this.error = error)
-  }
-
-  ngOnInit() {
-    this.getClasses();
-    this.selectedClass = new Clas();
-    this.selectedExam = new Exam();
-    this.selectedEsg = new ExamSubjectGroup();
-    this.partitionSubjects = [];
   }
 
   onSelect(examSubject: ExamSubject) {

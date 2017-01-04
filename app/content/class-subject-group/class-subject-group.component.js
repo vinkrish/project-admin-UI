@@ -22,6 +22,10 @@ var ClassSubjectGroupComponent = (function () {
         this.csgService = csgService;
         this.addingCSG = false;
     }
+    ClassSubjectGroupComponent.prototype.ngOnInit = function () {
+        this.getClasses();
+        this.selectedClass = new clas_1.Clas();
+    };
     ClassSubjectGroupComponent.prototype.getClasses = function () {
         var _this = this;
         this.classService
@@ -47,10 +51,6 @@ var ClassSubjectGroupComponent = (function () {
             .getClassSubjectGroups(id)
             .then(function (clasSubjectGroups) { return _this.clasSubjectGroups = clasSubjectGroups; })
             .catch(function (error) { return _this.error = error; });
-    };
-    ClassSubjectGroupComponent.prototype.ngOnInit = function () {
-        this.getClasses();
-        this.selectedClass = new clas_1.Clas();
     };
     ClassSubjectGroupComponent.prototype.onSelect = function (subjectGroupSubject) {
         this.selectedCSG = subjectGroupSubject;
