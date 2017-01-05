@@ -42,21 +42,22 @@
     <div *ngIf="examSubjectGroup">
     <h3>Exam Subject Group Details</h3>
     <br/>
-    <div>
-        <label>Class: {{selectedClass.className}} </label>
+    <div class="form-group row">
+        <label class="col-md-1">Class:</label>
+        {{selectedClass.className}} 
     </div>
-    <br/>
-    <div>
-        <label>Exam: {{selectedExam.examName}} </label>
+    <div class="form-group row">
+        <label class="col-md-1">Exam:</label>
+        {{selectedExam.examName}}
     </div>
-    <br/>
-    <div>
-        <label>Subject Group: </label>
-        <select [(ngModel)]="examSubjectGroup.subjectGroupId" (change)="csgSelected($event.target.value)">
+    <div class="form-group row">
+        <label class="col-md-1">Subject Group: </label>
+        <div class="col-md-4">
+        <select class="form-control"  required [(ngModel)]="examSubjectGroup.subjectGroupId" (change)="csgSelected($event.target.value)">
             <option *ngFor="let csg of classSubjectGroups" value={{csg.subjectGroupId}}>{{csg.subjectGroupName}}</option>
         </select>
+        </div>
     </div>
-    <br/>
     <button class="btn btn-normal btn-md" (click)="close()">Back</button>
     <button class="btn btn-success btn-md" (click)="save()">Save</button>
 </div>
