@@ -34,7 +34,6 @@ var SubjectGroupSubjectComponent = (function () {
             .catch(function (error) { return _this.error = error; });
     };
     SubjectGroupSubjectComponent.prototype.subjectGroupSelected = function (subjectGroupId) {
-        //this.selectedClass = null;
         for (var i = 0; i < this.subjectGroups.length; i++) {
             if (this.subjectGroups[i].id == subjectGroupId) {
                 this.selectedSubjectGroup = this.subjectGroups[i];
@@ -59,14 +58,11 @@ var SubjectGroupSubjectComponent = (function () {
     SubjectGroupSubjectComponent.prototype.close = function (savedSGS) {
         this.addingSGS = false;
         if (savedSGS) {
-            this.getSubjectGroupSubjects(this.selectedSGS.id);
+            this.getSubjectGroupSubjects(this.selectedSubjectGroup.id);
         }
     };
     SubjectGroupSubjectComponent.prototype.addSubjectGroupSubject = function () {
-        if (this.addingSGS) {
-            this.addingSGS = false;
-        }
-        else {
+        if (this.selectedSubjectGroup.id !== undefined) {
             this.addingSGS = true;
         }
         this.selectedSGS = null;

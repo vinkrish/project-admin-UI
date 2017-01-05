@@ -1,7 +1,7 @@
 <ul class="breadcrumb">
     <li class="active">Attendance</li>
 </ul>
-<form #attendanceForm="ngForm">
+<form (ngSubmit)="fetchSessionAttendance()" #attendanceForm="ngForm">
     <div>
         <label for="className" class="col-md-2">Select Class :</label>
         <select name="className" required [(ngModel)]="selectedClass.id" (change)="classSelected($event.target.value)">
@@ -23,7 +23,7 @@
     </div>
     <div *ngIf="selectedClass.attendanceType == 'Session'">
         <label for="sessionDate" class="col-md-2">Date :</label>
-        <input input="date" name="sessionDate" required [(ngModel)]="dateAttendance" placeholder="Attendance Date" />
+        <input type="date" name="sessionDate" required [(ngModel)]="dateAttendance" placeholder="Attendance Date" />
         <br/>
         <label for="session" class="col-md-2">Session: </label>
         <select name="session" [(ngModel)]="session">
@@ -39,7 +39,7 @@
         <select name="period" [(ngModel)]="session">
             <option *ngFor="let period of periods" value={{period}}>{{period}}</option>
         </select>
-        <button class="btn btn-normal btn-md" (click)="fetchSessionAttendance()">Fetch Period Attendance</button>
+        <button type="submit" class="btn btn-normal btn-md">Fetch Period Attendance</button>
     </div>
 </form>
 <h3>Marked</h3>

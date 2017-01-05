@@ -89,9 +89,9 @@ export class SubjectTeacherComponent implements OnInit {
     this.addingSubjectTeacher = false;
   }
 
-  close(savedStudent: SubjectTeacher) {
+  close(savedSubjectTeacher: SubjectTeacher) {
     this.addingSubjectTeacher = false;
-    if (savedStudent) { this.getSubjectTeachers(this.selectedSubjectTeacher.id); }
+    //if (savedSubjectTeacher) { this.getSubjectTeachers(this.selectedSection.id); }
   }
 
   setupSubjectTeacher() {

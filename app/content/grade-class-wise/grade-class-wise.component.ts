@@ -66,9 +66,7 @@ export class GradeClassWiseComponent implements OnInit {
   }
 
   add() {
-    if (this.addingGCW) {
-      this.addingGCW = false;
-    } else {
+    if(this.selectedClass.id !== undefined) {
       this.gradeClassWise = new GradeClassWise();
       this.gradeClassWise.classId = this.selectedClass.id;
       this.addingGCW = true;
@@ -92,9 +90,10 @@ export class GradeClassWiseComponent implements OnInit {
       .post(this.gradeClassWise)
       .then(gradeClassWise => {
         this.addingGCW = false;
-        this.selectedClass = new Clas();
+        //this.selectedClass = new Clas();
         this.selectedGCW = new GradeClassWise();
         this.gradesClassWise = [];
+        this.getGradesClassWise(this.selectedClass.id);
       })
       .catch(error => this.error = error);
   }

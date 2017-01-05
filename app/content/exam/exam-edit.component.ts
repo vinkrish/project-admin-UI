@@ -34,7 +34,6 @@ export class ExamEditComponent {
         this.examService.getExam(this.classId, id)
           .then(exam => {
             this.exam = exam;
-            console.log(this.exam.examName);
           });
       } else {
         this.navigated = false;

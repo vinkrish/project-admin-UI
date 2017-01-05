@@ -63,9 +63,9 @@ var SubjectGroupSubjectEditComponent = (function () {
         })
             .catch(function (error) { return _this.error = error; });
     };
-    SubjectGroupSubjectEditComponent.prototype.goBack = function (savedSection) {
-        if (savedSection === void 0) { savedSection = null; }
-        this.close.emit(savedSection);
+    SubjectGroupSubjectEditComponent.prototype.goBack = function (savedSGS) {
+        if (savedSGS === void 0) { savedSGS = null; }
+        this.close.emit(savedSGS);
         if (this.navigated) {
             window.history.back();
         }

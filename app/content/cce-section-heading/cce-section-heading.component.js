@@ -34,7 +34,6 @@ var SectionHeadingComponent = (function () {
             .catch(function (error) { return _this.error = error; });
     };
     SectionHeadingComponent.prototype.coschSelected = function (coscholasticId) {
-        //this.selectedClass = null;
         for (var i = 0; i < this.coscholastics.length; i++) {
             if (this.coscholastics[i].id == coscholasticId) {
                 this.selectedCosch = this.coscholastics[i];
@@ -59,14 +58,11 @@ var SectionHeadingComponent = (function () {
     SectionHeadingComponent.prototype.close = function (savedSectionHeading) {
         this.addingSectionHeading = false;
         if (savedSectionHeading) {
-            this.getSectionHeadings(this.selectedSectionHeading.id);
+            this.getSectionHeadings(this.selectedCosch.id);
         }
     };
     SectionHeadingComponent.prototype.addSectionHeading = function () {
-        if (this.addingSectionHeading) {
-            this.addingSectionHeading = false;
-        }
-        else {
+        if (this.selectedCosch.id !== 0) {
             this.addingSectionHeading = true;
         }
         this.selectedSectionHeading = null;

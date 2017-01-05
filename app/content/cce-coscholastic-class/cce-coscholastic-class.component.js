@@ -59,14 +59,11 @@ var CceCoschClassComponent = (function () {
     CceCoschClassComponent.prototype.close = function (savedCCC) {
         this.addingCCC = false;
         if (savedCCC) {
-            this.getCceCoschClasses(this.selectedCCC.id);
+            this.getCceCoschClasses(this.selectedCosch.id);
         }
     };
     CceCoschClassComponent.prototype.addCceCoschClass = function () {
-        if (this.addingCCC) {
-            this.addingCCC = false;
-        }
-        else {
+        if (this.selectedCosch.id !== undefined) {
             this.addingCCC = true;
         }
         this.selectedCCC = null;

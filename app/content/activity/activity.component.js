@@ -90,6 +90,7 @@ var ActivityComponent = (function () {
                 this.selectedExam = this.exams[i];
             }
         }
+        this.selectedExamSubject = new exam_subject_1.ExamSubject();
         this.activities = null;
         this.getExamSubjects(this.selectedExam.id);
         this.addingActivity = false;
@@ -126,10 +127,10 @@ var ActivityComponent = (function () {
         this.addingActivity = false;
     };
     ActivityComponent.prototype.add = function () {
-        if (this.addingActivity) {
-            this.addingActivity = false;
-        }
-        else {
+        if (this.selectedClass.id !== undefined &&
+            this.selectedSection.id !== undefined &&
+            this.selectedExam.id !== undefined &&
+            this.selectedExamSubject.id !== undefined) {
             this.activity = new activity_1.Activity();
             this.activity.sectionId = this.selectedSection.id;
             this.activity.examId = this.selectedExam.id;

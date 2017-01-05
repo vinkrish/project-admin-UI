@@ -178,14 +178,7 @@ export class SubjectStudentComponent implements OnInit {
     this.subjectStudentsEdit = [];
     this.students = [];
   }
-
-  radioButtonListener() {
-    for(var i=0; i<this.ssList.length; i++){
-        console.log(this.ssList[i].studentName);
-        console.log(this.ssList[i].subjectId);
-    }
-  }
-
+  
   updateMapping() {
     for(var i = 0; i < this.subjectGroupSubjects.length; i++) {
       var tempIds = new Array();

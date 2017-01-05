@@ -41,7 +41,6 @@ export class SectionComponent implements OnInit {
     }
 
   classSelected(classId) {
-    //this.selectedClass = null;
     for (var i = 0; i < this.classes.length; i++) {
       if (this.classes[i].id == classId) {
         this.selectedClass = this.classes[i];
@@ -68,13 +67,11 @@ export class SectionComponent implements OnInit {
 
   close(savedSection: Section) {
     this.addingSection = false;
-    if (savedSection) { this.getSections(this.selectedSection.id); }
+    if (savedSection) { this.getSections(this.selectedClass.id); }
   }
 
   addSection() {
-    if (this.addingSection) {
-      this.addingSection = false;
-    } else {
+    if(this.selectedClass.className !== "") {
       this.addingSection = true;
     }
     this.selectedSection = null;

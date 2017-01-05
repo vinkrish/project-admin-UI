@@ -78,6 +78,7 @@ var SubActivityComponent = (function () {
             }
         }
         this.selectedExamSubject = new exam_subject_1.ExamSubject();
+        this.selectedActivity = new activity_1.Activity();
         this.activities = null;
         this.subActivities = null;
         this.addingSubActivity = false;
@@ -151,10 +152,11 @@ var SubActivityComponent = (function () {
         this.addingSubActivity = false;
     };
     SubActivityComponent.prototype.add = function () {
-        if (this.addingSubActivity) {
-            this.addingSubActivity = false;
-        }
-        else {
+        if (this.selectedClass.id !== undefined &&
+            this.selectedSection.id !== undefined &&
+            this.selectedExam.id !== undefined &&
+            this.selectedExamSubject.id !== undefined &&
+            this.selectedActivity.id != undefined) {
             this.subActivity = new subactivity_1.SubActivity();
             this.subActivity.activityId = this.selectedActivity.id;
             this.addingSubActivity = true;

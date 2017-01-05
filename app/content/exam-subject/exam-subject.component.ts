@@ -70,6 +70,8 @@ export class ExamSubjectComponent implements OnInit {
         this.selectedClass = this.classes[i];
       }
     }
+    this.selectedExam = new Exam();
+    this.selectedEsg = new ExamSubjectGroup();
     this.examSubjectGroups = null;
     this.getExams(this.selectedClass.id);
     this.addingExamSubject = false;
@@ -89,6 +91,7 @@ export class ExamSubjectComponent implements OnInit {
         this.selectedExam = this.exams[i];
       }
     }
+    this.selectedEsg = new ExamSubjectGroup();
     this.examSubjectGroups = null;
     this.getExamSubjectGroup(this.selectedExam.id);
     this.getExamSubjects(this.selectedExam.id);
@@ -154,9 +157,7 @@ export class ExamSubjectComponent implements OnInit {
 
   add() {
     this.addingPartitionSubject = false;
-    if (this.addingExamSubject) {
-      this.addingExamSubject = false;
-    } else {
+    if(this.selectedClass.id !== undefined && this.selectedExam.id !== undefined && this.selectedEsg.id !== undefined) {
       this.examSubject = new ExamSubject();
       this.examSubject.examId = this.selectedExam.id;
       this.addingExamSubject = true;

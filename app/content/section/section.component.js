@@ -34,7 +34,6 @@ var SectionComponent = (function () {
             .catch(function (error) { return _this.error = error; });
     };
     SectionComponent.prototype.classSelected = function (classId) {
-        //this.selectedClass = null;
         for (var i = 0; i < this.classes.length; i++) {
             if (this.classes[i].id == classId) {
                 this.selectedClass = this.classes[i];
@@ -60,14 +59,11 @@ var SectionComponent = (function () {
     SectionComponent.prototype.close = function (savedSection) {
         this.addingSection = false;
         if (savedSection) {
-            this.getSections(this.selectedSection.id);
+            this.getSections(this.selectedClass.id);
         }
     };
     SectionComponent.prototype.addSection = function () {
-        if (this.addingSection) {
-            this.addingSection = false;
-        }
-        else {
+        if (this.selectedClass.className !== "") {
             this.addingSection = true;
         }
         this.selectedSection = null;

@@ -77,11 +77,9 @@ var SubjectTeacherComponent = (function () {
         this.selectedSubjectTeacher = subjectTeacher;
         this.addingSubjectTeacher = false;
     };
-    SubjectTeacherComponent.prototype.close = function (savedStudent) {
+    SubjectTeacherComponent.prototype.close = function (savedSubjectTeacher) {
         this.addingSubjectTeacher = false;
-        if (savedStudent) {
-            this.getSubjectTeachers(this.selectedSubjectTeacher.id);
-        }
+        //if (savedSubjectTeacher) { this.getSubjectTeachers(this.selectedSection.id); }
     };
     SubjectTeacherComponent.prototype.setupSubjectTeacher = function () {
         this.subjectTeacherService.save(this.selectedClass);

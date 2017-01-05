@@ -32,7 +32,6 @@ var TeacherComponent = (function () {
         this.addingTeacher = false;
     };
     TeacherComponent.prototype.close = function (savedTeacher) {
-        console.log("teacher component close function");
         this.addingTeacher = false;
         if (savedTeacher) {
             this.getTeachers();

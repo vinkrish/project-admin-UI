@@ -40,7 +40,6 @@ export class ExamComponent implements OnInit {
     }
 
   classSelected(classId) {
-    //this.selectedClass = null;
     for (var i = 0; i < this.classes.length; i++) {
       if (this.classes[i].id == classId) {
         this.selectedClass = this.classes[i];
@@ -66,7 +65,7 @@ export class ExamComponent implements OnInit {
 
   close(savedExam: Exam) {
     this.addingExam = false;
-    if (savedExam) { this.getExams(this.selectedExam.id); }
+    if (savedExam) { this.getExams(this.selectedClass.id); }
   }
 
   gotoEdit(exam: Exam, event: any) {
@@ -75,10 +74,8 @@ export class ExamComponent implements OnInit {
 	}
 
   addExam() {
-    if (this.addingExam) {
-      this.addingExam = false;
-    } else {
-      this.addingExam = true;
+    if(this.selectedClass.id !== undefined) {
+      this.addingExam = true
     }
     this.selectedExam = null;
   }

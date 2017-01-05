@@ -33,6 +33,7 @@ var TimetableComponent = (function () {
         this.getClasses();
         this.selectedClass = new clas_1.Clas(0, "");
         this.selectedSection = new section_1.Section(0, "");
+        this.selectedDay = "";
     };
     TimetableComponent.prototype.getClasses = function () {
         var _this = this;
@@ -47,7 +48,6 @@ var TimetableComponent = (function () {
                 this.selectedClass = this.classes[i];
             }
         }
-        //this.selectedSection = null;
         this.isNewTimetable = false;
         this.getSections(this.selectedClass.id);
         this.getSubjects(this.selectedClass.id);
@@ -70,6 +70,7 @@ var TimetableComponent = (function () {
                 this.selectedSection = this.sections[i];
             }
         }
+        this.isNewTimetable = false;
         this.selectingSection = true;
         this.timetables = [];
         this.selectedTimetable = [];
@@ -119,7 +120,6 @@ var TimetableComponent = (function () {
     };
     TimetableComponent.prototype.insert = function () {
         var _this = this;
-        console.log(this.newTimetable.timingFrom);
         this.timetableService
             .save(this.newTimetable)
             .then(function () {
@@ -153,7 +153,7 @@ var TimetableComponent = (function () {
         this.enableNewTimetable();
     };
     TimetableComponent.prototype.enableNewTimetable = function () {
-        if (this.selectedSection != null && this.selectedDay != "") {
+        if (this.selectedDay != "") {
             this.isNewTimetable = true;
         }
     };

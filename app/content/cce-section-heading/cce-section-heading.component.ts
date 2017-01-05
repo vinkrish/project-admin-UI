@@ -40,7 +40,6 @@ export class SectionHeadingComponent implements OnInit {
     }
 
   coschSelected(coscholasticId) {
-    //this.selectedClass = null;
     for (var i = 0; i < this.coscholastics.length; i++) {
       if (this.coscholastics[i].id == coscholasticId) {
         this.selectedCosch = this.coscholastics[i];
@@ -66,13 +65,11 @@ export class SectionHeadingComponent implements OnInit {
 
   close(savedSectionHeading: CceSectionHeading) {
     this.addingSectionHeading = false;
-    if (savedSectionHeading) { this.getSectionHeadings(this.selectedSectionHeading.id); }
+    if (savedSectionHeading) { this.getSectionHeadings(this.selectedCosch.id); }
   }
 
   addSectionHeading() {
-    if (this.addingSectionHeading) {
-      this.addingSectionHeading = false;
-    } else {
+    if(this.selectedCosch.id !== 0) {
       this.addingSectionHeading = true;
     }
     this.selectedSectionHeading = null;

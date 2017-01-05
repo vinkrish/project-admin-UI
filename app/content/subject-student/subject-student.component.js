@@ -154,12 +154,6 @@ var SubjectStudentComponent = (function () {
         this.subjectStudentsEdit = [];
         this.students = [];
     };
-    SubjectStudentComponent.prototype.radioButtonListener = function () {
-        for (var i = 0; i < this.ssList.length; i++) {
-            console.log(this.ssList[i].studentName);
-            console.log(this.ssList[i].subjectId);
-        }
-    };
     SubjectStudentComponent.prototype.updateMapping = function () {
         for (var i = 0; i < this.subjectGroupSubjects.length; i++) {
             var tempIds = new Array();

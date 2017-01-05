@@ -34,7 +34,6 @@ var ExamComponent = (function () {
             .catch(function (error) { return _this.error = error; });
     };
     ExamComponent.prototype.classSelected = function (classId) {
-        //this.selectedClass = null;
         for (var i = 0; i < this.classes.length; i++) {
             if (this.classes[i].id == classId) {
                 this.selectedClass = this.classes[i];
@@ -59,7 +58,7 @@ var ExamComponent = (function () {
     ExamComponent.prototype.close = function (savedExam) {
         this.addingExam = false;
         if (savedExam) {
-            this.getExams(this.selectedExam.id);
+            this.getExams(this.selectedClass.id);
         }
     };
     ExamComponent.prototype.gotoEdit = function (exam, event) {
@@ -67,10 +66,7 @@ var ExamComponent = (function () {
         this.router.navigate(['exam/edit', exam.id]);
     };
     ExamComponent.prototype.addExam = function () {
-        if (this.addingExam) {
-            this.addingExam = false;
-        }
-        else {
+        if (this.selectedClass.id !== undefined) {
             this.addingExam = true;
         }
         this.selectedExam = null;

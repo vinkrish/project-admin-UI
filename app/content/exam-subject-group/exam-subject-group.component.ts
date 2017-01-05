@@ -50,12 +50,12 @@ export class ExamSubjectGroupComponent implements OnInit {
     }
 
   classSelected(classId) {
-    //this.selectedClass = null;
     for (var i = 0; i < this.classes.length; i++) {
       if (this.classes[i].id == classId) {
         this.selectedClass = this.classes[i];
       }
     }
+    this.selectedExam = new Exam();
     this.classSubjectGroups = null;
     this.getClassSubjectGroups(this.selectedClass.id);
     this.examSubjectGroups = null;
@@ -98,12 +98,10 @@ export class ExamSubjectGroupComponent implements OnInit {
   }
 
   add() {
-    if (this.addingEsg) {
-      this.addingEsg = false;
-    } else {
+    if(this.selectedClass.id !== undefined && this.selectedExam.id !== undefined) {
       this.examSubjectGroup = new ExamSubjectGroup();
       this.examSubjectGroup.examId = this.selectedExam.id;
-      this.addingEsg = true;
+      this.addingEsg = true
     }
     this.selectedEsg = null;
   }

@@ -94,6 +94,7 @@ export class SubActivityComponent implements OnInit {
       }
     }
     this.selectedExamSubject = new ExamSubject();
+    this.selectedActivity = new Activity();
     this.activities = null;
     this.subActivities = null;
     this.addingSubActivity = false;
@@ -173,9 +174,11 @@ export class SubActivityComponent implements OnInit {
   }
 
   add() {
-    if (this.addingSubActivity) {
-      this.addingSubActivity = false;
-    } else {
+    if (this.selectedClass.id !== undefined && 
+        this.selectedSection.id !== undefined &&
+        this.selectedExam.id !== undefined &&
+        this.selectedExamSubject.id !== undefined &&
+        this.selectedActivity.id != undefined) {
       this.subActivity = new SubActivity();
       this.subActivity.activityId = this.selectedActivity.id;
       this.addingSubActivity = true;

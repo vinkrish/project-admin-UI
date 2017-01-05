@@ -84,7 +84,7 @@ var StudentComponent = (function () {
     StudentComponent.prototype.close = function (savedStudent) {
         this.addingStudent = false;
         if (savedStudent) {
-            this.getStudents(this.selectedStudent.id);
+            this.getStudents(this.selectedSection.id);
         }
     };
     StudentComponent.prototype.addStudent = function () {

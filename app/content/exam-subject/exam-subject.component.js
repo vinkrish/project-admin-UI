@@ -54,6 +54,8 @@ var ExamSubjectComponent = (function () {
                 this.selectedClass = this.classes[i];
             }
         }
+        this.selectedExam = new exam_1.Exam();
+        this.selectedEsg = new exam_subject_group_1.ExamSubjectGroup();
         this.examSubjectGroups = null;
         this.getExams(this.selectedClass.id);
         this.addingExamSubject = false;
@@ -72,6 +74,7 @@ var ExamSubjectComponent = (function () {
                 this.selectedExam = this.exams[i];
             }
         }
+        this.selectedEsg = new exam_subject_group_1.ExamSubjectGroup();
         this.examSubjectGroups = null;
         this.getExamSubjectGroup(this.selectedExam.id);
         this.getExamSubjects(this.selectedExam.id);
@@ -134,10 +137,7 @@ var ExamSubjectComponent = (function () {
     };
     ExamSubjectComponent.prototype.add = function () {
         this.addingPartitionSubject = false;
-        if (this.addingExamSubject) {
-            this.addingExamSubject = false;
-        }
-        else {
+        if (this.selectedClass.id !== undefined && this.selectedExam.id !== undefined && this.selectedEsg.id !== undefined) {
             this.examSubject = new exam_subject_1.ExamSubject();
             this.examSubject.examId = this.selectedExam.id;
             this.addingExamSubject = true;

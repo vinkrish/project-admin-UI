@@ -70,8 +70,8 @@ export class SubjectGroupSubjectEditComponent implements OnInit, OnDestroy {
       .catch(error => this.error = error);
   }
 
-  goBack(savedSection: SubjectGroupSubject = null) {
-    this.close.emit(savedSection);
+  goBack(savedSGS: SubjectGroupSubject = null) {
+    this.close.emit(savedSGS);
     if (this.navigated) { window.history.back(); }
   }
 

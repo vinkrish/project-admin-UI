@@ -32,7 +32,6 @@ var ExamEditComponent = (function () {
                 _this.examService.getExam(_this.classId, id)
                     .then(function (exam) {
                     _this.exam = exam;
-                    console.log(_this.exam.examName);
                 });
             }
             else {

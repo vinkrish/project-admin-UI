@@ -37,7 +37,6 @@ export class SectionEditComponent implements OnInit, OnDestroy {
         //var ids: string[] = params['id'].split(",");
         //let id = +ids[0];
         //let id2 = +ids[1];
-        
         let sectionId = +params['id'];
         this.navigated = true;
         this.sectionService.getSection(this.classId, sectionId)

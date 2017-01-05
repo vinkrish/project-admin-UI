@@ -38,7 +38,6 @@ export class TeacherComponent implements OnInit {
   }
 
   close(savedTeacher: Teacher) {
-	console.log("teacher component close function");
 	this.addingTeacher = false;
 	if (savedTeacher) { this.getTeachers(); }
   }

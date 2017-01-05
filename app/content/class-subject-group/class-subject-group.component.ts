@@ -40,7 +40,6 @@ export class ClassSubjectGroupComponent implements OnInit {
     }
 
   classSelected(classId) {
-    //this.selectedClass = null;
     for (var i = 0; i < this.classes.length; i++) {
       if (this.classes[i].id == classId) {
         this.selectedClass = this.classes[i];
@@ -66,13 +65,11 @@ export class ClassSubjectGroupComponent implements OnInit {
 
   close(savedSGS: ClassSubjectGroup) {
     this.addingCSG = false;
-    if (savedSGS) { this.getClassSubjectGroups(this.selectedCSG.id); }
+    if (savedSGS) { this.getClassSubjectGroups(this.selectedClass.id); }
   }
 
   addCSG() {
-    if (this.addingCSG) {
-      this.addingCSG = false;
-    } else {
+    if(this.selectedClass.id !== undefined) {
       this.addingCSG = true;
     }
     this.selectedCSG = null;

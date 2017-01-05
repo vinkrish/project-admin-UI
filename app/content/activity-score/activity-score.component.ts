@@ -214,7 +214,6 @@ export class ActivityScoreComponent implements OnInit {
       .getScore(this.selectedActivity.id)
       .then(existingScore => {
         this.existingScore = existingScore;
-        console.log(this.existingScore);
         if(this.existingScore.length == 0) {
           this.isScorePresent = false;
         } else {

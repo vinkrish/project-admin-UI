@@ -46,6 +46,7 @@ export class TimetableComponent {
 	this.getClasses();
 	this.selectedClass = new Clas(0, "");
 	this.selectedSection = new Section(0, "");
+	this.selectedDay = "";
   }
 
   getClasses() {
@@ -61,7 +62,6 @@ export class TimetableComponent {
 		this.selectedClass = this.classes[i];
 	  }
 	}
-	//this.selectedSection = null;
 	this.isNewTimetable = false;
 	this.getSections(this.selectedClass.id);
 	this.getSubjects(this.selectedClass.id);
@@ -85,6 +85,7 @@ export class TimetableComponent {
 		this.selectedSection = this.sections[i];
 	  }
 	}
+	this.isNewTimetable = false;
 	this.selectingSection = true;
 	this.timetables = [];
 	this.selectedTimetable = [];
@@ -135,7 +136,6 @@ export class TimetableComponent {
   }
 
   insert() {
-	console.log(this.newTimetable.timingFrom);
 	this.timetableService
 	  .save(this.newTimetable)
 	  .then(() => {
@@ -171,7 +171,7 @@ export class TimetableComponent {
   }
 
   enableNewTimetable() {
-	if (this.selectedSection != null && this.selectedDay != "") {
+	if (this.selectedDay != "") {
 	  this.isNewTimetable = true;
 	}
   }

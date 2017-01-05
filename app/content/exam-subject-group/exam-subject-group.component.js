@@ -39,12 +39,12 @@ var ExamSubjectGroupComponent = (function () {
             .catch(function (error) { return _this.error = error; });
     };
     ExamSubjectGroupComponent.prototype.classSelected = function (classId) {
-        //this.selectedClass = null;
         for (var i = 0; i < this.classes.length; i++) {
             if (this.classes[i].id == classId) {
                 this.selectedClass = this.classes[i];
             }
         }
+        this.selectedExam = new exam_1.Exam();
         this.classSubjectGroups = null;
         this.getClassSubjectGroups(this.selectedClass.id);
         this.examSubjectGroups = null;
@@ -83,10 +83,7 @@ var ExamSubjectGroupComponent = (function () {
         this.addingEsg = false;
     };
     ExamSubjectGroupComponent.prototype.add = function () {
-        if (this.addingEsg) {
-            this.addingEsg = false;
-        }
-        else {
+        if (this.selectedClass.id !== undefined && this.selectedExam.id !== undefined) {
             this.examSubjectGroup = new exam_subject_group_1.ExamSubjectGroup();
             this.examSubjectGroup.examId = this.selectedExam.id;
             this.addingEsg = true;

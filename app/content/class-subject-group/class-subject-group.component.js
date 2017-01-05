@@ -34,7 +34,6 @@ var ClassSubjectGroupComponent = (function () {
             .catch(function (error) { return _this.error = error; });
     };
     ClassSubjectGroupComponent.prototype.classSelected = function (classId) {
-        //this.selectedClass = null;
         for (var i = 0; i < this.classes.length; i++) {
             if (this.classes[i].id == classId) {
                 this.selectedClass = this.classes[i];
@@ -59,14 +58,11 @@ var ClassSubjectGroupComponent = (function () {
     ClassSubjectGroupComponent.prototype.close = function (savedSGS) {
         this.addingCSG = false;
         if (savedSGS) {
-            this.getClassSubjectGroups(this.selectedCSG.id);
+            this.getClassSubjectGroups(this.selectedClass.id);
         }
     };
     ClassSubjectGroupComponent.prototype.addCSG = function () {
-        if (this.addingCSG) {
-            this.addingCSG = false;
-        }
-        else {
+        if (this.selectedClass.id !== undefined) {
             this.addingCSG = true;
         }
         this.selectedCSG = null;

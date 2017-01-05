@@ -56,10 +56,7 @@ var GradeClassWiseComponent = (function () {
         this.addingGCW = false;
     };
     GradeClassWiseComponent.prototype.add = function () {
-        if (this.addingGCW) {
-            this.addingGCW = false;
-        }
-        else {
+        if (this.selectedClass.id !== undefined) {
             this.gradeClassWise = new grade_class_wise_1.GradeClassWise();
             this.gradeClassWise.classId = this.selectedClass.id;
             this.addingGCW = true;
@@ -85,9 +82,10 @@ var GradeClassWiseComponent = (function () {
             .post(this.gradeClassWise)
             .then(function (gradeClassWise) {
             _this.addingGCW = false;
-            _this.selectedClass = new clas_1.Clas();
+            //this.selectedClass = new Clas();
             _this.selectedGCW = new grade_class_wise_1.GradeClassWise();
             _this.gradesClassWise = [];
+            _this.getGradesClassWise(_this.selectedClass.id);
         })
             .catch(function (error) { return _this.error = error; });
     };

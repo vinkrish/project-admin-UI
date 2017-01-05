@@ -217,7 +217,6 @@ var SubActivityScoreComponent = (function () {
             .getScore(this.selectedSubActivity.id)
             .then(function (existingScore) {
             _this.existingScore = existingScore;
-            console.log(_this.existingScore);
             if (_this.existingScore.length == 0) {
                 _this.isScorePresent = false;
             }

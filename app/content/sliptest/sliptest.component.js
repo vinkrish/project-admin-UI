@@ -145,10 +145,8 @@ var SliptestComponent = (function () {
         }
     };
     SliptestComponent.prototype.addSliptest = function () {
-        if (this.addingSliptest) {
-            this.addingSliptest = false;
-        }
-        else {
+        if (this.selectedClass.id !== 0 && this.selectedSection.id !== undefined &&
+            this.selectedCSG.id !== undefined && this.selectedSGS.id !== undefined) {
             this.addingSliptest = true;
         }
         this.selectedSliptest = null;

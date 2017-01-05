@@ -38,9 +38,9 @@ export class AspectPrimaryComponent implements OnInit {
 
   ngOnInit() {
     this.getCoscholastics();
-    this.selectedCosch = new CceCoscholastic(0, "");
-    this.selectedSectionHeading = new CceSectionHeading(0, "");
-    this.selectedTopicPrimary = new CceTopicPrimary(0, "");
+    this.selectedCosch = new CceCoscholastic();
+    this.selectedSectionHeading = new CceSectionHeading();
+    this.selectedTopicPrimary = new CceTopicPrimary();
   }
 
   getCoscholastics() {
@@ -58,8 +58,8 @@ export class AspectPrimaryComponent implements OnInit {
     }
     this.aspects = null;
     this.getSectionHeadings(this.selectedCosch.id);
-    this.selectedSectionHeading = new CceSectionHeading(0, "");
-    this.selectedTopicPrimary = new CceTopicPrimary(0, "");
+    this.selectedSectionHeading = new CceSectionHeading();
+    this.selectedTopicPrimary = new CceTopicPrimary();
     this.addingAspect = false;
     //this.selectingSecHead = false;
     this.topicPrimarys = null;
@@ -79,9 +79,9 @@ export class AspectPrimaryComponent implements OnInit {
       }
     }
     this.aspects = null;
+    this.selectedTopicPrimary = new CceTopicPrimary();
     this.getTopicPrimarys(this.selectedSectionHeading.id);
     this.addingAspect = false;
-    //this.selectingSecHead = true;
   }
 
   getTopicPrimarys(id: number) {
@@ -116,17 +116,16 @@ export class AspectPrimaryComponent implements OnInit {
 
   close(savedAspect: CceAspectPrimary) {
     this.addingAspect = false;
-    if (savedAspect) { this.getTopicPrimarys(this.selectedTopicPrimary.id); }
+    //if (savedAspect) { this.getTopicPrimarys(this.selectedSectionHeading.id); }
   }
 
   add() {
-    if (this.addingAspect) {
-        this.addingAspect = false;
-      } else {
-        this.aspectPrimary = new CceAspectPrimary();
-        this.aspectPrimary.topicId = this.selectedTopicPrimary.id;
-        this.addingAspect = true;
-      } 
+    if (this.selectedCosch.id !== undefined && this.selectedSectionHeading.id !== undefined &&
+        this.selectedTopicPrimary.id !== undefined) {
+          this.aspectPrimary = new CceAspectPrimary();
+          this.aspectPrimary.topicId = this.selectedTopicPrimary.id;
+          this.addingAspect = true;
+    }
     this.selectedAspect = null;
   }
 
@@ -146,8 +145,8 @@ export class AspectPrimaryComponent implements OnInit {
         .save(this.aspectPrimary)
         .then(aspectPrimary => {
           this.addingAspect = false;
-          this.selectedTopicPrimary = new CceTopicPrimary();
           this.aspects = null;
+           this.getAspects(this.selectedTopicPrimary.id);
         })
         .catch(error => this.error = error);
   }

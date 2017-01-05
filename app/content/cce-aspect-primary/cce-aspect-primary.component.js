@@ -29,9 +29,9 @@ var AspectPrimaryComponent = (function () {
     }
     AspectPrimaryComponent.prototype.ngOnInit = function () {
         this.getCoscholastics();
-        this.selectedCosch = new cce_coscholastic_1.CceCoscholastic(0, "");
-        this.selectedSectionHeading = new cce_section_heading_1.CceSectionHeading(0, "");
-        this.selectedTopicPrimary = new cce_topic_primary_1.CceTopicPrimary(0, "");
+        this.selectedCosch = new cce_coscholastic_1.CceCoscholastic();
+        this.selectedSectionHeading = new cce_section_heading_1.CceSectionHeading();
+        this.selectedTopicPrimary = new cce_topic_primary_1.CceTopicPrimary();
     };
     AspectPrimaryComponent.prototype.getCoscholastics = function () {
         var _this = this;
@@ -48,8 +48,8 @@ var AspectPrimaryComponent = (function () {
         }
         this.aspects = null;
         this.getSectionHeadings(this.selectedCosch.id);
-        this.selectedSectionHeading = new cce_section_heading_1.CceSectionHeading(0, "");
-        this.selectedTopicPrimary = new cce_topic_primary_1.CceTopicPrimary(0, "");
+        this.selectedSectionHeading = new cce_section_heading_1.CceSectionHeading();
+        this.selectedTopicPrimary = new cce_topic_primary_1.CceTopicPrimary();
         this.addingAspect = false;
         //this.selectingSecHead = false;
         this.topicPrimarys = null;
@@ -68,9 +68,9 @@ var AspectPrimaryComponent = (function () {
             }
         }
         this.aspects = null;
+        this.selectedTopicPrimary = new cce_topic_primary_1.CceTopicPrimary();
         this.getTopicPrimarys(this.selectedSectionHeading.id);
         this.addingAspect = false;
-        //this.selectingSecHead = true;
     };
     AspectPrimaryComponent.prototype.getTopicPrimarys = function (id) {
         var _this = this;
@@ -102,15 +102,11 @@ var AspectPrimaryComponent = (function () {
     };
     AspectPrimaryComponent.prototype.close = function (savedAspect) {
         this.addingAspect = false;
-        if (savedAspect) {
-            this.getTopicPrimarys(this.selectedTopicPrimary.id);
-        }
+        //if (savedAspect) { this.getTopicPrimarys(this.selectedSectionHeading.id); }
     };
     AspectPrimaryComponent.prototype.add = function () {
-        if (this.addingAspect) {
-            this.addingAspect = false;
-        }
-        else {
+        if (this.selectedCosch.id !== undefined && this.selectedSectionHeading.id !== undefined &&
+            this.selectedTopicPrimary.id !== undefined) {
             this.aspectPrimary = new cce_aspect_primary_1.CceAspectPrimary();
             this.aspectPrimary.topicId = this.selectedTopicPrimary.id;
             this.addingAspect = true;
@@ -136,8 +132,8 @@ var AspectPrimaryComponent = (function () {
             .save(this.aspectPrimary)
             .then(function (aspectPrimary) {
             _this.addingAspect = false;
-            _this.selectedTopicPrimary = new cce_topic_primary_1.CceTopicPrimary();
             _this.aspects = null;
+            _this.getAspects(_this.selectedTopicPrimary.id);
         })
             .catch(function (error) { return _this.error = error; });
     };

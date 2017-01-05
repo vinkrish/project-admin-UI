@@ -105,6 +105,7 @@ export class ActivityComponent implements OnInit {
         this.selectedExam = this.exams[i];
       }
     }
+    this.selectedExamSubject = new ExamSubject();
     this.activities = null;
     this.getExamSubjects(this.selectedExam.id);
     this.addingActivity = false;
@@ -145,9 +146,10 @@ export class ActivityComponent implements OnInit {
   }
 
   add() {
-    if (this.addingActivity) {
-      this.addingActivity = false;
-    } else {
+    if (this.selectedClass.id !== undefined && 
+        this.selectedSection.id !== undefined &&
+        this.selectedExam.id !== undefined &&
+        this.selectedExamSubject.id !== undefined) {
       this.activity = new Activity();
       this.activity.sectionId = this.selectedSection.id;
       this.activity.examId = this.selectedExam.id;

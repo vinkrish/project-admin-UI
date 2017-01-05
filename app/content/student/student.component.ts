@@ -95,7 +95,7 @@ export class StudentComponent implements OnInit {
 
   close(savedStudent: Student) {
     this.addingStudent = false;
-    if (savedStudent) { this.getStudents(this.selectedStudent.id); }
+    if (savedStudent) { this.getStudents(this.selectedSection.id); }
   }
   
   addStudent() {

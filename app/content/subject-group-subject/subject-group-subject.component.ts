@@ -41,10 +41,9 @@ export class SubjectGroupSubjectComponent implements OnInit {
   }
 
   subjectGroupSelected(subjectGroupId) {
-  //this.selectedClass = null;
     for (var i = 0; i < this.subjectGroups.length; i++) {
       if (this.subjectGroups[i].id == subjectGroupId) {
-      this.selectedSubjectGroup = this.subjectGroups[i];
+        this.selectedSubjectGroup = this.subjectGroups[i];
       }
     }
     this.getSubjectGroupSubjects(this.selectedSubjectGroup.id);
@@ -67,13 +66,11 @@ export class SubjectGroupSubjectComponent implements OnInit {
 
   close(savedSGS: SubjectGroupSubject) {
     this.addingSGS = false;
-    if (savedSGS) { this.getSubjectGroupSubjects(this.selectedSGS.id); }
+    if (savedSGS) { this.getSubjectGroupSubjects(this.selectedSubjectGroup.id); }
   }
 
   addSubjectGroupSubject() {
-    if (this.addingSGS) {
-      this.addingSGS = false;
-    } else {
+    if(this.selectedSubjectGroup.id !== undefined) {
       this.addingSGS = true;
     }
     this.selectedSGS = null;

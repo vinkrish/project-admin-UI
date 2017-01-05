@@ -67,15 +67,13 @@ export class CceCoschClassComponent implements OnInit {
 
   	close(savedCCC: CceCoscholasticClass) {
   		this.addingCCC = false;
-    	if (savedCCC) { this.getCceCoschClasses(this.selectedCCC.id); }
+    	if (savedCCC) { this.getCceCoschClasses(this.selectedCosch.id); }
   	}
 
 	addCceCoschClass() {
-	    if(this.addingCCC) {
-	      this.addingCCC = false;
-	    } else {
-	      this.addingCCC = true;
-	    }
+    if(this.selectedCosch.id !== undefined) {
+      this.addingCCC = true;
+    }
 		this.selectedCCC = null;
 	}
 

@@ -119,10 +119,7 @@ var PortionComponent = (function () {
         }
     };
     PortionComponent.prototype.addPortion = function () {
-        if (this.addingPortion) {
-            this.addingPortion = false;
-        }
-        else {
+        if (this.selectedClass.id !== 0 && this.selectedCSG.id !== undefined && this.selectedSGS.id !== undefined) {
             this.addingPortion = true;
         }
         this.selectedPortion = null;
