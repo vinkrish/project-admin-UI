@@ -6,6 +6,7 @@ import { cceCoschClassRoutes }			from '../content/cce-coscholastic-class/cce-cos
 import { sectionHeadingRoutes }			from '../content/cce-section-heading/cce-section-heading.routes';
 import { topicPrimaryRoutes }			from '../content/cce-topic-primary/cce-topic-primary.routes';
 import { AspectPrimaryComponent } 		from '../content/cce-aspect-primary/cce-aspect-primary.component';
+import { TopicGradeComponent }          from '../content/cce-topic-grade/cce-topic-grade.component';
 
 export const cceDashboardRoutes: Routes = [
   	{
@@ -22,4 +23,9 @@ export const cceDashboardRoutes: Routes = [
         component: AspectPrimaryComponent,
         canActivate: [LoggedInGuard]
     },
+    {
+        path: 'cce-topic-grade',
+        component: TopicGradeComponent,
+        canActivate: [LoggedInGuard]
+    }
 ];

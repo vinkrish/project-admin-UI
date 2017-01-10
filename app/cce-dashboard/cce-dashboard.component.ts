@@ -23,7 +23,8 @@ export class CceDashboardComponent {
 
   Items2: DashboardItem[] = [
 	{ name: 'CCE Topic Primary', link: 'cce-topic-primary' },
-	{ name: 'CCE Aspect Primary', link: 'cce-aspect-primary' }
+	{ name: 'CCE Aspect Primary', link: 'cce-aspect-primary' },
+  { name: 'CCE Topic Grade', link: 'cce-topic-grade' }
   ];
 
   gotoDetail(item: string) {

@@ -6,6 +6,7 @@ var cce_coscholastic_class_routes_1 = require('../content/cce-coscholastic-class
 var cce_section_heading_routes_1 = require('../content/cce-section-heading/cce-section-heading.routes');
 var cce_topic_primary_routes_1 = require('../content/cce-topic-primary/cce-topic-primary.routes');
 var cce_aspect_primary_component_1 = require('../content/cce-aspect-primary/cce-aspect-primary.component');
+var cce_topic_grade_component_1 = require('../content/cce-topic-grade/cce-topic-grade.component');
 exports.cceDashboardRoutes = [
     {
         path: 'cce-student-profile',
@@ -18,5 +19,10 @@ exports.cceDashboardRoutes = [
         component: cce_aspect_primary_component_1.AspectPrimaryComponent,
         canActivate: [logged_in_guard_1.LoggedInGuard]
     },
+    {
+        path: 'cce-topic-grade',
+        component: cce_topic_grade_component_1.TopicGradeComponent,
+        canActivate: [logged_in_guard_1.LoggedInGuard]
+    }
 ]);
 //# sourceMappingURL=cce-dashboard.routes.js.map

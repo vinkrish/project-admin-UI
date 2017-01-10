@@ -52,6 +52,7 @@ var cce_section_heading_edit_component_1 = require('../app/content/cce-section-h
 var cce_topic_primary_component_1 = require('../app/content/cce-topic-primary/cce-topic-primary.component');
 var cce_topic_primary_edit_component_1 = require('../app/content/cce-topic-primary/cce-topic-primary-edit.component');
 var cce_aspect_primary_component_1 = require('../app/content/cce-aspect-primary/cce-aspect-primary.component');
+var cce_topic_grade_component_1 = require('../app/content/cce-topic-grade/cce-topic-grade.component');
 var core_1 = require('angular2-cookie/core');
 var credentials_service_1 = require('./login/credentials.service');
 var logged_in_guard_1 = require('./login/logged-in.guard');
@@ -86,6 +87,7 @@ var cce_coscholastic_class_service_1 = require('../app/content/cce-coscholastic-
 var cce_section_heading_service_1 = require('../app/content/cce-section-heading/cce-section-heading.service');
 var cce_topic_primary_service_1 = require('../app/content/cce-topic-primary/cce-topic-primary.service');
 var cce_aspect_primary_service_1 = require('../app/content/cce-aspect-primary/cce-aspect-primary.service');
+var cce_topic_grade_service_1 = require('../app/content/cce-topic-grade/cce-topic-grade.service');
 exports.myComponents = [
     app_component_1.AppComponent,
     header_component_1.HeaderComponent,
@@ -139,7 +141,8 @@ exports.myComponents = [
     cce_section_heading_edit_component_1.SectionHeadingEditComponent,
     cce_topic_primary_component_1.TopicPrimaryComponent,
     cce_topic_primary_edit_component_1.TopicPrimaryEditComponent,
-    cce_aspect_primary_component_1.AspectPrimaryComponent
+    cce_aspect_primary_component_1.AspectPrimaryComponent,
+    cce_topic_grade_component_1.TopicGradeComponent
 ];
 exports.myServices = [
     core_1.CookieService,
@@ -175,6 +178,7 @@ exports.myServices = [
     cce_coscholastic_class_service_1.CceCoschClassService,
     cce_section_heading_service_1.SectionHeadingService,
     cce_topic_primary_service_1.TopicPrimaryService,
-    cce_aspect_primary_service_1.AspectPrimaryService
+    cce_aspect_primary_service_1.AspectPrimaryService,
+    cce_topic_grade_service_1.TopicGradeService
 ];
 //# sourceMappingURL=external.module.js.map
