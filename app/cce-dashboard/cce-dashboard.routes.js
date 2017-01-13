@@ -7,6 +7,7 @@ var cce_section_heading_routes_1 = require('../content/cce-section-heading/cce-s
 var cce_topic_primary_routes_1 = require('../content/cce-topic-primary/cce-topic-primary.routes');
 var cce_aspect_primary_component_1 = require('../content/cce-aspect-primary/cce-aspect-primary.component');
 var cce_topic_grade_component_1 = require('../content/cce-topic-grade/cce-topic-grade.component');
+var cce_aspect_grade_component_1 = require('../content/cce-aspect-grade/cce-aspect-grade.component');
 exports.cceDashboardRoutes = [
     {
         path: 'cce-student-profile',
@@ -22,6 +23,11 @@ exports.cceDashboardRoutes = [
     {
         path: 'cce-topic-grade',
         component: cce_topic_grade_component_1.TopicGradeComponent,
+        canActivate: [logged_in_guard_1.LoggedInGuard]
+    },
+    {
+        path: 'cce-aspect-grade',
+        component: cce_aspect_grade_component_1.AspectGradeComponent,
         canActivate: [logged_in_guard_1.LoggedInGuard]
     }
 ]);

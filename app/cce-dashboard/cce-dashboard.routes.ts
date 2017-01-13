@@ -7,6 +7,7 @@ import { sectionHeadingRoutes }			from '../content/cce-section-heading/cce-secti
 import { topicPrimaryRoutes }			from '../content/cce-topic-primary/cce-topic-primary.routes';
 import { AspectPrimaryComponent } 		from '../content/cce-aspect-primary/cce-aspect-primary.component';
 import { TopicGradeComponent }          from '../content/cce-topic-grade/cce-topic-grade.component';
+import { AspectGradeComponent }         from '../content/cce-aspect-grade/cce-aspect-grade.component';
 
 export const cceDashboardRoutes: Routes = [
   	{
@@ -26,6 +27,11 @@ export const cceDashboardRoutes: Routes = [
     {
         path: 'cce-topic-grade',
         component: TopicGradeComponent,
+        canActivate: [LoggedInGuard]
+    },
+    {
+        path: 'cce-aspect-grade',
+        component: AspectGradeComponent,
         canActivate: [LoggedInGuard]
     }
 ];
